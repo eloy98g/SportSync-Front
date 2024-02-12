@@ -16,7 +16,7 @@ const SplashScreen = ({ navigation }: any) => {
 
   return (
     <Screen>
-      {/* <Text>SplashupScreen</Text> */}
+      <Text>SplashupScreen</Text>
       <ActivityIndicator size="small" color={colors.primary} />
     </Screen>
   );
