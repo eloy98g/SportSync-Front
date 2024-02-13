@@ -1,8 +1,9 @@
 const getActiveRouteState = function (route: any): any {
   if (
-    !route.routes ||
-    route.routes.length === 0 ||
-    route.index >= route.routes.length
+    !route ||
+    !route?.routes ||
+    route?.routes.length === 0 ||
+    route?.index >= route?.routes?.length
   ) {
     return route;
   }

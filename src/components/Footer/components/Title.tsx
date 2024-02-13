@@ -5,19 +5,12 @@ import { Text } from "react-native";
 import { family } from "../../../theme/fonts";
 import colors from "../../../theme/colors";
 
-const Title = ({ index, active }: any): any => {
+const Title = ({ title, active }: any): any => {
   const color = active ? colors.primary : colors.black;
   const fontFamily = active ? family.bold : family.normal;
 
   const styles = { color, fontFamily, fontSize: 10 };
-  switch (index) {
-    case 0:
-      return <Text style={styles}>Eventos</Text>;
-    case 1:
-      return <Text style={styles}>Pedidos</Text>;
-    case 2:
-      return <Text style={styles}>Perfil</Text>;
-  }
+  return <Text style={styles}>{title}</Text>;
 };
 
 export default Title;
