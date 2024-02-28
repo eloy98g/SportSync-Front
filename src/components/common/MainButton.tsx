@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 46,
     maxHeight: 46,
+    minHeight: 46,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,

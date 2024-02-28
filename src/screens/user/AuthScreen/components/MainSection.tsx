@@ -10,9 +10,14 @@ import Divider from "../../../../components/common/Divider";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 
-const MainSection = () => {
-  const loginHandler = () => {};
-  const signInHandler = () => {};
+const MainSection = (props: any) => {
+  const { setSection } = props;
+  const loginHandler = () => {
+    setSection("LogIn");
+  };
+  const signInHandler = () => {
+    setSection("SignIn");
+  };
 
   return (
     <LinearGradient
