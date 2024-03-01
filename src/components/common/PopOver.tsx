@@ -1,14 +1,22 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Popover as PpOTamagui } from "tamagui";
 
-const PopOver = () => {
+const Popover = (props: any) => {
+  const { children } = props;
+
   return (
-    <View>
-      <Text></Text>
-    </View>
-  )
-}
+    <PpOTamagui>
+      <PpOTamagui.Sheet>
+        <PpOTamagui.Sheet.Overlay />
 
-export default PopOver
+        <PpOTamagui.Sheet.Frame>
+          <PpOTamagui.Sheet.ScrollView>
+            <PpOTamagui.Adapt.Contents />
+            {children}
+          </PpOTamagui.Sheet.ScrollView>
+        </PpOTamagui.Sheet.Frame>
+      </PpOTamagui.Sheet>
+    </PpOTamagui>
+  );
+};
 
-const styles = StyleSheet.create({})
+export default Popover;

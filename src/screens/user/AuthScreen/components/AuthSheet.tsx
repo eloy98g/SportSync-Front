@@ -7,9 +7,17 @@ const AuthSheet = (props: any) => {
   const { section, setSection, children } = props;
   const [open, setOpen] = useState(false);
 
+  console.log("open", open);
+  console.log("section", section);
+
   useEffect(() => {
+    console.log("effect open", open);
+    console.log("effect section", open);
+
     if (section) {
       setOpen(true);
+    } else {
+      setOpen(false);
     }
   }, [section]);
 

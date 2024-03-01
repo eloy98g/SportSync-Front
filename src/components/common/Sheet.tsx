@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
 import { Sheet as TamaguiSheet } from "@tamagui/sheet";
 
 const Sheet = (props: any) => {
@@ -42,5 +41,3 @@ const Sheet = (props: any) => {
 };
 
 export default Sheet;
-
-const styles = StyleSheet.create({});

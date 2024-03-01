@@ -20,7 +20,6 @@ const AuthScreen = () => {
     ForgotPassword: <ForgotPassword setSection={setSection} />,
     LogIn: <LogIn setSection={setSection} />,
     SignIn: <SignIn setSection={setSection} />,
-    Default: <LogIn setSection={setSection} />,
   };
 
   return (

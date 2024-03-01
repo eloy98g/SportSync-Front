@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Divider from "../../../../components/common/Divider";
@@ -14,8 +15,14 @@ import colors from "../../../../theme/colors";
 const Login = ({ setSection }: any) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigation();
 
-  const loginHandler = () => {};
+  const loginHandler = () => {
+    setSection();
+    setTimeout(() => {
+      navigation.navigate("Home" as never);
+    }, 500);
+  };
 
   const goToSignIn = () => setSection("SignIn");
   const goToForgotPassword = () => setSection("ForgotPassword");
