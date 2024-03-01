@@ -1,5 +1,5 @@
 import React from "react";
-import { Octicons, Feather } from "@expo/vector-icons";
+import { Home, Target, UserRound } from "lucide-react-native";
 
 // Constants
 import colors from "../../../theme/colors";
@@ -9,11 +9,11 @@ const Icon = ({ icon, active }: any): any => {
 
   switch (icon) {
     case "home":
-      return <Octicons name="home" size={30} color={color} />;
+      return <Home size={30} color={color} />;
     case "search":
-      return <Feather name="search" size={30} color={color} />;
+      return <Target size={30} color={color} />;
     case "profile":
-      return <Octicons name="person" size={30} color={color} />;
+      return <UserRound size={30} color={color} />;
   }
 };
 

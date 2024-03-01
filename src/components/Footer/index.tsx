@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { View, StyleSheet, Platform, Text } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
 import { useNavigation, useNavigationState } from "@react-navigation/native";
 
 // Components
@@ -21,7 +21,6 @@ const Footer = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const tabRef = useRef();
 
-  console.log("searchOpen", searchOpen);
   const ICONS = [
     {
       key: "Home",
