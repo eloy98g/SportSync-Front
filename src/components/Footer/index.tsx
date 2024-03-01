@@ -1,18 +1,27 @@
-import React from "react";
-import { View, StyleSheet, Platform } from "react-native";
+import React, { useState, useRef } from "react";
+import { View, StyleSheet, Platform, Text } from "react-native";
 import { useNavigation, useNavigationState } from "@react-navigation/native";
 
+// Components
+import SearchContainer from "./components/SearchContainer"
+import PopOver from "../common/PopOver";
 import Tab from "./components/Tab";
+
+// Methods
 import getActiveRouteState from "./methods/getActiveRouteState";
 
 const SCREENS_WHITELIST = ["Home", "Profile"];
+
 
 const Footer = () => {
   const navigation = useNavigation();
   const state = useNavigationState((state) => state);
   const selectedScreen = getActiveRouteState(state)?.name;
   const footerShown = SCREENS_WHITELIST.includes(selectedScreen);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const tabRef = useRef();
 
+  console.log("searchOpen", searchOpen);
   const ICONS = [
     {
       key: "Home",
@@ -22,7 +31,7 @@ const Footer = () => {
     },
     {
       key: "Search",
-      onPress: () => console.log("[ACTION] show search bar"),
+      onPress: () => setSearchOpen(!searchOpen),
       title: "Buscar",
       icon: "search",
     },
@@ -39,7 +48,7 @@ const Footer = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} ref={tabRef}>
       <View style={styles.content}>
         {ICONS.map((icon) => (
           <Tab
@@ -48,6 +57,9 @@ const Footer = () => {
             selected={selectedScreen === icon.key}
           />
         ))}
+        <PopOver open={searchOpen} parentRef={tabRef} setOpen={setSearchOpen}>
+          <SearchContainer />
+        </PopOver>
       </View>
     </View>
   );

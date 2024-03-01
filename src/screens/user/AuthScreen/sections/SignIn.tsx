@@ -4,12 +4,13 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 // Components
 import Divider from "../../../../components/common/Divider";
 import TextInput from "../../../../components/common/inputs/TextInput";
-import MainButton from "../../../../components/common/MainButton";
+import MainButton from "../../../../components/common/buttons/MainButton";
 
 // Theme
 import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
+import TouchableText from "../../../../components/common/buttons/TouchableText";
 
 const SignIn = ({ setSection }: any) => {
   const [user, setUser] = useState("");
@@ -44,9 +45,11 @@ const SignIn = ({ setSection }: any) => {
       <Divider height={22} />
       <Text style={styles.text}>
         <Text>¿Ya tienes cuenta?</Text>{" "}
-        <TouchableOpacity onPress={goToLogIn}>
-          <Text style={{ fontFamily: family.bold }}>Inicia sesión</Text>
-        </TouchableOpacity>
+        <TouchableText
+          onPress={goToLogIn}
+          textStyle={[styles.text, { fontFamily: family.bold }]}
+          text={"Inicia sesión"}
+        />
       </Text>
     </View>
   );

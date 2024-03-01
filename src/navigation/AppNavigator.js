@@ -21,8 +21,8 @@ const AppNavigator = () => {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="Auth" component={AuthScreen} />
         <Stack.Screen name="Splash" component={SplashScreen} />
+        <Stack.Screen name="Auth" component={AuthScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>

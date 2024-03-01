@@ -7,8 +7,8 @@ import {
 } from "react-native";
 
 // Theme
-import colors from "../../theme/colors";
-import { family } from "../../theme/fonts";
+import colors from "../../../theme/colors";
+import { family } from "../../../theme/fonts";
 
 const MainButton = ({
   onPress = () => {},

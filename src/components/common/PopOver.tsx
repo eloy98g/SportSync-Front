@@ -1,22 +1,21 @@
-import { Popover as PpOTamagui } from "tamagui";
+import Popover from "react-native-popover-view";
 
-const Popover = (props: any) => {
-  const { children } = props;
+const PopOver = (props: any) => {
+  const { children, open, setOpen, parentRef } = props;
 
+  const popoverHandler = () => {
+    setOpen(false);
+  };
   return (
-    <PpOTamagui>
-      <PpOTamagui.Sheet>
-        <PpOTamagui.Sheet.Overlay />
-
-        <PpOTamagui.Sheet.Frame>
-          <PpOTamagui.Sheet.ScrollView>
-            <PpOTamagui.Adapt.Contents />
-            {children}
-          </PpOTamagui.Sheet.ScrollView>
-        </PpOTamagui.Sheet.Frame>
-      </PpOTamagui.Sheet>
-    </PpOTamagui>
+    <Popover
+      isVisible={open}
+      onRequestClose={popoverHandler}
+      from={parentRef}
+      popoverStyle={{ borderRadius: 20 }}
+    >
+      {children}
+    </Popover>
   );
 };
 
-export default Popover;
+export default PopOver;

@@ -3,9 +3,10 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
+import TouchableText from "../../../../components/common/buttons/TouchableText";
 import Divider from "../../../../components/common/Divider";
 import TextInput from "../../../../components/common/inputs/TextInput";
-import MainButton from "../../../../components/common/MainButton";
+import MainButton from "../../../../components/common/buttons/MainButton";
 
 // Theme
 import { PHONE } from "../../../../theme/breakPoints";
@@ -42,15 +43,19 @@ const Login = ({ setSection }: any) => {
       <Divider height={22} />
       <MainButton title={"Aceptar"} onPress={loginHandler} />
       <Divider height={22} />
-      <TouchableOpacity onPress={goToForgotPassword}>
-        <Text style={styles.text}>He olvidado mi contraseña</Text>
-      </TouchableOpacity>
+      <TouchableText
+        onPress={goToForgotPassword}
+        textStyle={styles.text}
+        text={"He olvidado mi contraseña"}
+      />
       <Divider height={12} />
       <Text style={styles.text}>
         <Text>¿No tienes cuenta?</Text>{" "}
-        <TouchableOpacity onPress={goToSignIn}>
-          <Text style={{ fontFamily: family.bold }}>Regístrate</Text>
-        </TouchableOpacity>
+        <TouchableText
+          onPress={goToSignIn}
+          textStyle={[styles.text, { fontFamily: family.bold }]}
+          text={"Regístrate"}
+        />
       </Text>
     </View>
   );

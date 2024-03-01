@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 // Components
 import Divider from "../../../../components/common/Divider";
 import TextInput from "../../../../components/common/inputs/TextInput";
-import MainButton from "../../../../components/common/MainButton";
+import MainButton from "../../../../components/common/buttons/MainButton";
 
 // Theme
 import { PHONE } from "../../../../theme/breakPoints";

@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 // Components
-import MainButton from "../../../../components/common/MainButton";
+import MainButton from "../../../../components/common/buttons/MainButton";
 import Divider from "../../../../components/common/Divider";
 
 // Theme
