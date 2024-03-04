@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector, useDispatch } from "react-redux";
 
 // Components
 import TouchableText from "../../../../components/common/buttons/TouchableText";
@@ -12,17 +13,22 @@ import MainButton from "../../../../components/common/buttons/MainButton";
 import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
+import fetchUser from "../../../../store/features/user/methods/fetchUser";
 
 const Login = ({ setSection }: any) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
 
+  const stateUser = useSelector((state: any) => state.user);
+  const dispatch = useDispatch();
+  console.log("stateUser", stateUser);
   const loginHandler = () => {
-    setSection();
-    setTimeout(() => {
-      navigation.navigate("Home" as never);
-    }, 500);
+    dispatch(fetchUser());
+    // setSection();
+    // setTimeout(() => {
+    //   navigation.navigate("Home" as never);
+    // }, 500);
   };
 
   const goToSignIn = () => setSection("SignIn");
