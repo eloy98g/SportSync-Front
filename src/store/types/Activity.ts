@@ -7,6 +7,7 @@ export default interface Activity {
   gid: number;
   place: Place;
   creationDate: number;
+  startDate: number;
   endDate: number;
   admin: number;
   access: ActivityAccess;

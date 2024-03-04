@@ -1,5 +1,5 @@
 export default {
-  gid: 12345,
+  gid: 1,
   name: "John Doe",
   email: "john.doe@example.com",
   phone: 1234567890,
