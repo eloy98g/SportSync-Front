@@ -14,14 +14,15 @@ import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 import fetchUser from "../../../../store/features/user/methods/fetchUser";
+import { useAppDispatch, userAppSelector } from "../../../../hooks";
 
 const Login = ({ setSection }: any) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
 
-  const stateUser = useSelector((state: any) => state.user);
-  const dispatch = useDispatch();
+  const stateUser = userAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
   console.log("stateUser", stateUser);
   const loginHandler = () => {
     dispatch(fetchUser());

@@ -1,3 +1,4 @@
+import USER_1 from "./placeholders/USER_1";
 import ApiResponse from "./types/ApiResponse";
 
 const get = async (url: string): Promise<ApiResponse> => {

@@ -1,14 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+// Methods
 import fetchUser from "./methods/fetchUser";
+
+// Types
 import User, { EMPTY_USER } from "../../types/User";
 
-interface UserState {
+type InitialState = {
   loading: boolean;
   error: string;
   user: User;
-}
+};
 
-const initialState: UserState = {
+const initialState: InitialState = {
   user: EMPTY_USER,
   loading: false,
   error: "",
@@ -22,10 +26,13 @@ const userSlice = createSlice({
     builder.addCase(fetchUser.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchUser.fulfilled, (state, action) => {
-      state.user = action.payload.data;
-      state.loading = false;
-    });
+    builder.addCase(
+      fetchUser.fulfilled,
+      (state, action: PayloadAction<User>) => {
+        state.user = action.payload;
+        state.loading = false;
+      }
+    );
     builder.addCase(fetchUser.rejected, (state, action) => {
       state.error = action.error.message || "Error desconocido";
       state.loading = false;
