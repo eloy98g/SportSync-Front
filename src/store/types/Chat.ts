@@ -3,4 +3,5 @@ export default interface Chat {
   name: string;
   dateStart: number;
   dateEnd: number;
+  image: string;
 }
