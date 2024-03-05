@@ -10,6 +10,7 @@ export default [
       sender: 4,
       date: 1712164441,
       content: "Álguien tiene un amigo que se pueda unir?",
+      chatId: 1
     },
     image:
       "https://unblast.com/wp-content/uploads/2020/05/Group-Chat-Illustration.jpg",
@@ -25,6 +26,7 @@ export default [
       sender: 3,
       date: 1712166031,
       content: "Para cuando una pachanguita",
+      chatId: 2
     },
     image:
       "https://selectedinspiration.com/storage/profiles/2019/08/49136920190802113028966/Manuel-Bano-Hernandez-thumb.jpg",
@@ -40,6 +42,7 @@ export default [
       sender: 1,
       date: 1712365031,
       content: "De acuerdo",
+      chatId: 3
     },
     image:
       "https://s7g10.scene7.com/is/image/ktm/Mani-Lettenbichler-rider-profile:Orig?wid=909&hei=650&dpr=off",
@@ -55,6 +58,7 @@ export default [
       sender: 5,
       date: 1712165031,
       content: "Yo tengo dos raquetas",
+      chatId: 4
     },
     image:
       "https://www.wsb.com/wp-content/uploads/2021/06/Manuel_Anja_ORIGINAL-682x830.jpg?bust=1bb5bf9eefa2528ac319885e27be2865",

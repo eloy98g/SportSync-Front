@@ -1,7 +1,9 @@
-export default interface Message {
+type Message = {
   gid: number;
   content: string;
   date: number;
-  userGid: number;
+  sender: number;
   chatId: number;
-}
+};
+
+export default Message;

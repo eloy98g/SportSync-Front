@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 // Reducers
 import fetchCurrentActivities from "../../../store/features/activity/methods/fetchCurrentActivities";
 import fetchPublicActivities from "../../../store/features/activity/methods/fetchPublicActivities";
-
+import fetchChats from "../../../store/features/chat/methods/fetchChats";
 // Theme
 import colors from "../../../theme/colors";
 
@@ -20,19 +20,20 @@ const SplashScreen = ({ navigation }: any) => {
   const loggedIn = !!stateUser.gid;
 
   const getData = async () => {
-    await dispatch(fetchCurrentActivities());
-    await dispatch(fetchPublicActivities());
+    dispatch(fetchCurrentActivities());
+    dispatch(fetchPublicActivities());
+    dispatch(fetchChats());
+  };
+
+  const splashHandler = async () => {
+    await getData();
+    setTimeout(() => {
+      navigation.navigate(loggedIn ? "Home" : "Auth");
+    }, 1000);
   };
 
   useEffect(() => {
-    getData();
-    setTimeout(() => {
-      if (loggedIn) {
-        navigation.navigate("Home");
-      } else {
-        navigation.navigate("Auth");
-      }
-    }, 1000);
+    splashHandler();
   }, []);
 
   return (
