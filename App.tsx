@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-
+import { SafeAreaProvider } from "react-native-safe-area-context";
 // Navigator
 import AppNavigator from "./src/navigation/AppNavigator";
 
@@ -19,6 +19,7 @@ export default function App() {
   }, []);
 
   return (
+   
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <TamaguiUI>
