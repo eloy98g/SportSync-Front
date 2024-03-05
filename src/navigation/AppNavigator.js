@@ -11,20 +11,35 @@ import AuthScreen from "../screens/user/AuthScreen";
 // Components
 import Footer from "../components/Footer";
 
+// Hooks
+import { useAppSelector } from "../hooks";
+
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
+  const stateUser = useAppSelector((state) => state.user.user);
+  const loggedIn = !!stateUser.gid;
+
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
         }}
+        initialRouteName="Splash"
       >
-        <Stack.Screen name="Auth" component={AuthScreen} />
-        <Stack.Screen name="Splash" component={SplashScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
+        {loggedIn ? (
+          <>
+            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Profile" component={ProfileScreen} />
+            <Stack.Screen name="Splash" component={SplashScreen} />
+          </>
+        ) : (
+          <>
+            <Stack.Screen name="Auth" component={AuthScreen} />
+            <Stack.Screen name="Splash" component={SplashScreen} />
+          </>
+        )}
       </Stack.Navigator>
       <Footer />
     </NavigationContainer>

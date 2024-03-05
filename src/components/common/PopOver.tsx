@@ -11,7 +11,7 @@ const PopOver = (props: any) => {
       isVisible={open}
       onRequestClose={popoverHandler}
       from={parentRef}
-      popoverStyle={{ borderRadius: 20 }}
+      popoverStyle={{ borderRadius: 12 }}
     >
       {children}
     </Popover>
