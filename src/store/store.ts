@@ -1,17 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import storage from "redux-persist/lib/storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persistReducer, persistStore } from "redux-persist";
-import thunk from "redux-thunk";
-
-// Reducers
-import userReducer from "./features/user/userSlice";
-import activityReducer from "./features/activity/activitySlice";
-import chatReducer from "./features/chat/chatSlice";
 import rootReducer from "./rootReducer";
+import { thunk } from "redux-thunk";
 
 const persistConfig = {
   key: "root",
-  storage,
+  storage: AsyncStorage,
+  whitelist: ["user"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -19,6 +15,14 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
   reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== "production",
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["persist/PERSIST"],
+        ignoredActionPaths: [],
+        ignoredPaths: [],
+      },
+    }).concat(thunk),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
