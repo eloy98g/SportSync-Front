@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Sheet as TamaguiSheet } from "@tamagui/sheet";
+import colors from "../../theme/colors";
 
 const Sheet = (props: any) => {
   const { open, openHandler, children } = props;
@@ -33,6 +34,7 @@ const Sheet = (props: any) => {
         space="$5"
         borderTopLeftRadius={20}
         borderTopRightRadius={20}
+        backgroundColor={colors.white}
       >
         {children}
       </TamaguiSheet.Frame>

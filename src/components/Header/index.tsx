@@ -1,6 +1,6 @@
 import { useNavigationState } from "@react-navigation/native";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Platform, View } from "react-native";
 import { PHONE } from "../../theme/breakPoints";
 import getActiveRouteState from "../Footer/methods/getActiveRouteState";
 import ChatIcon from "./components/ChatIcon";
@@ -35,10 +35,11 @@ const styles = StyleSheet.create({
   },
   content: {
     width: "100%",
-    height: 50,
+    height: Platform.select({ ios: 70, android: 90, web: 50 }),
+    paddingTop: Platform.select({ ios: 30, android: 50, web: 10 }),
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    
     maxWidth: PHONE,
     paddingHorizontal: 12,
   },

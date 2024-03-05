@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -10,7 +11,6 @@ import AuthScreen from "../screens/user/AuthScreen";
 
 // Components
 import Footer from "../components/Footer";
-import Header from "../components/Header";
 
 // Hooks
 import { useAppSelector } from "../hooks";
@@ -26,6 +26,7 @@ const AppNavigator = () => {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+          animationEnabled: Platform.OS === "ios" ? true : false,
         }}
         initialRouteName="Splash"
       >

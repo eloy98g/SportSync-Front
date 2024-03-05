@@ -43,14 +43,14 @@ const SignIn = ({ setSection }: any) => {
       <Divider height={22} />
       <MainButton title={"Aceptar"} onPress={signInHandler} />
       <Divider height={22} />
-      <Text style={styles.text}>
-        <Text>¿Ya tienes cuenta?</Text>{" "}
+      <View style={styles.row}>
+        <Text style={styles.text}>¿Ya tienes cuenta? </Text>
         <TouchableText
           onPress={goToLogIn}
+          text="Inicia sesión"
           textStyle={[styles.text, { fontFamily: family.bold }]}
-          text={"Inicia sesión"}
         />
-      </Text>
+      </View>
     </View>
   );
 };
@@ -74,5 +74,10 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 18,
     textAlign: "left",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

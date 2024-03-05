@@ -58,14 +58,14 @@ const Login = ({ setSection }: any) => {
         text={"He olvidado mi contraseña"}
       />
       <Divider height={12} />
-      <Text style={styles.text}>
-        <Text>¿No tienes cuenta?</Text>{" "}
+      <View style={styles.row}>
+        <Text style={styles.text}>¿No tienes cuenta? </Text>
         <TouchableText
           onPress={goToSignIn}
+          text="Regístrate"
           textStyle={[styles.text, { fontFamily: family.bold }]}
-          text={"Regístrate"}
         />
-      </Text>
+      </View>
     </View>
   );
 };
@@ -88,6 +88,11 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     color: colors.primary,
     fontSize: 18,
-    textAlign: "left",
+    textAlign: "center"
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

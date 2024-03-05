@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 // Components
+import TouchableText from "../../../../components/common/buttons/TouchableText";
 import MainButton from "../../../../components/common/buttons/MainButton";
 import Divider from "../../../../components/common/Divider";
 
@@ -24,16 +25,18 @@ const MainSection = (props: any) => {
       colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.67)"]}
       style={styles.mainSection}
       start={{ x: 0, y: 0 }}
-      locations={[0, 0.6, 1]}
+      locations={[0, 1]}
     >
       <MainButton title={"Inicia sesión"} onPress={loginHandler} />
       <Divider height={20} />
-      <Text style={styles.text}>
-        <Text>¿No tienes cuenta?</Text>{" "}
-        <TouchableOpacity onPress={signInHandler}>
-          <Text style={{ fontFamily: family.bold }}>Regístrate</Text>
-        </TouchableOpacity>
-      </Text>
+      <View style={styles.row}>
+        <Text style={styles.text}>¿No tienes cuenta? </Text>
+        <TouchableText
+          onPress={signInHandler}
+          text="Regístrate"
+          textStyle={[styles.text, { fontFamily: family.bold }]}
+        />
+      </View>
     </LinearGradient>
   );
 };
@@ -51,6 +54,10 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     color: colors.white,
     fontSize: 18,
-    textAlign: "center",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
