@@ -1,7 +1,7 @@
-import PlayArea, { EMPTY_PLAYAREA } from "../../../types/PlayArea";
+import { EMPTY_PLAYAREA } from "../../../types/PlayArea";
 import User from "../../../types/User";
 
-export const mapUser = (data: any): User => {
+const mapUser = (data: any): User => {
   const newUser: User = {
     email: data?.email || null,
     name: data?.name || null,
@@ -16,3 +16,5 @@ export const mapUser = (data: any): User => {
 
   return newUser;
 };
+
+export default mapUser;

@@ -3,7 +3,7 @@ import get from "../../../../api/get";
 import USER_1 from "../../../../api/placeholders/USER_1";
 import ApiResponse from "../../../../api/types/ApiResponse";
 import User from "../../../types/User";
-import { mapUser } from "./mapUser";
+import mapUser from "./mapUser";
 
 const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   // REMOVE COMMENT
@@ -15,7 +15,7 @@ const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   // } else {
   //   throw new Error(error);
   // }
-  
+
   return mapUser(USER_1);
 });
 

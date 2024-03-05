@@ -2,6 +2,12 @@ import Place from "./Place";
 
 export type ActivityType = "friendly" | "competitive";
 export type ActivityAccess = "public" | "private";
+export type ActivityStatus =
+  | "draft"
+  | "pending"
+  | "closed"
+  | "ongoing"
+  | "finished";
 
 export default interface Activity {
   gid: number;
@@ -16,12 +22,12 @@ export default interface Activity {
   sport: {
     gid: number;
     name: string;
-    icon: string
+    icon: string;
   };
   type: ActivityType;
   teams: number;
   playersPerTeam: number;
   currentPlayers: number;
-  closed: boolean;
+  status: ActivityStatus;
   chat: number;
 }

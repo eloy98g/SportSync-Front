@@ -25,7 +25,7 @@ export default [
     type: "friendly",
     teams: 2,
     playersPerTeam: 5,
-    closed: false,
+    status: "pending",
     chat: 1,
   },
   {
@@ -54,7 +54,7 @@ export default [
     type: "friendly",
     teams: 2,
     playersPerTeam: 1,
-    closed: false,
+    status: "pending",
     chat: 2,
   },
   {
@@ -83,7 +83,7 @@ export default [
     type: "friendly",
     teams: 2,
     playersPerTeam: 1,
-    closed: false,
+    status: "pending",
     chat: 3,
   },
 ];
