@@ -7,13 +7,13 @@ import CurrentActivitiesList from "./components/currentActivities/CurrentActivit
 import Screen from "../../components/common/Screen";
 import Divider from "../../components/common/Divider";
 import HomeSection from "./components/HomeSection";
+import Header from "../../components/Header";
 
 // Sections
 import SECTIONS from "./sections";
 
 // Theme
 import { PHONE } from "../../theme/breakPoints";
-import Header from "../../components/Header";
 
 const HomeScreen = () => {
   return (

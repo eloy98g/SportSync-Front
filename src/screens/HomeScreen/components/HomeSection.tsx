@@ -20,14 +20,16 @@ const HomeSection = ({ title, data }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <Divider height={10}/>
-      <MasonryList
-        data={data}
-        numColumns={2}
-        keyExtractor={(item: any) => item.id}
-        renderItem={(item: any) => <ActionButton {...item.item} />}
-        style={{ alignItems: "flex-end" }}
-      />
+      <Divider height={10} />
+      <View style={{ flex: 1 }}>
+        <MasonryList
+          data={data}
+          numColumns={2}
+          keyExtractor={(item: any) => item.id}
+          renderItem={({ item }: any) => <ActionButton {...item} />}
+          style={{ alignItems: "flex-end" }}
+        />
+      </View>
     </View>
   );
 };

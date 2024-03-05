@@ -48,9 +48,9 @@ const ActionButton = ({
       case "normal":
         return { width: itemWidth - gap, height: itemWidth - gap };
       case "large-x":
-        return { width: itemWidth , height: itemWidth * 2 - gap };
+        return { width: itemWidth, height: itemWidth * 2 - gap };
       case "large-y":
-        return { width: itemWidth * 2+10, height: itemWidth };
+        return { width: itemWidth * 2 + 10, height: itemWidth };
       case "xl":
         return { width: itemWidth * 2, height: itemWidth * 2 };
       default:
