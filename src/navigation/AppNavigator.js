@@ -10,6 +10,7 @@ import AuthScreen from "../screens/user/AuthScreen";
 
 // Components
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 // Hooks
 import { useAppSelector } from "../hooks";

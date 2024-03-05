@@ -13,13 +13,14 @@ import SECTIONS from "./sections";
 
 // Theme
 import { PHONE } from "../../theme/breakPoints";
+import Header from "../../components/Header";
 
 const HomeScreen = () => {
   return (
     <Screen>
       <View style={styles.content}>
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
-          <Divider height={20} />
+          <Header />
           <PublicActivitiesList />
           <Divider height={20} />
           <CurrentActivitiesList />

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "anthares",
-    "slug": "my-app",
+    "slug": "anthares",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.eloy98g.anthares"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5fc6840d-c740-4056-bd4a-bce89447111b"
+      }
     }
   }
 }

@@ -12,7 +12,11 @@ import MainButton from "../../../../components/common/buttons/MainButton";
 import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
+
+// Store
 import fetchUser from "../../../../store/features/user/methods/fetchUser";
+
+// Hooks
 import { useAppDispatch } from "../../../../hooks";
 
 const Login = ({ setSection }: any) => {
