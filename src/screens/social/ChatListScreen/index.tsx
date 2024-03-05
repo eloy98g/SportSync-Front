@@ -26,7 +26,7 @@ const ChatListScreen = () => {
           <Divider height={10} />
           {chats.map((chat: Chat, index: number) => (
             <>
-              {index !== 0 && <Divider height={10} />}
+              {index !== 0 && <Divider key={index} height={10} />}
               <ChatCard key={chat.gid} {...chat} />
             </>
           ))}
