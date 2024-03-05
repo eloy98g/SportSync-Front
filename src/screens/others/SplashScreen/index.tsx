@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 import fetchCurrentActivities from "../../../store/features/activity/methods/fetchCurrentActivities";
 import fetchPublicActivities from "../../../store/features/activity/methods/fetchPublicActivities";
 import fetchChats from "../../../store/features/chat/methods/fetchChats";
+
 // Theme
 import colors from "../../../theme/colors";
 

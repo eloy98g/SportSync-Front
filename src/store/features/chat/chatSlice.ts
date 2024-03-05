@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Chat from "../../types/Chat";
 
+// Methods
 import fetchChats from "./methods/fetchChats";
+
+// Types
+import Chat from "../../types/Chat";
 
 type ChatState = {
   loading: boolean;

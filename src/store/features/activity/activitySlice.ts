@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Activity from "../../types/Activity";
 
 // Methods
 import fetchCurrentActivities from "./methods/fetchCurrentActivities";
 import fetchPublicActivities from "./methods/fetchPublicActivities";
+
+// Types
+import Activity from "../../types/Activity";
 
 type ActivityState = {
   loading: boolean;
@@ -55,4 +57,4 @@ const activitySlice = createSlice({
   },
 });
 
-export default activitySlice.reducer
+export default activitySlice.reducer;
