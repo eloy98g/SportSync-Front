@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 // Navigator
 import AppNavigator from "./src/navigation/AppNavigator";
 
-// Theme
-import { loadFonts } from "./src/theme/fonts";
-import { PortalProvider } from "tamagui";
-import TamaguiUI from "./src/theme/tamagui/TamaguiProvider";
+// Store
+import store, { persistor } from "./src/store/store";
 
-import store from "./src/store/store";
+// Theme
+import TamaguiUI from "./src/theme/tamagui/TamaguiProvider";
+import { PortalProvider } from "tamagui";
+import { loadFonts } from "./src/theme/fonts";
 
 export default function App() {
   useEffect(() => {
@@ -18,11 +20,13 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <TamaguiUI>
-        <PortalProvider>
-          <AppNavigator />
-        </PortalProvider>
-      </TamaguiUI>
+      <PersistGate loading={null} persistor={persistor}>
+        <TamaguiUI>
+          <PortalProvider>
+            <AppNavigator />
+          </PortalProvider>
+        </TamaguiUI>
+      </PersistGate>
     </Provider>
   );
 }
