@@ -14,7 +14,7 @@ const mapActivity = (data: any): Activity => {
     name: data.name || "",
     description: data.endDate || "",
     sport: data.sport || EMPTY_SPORT,
-    type: data.type || "friendly",
+    type: data.type || "normal",
     teams: data.teams || 0,
     playersPerTeam: data.playersPerTeam || 0,
     currentPlayers: data.currentPlayers || 0,

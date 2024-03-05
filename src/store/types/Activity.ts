@@ -1,6 +1,6 @@
 import Place from "./Place";
 
-export type ActivityType = "friendly" | "competitive";
+export type ActivityType = "normal" | "competitive";
 export type ActivityAccess = "public" | "private";
 export type ActivityStatus =
   | "draft"
@@ -23,6 +23,7 @@ export default interface Activity {
     gid: number;
     name: string;
     icon: string;
+    color: string;
   };
   type: ActivityType;
   teams: number;

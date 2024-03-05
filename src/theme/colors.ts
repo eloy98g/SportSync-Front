@@ -5,7 +5,7 @@ const colors = {
   darkSecondary: "#197066",
   accent: "#E1F533",
   darkAccent: "#C2D327",
-  black: "#3F3F3F",
+  black: "black",
   grey: "#9D9D9D",
   lightenGrey: "#D8D7D5",
   white: "#FFFFF0",

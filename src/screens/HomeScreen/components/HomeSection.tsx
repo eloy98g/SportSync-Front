@@ -2,11 +2,13 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import MasonryList from "@react-native-seoul/masonry-list";
 
+// Components
+import ActionButton from "./ActionButton";
+
 // Theme
 import colors from "../../../theme/colors";
 import { PHONE } from "../../../theme/breakPoints";
 import { family } from "../../../theme/fonts";
-import ActionButton from "./ActionButton";
 
 interface Props {
   title: string;
@@ -40,10 +42,5 @@ const styles = StyleSheet.create({
     fontFamily: family.semibold,
     fontSize: 16,
     color: colors.grey,
-  },
-  flatlist: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    gap: 20,
   },
 });

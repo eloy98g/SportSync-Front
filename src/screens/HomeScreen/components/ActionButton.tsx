@@ -1,21 +1,24 @@
-import { ViewStyle } from "@tamagui/core";
 import React from "react";
-import { ImageSourcePropType, StyleProp } from "react-native";
-import { useWindowDimensions } from "react-native";
 import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
   Text,
   View,
+  ImageSourcePropType,
+  useWindowDimensions,
 } from "react-native";
+
+// Components
 import Divider from "../../../components/common/Divider";
-import { PHONE } from "../../../theme/breakPoints";
+
+// Theme
 import colors from "../../../theme/colors";
+import { PHONE } from "../../../theme/breakPoints";
 import { family } from "../../../theme/fonts";
 
 type SIZE = "small" | "normal" | "large-x" | "large-y" | "xl";
-type POSITION = "bottom" | "top";
+
 interface Props {
   size: SIZE;
   title: string;
@@ -23,7 +26,6 @@ interface Props {
   image: ImageSourcePropType;
   filter?: boolean;
   marginBottom?: number;
-  position?: POSITION;
 }
 
 const ActionButton = ({
@@ -33,7 +35,6 @@ const ActionButton = ({
   image,
   filter = true,
   marginBottom,
-  position = "top",
 }: Props) => {
   const width = useWindowDimensions().width;
   const getSizeStyles = () => {
@@ -47,9 +48,9 @@ const ActionButton = ({
       case "normal":
         return { width: itemWidth - gap, height: itemWidth - gap };
       case "large-x":
-        return { width: itemWidth, height: itemWidth * 2 -gap };
+        return { width: itemWidth , height: itemWidth * 2 - gap };
       case "large-y":
-        return { width: itemWidth * 2, height: itemWidth };
+        return { width: itemWidth * 2+10, height: itemWidth };
       case "xl":
         return { width: itemWidth * 2, height: itemWidth * 2 };
       default:

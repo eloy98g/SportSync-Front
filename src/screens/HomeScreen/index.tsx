@@ -6,65 +6,22 @@ import Screen from "../../components/common/Screen";
 import Divider from "../../components/common/Divider";
 import HomeSection from "./components/HomeSection";
 
+// Sections
+import SECTIONS from "./sections";
+
 // Theme
 import { PHONE } from "../../theme/breakPoints";
+import PublicActivitiesList from "./components/publicActivities/PublicActivitiesList";
 
 const HomeScreen = () => {
-  const sections = [
-    {
-      title: "",
-      data: [
-        {
-          size: "large-y",
-          title: "Subir resultado",
-          filter: false,
-          image: require("../../assets/images/actionButtons/score.jpg"),
-        },
-      ],
-    },
-    {
-      title: "",
-      data: [
-        {
-          size: "normal",
-          title: "Crear",
-          filter: false,
-          marginBottom: 20,
-          image: require("../../assets/images/actionButtons/create.jpg"),
-        },
-        {
-          size: "large-x",
-          title: "Únete a otros jugadores",
-          filter: false,
-          image: require("../../assets/images/actionButtons/addFriend.jpg"),
-        },
-        {
-          size: "normal",
-          title: "Escanear QR",
-          filter: false,
-          image: require("../../assets/images/actionButtons/find.jpg"),
-        },
-      ],
-    },
-    {
-      title: "",
-      data: [
-        {
-          size: "large-y",
-          title: "Tutorial",
-          filter: false,
-          image: require("../../assets/images/actionButtons/tutorial.png"),
-        },
-      ],
-    },
-  ];
-
   return (
     <Screen>
       <View style={styles.content}>
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+          <Divider height={20}/>
+          <PublicActivitiesList />
           <Divider height={20} />
-          {sections.map((section, index) => (
+          {SECTIONS.map((section, index) => (
             <React.Fragment key={index}>
               {index !== 0 && <Divider height={20} />}
               <HomeSection title={section.title} data={section.data} />

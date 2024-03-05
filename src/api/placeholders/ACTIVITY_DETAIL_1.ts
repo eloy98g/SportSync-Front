@@ -18,7 +18,7 @@ export default {
     name: "Fútbol",
     icon: "https://i.pinimg.com/564x/95/b3/99/95b39952cb3adbcb58a1ae99680bdf35.jpg",
   },
-  type: "friendly",
+  type: "normal",
   teams: 2,
   playersPerTeam: 5,
   closed: false,
