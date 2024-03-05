@@ -5,7 +5,7 @@ import ApiResponse from "../../../../api/types/ApiResponse";
 import Activity from "../../../types/Activity";
 import mapActivity from "./mapActivity"
 
-const fetchCurrentActivities = createAsyncThunk("user/fetchUser", async () => {
+const fetchCurrentActivities = createAsyncThunk("activity/fetchCurrentActivities", async () => {
   // REMOVE COMMENT
 
   // const response = await get("");

@@ -5,7 +5,7 @@ import ApiResponse from "../../../../api/types/ApiResponse";
 import Activity from "../../../types/Activity";
 import mapActivity from "./mapActivity";
 
-const fetchPublicActivities = createAsyncThunk("user/fetchUser", async () => {
+const fetchPublicActivities = createAsyncThunk("activity/fetchPublicActivities", async () => {
   // REMOVE COMMENT
 
   // const response = await get("");

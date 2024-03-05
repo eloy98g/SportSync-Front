@@ -1,8 +1,11 @@
 export default interface Sport {
-  gid: number;
+  gid: number | null;
   name: string;
-  maxTeams: number;
-  minTeams: number;
-  maxPlayersTeam: number;
-  minPlayersTeam: number;
+  icon: string;
 }
+
+export const EMPTY_SPORT: Sport = {
+  gid: null,
+  name: "",
+  icon: "",
+};
