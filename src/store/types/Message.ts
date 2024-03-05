@@ -1,7 +1,7 @@
 type Message = {
   gid: number;
   content: string;
-  date: number;
+  date: number | null;
   sender: number;
   chatId: number;
 };

@@ -8,7 +8,7 @@ export default [
     lastMessage: {
       gid: 5,
       sender: 4,
-      date: 1712164441,
+      date: 1709673806,
       content: "Álguien tiene un amigo que se pueda unir?",
       chatId: 1
     },
@@ -24,7 +24,7 @@ export default [
     lastMessage: {
       gid: 6,
       sender: 3,
-      date: 1712166031,
+      date: 1706819006,
       content: "Para cuando una pachanguita",
       chatId: 2
     },
@@ -48,7 +48,119 @@ export default [
       "https://s7g10.scene7.com/is/image/ktm/Mani-Lettenbichler-rider-profile:Orig?wid=909&hei=650&dpr=off",
   },
   {
-    gid: 4,
+    gid: 48,
+    name: "Clara Oswald",
+    dateStart: 1712165031,
+    dateEnd: null,
+    type: "private",
+    lastMessage: {
+      gid: 8,
+      sender: 5,
+      date: 1712165031,
+      content: "Yo tengo dos raquetas",
+      chatId: 4
+    },
+    image:
+      "https://www.wsb.com/wp-content/uploads/2021/06/Manuel_Anja_ORIGINAL-682x830.jpg?bust=1bb5bf9eefa2528ac319885e27be2865",
+  },
+  {
+    gid: 47,
+    name: "Clara Oswald",
+    dateStart: 1712165031,
+    dateEnd: null,
+    type: "private",
+    lastMessage: {
+      gid: 8,
+      sender: 5,
+      date: 1712165031,
+      content: "Yo tengo dos raquetas",
+      chatId: 4
+    },
+    image:
+      "https://www.wsb.com/wp-content/uploads/2021/06/Manuel_Anja_ORIGINAL-682x830.jpg?bust=1bb5bf9eefa2528ac319885e27be2865",
+  },
+  {
+    gid: 46,
+    name: "Clara Oswald",
+    dateStart: 1712165031,
+    dateEnd: null,
+    type: "private",
+    lastMessage: {
+      gid: 8,
+      sender: 5,
+      date: 1712165031,
+      content: "Yo tengo dos raquetas",
+      chatId: 4
+    },
+    image:
+      "https://www.wsb.com/wp-content/uploads/2021/06/Manuel_Anja_ORIGINAL-682x830.jpg?bust=1bb5bf9eefa2528ac319885e27be2865",
+  },
+  {
+    gid: 45,
+    name: "Clara Oswald",
+    dateStart: 1712165031,
+    dateEnd: null,
+    type: "private",
+    lastMessage: {
+      gid: 8,
+      sender: 5,
+      date: 1712165031,
+      content: "Yo tengo dos raquetas",
+      chatId: 4
+    },
+    image:
+      "https://www.wsb.com/wp-content/uploads/2021/06/Manuel_Anja_ORIGINAL-682x830.jpg?bust=1bb5bf9eefa2528ac319885e27be2865",
+  },
+  {
+    gid: 44,
+    name: "Clara Oswald",
+    dateStart: 1712165031,
+    dateEnd: null,
+    type: "private",
+    lastMessage: {
+      gid: 8,
+      sender: 5,
+      date: 1712165031,
+      content: "Yo tengo dos raquetas",
+      chatId: 4
+    },
+    image:
+      "https://www.wsb.com/wp-content/uploads/2021/06/Manuel_Anja_ORIGINAL-682x830.jpg?bust=1bb5bf9eefa2528ac319885e27be2865",
+  },
+  {
+    gid: 43,
+    name: "Clara Oswald",
+    dateStart: 1712165031,
+    dateEnd: null,
+    type: "private",
+    lastMessage: {
+      gid: 8,
+      sender: 5,
+      date: 1712165031,
+      content: "Yo tengo dos raquetas",
+      chatId: 4
+    },
+    image:
+      "https://www.wsb.com/wp-content/uploads/2021/06/Manuel_Anja_ORIGINAL-682x830.jpg?bust=1bb5bf9eefa2528ac319885e27be2865",
+  },
+  {
+    gid: 42,
+    name: "Clara Oswald",
+    dateStart: 1712165031,
+    dateEnd: null,
+    type: "private",
+    lastMessage: {
+      gid: 8,
+      sender: 5,
+      date: 1712165031,
+      content: "Yo tengo dos raquetas",
+      chatId: 4
+    },
+    image:
+      "https://www.wsb.com/wp-content/uploads/2021/06/Manuel_Anja_ORIGINAL-682x830.jpg?bust=1bb5bf9eefa2528ac319885e27be2865",
+  },
+  {
+    gid: 41,
     name: "Clara Oswald",
     dateStart: 1712165031,
     dateEnd: null,

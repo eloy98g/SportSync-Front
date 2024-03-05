@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { MessageCircleMore } from "lucide-react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Theme
 import colors from "../../../theme/colors";
@@ -10,7 +11,10 @@ import { useAppSelector } from "../../../hooks";
 
 const ChatIcon = () => {
   const numChats = useAppSelector((state) => state.chat.chat).length;
-  const chatHandler = () => {};
+  const navigation = useNavigation();
+  const chatHandler = () => {
+    navigation.navigate("ChatList" as never);
+  };
   return (
     <TouchableOpacity onPress={chatHandler}>
       {numChats > 1 && <View style={styles.dot} />}
@@ -30,6 +34,6 @@ const styles = StyleSheet.create({
     top: 2,
     right: 1,
     backgroundColor: colors.red,
-    zIndex: 2
+    zIndex: 2,
   },
 });
