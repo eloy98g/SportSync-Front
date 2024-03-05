@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import MasonryList from "@react-native-seoul/masonry-list";
 
 // Components
+import Divider from "../../../components/common/Divider";
 import ActionButton from "./ActionButton";
 
 // Theme
@@ -19,6 +20,7 @@ const HomeSection = ({ title, data }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
+      <Divider height={10}/>
       <MasonryList
         data={data}
         numColumns={2}
@@ -39,8 +41,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   title: {
-    fontFamily: family.semibold,
-    fontSize: 16,
+    fontFamily: family.light,
+    fontSize: 14,
     color: colors.grey,
   },
 });

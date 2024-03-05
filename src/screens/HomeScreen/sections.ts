@@ -1,6 +1,6 @@
 const SECTIONS = [
   {
-    title: "",
+    title: "Acciones rápidas",
     data: [
       {
         size: "large-y",
@@ -11,7 +11,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: "",
+    title: "Encuentra a otros jugadores",
     data: [
       {
         size: "normal",
@@ -35,7 +35,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: "",
+    title: "Otras acciones",
     data: [
       {
         size: "large-y",

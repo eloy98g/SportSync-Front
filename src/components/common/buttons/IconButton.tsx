@@ -6,7 +6,7 @@ import Divider from "../Divider";
 
 interface Props {
   onPress: any;
-  text: string;
+  text?: string;
   icon: any;
   textStyle?: any;
   distance?: number;
@@ -22,8 +22,12 @@ const IconButton = ({
   return (
     <TouchableOpacity onPress={onPress} style={styles.row}>
       {icon}
-      <Divider width={distance} />
-      <Text style={textStyle}>{text}</Text>
+      {text && (
+        <>
+          <Divider width={distance} />
+          <Text style={textStyle}>{text}</Text>
+        </>
+      )}
     </TouchableOpacity>
   );
 };

@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   title: {
-    fontFamily: family.bold,
-    fontSize: 12,
+    fontFamily: family.light,
+    fontSize: 14,
     color: colors.grey,
   },
   scroll: {
