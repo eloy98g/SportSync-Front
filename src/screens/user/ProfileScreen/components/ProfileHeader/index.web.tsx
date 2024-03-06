@@ -7,6 +7,7 @@ import BackButton from "./BackButton";
 import ProfileImage from "./ProfileImage";
 
 import User from "../../../../../store/types/User";
+import ActionsGroup from "./ActionsGroup";
 
 interface Props {
   data: User;
@@ -20,10 +21,10 @@ const ProfileHeader = ({ data, isExternal }: Props) => {
       <Wrapper>
         <View style={styles.actions}>
           <BackButton />
-          <BackButton />
+          <ActionsGroup isExternal={isExternal} />
         </View>
       </Wrapper>
-      <ProfileImage image={image}/>
+      <ProfileImage image={image} />
     </View>
   );
 };

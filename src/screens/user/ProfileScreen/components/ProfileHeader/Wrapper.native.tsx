@@ -1,10 +1,9 @@
 import React from "react";
-import { StyleSheet, Platform } from "react-native";
+import { StyleSheet, useWindowDimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 // Theme
 import colors from "../../../../../theme/colors";
-import { useWindowDimensions } from "react-native";
 
 const Wrapper = () => {
   const width = useWindowDimensions().width;
