@@ -13,8 +13,8 @@ import { useNavigation } from "@react-navigation/native";
 import Divider from "../common/Divider";
 
 // Theme
-import { PHONE } from "../../theme/breakPoints";
 import colors from "../../theme/colors";
+import { PHONE } from "../../theme/breakPoints";
 import { family } from "../../theme/fonts";
 
 const BackHeader = ({ onBack = () => {}, title }: any) => {

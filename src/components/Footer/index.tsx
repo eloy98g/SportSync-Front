@@ -20,7 +20,7 @@ const Footer = () => {
   const footerShown = SCREENS_WHITELIST.includes(selectedScreen);
   const [searchOpen, setSearchOpen] = useState(false);
   const tabRef = useRef();
-
+  
   const ICONS = [
     {
       key: "Home",
