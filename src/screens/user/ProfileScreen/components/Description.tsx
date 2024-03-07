@@ -1,14 +1,28 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import colors from "../../../../theme/colors";
+import { family } from "../../../../theme/fonts";
 
-const Description = () => {
-  return (
-    <View>
-      <Text></Text>
-    </View>
-  )
+interface Props {
+  description: string | null;
 }
+const Description = ({ description }: Props) => (
+  <View style={styles.container}>
+    <Text style={styles.text}>{description}</Text>
+  </View>
+);
 
-export default Description
+export default Description;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 40,
+
+  },
+  text: {
+    fontFamily: family.light,
+    color: colors.black,
+    fontSize: 16,
+    textAlign:"center"
+  },
+});

@@ -9,6 +9,9 @@ import ProfileHeader from "./components/ProfileHeader";
 import { useAppSelector } from "../../../hooks";
 import { PHONE } from "../../../theme/breakPoints";
 import User from "../../../store/types/User";
+import Name from "./components/Name";
+import Description from "./components/Description";
+import Divider from "../../../components/common/Divider";
 
 const ProfileScreen = ({ route }: any) => {
   const user = useAppSelector((state) => state.user.user);
@@ -28,7 +31,13 @@ const ProfileScreen = ({ route }: any) => {
   return (
     <Screen>
       <ProfileHeader data={userData} isExternal={isExternal} />
-      <View style={styles.content}></View>
+      <View style={styles.content}>
+        <View style={styles.info}>
+          <Name name={userData.name}/>
+          <Divider height={10}/>
+          <Description description={userData.description}/>
+        </View>
+      </View>
     </Screen>
   );
 };
@@ -38,8 +47,13 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
   content: {
     width: "100%",
+    flex: 1,
     maxWidth: PHONE,
     paddingHorizontal: 12,
-    paddingTop: 100,
+    paddingTop: 220,
+  },
+  info: {
+    width: "100%",
+    alignItems:"center"
   },
 });

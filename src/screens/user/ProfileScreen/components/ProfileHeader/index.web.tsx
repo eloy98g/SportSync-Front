@@ -37,11 +37,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     left: 0,
+    zIndex: 10
   },
   actions: {
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
-    borderWidth: 1,
   },
 });

@@ -1,14 +1,19 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import colors from "../../../../theme/colors";
+import { family } from "../../../../theme/fonts";
 
-const Name = () => {
-  return (
-    <View>
-      <Text></Text>
-    </View>
-  )
+interface Props {
+  name: string | null;
 }
+const Name = ({ name }: Props) => <Text style={styles.text}>{name}</Text>;
 
-export default Name
+export default Name;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: family.bold,
+    color: colors.black,
+    fontSize: 16,
+  },
+});

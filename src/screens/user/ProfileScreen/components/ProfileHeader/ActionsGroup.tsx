@@ -27,7 +27,7 @@ const ActionsGroup = ({ isExternal }: Props) => {
             onPress={editHandler}
             icon={<PenLine size={24} color={colors.white} />}
           />
-          <Divider width={20} />
+          <Divider width={10} />
           <IconButton
             onPress={settingHandler}
             icon={<Settings size={24} color={colors.white} />}
