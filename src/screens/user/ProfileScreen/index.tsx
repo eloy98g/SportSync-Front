@@ -33,9 +33,9 @@ const ProfileScreen = ({ route }: any) => {
       <ProfileHeader data={userData} isExternal={isExternal} />
       <View style={styles.content}>
         <View style={styles.info}>
-          <Name name={userData.name}/>
-          <Divider height={10}/>
-          <Description description={userData.description}/>
+          <Name name={userData.name} verified={userData.verified} />
+          <Divider height={10} />
+          <Description description={userData.description} />
         </View>
       </View>
     </Screen>
@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
   },
   info: {
     width: "100%",
-    alignItems:"center"
+    alignItems: "center",
   },
 });
