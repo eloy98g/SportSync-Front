@@ -13,6 +13,7 @@ interface Props {
 const Chat = ({ userGid, chatId }: Props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const navigation = useNavigation();
+
   useEffect(() => {
     // TODO: llamada a mensajes de chat por chatid
     // TODO: iniciar socket para mensajes
@@ -27,10 +28,12 @@ const Chat = ({ userGid, chatId }: Props) => {
     const { _id } = data;
     navigation.navigate("Profile" as never, { gid: _id } as never);
   };
+
   return (
     <GiftedChat
       onPressAvatar={(data) => profileHandler(data)}
       messages={messages}
+      placeholder="Escribe un mensaje..."
       onSend={(newMessages) => onSend(newMessages as never)}
       user={{
         _id: userGid,
