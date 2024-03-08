@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: PHONE,
     paddingHorizontal: 12,
-    height: Platform.select({ ios: 70, android: 80, web: 50 }),
-    paddingTop: Platform.select({ ios: 30, android: 40, web: 10 }),
+    height: 50,
+    paddingTop: 10,
   },
   row: { flexDirection: "row", alignItems: "center" },
   text: {

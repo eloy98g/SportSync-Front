@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     maxWidth: PHONE,
     paddingHorizontal: 12,
     flex: 1,
-    paddingTop: 80,
+    paddingTop: 50,
   },
   divider: {
     width: "100%",

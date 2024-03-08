@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, StatusBar } from "react-native";
 
 // Components
 import Screen from "../../../components/common/Screen";
 import ProfileHeader from "./components/ProfileHeader";
+import Description from "./components/Description";
+import Divider from "../../../components/common/Divider";
+import Name from "./components/Name";
 
 // Hooks
 import { useAppSelector } from "../../../hooks";
+
+// Theme
 import { PHONE } from "../../../theme/breakPoints";
+
+// Types
 import User from "../../../store/types/User";
-import Name from "./components/Name";
-import Description from "./components/Description";
-import Divider from "../../../components/common/Divider";
+import colors from "../../../theme/colors";
 
 const ProfileScreen = ({ route }: any) => {
   const user = useAppSelector((state) => state.user.user);
@@ -30,6 +35,7 @@ const ProfileScreen = ({ route }: any) => {
 
   return (
     <Screen>
+      <StatusBar backgroundColor={colors.primary} />
       <ProfileHeader data={userData} isExternal={isExternal} />
       <View style={styles.content}>
         <View style={styles.info}>

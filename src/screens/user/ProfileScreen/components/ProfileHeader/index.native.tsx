@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: PHONE,
     paddingHorizontal: 12,
-    paddingTop: 40,
+    paddingTop: 16,
     zIndex: 3,
   },
   actions: {

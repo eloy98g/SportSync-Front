@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
   },
   content: {
     width: "100%",
-    height: Platform.select({ ios: 70, android: 90, web: 50 }),
-    paddingTop: Platform.select({ ios: 30, android: 50, web: 10 }),
+    height: 50,
+    paddingTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
 

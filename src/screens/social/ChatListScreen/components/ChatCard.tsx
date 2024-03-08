@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
@@ -16,10 +17,12 @@ import getTextByDate from "../../../../utils/date/getTextByDate";
 
 const ChatCard = (props: Chat) => {
   const { image, name, lastMessage } = props;
-
+  const navigation = useNavigation();
   const date = getTextByDate(lastMessage?.date || 0);
 
-  const chatHandler = () => {};
+  const chatHandler = () => {
+    navigation.navigate("Chat");
+  };
   return (
     <TouchableOpacity style={styles.container} onPress={chatHandler}>
       <Image style={styles.image} source={{ uri: image }} />
