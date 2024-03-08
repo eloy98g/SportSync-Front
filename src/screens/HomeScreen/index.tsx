@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View, StatusBar } from "react-native";
 
 // Components
 import PublicActivitiesList from "./components/publicActivities/PublicActivitiesList";
@@ -14,10 +14,12 @@ import SECTIONS from "./sections";
 
 // Theme
 import { PHONE } from "../../theme/breakPoints";
+import colors from "../../theme/colors";
 
 const HomeScreen = () => {
   return (
     <Screen>
+      <StatusBar backgroundColor={colors.white} />
       <View style={styles.content}>
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
           <Header />

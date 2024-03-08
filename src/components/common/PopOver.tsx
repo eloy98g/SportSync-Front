@@ -1,5 +1,5 @@
+import {StatusBar} from "react-native"
 import Popover from "react-native-popover-view";
-import { Easing } from "react-native-reanimated";
 
 const PopOver = (props: any) => {
   const { children, open, setOpen, parentRef } = props;
@@ -15,6 +15,7 @@ const PopOver = (props: any) => {
       popoverStyle={{ borderRadius: 12 }}
       animationConfig={{ duration: 200 }}
     >
+       <StatusBar backgroundColor={"rgba(0,0,0,0.5)"} />
       {children}
     </Popover>
   );
