@@ -10,6 +10,7 @@ type User = {
   verified: boolean;
   playArea: PlayArea;
   birthDate: number | null;
+  creationDate: number | null;
 };
 
 export const EMPTY_USER: User = {
@@ -22,6 +23,7 @@ export const EMPTY_USER: User = {
   verified: false,
   playArea: EMPTY_PLAYAREA,
   birthDate: null,
+  creationDate: null,
 };
 
 export default User;
