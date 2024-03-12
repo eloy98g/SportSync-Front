@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "anthares",
-    "slug": "anthares",
+    "name": "SportUp",
+    "slug": "sport-up",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/logos/logo.png",
@@ -22,14 +22,14 @@
         "foregroundImage": "./src/assets/logos/logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.eloy98g.anthares"
+      "package": "com.eloy98g.sportup"
     },
     "web": {
       "favicon": "./src/assets/logos/logo.png"
     },
     "extra": {
       "eas": {
-        "projectId": "5fc6840d-c740-4056-bd4a-bce89447111b"
+        "projectId": "2a4f84c1-c00e-4016-9de5-d419e272f4d4"
       }
     }
   }
