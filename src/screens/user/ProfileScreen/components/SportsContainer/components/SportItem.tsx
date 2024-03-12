@@ -19,7 +19,6 @@ interface Props {
 
 const SportItem = ({ sport, onPress, selected }: Props) => {
   const { icon, name, gid } = sport;
-  console.log("selected", selected);
   return (
     <TouchableOpacity style={styles.container} onPress={() => onPress(gid)}>
       <View
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     height: 32,
     width: 32,
     resizeMode: "contain",
-    fill:"white"
+    fill: "white",
   },
   title: {
     fontFamily: family.light,

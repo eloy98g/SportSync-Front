@@ -1,30 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import ACTIVITIES_PAST from "../../../../../api/placeholders/ACTIVITIES_PAST";
+import React from "react";
+import { useContext } from "react";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
+import colors from "../../../../../theme/colors";
+
+// Components
 import SportsCarousel from "./components/SportsCarousel";
-import getSports from "./methods/getSports";
+import { SportContainerContext } from "./context/SportContainerContext";
 
-interface Props {
-  userGid: number | null;
-}
-const SportsContainer = ({ userGid }: Props) => {
-  const [activities, setActivities] = useState<any[]>([]);
-  const [selectedSport, setSelectedSport] = useState<any>(null);
+const SportsContainer = () => {
+  const { status } = useContext(SportContainerContext);
 
-  useEffect(() => {
-    // Todo: get past activities by user gid
-    setActivities(ACTIVITIES_PAST);
-  }, []);
-
-  const sports = getSports(activities);
-
+  if (status === "idle" || status === "loading") {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator size="small" color={colors.primary} />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
-      <SportsCarousel
-        sports={sports}
-        selectedSport={selectedSport}
-        setSelectedSport={setSelectedSport}
-      />
+      <SportsCarousel />
     </View>
   );
 };
@@ -34,5 +29,10 @@ export default SportsContainer;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
+  },
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
