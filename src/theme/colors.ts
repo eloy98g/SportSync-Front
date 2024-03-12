@@ -7,7 +7,7 @@ const colors = {
   darkAccent: "#C2D327",
   black: "black",
   grey: "#9D9D9D",
-  lightenGrey: "#D8D7D5",
+  lightenGrey: "#DEDEDE",
   white: "white",
   red: "#D53E58",
   brown: "#AB6251",
