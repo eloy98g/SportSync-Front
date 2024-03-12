@@ -7,10 +7,14 @@ type User = {
   phone: number | null;
   image: string | null;
   description: string | null;
-  verified: boolean;
   playArea: PlayArea;
   birthDate: number | null;
   creationDate: number | null;
+  phoneVerified: boolean;
+  emailVerified: boolean;
+  published: number | null;
+  participated: number | null;
+  lastParticipation: number | null;
 };
 
 export const EMPTY_USER: User = {
@@ -20,10 +24,14 @@ export const EMPTY_USER: User = {
   phone: null,
   image: null,
   description: null,
-  verified: false,
   playArea: EMPTY_PLAYAREA,
   birthDate: null,
+  phoneVerified: false,
+  emailVerified: false,
   creationDate: null,
+  published: null,
+  participated: null,
+  lastParticipation: null,
 };
 
 export default User;
