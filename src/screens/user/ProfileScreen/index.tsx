@@ -22,6 +22,8 @@ import colors from "../../../theme/colors";
 import USER_1 from "../../../api/placeholders/USER_1";
 import USER_2 from "../../../api/placeholders/USER_2";
 import Information from "./components/Information";
+import SportsContainer from "./components/SportsContainer";
+import { SportContainerProvider } from "./components/SportsContainer/context/SportContainerContext";
 
 const ProfileScreen = ({ route }: any) => {
   const user = useAppSelector((state) => state.user.user);
@@ -33,7 +35,7 @@ const ProfileScreen = ({ route }: any) => {
   const verified = userData.phoneVerified && userData.emailVerified;
 
   useEffect(() => {
-    setStatus("loading")
+    setStatus("loading");
     if (gid) {
       setUserData(USER_2);
 
@@ -43,7 +45,7 @@ const ProfileScreen = ({ route }: any) => {
       setUserData(USER_1);
       setIsExternal(false);
     }
-    setStatus("success")
+    setStatus("success");
   }, []);
 
   if (status === "loading" || status === "idle") {
@@ -70,6 +72,9 @@ const ProfileScreen = ({ route }: any) => {
           <Divider height={14} />
           <Divider height={1} width="100%" color={colors.lightenGrey} />
           <Divider height={14} />
+          <SportContainerProvider userGid={userData.gid}>
+            <SportsContainer />
+          </SportContainerProvider>
         </View>
       </View>
     </Screen>

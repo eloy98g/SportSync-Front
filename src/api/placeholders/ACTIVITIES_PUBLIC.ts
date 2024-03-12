@@ -20,7 +20,7 @@ export default [
     sport: {
       gid: 1,
       name: "Fútbol",
-      icon: "https://i.pinimg.com/564x/95/b3/99/95b39952cb3adbcb58a1ae99680bdf35.jpg",
+      icon: "https://cdn-icons-png.flaticon.com/512/4498/4498011.png",
       color: "#4DD67C"
     },
     type: "normal",
