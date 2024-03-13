@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { createContext } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import ACTIVITIES_PAST from "../../../../../../api/placeholders/ACTIVITIES_PAST";
+
+// Methods
 import getSports from "../methods/getSports";
+
+// Placeholders
+import ACTIVITIES_PAST from "../../../../../../api/placeholders/ACTIVITIES_PAST";
 
 interface Props {
   userGid: number | null;
@@ -75,5 +78,3 @@ const SportContainerProvider = ({ userGid, children }: Props) => {
 };
 
 export { SportContainerContext, SportContainerProvider };
-
-const styles = StyleSheet.create({});

@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: family.light,
-    color: colors.grey,
+    color: colors.black,
     fontSize: 14,
   },
 });

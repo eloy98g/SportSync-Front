@@ -1,11 +1,17 @@
 import React from "react";
 import { useContext } from "react";
 import { StyleSheet, View, ActivityIndicator } from "react-native";
-import colors from "../../../../../theme/colors";
 
 // Components
 import SportsCarousel from "./components/SportsCarousel";
+import SportStats from "./components/SportStats";
+
+// Context
 import { SportContainerContext } from "./context/SportContainerContext";
+
+// Theme
+import colors from "../../../../../theme/colors";
+import Divider from "../../../../../components/common/Divider";
 
 const SportsContainer = () => {
   const { status } = useContext(SportContainerContext);
@@ -17,9 +23,12 @@ const SportsContainer = () => {
       </View>
     );
   }
+
   return (
     <View style={styles.container}>
       <SportsCarousel />
+      <Divider height={10} />
+      <SportStats />
     </View>
   );
 };

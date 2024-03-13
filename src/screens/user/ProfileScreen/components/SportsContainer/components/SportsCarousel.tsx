@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
+
+// Components
 import Divider from "../../../../../../components/common/Divider";
-import { SportContainerContext } from "../context/SportContainerContext";
 import SportItem from "./SportItem";
+
+// Context
+import { SportContainerContext } from "../context/SportContainerContext";
 
 const SportsCarousel = () => {
   const { sports, setSelectedSport, selectedSport } = useContext(
@@ -13,7 +17,6 @@ const SportsCarousel = () => {
     setSelectedSport(gid);
   };
 
-  console.log({ sports, setSelectedSport, selectedSport });
   return (
     <View style={styles.container}>
       <ScrollView
