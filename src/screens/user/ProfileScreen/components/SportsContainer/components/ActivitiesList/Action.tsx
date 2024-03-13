@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   text: {
-    fontFamily: family.normal,
+    fontFamily: family.semibold,
     fontSize: 10,
     color: colors.primary,
   },

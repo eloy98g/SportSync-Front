@@ -1,12 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { ActivityType } from "../../../../../../../store/types/Activity";
+import { StyleSheet, View } from "react-native";
 
 // Theme
 import colors from "../../../../../../../theme/colors";
 import Actions from "./Actions";
 import Score from "./Score";
 import Teams from "./Teams";
+
+// Types
+import { ActivityType } from "../../../../../../../store/types/Activity";
 
 interface Result {
   result: "victory" | "defeat" | "tie";
@@ -26,7 +28,6 @@ const RESULT_COLORS = {
   victory: colors.secondary,
   defeat: colors.red,
   tie: colors.grey,
-  // Puedes agregar más casos según sea necesario
 };
 
 const Activity = ({ data }: Props) => {

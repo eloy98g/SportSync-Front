@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
   },
   text: {
-    fontFamily: family.normal,
+    fontFamily: family.semibold,
     fontSize: 10,
     color: colors.white,
   },
