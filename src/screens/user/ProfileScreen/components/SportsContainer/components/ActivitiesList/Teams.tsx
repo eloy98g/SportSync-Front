@@ -10,7 +10,11 @@ const Teams = ({ teams }: Props) => {
   return (
     <View style={styles.teamWrapper}>
       {teams.map((team: any) => (
-        <Team image={team.player.image} size={team.numPlayers} />
+        <Team
+          key={team.name}
+          image={team.player.image}
+          size={team.numPlayers}
+        />
       ))}
     </View>
   );
