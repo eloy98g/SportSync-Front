@@ -3,7 +3,6 @@ import { StyleSheet, ScrollView, View } from "react-native";
 
 // Components
 import Divider from "../../../../../../components/common/Divider";
-import Title from "./Title";
 import SportItem from "./SportItem";
 
 // Context
@@ -20,8 +19,6 @@ const SportsCarousel = () => {
 
   return (
     <View style={styles.container}>
-      <Title title="Deportes" />
-      <Divider height={14} />
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}

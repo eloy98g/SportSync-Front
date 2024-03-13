@@ -14,19 +14,34 @@ import TouchableText from "../../../../../../components/common/buttons/Touchable
 // Theme
 import { family } from "../../../../../../theme/fonts";
 import colors from "../../../../../../theme/colors";
+import unixToDate from "../../../../../../utils/date/unixToDate";
 
 const SportStats = () => {
-  const { sports, selectedSport } = useContext(SportContainerContext);
+  const { sports, selectedSport, activities } = useContext(
+    SportContainerContext
+  );
 
+  const currentActivities = activities.filter(
+    (act) => act.sport.gid === selectedSport
+  );
+  console.log("currentActivities", currentActivities);
+  const participations = currentActivities.length.toString();
+  const victories = currentActivities
+    .filter((item) => item.result.result === "victory")
+    .length.toString();
+
+  const lastTime = currentActivities.reduce((maxDate, obj) => {
+    return Math.max(maxDate, obj.endDate);
+  }, 0);
   const moreStatsHandler = () => {};
+
   return (
     <>
-      <Title title="Estadisticas" />
       <Divider height={14} />
       <View style={styles.container}>
-        <Stat title="10" subtitle="Partidos" />
-        <Stat title="5" subtitle="Victorias" />
-        <Stat title="03/05/23" subtitle="Últ. vez" size={18} />
+        <Stat title={participations} subtitle="Partidos" />
+        <Stat title={victories} subtitle="Victorias" />
+        <Stat title={unixToDate(lastTime)} subtitle="Últ. vez" size={18} />
       </View>
       <View style={styles.row}>
         <TouchableText

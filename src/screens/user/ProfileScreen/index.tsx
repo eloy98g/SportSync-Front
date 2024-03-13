@@ -33,6 +33,7 @@ import colors from "../../../theme/colors";
 // Placeholders
 import USER_1 from "../../../api/placeholders/USER_1";
 import USER_2 from "../../../api/placeholders/USER_2";
+import LineDivider from "../../../components/common/LineDivider";
 
 const ProfileScreen = ({ route }: any) => {
   const user = useAppSelector((state) => state.user.user);
@@ -71,16 +72,13 @@ const ProfileScreen = ({ route }: any) => {
       <ProfileHeader data={userData} isExternal={isExternal} />
       <View style={styles.content}>
         <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
+          <Divider height={220} />
           <Name name={userData.name} verified={verified} />
           <Divider height={10} />
           <Description description={userData.description} />
-          <Divider height={14} />
-          <Divider height={1} width="100%" color={colors.lightenGrey} />
-          <Divider height={14} />
+          <LineDivider height={28} color={colors.lightenGrey} />
           <Information data={userData} />
-          <Divider height={14} />
-          <Divider height={1} width="100%" color={colors.lightenGrey} />
-          <Divider height={14} />
+          <LineDivider height={28} color={colors.lightenGrey} />
           <SportContainerProvider userGid={userData.gid}>
             <SportsContainer />
           </SportContainerProvider>
@@ -99,7 +97,6 @@ const styles = StyleSheet.create({
     flex: 1,
     maxWidth: PHONE,
     paddingHorizontal: 12,
-    paddingTop: 220,
     height: 1,
   },
   info: {
