@@ -14,17 +14,16 @@ import TouchableText from "../../../../../../components/common/buttons/Touchable
 // Theme
 import { family } from "../../../../../../theme/fonts";
 import colors from "../../../../../../theme/colors";
+
+// Utils
 import unixToDate from "../../../../../../utils/date/unixToDate";
 
 const SportStats = () => {
-  const { sports, selectedSport, activities } = useContext(
-    SportContainerContext
-  );
+  const { selectedSport, activities } = useContext(SportContainerContext);
 
   const currentActivities = activities.filter(
     (act) => act.sport.gid === selectedSport
   );
-  console.log("currentActivities", currentActivities);
   const participations = currentActivities.length.toString();
   const victories = currentActivities
     .filter((item) => item.result.result === "victory")
@@ -33,6 +32,8 @@ const SportStats = () => {
   const lastTime = currentActivities.reduce((maxDate, obj) => {
     return Math.max(maxDate, obj.endDate);
   }, 0);
+
+  
   const moreStatsHandler = () => {};
 
   return (

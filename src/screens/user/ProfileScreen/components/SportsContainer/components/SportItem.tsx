@@ -27,7 +27,7 @@ const SportItem = ({ sport, onPress, selected }: Props) => {
           selected && { backgroundColor: colors.primary },
         ]}
       >
-         <Image style={styles.image} source={{ uri: icon }} />
+        <Image style={styles.image} source={{ uri: icon }} />
       </View>
       <Divider height={4} />
       <Text style={styles.title}>{name}</Text>
@@ -50,13 +50,11 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 16,
   },
   image: {
     height: 32,
     width: 32,
     resizeMode: "contain",
-    fill: "white",
   },
   title: {
     fontFamily: family.light,

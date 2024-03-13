@@ -11,6 +11,7 @@ import {
 import Screen from "../../../components/common/Screen";
 import ProfileHeader from "./components/ProfileHeader";
 import Description from "./components/Description";
+import LineDivider from "../../../components/common/LineDivider";
 import Divider from "../../../components/common/Divider";
 import Information from "./components/Information";
 import SportsContainer from "./components/SportsContainer";
@@ -33,7 +34,6 @@ import colors from "../../../theme/colors";
 // Placeholders
 import USER_1 from "../../../api/placeholders/USER_1";
 import USER_2 from "../../../api/placeholders/USER_2";
-import LineDivider from "../../../components/common/LineDivider";
 
 const ProfileScreen = ({ route }: any) => {
   const user = useAppSelector((state) => state.user.user);
@@ -41,7 +41,7 @@ const ProfileScreen = ({ route }: any) => {
   const [status, setStatus] = useState("idle");
   const [isExternal, setIsExternal] = useState<boolean>(false);
   const gid = route.params?.gid;
-  console.log("userData", userData);
+
   const verified = userData.phoneVerified && userData.emailVerified;
 
   useEffect(() => {
