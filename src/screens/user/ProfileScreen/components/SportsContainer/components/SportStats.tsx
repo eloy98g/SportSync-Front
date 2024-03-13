@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { ChevronRight } from "lucide-react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Divider from "../../../../../../components/common/Divider";
-import Title from "./Title";
 import Stat from "./Stat";
 
 // Context
@@ -20,7 +20,7 @@ import unixToDate from "../../../../../../utils/date/unixToDate";
 
 const SportStats = () => {
   const { selectedSport, activities } = useContext(SportContainerContext);
-
+  const navigation = useNavigation();
   const currentActivities = activities.filter(
     (act) => act.sport.gid === selectedSport
   );
@@ -33,8 +33,12 @@ const SportStats = () => {
     return Math.max(maxDate, obj.endDate);
   }, 0);
 
-  
-  const moreStatsHandler = () => {};
+  const moreStatsHandler = () => {
+    navigation.navigate(
+      "SportStats" as never,
+      { selectedSport, currentActivities } as never
+    );
+  };
 
   return (
     <>
