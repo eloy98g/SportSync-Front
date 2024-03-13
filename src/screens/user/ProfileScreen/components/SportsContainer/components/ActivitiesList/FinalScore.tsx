@@ -10,14 +10,19 @@ interface Props {
   data: any;
 }
 
-const FinalScore = ({ data=[] }: Props) => {
+const FinalScore = ({ data }: Props) => {
   const { scores, winner } = data;
 
   return (
     <View style={styles.container}>
       {scores.map((score: any) => (
         <Text
-          style={winner === score.team ? styles.winnerScore : styles.loserScore}
+          key={score.team}
+          style={{
+            ...styles.baseScore,
+            ...(winner === score.team && styles.winnerScore),
+            ...(winner !== null && winner !== score.team && styles.loserScore),
+          }}
         >
           {score.points}
         </Text>
@@ -26,12 +31,24 @@ const FinalScore = ({ data=[] }: Props) => {
   );
 };
 
+FinalScore.defaultProps = {
+  data: {
+    scores: [],
+    winner: null,
+  },
+};
+
 export default FinalScore;
 
 const styles = StyleSheet.create({
   container: {
     height: "100%",
     justifyContent: "space-around",
+  },
+  baseScore: {
+    fontFamily: family.light,
+    fontSize: 24,
+    color: colors.black,
   },
   winnerScore: {
     fontFamily: family.light,

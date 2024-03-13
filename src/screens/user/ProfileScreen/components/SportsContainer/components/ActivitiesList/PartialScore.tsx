@@ -10,27 +10,30 @@ interface Props {
   data: any;
 }
 
-const PartialScore = ({ data = [] }: Props) => {
+const PartialScore = ({ data }: Props) => {
   const { scores, winner } = data;
-  console.log("data", data);
   return (
     <View style={styles.container}>
       {scores?.map((score: any) => (
         <Text
           key={score.team}
-          style={
-            winner === null
-              ? styles.winnerScore
-              : winner === score.team
-              ? styles.winnerScore
-              : styles.loserScore
-          }
+          style={{
+            ...styles.baseScore,
+            ...(winner !== null && winner !== score.team && styles.loserScore),
+          }}
         >
           {score.points}
         </Text>
       ))}
     </View>
   );
+};
+
+PartialScore.defaultProps = {
+  data: {
+    scores: [],
+    winner: null,
+  },
 };
 
 export default PartialScore;
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "space-around",
   },
-  winnerScore: {
+  baseScore: {
     fontFamily: family.light,
     fontSize: 16,
     color: colors.black,
