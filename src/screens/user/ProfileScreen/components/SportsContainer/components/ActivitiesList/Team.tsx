@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, Image, View, Text } from "react-native";
+
+// Theme
 import colors from "../../../../../../../theme/colors";
 import { family } from "../../../../../../../theme/fonts";
 
@@ -9,10 +11,11 @@ interface Props {
 }
 
 const Team = ({ image, size }: Props) => {
+  const teamText = size > 1 ? "+" + (size - 1) : "";
   return (
     <View style={styles.image}>
       <Image style={styles.image} source={{ uri: image }} />
-      <Text style={styles.text}>+4</Text>
+      <Text style={styles.text}>{teamText}</Text>
     </View>
   );
 };
