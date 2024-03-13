@@ -11,8 +11,8 @@ interface Props {
   verified: boolean;
 }
 const Name = ({ name, verified }: Props) => (
-  <View style={{flexDirection:"row", alignItems:"center"}}>
-    <Text style={styles.text}>{name}{" "}</Text>
+  <View style={styles.container}>
+    <Text style={styles.text}>{name} </Text>
     {verified && <Verified size={18} color={colors.secondary} />}
   </View>
 );
@@ -20,6 +20,12 @@ const Name = ({ name, verified }: Props) => (
 export default Name;
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "center",
+    alignItems:"center"
+  },
   text: {
     fontFamily: family.bold,
     color: colors.black,
