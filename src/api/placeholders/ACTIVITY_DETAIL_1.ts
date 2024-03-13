@@ -50,7 +50,7 @@ export default {
           gid: 3,
           name: "John Smith",
           image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-3.jpg",
+            "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         {
           gid: 4,

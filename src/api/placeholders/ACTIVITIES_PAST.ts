@@ -44,8 +44,7 @@ export default [
         player: {
           gid: 3,
           name: "John Smith",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-3.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         userTeam: true,
       },
@@ -54,8 +53,14 @@ export default [
       result: "defeat",
       partialScores: [],
       finalScores: [
-        { team: "A", points: 2 },
-        { team: "B", points: 1 },
+        {
+          slot: 1,
+          winner: "A",
+          scores: [
+            { team: "A", points: 2 },
+            { team: "B", points: 1 },
+          ],
+        },
       ],
     },
   },
@@ -104,8 +109,7 @@ export default [
         player: {
           gid: 3,
           name: "John Smith",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-3.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         userTeam: true,
       },
@@ -113,16 +117,40 @@ export default [
     result: {
       result: "defeat",
       partialScores: [
-        { team: "A", slot: 1, type: "partial", points: 4 },
-        { team: "A", slot: 2, type: "partial", points: 6 },
-        { team: "A", slot: 3, type: "partial", points: 6 },
-        { team: "B", slot: 1, type: "partial", points: 6 },
-        { team: "B", slot: 2, type: "partial", points: 4 },
-        { team: "B", slot: 3, type: "partial", points: 2 },
+        {
+          slot: 1,
+          winner: "B",
+          scores: [
+            { team: "A", points: 4 },
+            { team: "B", points: 6 },
+          ],
+        },
+        {
+          slot: 2,
+          winner: "A",
+          scores: [
+            { team: "A", points: 6 },
+            { team: "B", points: 4 },
+          ],
+        },
+        {
+          slot: 3,
+          winner: "A",
+          scores: [
+            { team: "A", points: 6 },
+            { team: "B", points: 2 },
+          ],
+        },
       ],
       finalScores: [
-        { team: "A", points: 2 },
-        { team: "B", points: 1 },
+        {
+          slot: 1,
+          winner: "A",
+          scores: [
+            { team: "A", points: 2 },
+            { team: "B", points: 1 },
+          ],
+        },
       ],
     },
   },
@@ -171,8 +199,7 @@ export default [
         player: {
           gid: 3,
           name: "John Smith",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-3.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         userTeam: false,
       },
@@ -181,8 +208,14 @@ export default [
       result: "victory",
       partialScores: [],
       finalScores: [
-        { team: "A", points: 4 },
-        { team: "B", points: 2 },
+        {
+          slot: 1,
+          winner: "A",
+          scores: [
+            { team: "A", points: 4 },
+            { team: "B", points: 1 },
+          ],
+        },
       ],
     },
   },
@@ -231,8 +264,7 @@ export default [
         player: {
           gid: 3,
           name: "John Smith",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-3.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         userTeam: false,
       },
@@ -241,8 +273,14 @@ export default [
       result: "tie",
       partialScores: [],
       finalScores: [
-        { team: "A", points: 1 },
-        { team: "B", points: 1 },
+        {
+          slot: 1,
+          winner: null,
+          scores: [
+            { team: "A", points: 1 },
+            { team: "B", points: 1 },
+          ],
+        },
       ],
     },
   },

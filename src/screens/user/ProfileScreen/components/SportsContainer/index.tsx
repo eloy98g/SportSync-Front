@@ -12,6 +12,7 @@ import { SportContainerContext } from "./context/SportContainerContext";
 // Theme
 import colors from "../../../../../theme/colors";
 import Divider from "../../../../../components/common/Divider";
+import ActivitiesList from "./components/ActivitiesList";
 
 const SportsContainer = () => {
   const { status } = useContext(SportContainerContext);
@@ -29,6 +30,8 @@ const SportsContainer = () => {
       <SportsCarousel />
       <Divider height={10} />
       <SportStats />
+      <Divider height={20} />
+      <ActivitiesList />
     </View>
   );
 };
