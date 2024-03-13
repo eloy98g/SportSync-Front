@@ -13,12 +13,12 @@ import ForgotPassword from "./sections/ForgotPassword";
 import LogIn from "./sections/LogIn";
 import SignIn from "./sections/SignIn";
 
-const AuthScreen = () => {
+const AuthScreen = ({navigation}:any) => {
   const [section, setSection] = useState<any>();
 
   const sectionComponents: any = {
     ForgotPassword: <ForgotPassword setSection={setSection} />,
-    LogIn: <LogIn setSection={setSection} />,
+    LogIn: <LogIn setSection={setSection} navigation={navigation}/>,
     SignIn: <SignIn setSection={setSection} />,
   };
 

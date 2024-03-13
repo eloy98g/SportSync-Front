@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   scroll: {
     width: "100%",
     maxWidth: PHONE,
+    height: 1
   },
 });
 

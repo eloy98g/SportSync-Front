@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import TouchableText from "../../../../components/common/buttons/TouchableText";
@@ -19,10 +18,9 @@ import fetchUser from "../../../../store/features/user/methods/fetchUser";
 // Hooks
 import { useAppDispatch } from "../../../../hooks";
 
-const Login = ({ setSection }: any) => {
+const Login = ({ setSection, navigation }: any) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const navigation = useNavigation();
 
   const dispatch = useAppDispatch();
 
@@ -30,7 +28,7 @@ const Login = ({ setSection }: any) => {
     dispatch(fetchUser());
     setSection();
     setTimeout(() => {
-      navigation.navigate("Home" as never);
+      navigation?.navigate("Home" as never);
     });
   };
 
@@ -88,7 +86,7 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     color: colors.primary,
     fontSize: 18,
-    textAlign: "center"
+    textAlign: "center",
   },
   row: {
     flexDirection: "row",

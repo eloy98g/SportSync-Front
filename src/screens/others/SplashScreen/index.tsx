@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Screen from "../../../components/common/Screen";
@@ -15,11 +16,12 @@ import fetchChats from "../../../store/features/chat/methods/fetchChats";
 // Theme
 import colors from "../../../theme/colors";
 
-const SplashScreen = ({ navigation }: any) => {
+const SplashScreen = () => {
   const stateUser = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
   const loggedIn = !!stateUser.gid;
-
+  const navigation = useNavigation();
+  
   const getData = async () => {
     dispatch(fetchCurrentActivities());
     dispatch(fetchPublicActivities());
@@ -29,7 +31,7 @@ const SplashScreen = ({ navigation }: any) => {
   const splashHandler = async () => {
     await getData();
     setTimeout(() => {
-      navigation.navigate(loggedIn ? "Home" : "Auth");
+      navigation.navigate(loggedIn ? ("Home" as never) : ("Auth" as never));
     }, 1000);
   };
 
