@@ -1,14 +1,41 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from "react";
+import { StyleSheet, View } from "react-native";
 
-const Stats = () => {
-  return (
-    <View>
-      <Text></Text>
-    </View>
-  )
+// Components
+import Divider from "../../../../components/common/Divider";
+import StatChart from "./StatChart";
+import StatResume from "./StatResume";
+
+// Methods
+import getStats from "../methods/getStats";
+
+// Todo remove anys
+interface Props {
+  activities: any;
 }
 
-export default Stats
+const Stats = ({ activities }: Props) => {
+  const statData = getStats(activities);
 
-const styles = StyleSheet.create({})
+  return (
+    <View style={styles.container}>
+      <StatChart statData={statData} />
+      <Divider width={20} />
+      <StatResume statData={statData} />
+    </View>
+  );
+};
+
+Stats.defaultProps = {
+  activities: [],
+};
+
+export default Stats;
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+});

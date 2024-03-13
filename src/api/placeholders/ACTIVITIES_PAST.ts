@@ -270,7 +270,7 @@ export default [
       },
     ],
     result: {
-      result: "tie",
+      result: "victory",
       partialScores: [],
       finalScores: [
         {
