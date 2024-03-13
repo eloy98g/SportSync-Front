@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { ActivityType } from "../../../../../../../store/types/Activity";
 
 // Theme
 import colors from "../../../../../../../theme/colors";
@@ -7,9 +8,18 @@ import Actions from "./Actions";
 import Score from "./Score";
 import Teams from "./Teams";
 
+interface Result {
+  result: "victory" | "defeat" | "tie";
+}
+
 // Todo: change any to proper type
 interface Props {
-  data: any;
+  data: {
+    result: Result;
+    teams: any;
+    type: ActivityType;
+    endDate: number;
+  };
 }
 
 const RESULT_COLORS = {
@@ -20,14 +30,14 @@ const RESULT_COLORS = {
 };
 
 const Activity = ({ data }: Props) => {
-  const { result, teams } = data;
+  const { result, teams, endDate, type } = data;
   const borderColor = RESULT_COLORS[result.result];
   return (
     <View style={[styles.container, { borderLeftColor: borderColor }]}>
       <View style={styles.content}>
         <Teams teams={teams} />
         <Score result={result} />
-        <Actions />
+        <Actions endDate={endDate} type={type} />
       </View>
     </View>
   );
