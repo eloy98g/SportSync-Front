@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
-import Divider from "../../../../../../../components/common/Divider";
-import Activity from "./Activity";
+import Divider from "../../../../../../components/common/Divider";
 
 // Context
-import { SportContainerContext } from "../../context/SportContainerContext";
+import { SportContainerContext } from "../context/SportContainerContext";
+import Activity from "./ActivitiesList/Activity";
 
 const ActivitiesList = () => {
   const { activities, selectedSport } = useContext(SportContainerContext);
