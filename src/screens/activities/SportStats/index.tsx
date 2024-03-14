@@ -22,7 +22,7 @@ const SportStats = ({ route }: any) => {
         <Divider height={12} />
         <Stats activities={activities} />
         <Divider height={12} />
-        <ActivityTypeTabView />
+        <ActivityTypeTabView activities={activities} />
       </View>
     </Screen>
   );

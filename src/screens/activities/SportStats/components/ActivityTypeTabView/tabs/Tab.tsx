@@ -1,11 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, ScrollView } from "react-native";
+import Activity from "./Activity";
 
-const Tab = ({ data }: any) => {
+// TODO: change any's
+const Tab = ({ data = [] }: any) => {
   return (
-    <View style={styles.container}>
-      <Text>Tab</Text>
-    </View>
+    <ScrollView style={styles.container}>
+      {data.map((item: any) => (
+        <Activity key={item.gid} data={item} />
+      ))}
+    </ScrollView>
   );
 };
 
@@ -13,6 +17,7 @@ export default Tab;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: 1,
+    width:"100%",
   },
 });

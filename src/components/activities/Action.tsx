@@ -5,14 +5,20 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
+type SIZE = "small" | "normal";
+
 interface Props {
   text: string;
   onPress: any;
+  size?: SIZE;
 }
 
-const Action = ({ text, onPress }: Props) => {
+const Action = ({ text, onPress, size = "normal" }: Props) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.container, size === "small" && { height: 20 }]}
+      onPress={onPress}
+    >
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );

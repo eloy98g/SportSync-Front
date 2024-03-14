@@ -14,6 +14,7 @@ const StatChart = ({ statData }: any) => {
     { value: ties, color: colors.lightenGrey },
   ];
 
+  const textColor = percentage > 50 ? colors.secondary : colors.red;
   return (
     <PieChart
       strokeColor="white"
@@ -23,7 +24,7 @@ const StatChart = ({ statData }: any) => {
       data={pieData}
       innerCircleBorderColor={"white"}
       centerLabelComponent={() => (
-        <Text style={styles.text}>{percentage}%</Text>
+        <Text style={[styles.text, { color: textColor }]}>{percentage}%</Text>
       )}
     />
   );
@@ -33,7 +34,6 @@ export default StatChart;
 
 const styles = StyleSheet.create({
   text: {
-    color: colors.secondary,
     fontSize: 28,
     fontFamily: family.normal,
   },

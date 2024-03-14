@@ -18,9 +18,9 @@ import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
 const routes = [
-  { key: "all", title: "Todos", tab: <Tab /> },
-  { key: "normal", title: "Normal", tab: <Tab /> },
-  { key: "competitive", title: "Competitivo", tab: <Tab /> },
+  { key: "all", title: "Todos" },
+  { key: "normal", title: "Normal" },
+  { key: "competitive", title: "Competitivo" },
 ];
 
 const TabsRovingIndicator = ({
@@ -56,7 +56,8 @@ const AnimatedYStack = styled(YStack, {
   } as const,
 });
 
-const ActivityTypeTabView = () => {
+// TODO: revisit component and divide it
+const ActivityTypeTabView = ({ activities }: any) => {
   const [tabState, setTabState] = useState<{
     currentTab: string;
     intentAt: TabLayout | null;
@@ -64,10 +65,14 @@ const ActivityTypeTabView = () => {
     prevActiveAt: TabLayout | null;
   }>({
     activeAt: null,
-    currentTab: "tab1",
+    currentTab: "all",
     intentAt: null,
     prevActiveAt: null,
   });
+
+  const currentActivities = activities.filter(
+    (item: any) => item.type === tabState.currentTab || tabState.currentTab === "all"
+  );
 
   const setCurrentTab = (currentTab: string) =>
     setTabState({ ...tabState, currentTab });
@@ -77,9 +82,6 @@ const ActivityTypeTabView = () => {
     setTabState({ ...tabState, prevActiveAt: tabState.activeAt, activeAt });
   const { activeAt, intentAt, prevActiveAt, currentTab } = tabState;
 
-  useEffect(() => {
-    setCurrentTab("all");
-  }, []);
   const direction = (() => {
     if (!activeAt || !prevActiveAt || activeAt.x === prevActiveAt.x) {
       return 0;
@@ -180,7 +182,7 @@ const ActivityTypeTabView = () => {
         >
           {routes.map((route) => (
             <Tabs.Content flex={1} key={route.key} value={route.key}>
-              {route.tab}
+              <Tab data={currentActivities} />
             </Tabs.Content>
           ))}
         </AnimatedYStack>

@@ -5,13 +5,16 @@ import { StyleSheet, Text, View } from "react-native";
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
+type SIZE = "small" | "normal";
+
 interface Props {
   text: string;
+  size?: SIZE;
 }
 
-const Tag = ({ text }: Props) => {
+const Tag = ({ text, size = "normal" }: Props) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, size === "small" && { height: 20 }]}>
       <Text style={styles.text}>{text}</Text>
     </View>
   );
