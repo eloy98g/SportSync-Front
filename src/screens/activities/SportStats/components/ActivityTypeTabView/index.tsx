@@ -1,14 +1,7 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  ScrollView,
-  useWindowDimensions,
-  Text,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text } from "react-native";
 import {
   AnimatePresence,
-  H5,
-  SizableText,
   StackProps,
   styled,
   TabLayout,
@@ -16,11 +9,13 @@ import {
   TabsTabProps,
   YStack,
 } from "tamagui";
-import Divider from "../../../../../components/common/Divider";
+
+// Components
+import Tab from "./tabs/Tab";
+
+// Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
-
-import Tab from "./tabs/Tab";
 
 const routes = [
   { key: "all", title: "Todos", tab: <Tab /> },
@@ -82,6 +77,9 @@ const ActivityTypeTabView = () => {
     setTabState({ ...tabState, prevActiveAt: tabState.activeAt, activeAt });
   const { activeAt, intentAt, prevActiveAt, currentTab } = tabState;
 
+  useEffect(() => {
+    setCurrentTab("all");
+  }, []);
   const direction = (() => {
     if (!activeAt || !prevActiveAt || activeAt.x === prevActiveAt.x) {
       return 0;
