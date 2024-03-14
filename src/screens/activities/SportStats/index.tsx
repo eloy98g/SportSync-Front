@@ -1,15 +1,15 @@
 import React from "react";
 import { StyleSheet, View, StatusBar } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 
 // Components
+import ActivityTypeTabView from "./components/ActivityTypeTabView";
 import BackHeader from "../../../components/BackHeader";
+import Divider from "../../../components/common/Divider";
 import Screen from "../../../components/common/Screen";
 import Stats from "./components/Stats";
 
 // Theme
 import colors from "../../../theme/colors";
-import Divider from "../../../components/common/Divider";
 
 const SportStats = ({ route }: any) => {
   const activities = route.params?.currentActivities || [];
@@ -19,10 +19,10 @@ const SportStats = ({ route }: any) => {
       <StatusBar backgroundColor={colors.white} />
       <BackHeader title={sport.name} />
       <View style={styles.container}>
-        <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
-          <Divider height={12}/>
-          <Stats activities={activities} />
-        </ScrollView>
+        <Divider height={12} />
+        <Stats activities={activities} />
+        <Divider height={12} />
+        <ActivityTypeTabView />
       </View>
     </Screen>
   );
@@ -35,10 +35,6 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
     paddingTop: 50,
-    paddingHorizontal: 12
-  },
-  scroll: {
-    height: 1,
-    width: "100%",
+    paddingHorizontal: 12,
   },
 });
