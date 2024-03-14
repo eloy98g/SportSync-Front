@@ -7,9 +7,10 @@ import ResumeItem from "./ResumeItem";
 // Theme
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
+import unixToDate from "../../../../utils/date/unixToDate";
 
 const StatResume = ({ statData }: any) => {
-  const { victories, ties, loses } = statData;
+  const { victories, ties, loses, victoryStreak, lastActivityDate } = statData;
   return (
     <View style={styles.container}>
       <View style={styles.row}>
@@ -22,8 +23,10 @@ const StatResume = ({ statData }: any) => {
         <ResumeItem title={ties} subtitle="Empates" color={colors.grey} />
       </View>
 
-      <Text style={styles.text}>Mejor racha de victorias: 2</Text>
-      <Text style={styles.text}>Última participación: 21/03/23</Text>
+      <Text style={styles.text}>Mejor racha de victorias: {victoryStreak}</Text>
+      <Text style={styles.text}>
+        Última participación: {unixToDate(lastActivityDate)}
+      </Text>
     </View>
   );
 };

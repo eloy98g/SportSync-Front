@@ -1,3 +1,6 @@
+import getStreakVictory from "./getStreakVictory";
+
+// TODO: remove any's
 const getStats = (activities = []) => {
   let victories = 0;
   let ties = 0;
@@ -16,11 +19,25 @@ const getStats = (activities = []) => {
         break;
     }
   });
+  const sortedArray = activities.sort(
+    (a: any, b: any) => a.endDate - b.endDate
+  );
+  const lastActivityDate = sortedArray[sortedArray.length - 1].endDate;
+
+  const victoryStreak = getStreakVictory(activities);
 
   const total = victories + loses + ties;
   const percentage = Math.round((victories / total) * 100).toFixed(0);
 
-  return { victories, ties, loses, total, percentage };
+  return {
+    victories,
+    ties,
+    loses,
+    total,
+    percentage,
+    victoryStreak,
+    lastActivityDate,
+  };
 };
 
 export default getStats;
