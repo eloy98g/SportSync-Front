@@ -1,9 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
+
+// Components
 import Activity from "./Activity";
 
 // TODO: change any's
-const Tab = ({ data = [] }: any) => {
+const TabContent = ({ data = [] }: any) => {
   return (
     <ScrollView style={styles.container}>
       {data.map((item: any) => (
@@ -13,11 +15,11 @@ const Tab = ({ data = [] }: any) => {
   );
 };
 
-export default Tab;
+export default TabContent;
 
 const styles = StyleSheet.create({
   container: {
     height: 1,
-    width:"100%",
+    width: "100%",
   },
 });

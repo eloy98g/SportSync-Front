@@ -24,8 +24,7 @@ const Activity = ({ data }: any) => {
   const otherScore = result.finalScores[0].scores.find(
     (team: any) => team.team !== userTeam.name
   );
-  console.log("userScore", userScore);
-  console.log('otherScore',otherScore)
+  
   const winner = result.finalScores[0].winner;
 
   const moreInfoHandler = () => {};
