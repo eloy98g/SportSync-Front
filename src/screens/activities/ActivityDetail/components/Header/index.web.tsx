@@ -2,21 +2,30 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 
 // Components
-import Wrapper from "./Wrapper";
-import BackButton from "./BackButton";
+import Divider from "../../../../../components/common/Divider";
 import ActionsGroup from "./ActionsGroup";
+import BackButton from "./BackButton";
+import Wrapper from "./Wrapper";
+import Info from "./Info";
+import Details from "../Details";
 
-interface Props {}
+interface Props {
+  data: any;
+  isAdmin: boolean;
+}
 
-const Header = () => {
+const Header = ({ data, isAdmin }: Props) => {
   return (
     <View style={styles.container}>
       <Wrapper>
         <View style={styles.actions}>
           <BackButton />
-          <ActionsGroup />
+          <Divider width={8} />
+          <Info data={data} />
+          <ActionsGroup isAdmin={isAdmin} />
         </View>
       </Wrapper>
+      <Details data={data}/>
     </View>
   );
 };

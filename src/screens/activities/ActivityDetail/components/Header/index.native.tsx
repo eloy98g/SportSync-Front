@@ -10,6 +10,7 @@ import ActionsGroup from "./ActionsGroup";
 import { PHONE } from "../../../../../theme/breakPoints";
 import Info from "./Info";
 import Divider from "../../../../../components/common/Divider";
+import Details from "../Details";
 
 interface Props {
   data: any;
@@ -23,11 +24,13 @@ const Header = ({ data, isAdmin }: Props) => {
       <View style={styles.content}>
         <View style={styles.actions}>
           <BackButton />
-          <Divider width={8} />
+          <Divider width={8}/>
           <Info data={data} />
           <ActionsGroup isAdmin={isAdmin} />
         </View>
       </View>
+      <Divider height={24}/>
+      <Details data={data}/>
     </View>
   );
 };
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     top: 0,
     left: 0,
-    zIndex: 1,
+    zIndex: 10,
   },
   content: {
     width: "100%",
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
     zIndex: 3,
   },
   actions: {
-    alignItems: "center",
+    alignItems:"center",
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",

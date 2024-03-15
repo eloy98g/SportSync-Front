@@ -22,11 +22,15 @@ const ActionsGroup = ({ isAdmin }: Props) => {
   return (
     <View style={styles.group}>
       {isAdmin && (
+        <>
         <IconButton
           onPress={adminHandler}
           icon={<UserRoundCog size={24} color={colors.white} />}
         />
+         <Divider width={8} />
+        </>
       )}
+
       <IconButton
         onPress={shareHandler}
         icon={<Share2 size={24} color={colors.white} />}
