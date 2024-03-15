@@ -16,6 +16,7 @@ import { PHONE } from "../../../theme/breakPoints";
 // Placeholder
 import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
 import Divider from "../../../components/common/Divider";
+import Teams from "./components/Teams";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -52,6 +53,12 @@ const ActivityDetail = ({ route }: any) => {
         <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
           <Divider height={200} />
           <TouchableInfoContainer data={activityData} />
+          <Divider height={12} />
+          <Teams
+            data={activityData?.teamPlayers}
+            teamSize={activityData?.playersPerTeam}
+            teams={activityData.teams}
+          />
         </ScrollView>
       </View>
     </Screen>

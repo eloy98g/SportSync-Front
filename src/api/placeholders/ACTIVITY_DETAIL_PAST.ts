@@ -85,26 +85,22 @@ export default {
         {
           gid: 4,
           name: "Rory Williams",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-4.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         {
           gid: 5,
           name: "Clara Oswald",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-5.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         {
           gid: 9,
           name: "Rory Williams",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-4.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         {
           gid: 10,
           name: "Clara Oswald",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-5.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
       ],
     },

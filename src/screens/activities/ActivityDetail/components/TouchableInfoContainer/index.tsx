@@ -21,7 +21,7 @@ const index = ({ data }: any) => {
   const typeText =
     type === "normal"
       ? "Esta partida no influirá a tu nivel"
-      : "Las partidas competitivas influyen a tu nivel";
+      : "Las partidas competitivas influyen en tu nivel";
 
   return (
     <View style={styles.container}>
