@@ -15,7 +15,7 @@ const Score = ({ result }: Props) => {
   return (
     <View style={styles.scoreWrapper}>
       {partialScores.map((score: any) => (
-        <PartialScore data={score} />
+        <PartialScore key={score.slot} data={score} />
       ))}
       {finalScores.map((score: any) => (
         <FinalScore key={score.slot} data={score} />

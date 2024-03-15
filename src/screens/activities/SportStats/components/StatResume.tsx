@@ -11,6 +11,10 @@ import unixToDate from "../../../../utils/date/unixToDate";
 
 const StatResume = ({ statData }: any) => {
   const { victories, ties, loses, victoryStreak, lastActivityDate } = statData;
+
+  const dateText = lastActivityDate
+    ? `Última participación: ${unixToDate(lastActivityDate)}`
+    : "No se ha participado todavía";
   return (
     <View style={styles.container}>
       <View style={styles.row}>
@@ -24,9 +28,7 @@ const StatResume = ({ statData }: any) => {
       </View>
 
       <Text style={styles.text}>Mejor racha de victorias: {victoryStreak}</Text>
-      <Text style={styles.text}>
-        Última participación: {unixToDate(lastActivityDate)}
-      </Text>
+      <Text style={styles.text}>{dateText}</Text>
     </View>
   );
 };

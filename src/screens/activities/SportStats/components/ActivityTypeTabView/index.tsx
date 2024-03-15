@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, Text } from "react-native";
+import React from "react";
+import { StyleSheet } from "react-native";
 import { Tabs, YStack } from "tamagui";
 
 // Components
@@ -10,19 +10,12 @@ import TabTitle from "./tabs/TabTitle";
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
-const routes = [
-  { key: "all", title: "Todos" },
-  { key: "normal", title: "Normal" },
-  { key: "competitive", title: "Competitivo" },
-];
-
-const ActivityTypeTabView = ({ activities }: any) => {
-  const [currentTab, setCurrentTab] = useState("all");
-
-  const currentActivities = activities.filter(
-    (item: any) => item.type === currentTab || currentTab === "all"
-  );
-
+const ActivityTypeTabView = ({
+  activities,
+  routes,
+  currentTab,
+  setCurrentTab,
+}: any) => {
   return (
     <Tabs
       defaultValue="all"
@@ -36,13 +29,14 @@ const ActivityTypeTabView = ({ activities }: any) => {
     >
       <YStack>
         <Tabs.List
+        unstyled
           disablePassBorderRadius
           loop={false}
           borderBottomLeftRadius={0}
           borderBottomRightRadius={0}
           paddingBottom={4}
         >
-          {routes.map((route) => (
+          {routes.map((route: any) => (
             <TabTitle
               key={route.key}
               currentTab={currentTab}
@@ -53,9 +47,9 @@ const ActivityTypeTabView = ({ activities }: any) => {
           ))}
         </Tabs.List>
       </YStack>
-      {routes.map((route) => (
+      {routes.map((route: any) => (
         <Tabs.Content flex={1} key={route.key} value={route.key}>
-          <TabContent data={currentActivities} />
+          <TabContent data={activities} />
         </Tabs.Content>
       ))}
     </Tabs>

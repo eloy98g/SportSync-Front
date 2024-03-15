@@ -22,12 +22,14 @@ const getStats = (activities = []) => {
   const sortedArray = activities.sort(
     (a: any, b: any) => a.endDate - b.endDate
   );
-  const lastActivityDate = sortedArray[sortedArray.length - 1].endDate;
+  const lastActivityDate =
+    sortedArray[sortedArray.length - 1]?.endDate || false;
 
   const victoryStreak = getStreakVictory(activities);
 
   const total = victories + loses + ties;
-  const percentage = Math.round((victories / total) * 100).toFixed(0);
+  const percentage =
+    total === 0 ? 0 : Math.round((victories / total) * 100).toFixed(0);
 
   return {
     victories,

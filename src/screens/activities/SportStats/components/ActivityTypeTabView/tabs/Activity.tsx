@@ -24,7 +24,7 @@ const Activity = ({ data }: any) => {
   const otherScore = result.finalScores[0].scores.find(
     (team: any) => team.team !== userTeam.name
   );
-  
+
   const winner = result.finalScores[0].winner;
 
   const moreInfoHandler = () => {};
@@ -58,7 +58,7 @@ const Activity = ({ data }: any) => {
         <Divider width={12} />
         <View style={styles.actions}>
           <Tag size="small" text={unixToDate(endDate)} />
-          <Divider height={4}/>
+          <Divider height={4} />
           <Action size="small" text={"ver más"} onPress={moreInfoHandler} />
         </View>
       </View>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 60,
     paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingLeft: 16,
   },
   teamWrapper: {
     width: 50,
@@ -95,6 +95,6 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderColor: colors.lightenGrey,
     height: "100%",
-    paddingHorizontal: 12
+    paddingLeft: 12,
   },
 });

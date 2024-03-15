@@ -7,14 +7,20 @@ import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
 const StatChart = ({ statData }: any) => {
-  const { victories, loses, ties, percentage } = statData;
+  const { victories, loses, ties, percentage, total } = statData;
   const pieData = [
     { value: victories, color: colors.secondary },
     { value: loses, color: colors.red },
-    { value: ties, color: colors.lightenGrey },
+    { value: total === 0 ? 1 : ties, color: colors.lightenGrey },
   ];
 
-  const textColor = percentage > 50 ? colors.secondary : colors.red;
+  const textColor =
+    total === 0
+      ? colors.lightenGrey
+      : percentage > 50
+      ? colors.secondary
+      : colors.red;
+      
   return (
     <PieChart
       strokeColor="white"

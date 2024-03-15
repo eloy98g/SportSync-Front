@@ -40,7 +40,9 @@ const styles = StyleSheet.create({
   },
   tab: {
     flex: 1,
+    borderWidth:0,
     height: 40,
     borderBottomWidth: 3,
+    backgroundColor:colors.white
   },
 });
