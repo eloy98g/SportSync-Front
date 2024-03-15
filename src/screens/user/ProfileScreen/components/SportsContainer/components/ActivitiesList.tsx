@@ -6,7 +6,7 @@ import Divider from "../../../../../../components/common/Divider";
 
 // Context
 import { SportContainerContext } from "../context/SportContainerContext";
-import Activity from "./ActivitiesList/Activity";
+import Activity from "../../../../../../components/activities/Activity";
 
 const ActivitiesList = () => {
   const { activities, selectedSport } = useContext(SportContainerContext);

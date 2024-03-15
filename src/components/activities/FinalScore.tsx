@@ -1,5 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+
+// Components
+import FinalScoreText from "./FinalScoreText";
 
 // Theme
 import colors from "../../theme/colors";
@@ -16,16 +19,7 @@ const FinalScore = ({ data }: Props) => {
   return (
     <View style={styles.container}>
       {scores.map((score: any) => (
-        <Text
-          key={score.team}
-          style={{
-            ...styles.baseScore,
-            ...(winner === score.team && styles.winnerScore),
-            ...(winner !== null && winner !== score.team && styles.loserScore),
-          }}
-        >
-          {score.points}
-        </Text>
+        <FinalScoreText {...score} winner={winner}/>
       ))}
     </View>
   );

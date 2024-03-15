@@ -10,6 +10,9 @@ import Teams from "./Teams";
 // Types
 import { ActivityType } from "../../store/types/Activity";
 
+// Utils
+import RESULT_COLORS from "../../utils/activity/resultColors";
+
 interface Result {
   result: "victory" | "defeat" | "tie";
 }
@@ -23,12 +26,6 @@ interface Props {
     endDate: number;
   };
 }
-
-const RESULT_COLORS = {
-  victory: colors.secondary,
-  defeat: colors.red,
-  tie: colors.grey,
-};
 
 const Activity = ({ data }: Props) => {
   const { result, teams, endDate, type } = data;

@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Platform,
-  View,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { ArrowLeft } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -17,13 +11,19 @@ import colors from "../../theme/colors";
 import { PHONE } from "../../theme/breakPoints";
 import { family } from "../../theme/fonts";
 
-const BackHeader = ({ onBack = () => {}, title }: any) => {
+interface Props {
+  onBack?: () => void;
+  title?: string;
+}
+
+const BackHeader = ({ onBack = () => {}, title }: Props) => {
   const navigation = useNavigation();
 
   const backHandler = () => {
     onBack();
     navigation.goBack();
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -37,6 +37,9 @@ const BackHeader = ({ onBack = () => {}, title }: any) => {
   );
 };
 
+BackHeader.defaultProps = {
+  onBack :() => {}
+}
 export default BackHeader;
 
 const styles = StyleSheet.create({
