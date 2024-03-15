@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Tag from "./Tag";
@@ -14,9 +15,13 @@ import unixToDate from "../../utils/date/unixToDate";
 interface Props {
   type: ActivityType;
   endDate: number;
+  gid: number;
 }
-const Actions = ({ type, endDate }: Props) => {
-  const moreInfoHandler = () => {};
+const Actions = ({ type, endDate, gid }: Props) => {
+  const navigation = useNavigation();
+  const moreInfoHandler = () => {
+    navigation.navigate("ActivityDetail" as never, { gid } as never);
+  };
 
   const typeText = type === "competitive" ? "Competitiva" : "Normal";
   const date = unixToDate(endDate);

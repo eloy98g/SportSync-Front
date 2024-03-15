@@ -1,7 +1,7 @@
 import React from "react";
-import { Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+
 // Screens
 import HomeScreen from "../screens/HomeScreen";
 import SplashScreen from "../screens/others/SplashScreen";
@@ -9,13 +9,14 @@ import ProfileScreen from "../screens/user/ProfileScreen";
 import AuthScreen from "../screens/user/AuthScreen";
 import ChatListScreen from "../screens/social/ChatListScreen";
 import ChatScreen from "../screens/social/ChatScreen";
+import SportStats from "../screens/activities/SportStats";
+import ActivityDetail from "../screens/activities/ActivityDetail";
 
 // Components
 import Footer from "../components/Footer";
 
 // Hooks
 import { useAppSelector } from "../hooks";
-import SportStats from "../screens/activities/SportStats";
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,7 @@ const AppNavigator = () => {
             <Stack.Screen name="ChatList" component={ChatListScreen} />
             <Stack.Screen name="Chat" component={ChatScreen} />
             <Stack.Screen name="SportStats" component={SportStats} />
+            <Stack.Screen name="ActivityDetail" component={ActivityDetail} />
           </>
         ) : (
           <>
