@@ -7,7 +7,7 @@ export default {
   },
   creationDate: 1709492837,
   startDate: 1712164031,
-  endDate: 171217431,
+  duration: 90,
   admin: 1,
   price: 200,
   access: "public",

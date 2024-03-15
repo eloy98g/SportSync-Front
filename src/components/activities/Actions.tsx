@@ -14,17 +14,17 @@ import unixToDate from "../../utils/date/unixToDate";
 
 interface Props {
   type: ActivityType;
-  endDate: number;
+  startDate: number;
   gid: number;
 }
-const Actions = ({ type, endDate, gid }: Props) => {
+const Actions = ({ type, startDate, gid }: Props) => {
   const navigation = useNavigation();
   const moreInfoHandler = () => {
     navigation.navigate("ActivityDetail" as never, { gid } as never);
   };
 
   const typeText = type === "competitive" ? "Competitiva" : "Normal";
-  const date = unixToDate(endDate);
+  const date = unixToDate(startDate);
 
   return (
     <View style={styles.actionsWrapper}>

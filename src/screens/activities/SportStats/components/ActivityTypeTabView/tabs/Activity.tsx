@@ -21,7 +21,7 @@ import unixToDate from "../../../../../../utils/date/unixToDate";
 const Activity = ({ data }: any) => {
   const navigation = useNavigation();
 
-  const { result, teams, endDate, gid } = data;
+  const { result, teams, startDate, gid } = data;
   const borderColor = RESULT_COLORS[result.result];
 
   const userTeam = teams.find((team: any) => team.userTeam);
@@ -71,7 +71,7 @@ const Activity = ({ data }: any) => {
         )}
         <Divider width={12} />
         <View style={styles.actions}>
-          <Tag size="small" text={unixToDate(endDate)} />
+          <Tag size="small" text={unixToDate(startDate)} />
           <Divider height={4} />
           <Action size="small" text={"ver más"} onPress={moreInfoHandler} />
         </View>

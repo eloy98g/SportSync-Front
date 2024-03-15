@@ -8,7 +8,7 @@ export default [
     },
     creationDate: 1709492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 1,
       name: "John Doe",
@@ -73,7 +73,7 @@ export default [
     },
     creationDate: 1709492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 1,
       name: "John Doe",
@@ -163,7 +163,7 @@ export default [
     },
     creationDate: 1709492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 1,
       name: "John Doe",
@@ -228,7 +228,7 @@ export default [
     },
     creationDate: 1709492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 1,
       name: "John Doe",

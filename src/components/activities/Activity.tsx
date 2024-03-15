@@ -23,20 +23,20 @@ interface Props {
     result: Result;
     teams: any;
     type: ActivityType;
-    endDate: number;
+    startDate: number;
     gid: number;
   };
 }
 
 const Activity = ({ data }: Props) => {
-  const { result, teams, endDate, type, gid } = data;
+  const { result, teams, startDate, type, gid } = data;
   const borderColor = RESULT_COLORS[result.result];
   return (
     <View style={[styles.container, { borderLeftColor: borderColor }]}>
       <View style={styles.content}>
         <Teams teams={teams} />
         <Score result={result} />
-        <Actions endDate={endDate} type={type} gid={gid} />
+        <Actions startDate={startDate} type={type} gid={gid} />
       </View>
     </View>
   );
