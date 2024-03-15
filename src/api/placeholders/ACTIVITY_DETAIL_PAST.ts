@@ -41,6 +41,7 @@ export default {
   teamPlayers: [
     {
       name: "A",
+      numPlayers: 5,
       players: [
         {
           gid: 1,
@@ -76,6 +77,7 @@ export default {
     },
     {
       name: "B",
+      numPlayers: 5,
       players: [
         {
           gid: 3,

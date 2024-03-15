@@ -17,7 +17,7 @@ const Teams = ({ data = [], teamSize, teams, status }: any) => {
   const secondTeam = teams > 1 ? data[1] : null;
 
   return (
-    <Card>
+    <Card title="Jugadores">
       <View style={styles.content}>
         {firstTeam && (
           <Team
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     flexDirection: "row",
+    paddingTop:8
   },
   divider: {
     borderColor: "red",

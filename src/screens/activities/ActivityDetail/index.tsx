@@ -3,8 +3,11 @@ import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native";
 
 // Components
 import TouchableInfoContainer from "./components/TouchableInfoContainer";
+import Divider from "../../../components/common/Divider";
 import Screen from "../../../components/common/Screen";
 import Header from "./components/Header";
+import Teams from "./components/Teams";
+import Result from "./components/Result";
 
 // Hooks
 import { useAppSelector } from "../../../hooks";
@@ -15,8 +18,6 @@ import { PHONE } from "../../../theme/breakPoints";
 
 // Placeholder
 import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
-import Divider from "../../../components/common/Divider";
-import Teams from "./components/Teams";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -59,6 +60,11 @@ const ActivityDetail = ({ route }: any) => {
             teamSize={activityData?.playersPerTeam}
             teams={activityData.teams}
             status={activityData.status}
+          />
+          <Divider height={18} />
+          <Result
+            teams={activityData.teamPlayers}
+            result={activityData.result}
           />
         </ScrollView>
       </View>

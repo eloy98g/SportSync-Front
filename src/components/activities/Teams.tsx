@@ -12,7 +12,7 @@ const Teams = ({ teams }: Props) => {
       {teams.map((team: any) => (
         <Team
           key={team.name}
-          image={team.player.image}
+          image={team?.player?.image || team?.players[0]?.image}
           size={team.numPlayers}
         />
       ))}
