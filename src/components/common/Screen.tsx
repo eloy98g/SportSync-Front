@@ -1,11 +1,16 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, StatusBar } from "react-native";
 
 // Theme
 import colors from "../../theme/colors";
 
 const Screen = ({ children }: any) => {
-  return <View style={styles.screen}>{children}</View>;
+  return (
+    <View style={styles.screen}>
+      <StatusBar translucent backgroundColor="transparent" />
+      {children}
+    </View>
+  );
 };
 
 export default Screen;

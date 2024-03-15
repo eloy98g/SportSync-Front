@@ -19,7 +19,7 @@ const FinalScore = ({ data }: Props) => {
   return (
     <View style={styles.container}>
       {scores.map((score: any) => (
-        <FinalScoreText {...score} winner={winner}/>
+        <FinalScoreText key={score.team} {...score} winner={winner} />
       ))}
     </View>
   );

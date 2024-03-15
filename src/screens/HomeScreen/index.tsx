@@ -14,12 +14,10 @@ import SECTIONS from "./sections";
 
 // Theme
 import { PHONE } from "../../theme/breakPoints";
-import colors from "../../theme/colors";
 
 const HomeScreen = () => {
   return (
     <Screen>
-      <StatusBar backgroundColor={colors.white} />
       <View style={styles.content}>
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
           <Header />

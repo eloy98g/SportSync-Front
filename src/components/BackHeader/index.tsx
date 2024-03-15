@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: PHONE,
     paddingHorizontal: 12,
-    height: 50,
-    paddingTop: 10,
+    height: 80,
+    paddingTop: 40,
   },
   row: { flexDirection: "row", alignItems: "center" },
   text: {

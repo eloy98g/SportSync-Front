@@ -24,7 +24,6 @@ const AuthScreen = ({ navigation }: any) => {
 
   return (
     <Screen>
-      <StatusBar hidden backgroundColor={"rgba(0,0,0,0.87)"} />
       <Container>
         <Hero />
         <MainSection setSection={setSection} />

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
-  StatusBar,
   ActivityIndicator,
   ScrollView,
 } from "react-native";
@@ -68,7 +67,6 @@ const ProfileScreen = ({ route }: any) => {
 
   return (
     <Screen>
-      <StatusBar backgroundColor={colors.primary} />
       <ProfileHeader data={userData} isExternal={isExternal} />
       <View style={styles.content}>
         <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>

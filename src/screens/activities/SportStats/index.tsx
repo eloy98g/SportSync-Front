@@ -27,7 +27,6 @@ const SportStats = ({ route }: any) => {
   );
   return (
     <Screen>
-      <StatusBar backgroundColor={colors.white} />
       <BackHeader title={sport.name} />
       <View style={styles.container}>
         <Divider height={12} />
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 80,
     paddingHorizontal: 12,
   },
 });
