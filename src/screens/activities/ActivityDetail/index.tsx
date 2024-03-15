@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, ActivityIndicator } from "react-native";
-import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
+import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native";
 
 // Components
+import TouchableInfoContainer from "./components/TouchableInfoContainer";
 import Screen from "../../../components/common/Screen";
-import { useAppSelector } from "../../../hooks";
-import colors from "../../../theme/colors";
 import Header from "./components/Header";
+
+// Hooks
+import { useAppSelector } from "../../../hooks";
+
+// Theme
+import colors from "../../../theme/colors";
+import { PHONE } from "../../../theme/breakPoints";
+
+// Placeholder
+import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
+import Divider from "../../../components/common/Divider";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -15,7 +24,7 @@ const ActivityDetail = ({ route }: any) => {
   const [status, setStatus] = useState("idle");
 
   const isAdmin = userGid === activityData?.admin;
-  
+
   useEffect(() => {
     setStatus("loading");
     if (gid) {
@@ -39,11 +48,28 @@ const ActivityDetail = ({ route }: any) => {
   return (
     <Screen>
       <Header data={activityData} isAdmin={isAdmin} />
-      <Text>ActivityDetail</Text>
+      <View style={styles.content}>
+        <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
+          <Divider height={200} />
+          <TouchableInfoContainer data={activityData} />
+        </ScrollView>
+      </View>
     </Screen>
   );
 };
 
 export default ActivityDetail;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  content: {
+    width: "100%",
+    flex: 1,
+    maxWidth: PHONE,
+    paddingHorizontal: 24,
+    height: 1,
+  },
+  info: {
+    width: "100%",
+    height: 1,
+  },
+});

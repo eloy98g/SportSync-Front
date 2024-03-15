@@ -2,15 +2,15 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 
 // Components
+import Divider from "../../../../../components/common/Divider";
+import ActionsGroup from "./ActionsGroup";
 import Wrapper from "./Wrapper.native";
 import BackButton from "./BackButton";
-import ActionsGroup from "./ActionsGroup";
+import Details from "../Details";
+import Info from "./Info";
 
 // Theme
 import { PHONE } from "../../../../../theme/breakPoints";
-import Info from "./Info";
-import Divider from "../../../../../components/common/Divider";
-import Details from "../Details";
 
 interface Props {
   data: any;
