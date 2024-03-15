@@ -53,11 +53,12 @@ const ActivityDetail = ({ route }: any) => {
         <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
           <Divider height={200} />
           <TouchableInfoContainer data={activityData} />
-          <Divider height={12} />
+          <Divider height={18} />
           <Teams
             data={activityData?.teamPlayers}
             teamSize={activityData?.playersPerTeam}
             teams={activityData.teams}
+            status={activityData.status}
           />
         </ScrollView>
       </View>

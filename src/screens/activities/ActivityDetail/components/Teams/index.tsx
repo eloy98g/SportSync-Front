@@ -10,18 +10,31 @@ interface Props {
   data: any;
   teamSize: number;
   teams: number;
+  status: any; // TODO: change any's to proper clases
 }
-const Teams = ({ data = [], teamSize, teams }: any) => {
+const Teams = ({ data = [], teamSize, teams, status }: any) => {
   const firstTeam = teams > 0 ? data[0] : null;
   const secondTeam = teams > 1 ? data[1] : null;
 
   return (
     <Card>
       <View style={styles.content}>
-        {firstTeam && <Team data={firstTeam} side="left" teamSize={teamSize} />}
+        {firstTeam && (
+          <Team
+            data={firstTeam}
+            side="left"
+            teamSize={teamSize}
+            status={status}
+          />
+        )}
         {secondTeam && <TextLineDivider />}
         {secondTeam && (
-          <Team data={secondTeam} side="right" teamSize={teamSize} />
+          <Team
+            data={secondTeam}
+            side="right"
+            teamSize={teamSize}
+            status={status}
+          />
         )}
       </View>
     </Card>
@@ -34,7 +47,6 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     flexDirection: "row",
-    
   },
   divider: {
     borderColor: "red",
