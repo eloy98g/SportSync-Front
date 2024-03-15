@@ -6,14 +6,16 @@ import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST
 import Screen from "../../../components/common/Screen";
 import { useAppSelector } from "../../../hooks";
 import colors from "../../../theme/colors";
-import Header from "./components/Header"
+import Header from "./components/Header";
 
 const ActivityDetail = ({ route }: any) => {
-  const user = useAppSelector((state) => state.user.user);
+  const userGid = useAppSelector((state) => state.user.user.gid);
   const gid = route.params?.gid;
   const [activityData, setActivityData] = useState<any>(ACTIVITY_DETAIL_PAST);
   const [status, setStatus] = useState("idle");
 
+  const isAdmin = userGid === activityData?.admin;
+  
   useEffect(() => {
     setStatus("loading");
     if (gid) {
@@ -36,7 +38,7 @@ const ActivityDetail = ({ route }: any) => {
 
   return (
     <Screen>
-      <Header />
+      <Header data={activityData} isAdmin={isAdmin} />
       <Text>ActivityDetail</Text>
     </Screen>
   );
