@@ -11,7 +11,7 @@ export default {
   admin: 1,
   price: 200,
   access: "public",
-  name: "Activity 1",
+  name: "Partidazo de ternis",
   description: "This is a placeholder activity.",
   sport: {
     gid: 1,
@@ -23,8 +23,21 @@ export default {
   playersPerTeam: 5,
   closed: false,
   chat: 1,
-  score: null,
-  status: "pending",
+  result: {
+    result: "defeat",
+    partialScores: [],
+    finalScores: [
+      {
+        slot: 1,
+        winner: "A",
+        scores: [
+          { team: "A", points: 2 },
+          { team: "B", points: 1 },
+        ],
+      },
+    ],
+  },
+  status: "finished",
   teamPlayers: [
     {
       name: "A",
@@ -67,8 +80,7 @@ export default {
         {
           gid: 3,
           name: "John Smith",
-          image:
-            "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         {
           gid: 4,
@@ -78,6 +90,18 @@ export default {
         },
         {
           gid: 5,
+          name: "Clara Oswald",
+          image:
+            "https://www.conpaas.org/wp-content/uploads/2016/06/team-5.jpg",
+        },
+        {
+          gid: 9,
+          name: "Rory Williams",
+          image:
+            "https://www.conpaas.org/wp-content/uploads/2016/06/team-4.jpg",
+        },
+        {
+          gid: 10,
           name: "Clara Oswald",
           image:
             "https://www.conpaas.org/wp-content/uploads/2016/06/team-5.jpg",
