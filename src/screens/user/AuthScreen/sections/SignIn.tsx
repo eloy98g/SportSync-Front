@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 // Components
-import Divider from "../../../../components/common/Divider";
-import TextInput from "../../../../components/common/inputs/TextInput";
+import TouchableText from "../../../../components/common/buttons/TouchableText";
 import MainButton from "../../../../components/common/buttons/MainButton";
+import TextInput from "../../../../components/common/inputs/TextInput";
+import Divider from "../../../../components/common/Divider";
 
 // Theme
 import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
-import TouchableText from "../../../../components/common/buttons/TouchableText";
 
 const SignIn = ({ setSection }: any) => {
   const [user, setUser] = useState("");
@@ -24,7 +24,7 @@ const SignIn = ({ setSection }: any) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Regístrate</Text>
-      <Divider height={30} />
+      <Divider height={22} />
       <TextInput value={user} onChange={setUser} placeholder="Usuario" />
       <Divider height={22} />
       <TextInput
@@ -41,7 +41,7 @@ const SignIn = ({ setSection }: any) => {
         secure
       />
       <Divider height={22} />
-      <MainButton title={"Aceptar"} onPress={signInHandler} />
+      <MainButton title={"Aceptar"} onPress={signInHandler} fontSize={18} />
       <Divider height={22} />
       <View style={styles.row}>
         <Text style={styles.text}>¿Ya tienes cuenta? </Text>
