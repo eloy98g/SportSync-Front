@@ -15,7 +15,7 @@ export default [
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
     },
     access: "public",
-    name: "Activity 1",
+    name: "Partido en el parque",
     description: "This is a placeholder activity.",
     sport: {
       gid: 1,
@@ -46,7 +46,7 @@ export default [
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
     },
     access: "public",
-    name: "Activity 2",
+    name: "Torneo guallaba",
     description: "This is a placeholder activity.",
     sport: {
       gid: 2,
@@ -77,7 +77,7 @@ export default [
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
     },
     access: "public",
-    name: "Activity 1",
+    name: "Tenis Open Arena",
     description: "This is a placeholder activity.",
     sport: {
       gid: 2,

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { ArrowRight } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -12,7 +12,10 @@ import Activity from "../../../../store/types/Activity";
 // Theme
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
+
+// Utils
 import unixToDate from "../../../../utils/date/unixToDate";
+import Divider from "../../../../components/common/Divider";
 
 const CurrentActivity = (props: Activity) => {
   const { sport, name, type, startDate, gid } = props;
@@ -28,9 +31,16 @@ const CurrentActivity = (props: Activity) => {
   return (
     <TouchableOpacity style={styles.container} onPress={activityHandler}>
       <Image style={styles.image} source={{ uri: sport.icon }} />
-      <Text style={styles.name}>{name}</Text>
-      <Text style={styles.typeText}>{typeText}</Text>
-      <Text style={styles.typeText}>{date}</Text>
+      <Divider width={10}/>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.name}>{name}</Text>
+      </View>
+      <View style={{ width: 70 }}>
+        <Text style={styles.typeText}>{typeText}</Text>
+      </View>
+      <View style={{ width: 70 }}>
+        <Text style={styles.typeText}>{date}</Text>
+      </View>
       <IconButton
         icon={<ArrowRight color={colors.grey} size={20} />}
         onPress={activityHandler}
