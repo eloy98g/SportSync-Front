@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
 import MainButton from "../../../../../components/common/buttons/MainButton";
+import ReportSheet from "../../../../../components/Report/ReportSheet";
 import Divider from "../../../../../components/common/Divider";
 import Sheet from "../../../../../components/common/Sheet";
+
+// Hooks
 import { useAppSelector } from "../../../../../hooks";
 
 // Theme
@@ -19,6 +22,7 @@ interface Props {
 }
 
 const ActionSheet = ({ user, open, setOpen }: Props) => {
+  const [openReport, setOpenReport] = useState(false);
   const navigation = useNavigation();
   const userGid = useAppSelector((state) => state.user.user.gid);
   const { image, name, gid } = user;
@@ -30,31 +34,32 @@ const ActionSheet = ({ user, open, setOpen }: Props) => {
     navigation.navigate("Profile" as never, { gid: gid } as never);
   };
 
-  const reviewHandler = () => {};
-  const chatHandler = () => {};
+  const reviewHandler = () => {
+    setOpenReport(true);
+    setOpen(false);
+  };
+
+  const chatHandler = () => {
+    setOpen(false);
+    navigation.navigate("Chat" as never, { chatId: gid } as never);
+  };
 
   return (
     <Sheet open={open} openHandler={setOpen} height={150}>
+       <Divider width={12} />
       <View style={styles.row}>
         <Image style={styles.image} source={{ uri: image }} />
         <Divider width={20} />
         <Text style={styles.name}>{name}</Text>
       </View>
       <View style={[styles.row, { justifyContent: "space-between" }]}>
-        <MainButton
-          color={colors.white}
-          textColor={colors.primary}
-          height={40}
-          title="Ver perfil"
-          onPress={profileHandler}
-        />
         {externalUser && (
           <>
-            <Divider width={10} />
             <MainButton
               color={colors.white}
-              textColor={colors.primary}
-              title="Valorar"
+              textColor={colors.red}
+              borderColor={colors.red}
+              title="Reportar"
               height={40}
               onPress={reviewHandler}
             />
@@ -66,9 +71,18 @@ const ActionSheet = ({ user, open, setOpen }: Props) => {
               title="Chat"
               onPress={chatHandler}
             />
+            <Divider width={10} />
           </>
         )}
+        <MainButton
+          color={colors.white}
+          textColor={colors.primary}
+          height={40}
+          title="Ver perfil"
+          onPress={profileHandler}
+        />
       </View>
+      <ReportSheet open={openReport} setOpen={setOpenReport} userGid={gid} />
     </Sheet>
   );
 };
