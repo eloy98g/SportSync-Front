@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, StatusBar } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 // Components
 import ActivityTypeTabView from "./components/ActivityTypeTabView";
@@ -7,9 +7,6 @@ import BackHeader from "../../../components/BackHeader";
 import Divider from "../../../components/common/Divider";
 import Screen from "../../../components/common/Screen";
 import Stats from "./components/Stats";
-
-// Theme
-import colors from "../../../theme/colors";
 
 const routes = [
   { key: "all", title: "Todos" },

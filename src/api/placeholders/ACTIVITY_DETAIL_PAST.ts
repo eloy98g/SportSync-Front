@@ -4,6 +4,7 @@ export default {
     lat: 37.7749,
     lng: -122.4194,
     radius: 500,
+    address: "Palacio Vistalegre"
   },
   creationDate: 1709492837,
   startDate: 1712164031,

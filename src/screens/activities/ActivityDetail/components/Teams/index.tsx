@@ -12,7 +12,8 @@ interface Props {
   teams: number;
   status: any; // TODO: change any's to proper clases
 }
-const Teams = ({ data = [], teamSize, teams, status }: any) => {
+
+const Teams = ({ data = [], teamSize, teams, status }: Props) => {
   const firstTeam = teams > 0 ? data[0] : null;
   const secondTeam = teams > 1 ? data[1] : null;
 

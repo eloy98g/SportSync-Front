@@ -18,6 +18,8 @@ import { PHONE } from "../../../theme/breakPoints";
 
 // Placeholder
 import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
+import StaticInfo from "./components/StaticInfo";
+import Actions from "./components/Actions";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -61,11 +63,19 @@ const ActivityDetail = ({ route }: any) => {
             teams={activityData.teams}
             status={activityData.status}
           />
-          <Divider height={18} />
-          <Result
-            teams={activityData.teamPlayers}
-            result={activityData.result}
-          />
+          {activityData.status === "finished" && (
+            <>
+              <Divider height={18} />
+              <Result
+                teams={activityData.teamPlayers}
+                result={activityData.result}
+              />
+            </>
+          )}
+          <Divider height={6} />
+          <StaticInfo data={activityData} />
+          <Actions data={activityData} />
+          <Divider height={24} />
         </ScrollView>
       </View>
     </Screen>

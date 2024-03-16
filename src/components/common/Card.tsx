@@ -5,8 +5,13 @@ import { StyleSheet, View, Text } from "react-native";
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
-const Card = ({ children, title }: any) => (
-  <View style={styles.container}>
+const Card = ({ children, title, border = true }: any) => (
+  <View
+    style={[
+      styles.container,
+      border && { borderWidth: 1, borderColor: colors.lightenGrey },
+    ]}
+  >
     {title && <Text style={styles.title}>{title}</Text>}
     {children}
   </View>
@@ -18,8 +23,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     padding: 12,
-    borderWidth: 1,
-    borderColor: colors.lightenGrey,
+
     borderRadius: 8,
   },
   title: {
