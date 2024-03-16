@@ -16,11 +16,17 @@ const MainButton = ({
   active = true,
   color = colors.primary,
   textColor = colors.white,
+  borderWidth = 1,
+  borderColor = colors.primary,
   loading = false,
+  height = 46,
 }) => {
   return (
     <TouchableOpacity
-      style={[styles.confirmButton, { backgroundColor: color }]}
+      style={[
+        styles.confirmButton,
+        { backgroundColor: color, borderWidth, borderColor, height },
+      ]}
       onPress={active ? onPress : () => {}}
       activeOpacity={active ? 0.3 : 1}
     >
@@ -40,15 +46,13 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 46,
     maxHeight: 46,
-    minHeight: 46,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    paddingHorizontal: 18,
   },
   text: {
-    fontFamily: family.bold,
-    fontSize: 18,
+    fontFamily: family.normal,
+    fontSize: 16,
     textAlign: "center",
   },
 });

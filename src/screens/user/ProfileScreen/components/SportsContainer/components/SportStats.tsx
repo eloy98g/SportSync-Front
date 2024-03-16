@@ -30,7 +30,7 @@ const SportStats = () => {
     .length.toString();
 
   const lastTime = currentActivities.reduce((maxDate, obj) => {
-    return Math.max(maxDate, obj.endDate);
+    return Math.max(maxDate, obj.startDate);
   }, 0);
 
   const moreStatsHandler = () => {

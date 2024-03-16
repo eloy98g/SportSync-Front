@@ -1,6 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import { ArrowRight } from "lucide-react-native";
+import { useNavigation } from "@react-navigation/native";
+
+// Components
 import IconButton from "../../../../components/common/buttons/IconButton";
 
 // Types
@@ -12,22 +15,25 @@ import { family } from "../../../../theme/fonts";
 import unixToDate from "../../../../utils/date/unixToDate";
 
 const CurrentActivity = (props: Activity) => {
-  const { sport, name, type, startDate } = props;
+  const { sport, name, type, startDate, gid } = props;
+  const navigation = useNavigation();
 
   const typeText = type === "competitive" ? "Competitiva" : "normal";
   const date = unixToDate(startDate);
 
-  const clickHandler = () => {};
+  const activityHandler = () => {
+    navigation.navigate("ActivityDetail" as never, { gid } as never);
+  };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={clickHandler}>
+    <TouchableOpacity style={styles.container} onPress={activityHandler}>
       <Image style={styles.image} source={{ uri: sport.icon }} />
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.typeText}>{typeText}</Text>
       <Text style={styles.typeText}>{date}</Text>
       <IconButton
         icon={<ArrowRight color={colors.grey} size={20} />}
-        onPress={clickHandler}
+        onPress={activityHandler}
       />
     </TouchableOpacity>
   );
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 8,
-    paddingRight:6
+    paddingRight: 6,
   },
   image: {
     width: 20,

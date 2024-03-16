@@ -1,5 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+// Components
 import Divider from "../../../../components/common/Divider";
 import Icon from "../../../../components/common/Icon";
 
@@ -22,17 +25,24 @@ const PublicActivity = (props: Activity) => {
     teams,
     playersPerTeam,
     currentPlayers,
+    gid,
   } = props;
   const { color, name } = sport;
-
-  // TODO calcular distancia
+  const navigation = useNavigation();
+  
+  // TODO calcular distancia (obtener localizacion)
   const distance = "a 500m";
 
   const date = unixToDate(startDate);
   const totalPlayers = teams * playersPerTeam;
 
+  const activityHandler = () => {
+    navigation.navigate("ActivityDetail" as never, { gid } as never);
+  };
+
   return (
-    <View
+    <TouchableOpacity
+      onPress={activityHandler}
       style={[styles.container, { backgroundColor: color || colors.primary }]}
     >
       <View style={{ flex: 1 }}>
@@ -56,7 +66,7 @@ const PublicActivity = (props: Activity) => {
           ({currentPlayers}/{totalPlayers})
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

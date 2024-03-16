@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  View,
-  ActivityIndicator,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, ActivityIndicator, ScrollView } from "react-native";
 
 // Components
 import Screen from "../../../components/common/Screen";
@@ -19,9 +14,6 @@ import Name from "./components/Name";
 // Context
 import { SportContainerProvider } from "./components/SportsContainer/context/SportContainerContext";
 
-// Hooks
-import { useAppSelector } from "../../../hooks";
-
 // Theme
 import { PHONE } from "../../../theme/breakPoints";
 import { family } from "../../../theme/fonts";
@@ -35,7 +27,6 @@ import USER_1 from "../../../api/placeholders/USER_1";
 import USER_2 from "../../../api/placeholders/USER_2";
 
 const ProfileScreen = ({ route }: any) => {
-  const user = useAppSelector((state) => state.user.user);
   const [userData, setUserData] = useState<User>(EMPTY_USER);
   const [status, setStatus] = useState("idle");
   const [isExternal, setIsExternal] = useState<boolean>(false);
@@ -57,6 +48,7 @@ const ProfileScreen = ({ route }: any) => {
     setStatus("success");
   }, []);
 
+  // Todo: generate Loading Component and remove duplicates
   if (status === "loading" || status === "idle") {
     return (
       <Screen>
@@ -64,6 +56,8 @@ const ProfileScreen = ({ route }: any) => {
       </Screen>
     );
   }
+
+  // Todo: error handling
 
   return (
     <Screen>

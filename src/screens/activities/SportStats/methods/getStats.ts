@@ -20,10 +20,10 @@ const getStats = (activities = []) => {
     }
   });
   const sortedArray = activities.sort(
-    (a: any, b: any) => a.endDate - b.endDate
+    (a: any, b: any) => a.startDate - b.startDate
   );
   const lastActivityDate =
-    sortedArray[sortedArray.length - 1]?.endDate || false;
+    sortedArray[sortedArray.length - 1]?.startDate || false;
 
   const victoryStreak = getStreakVictory(activities);
 

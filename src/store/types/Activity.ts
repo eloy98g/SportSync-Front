@@ -14,7 +14,7 @@ export default interface Activity {
   place: Place;
   creationDate: number;
   startDate: number;
-  endDate: number;
+  duration: number;
   admin: number;
   access: ActivityAccess;
   name: string;

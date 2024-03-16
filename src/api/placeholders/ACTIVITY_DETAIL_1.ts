@@ -7,7 +7,7 @@ export default {
   },
   creationDate: 1709492837,
   startDate: 1712164031,
-  endDate: 171217431,
+  duration: 90,
   admin: 1,
   price: 200,
   access: "public",
@@ -38,6 +38,24 @@ export default {
         {
           gid: 2,
           name: "Mary Pond",
+          image:
+            "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
+        },
+        {
+          gid: 6,
+          name: "David Tennant",
+          image:
+            "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+        },
+        {
+          gid: 7,
+          name: "Lola Gomez",
+          image:
+            "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
+        },
+        {
+          gid: 8,
+          name: "Eloy Gomez",
           image:
             "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
         },

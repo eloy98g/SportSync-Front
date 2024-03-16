@@ -1,5 +1,5 @@
 const getStreakVictory = (activities = []) => {
-  activities.sort((a: any, b: any) => a.endDate - b.endDate);
+  activities.sort((a: any, b: any) => a.startDate - b.startDate);
   let victoryStreak = 0;
 
   activities.map((activity: any) => {

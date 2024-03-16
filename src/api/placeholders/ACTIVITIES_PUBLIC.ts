@@ -8,7 +8,7 @@ export default [
     },
     creationDate: 1708492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 2,
       name: "Mary Pond",
@@ -39,7 +39,7 @@ export default [
     },
     creationDate: 1708492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 2,
       name: "Mary Pond",
@@ -70,7 +70,7 @@ export default [
     },
     creationDate: 1708492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 2,
       name: "Mary Pond",
@@ -101,7 +101,7 @@ export default [
     },
     creationDate: 1708492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 2,
       name: "Mary Pond",
