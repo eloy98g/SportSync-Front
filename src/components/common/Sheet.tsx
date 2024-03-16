@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { Sheet as TamaguiSheet } from "@tamagui/sheet";
+
+// Theme
 import colors from "../../theme/colors";
 
-const Sheet = (props: any) => {
-  const { open, openHandler, children } = props;
+interface Props {
+  open: boolean;
+  openHandler: (T: boolean) => void;
+  children: any;
+  height: number;
+}
+
+const Sheet = (props: Props) => {
+  const { open, openHandler, children, height } = props;
   const [position, setPosition] = useState(0);
 
   return (
@@ -12,7 +21,7 @@ const Sheet = (props: any) => {
       forceRemoveScrollEnabled={open}
       modal
       open={open}
-      snapPoints={[440, 0]}
+      snapPoints={[height, 0]}
       snapPointsMode={"constant"}
       position={position}
       onPositionChange={setPosition}

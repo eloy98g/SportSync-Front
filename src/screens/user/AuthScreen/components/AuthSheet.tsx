@@ -29,7 +29,7 @@ const AuthSheet = (props: any) => {
   };
 
   return (
-    <Sheet open={open} openHandler={openHandler}>
+    <Sheet open={open} openHandler={openHandler} height={440}>
       {children}
     </Sheet>
   );
