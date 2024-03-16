@@ -24,11 +24,11 @@ const ConfirmReportModal = ({ visible, setVisible, onFinish }: Props) => {
     <Modal visible={visible} setVisible={setVisible}>
       <View style={styles.container}>
         <Text style={styles.title}>Reportar usuario</Text>
-        <Divider height={12} />
+        <Divider height={16} />
         <Text style={styles.subtitle}>
           {`Estás a punto de reportar a este usuario. Esta acción será definitiva.\n¿Seguro que quieres reportar?`}
         </Text>
-        <Divider height={12} />
+        <Divider height={16} />
         <View style={styles.row}>
           <MainButton
             title="Cancelar"
