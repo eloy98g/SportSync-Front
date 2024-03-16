@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { CircleFadingPlus } from "lucide-react-native";
 
@@ -8,11 +8,17 @@ import Divider from "../../../../../components/common/Divider";
 // Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
+import ActionSheet from "../ActionSheet";
 
 const Player = ({ data }: any) => {
+  const [openSheet, setOpenSheet] = useState(false);
   const { image, name, gid } = data;
 
   const applyForTeamHandler = () => {};
+
+  const playerHandler = () => {
+    setOpenSheet(true);
+  };
 
   if (!gid) {
     return (
@@ -22,11 +28,14 @@ const Player = ({ data }: any) => {
     );
   }
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={{ uri: image }} />
-      <Divider height={4} />
-      <Text style={styles.name}>{name}</Text>
-    </View>
+    <>
+      <TouchableOpacity style={styles.container} onPress={playerHandler}>
+        <Image style={styles.image} source={{ uri: image }} />
+        <Divider height={4} />
+        <Text style={styles.name}>{name}</Text>
+      </TouchableOpacity>
+      <ActionSheet user={data} open={openSheet} setOpen={setOpenSheet} />
+    </>
   );
 };
 

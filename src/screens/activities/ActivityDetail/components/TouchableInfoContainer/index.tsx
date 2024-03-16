@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
+import AccessInfo from "../../../../../components/tutorial/AccessInfo";
+import RankedInfo from "../../../../../components/tutorial/RankedInfo";
 import Divider from "../../../../../components/common/Divider";
 import Icon from "../../../../../components/common/Icon";
 import TouchableInfo from "./TouchableInfo";
+import InfoSheet from "./InfoSheet";
 
 // Theme
 import colors from "../../../../../theme/colors";
 
 const index = ({ data }: any) => {
+  const [sheet, setSheet] = useState("");
   const { access, type } = data;
 
-  const accessHandler = () => {};
-  const typeHandler = () => {};
+  const accessHandler = () => setSheet("Access");
+
+  const typeHandler = () => setSheet("Ranked");
 
   const accessText =
     access === "public" ? "Actividad pública" : "Actividad privada";
@@ -23,6 +28,7 @@ const index = ({ data }: any) => {
       ? "Esta partida no influirá a tu nivel"
       : "Las partidas competitivas influyen en tu nivel";
 
+  console.log("sheet", sheet);
   return (
     <View style={styles.container}>
       <TouchableInfo
@@ -36,6 +42,12 @@ const index = ({ data }: any) => {
         title={typeText}
         onPress={typeHandler}
       />
+      <InfoSheet open={sheet === "Access"} setOpen={setSheet}>
+        <AccessInfo />
+      </InfoSheet>
+      <InfoSheet open={sheet === "Ranked"} setOpen={setSheet}>
+        <RankedInfo />
+      </InfoSheet>
     </View>
   );
 };
