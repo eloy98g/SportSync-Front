@@ -1,3 +1,4 @@
+import { Gender } from "./Gender";
 import PlayArea, { EMPTY_PLAYAREA } from "./PlayArea";
 
 type User = {
@@ -15,6 +16,7 @@ type User = {
   published: number | null;
   participated: number | null;
   lastParticipation: number | null;
+  gender: Gender;
 };
 
 export const EMPTY_USER: User = {
@@ -32,6 +34,7 @@ export const EMPTY_USER: User = {
   published: null,
   participated: null,
   lastParticipation: null,
+  gender: "Male",
 };
 
 export default User;

@@ -6,8 +6,14 @@ import { Pencil } from "lucide-react-native";
 import colors from "../../../../theme/colors";
 import Divider from "../../../../components/common/Divider";
 import Label from "../../../../components/common/Label";
+import User from "../../../../store/types/User";
 
-const ProfilePicturePicker = () => {
+interface Props {
+  editedUser: User;
+  setEditedUser: React.Dispatch<React.SetStateAction<User>>;
+}
+
+const ProfilePicturePicker = ({ editedUser, setEditedUser }: Props) => {
   const [response, setResponse] = useState<any>(null);
   const { name, image } = useAppSelector((state) => state.user.user);
 
@@ -48,7 +54,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     justifyContent: "center",
-    alignItems:"center",
+    alignItems: "center",
   },
   image: {
     width: 120,
@@ -62,7 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     position: "absolute",
     justifyContent: "center",
-    alignItems:"center",
+    alignItems: "center",
     bottom: 0,
     right: 0,
   },
