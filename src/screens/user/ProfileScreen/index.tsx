@@ -25,25 +25,24 @@ import colors from "../../../theme/colors";
 // Placeholders
 import USER_1 from "../../../api/placeholders/USER_1";
 import USER_2 from "../../../api/placeholders/USER_2";
+import { useAppSelector } from "../../../hooks";
 
 const ProfileScreen = ({ route }: any) => {
+  const userGid = useAppSelector((state) => state.user.user.gid);
   const [userData, setUserData] = useState<User>(EMPTY_USER);
   const [status, setStatus] = useState("idle");
-  const [isExternal, setIsExternal] = useState<boolean>(false);
   const gid = route.params?.gid;
 
+  const isExternal = userGid !== gid;
   const verified = userData.phoneVerified && userData.emailVerified;
 
   useEffect(() => {
     setStatus("loading");
-    if (gid) {
+    // TODO: Lógica para traerse los datos de un usuario
+    if (isExternal) {
       setUserData(USER_2);
-
-      // TODO: Lógica para traerse los datos de un usuario
-      setIsExternal(true);
     } else {
       setUserData(USER_1);
-      setIsExternal(false);
     }
     setStatus("success");
   }, []);
