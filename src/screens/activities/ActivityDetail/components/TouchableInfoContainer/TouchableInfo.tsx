@@ -13,7 +13,7 @@ interface Props {
 
 const TouchableInfo = ({ icon, title, onPress }: Props) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       {icon}
       <View style={styles.titleWrapper}>
         <Text style={styles.text}>{title}</Text>
