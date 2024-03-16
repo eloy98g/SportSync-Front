@@ -14,6 +14,9 @@ import Name from "./components/Name";
 // Context
 import { SportContainerProvider } from "./components/SportsContainer/context/SportContainerContext";
 
+// Hooks
+import { useAppSelector } from "../../../hooks";
+
 // Theme
 import { PHONE } from "../../../theme/breakPoints";
 import { family } from "../../../theme/fonts";
@@ -25,7 +28,6 @@ import colors from "../../../theme/colors";
 // Placeholders
 import USER_1 from "../../../api/placeholders/USER_1";
 import USER_2 from "../../../api/placeholders/USER_2";
-import { useAppSelector } from "../../../hooks";
 
 const ProfileScreen = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);

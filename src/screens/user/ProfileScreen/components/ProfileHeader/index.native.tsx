@@ -19,14 +19,14 @@ interface Props {
 }
 
 const ProfileHeader = ({ data, isExternal }: Props) => {
-  const { image } = data;
+  const { image, gid } = data;
   return (
     <View style={styles.container}>
       <Wrapper />
       <View style={styles.content}>
         <View style={styles.actions}>
           <BackButton />
-          <ActionsGroup isExternal={isExternal} />
+          <ActionsGroup isExternal={isExternal} userGid={gid}/>
         </View>
         <ProfileImage image={image} />
       </View>

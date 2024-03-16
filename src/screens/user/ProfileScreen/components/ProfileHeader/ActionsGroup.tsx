@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Settings, BadgeAlert, PenLine } from "lucide-react-native";
 
+// Components
 import IconButton from "../../../../../components/common/buttons/IconButton";
-import colors from "../../../../../theme/colors";
 import Divider from "../../../../../components/common/Divider";
+
+// Theme
+import colors from "../../../../../theme/colors";
+import ReportSheet from "../../../../../components/Report/ReportSheet";
 
 interface Props {
   isExternal: boolean;
+  userGid: number;
 }
-const ActionsGroup = ({ isExternal }: Props) => {
+const ActionsGroup = ({ isExternal, userGid }: Props) => {
+  const [openReportSheet, setOpenReportSheet] = useState(false);
+
   const settingHandler = () => {};
-  const reportHandler = () => {};
+
+  const reportHandler = () => {
+    setOpenReportSheet(true);
+  };
+
   const editHandler = () => {};
 
   return (
@@ -34,6 +45,11 @@ const ActionsGroup = ({ isExternal }: Props) => {
           />
         </>
       )}
+      <ReportSheet
+        open={openReportSheet}
+        setOpen={setOpenReportSheet}
+        userGid={userGid}
+      />
     </View>
   );
 };
