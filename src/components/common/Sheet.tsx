@@ -34,8 +34,9 @@ const Sheet = (props: Props) => {
         animation="100ms"
         enterStyle={{ opacity: 0 }}
         exitStyle={{ opacity: 0 }}
+        backgrounded
+        backgroundColor="rgba(0,0,0,0.2)"
       />
-      <TamaguiSheet.Handle />
       <TamaguiSheet.Frame
         padding="$3"
         justifyContent="center"
@@ -43,6 +44,7 @@ const Sheet = (props: Props) => {
         space="$5"
         borderTopLeftRadius={20}
         borderTopRightRadius={20}
+        paddingHorizontal={24}
         backgroundColor={colors.white}
       >
         {children}

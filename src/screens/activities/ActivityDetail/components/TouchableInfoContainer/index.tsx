@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
+import AccessInfo from "../../../../../components/tutorial/AccessInfo";
+import RankedInfo from "../../../../../components/tutorial/RankedInfo";
 import Divider from "../../../../../components/common/Divider";
 import Icon from "../../../../../components/common/Icon";
 import TouchableInfo from "./TouchableInfo";
+import InfoSheet from "./InfoSheet";
 
 // Theme
 import colors from "../../../../../theme/colors";
-import InfoSheet from "./InfoSheet";
-import AccessInfo from "../../../../../components/tutorial/AccessInfo";
 
 const index = ({ data }: any) => {
   const [sheet, setSheet] = useState("");
@@ -45,7 +46,7 @@ const index = ({ data }: any) => {
         <AccessInfo />
       </InfoSheet>
       <InfoSheet open={sheet === "Ranked"} setOpen={setSheet}>
-        <AccessInfo />
+        <RankedInfo />
       </InfoSheet>
     </View>
   );
