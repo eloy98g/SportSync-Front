@@ -23,8 +23,6 @@ const EditProfile = () => {
       <BackHeader title={"Editar perfil"} />
       <View style={styles.container}>
         <Divider height={12} />
-        <Title text="Información personal" />
-        <Divider height={12} />
         <ProfilePicturePicker
           editedUser={editedUser}
           setEditedUser={setEditedUser}
