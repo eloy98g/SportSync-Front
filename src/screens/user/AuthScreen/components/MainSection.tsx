@@ -27,7 +27,7 @@ const MainSection = (props: any) => {
       start={{ x: 0, y: 0 }}
       locations={[0, 1]}
     >
-      <MainButton title={"Inicia sesión"} onPress={loginHandler} />
+      <MainButton title={"Inicia sesión"} onPress={loginHandler} fontSize={18}/>
       <Divider height={20} />
       <View style={styles.row}>
         <Text style={styles.text}>¿No tienes cuenta? </Text>

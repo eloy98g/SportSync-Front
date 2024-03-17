@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Settings, BadgeAlert, PenLine } from "lucide-react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import IconButton from "../../../../../components/common/buttons/IconButton";
@@ -14,8 +15,10 @@ interface Props {
   isExternal: boolean;
   userGid: number;
 }
+
 const ActionsGroup = ({ isExternal, userGid }: Props) => {
   const [openReportSheet, setOpenReportSheet] = useState(false);
+  const navigation = useNavigation()
 
   const settingHandler = () => {};
 
@@ -23,7 +26,9 @@ const ActionsGroup = ({ isExternal, userGid }: Props) => {
     setOpenReportSheet(true);
   };
 
-  const editHandler = () => {};
+  const editHandler = () => {
+    navigation.navigate("EditProfile" as never)
+  };
 
   return (
     <View style={styles.group}>

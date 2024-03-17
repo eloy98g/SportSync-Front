@@ -11,11 +11,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.eloy98g.sportup"
     },
     "android": {
       "adaptiveIcon": {
@@ -31,6 +30,6 @@
       "eas": {
         "projectId": "2a4f84c1-c00e-4016-9de5-d419e272f4d4"
       }
-    }
+    },
   }
 }

@@ -19,6 +19,7 @@ const MainButton = ({
   borderWidth = 1,
   borderColor = colors.primary,
   loading = false,
+  fontSize = 16,
   height = 46,
 }) => {
   return (
@@ -33,7 +34,9 @@ const MainButton = ({
       {loading ? (
         <ActivityIndicator size="small" color={textColor} />
       ) : (
-        <Text style={[styles.text, { color: textColor }]}>{title}</Text>
+        <Text style={[styles.text, { color: textColor, fontSize }]}>
+          {title}
+        </Text>
       )}
     </TouchableOpacity>
   );

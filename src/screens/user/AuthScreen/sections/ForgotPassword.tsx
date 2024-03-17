@@ -24,7 +24,11 @@ const ForgotPassword = ({ setSection }: any) => {
       <Divider height={30} />
       <TextInput value={user} onChange={setUser} placeholder="Usuario" />
       <Divider height={22} />
-      <MainButton title={"Aceptar"} onPress={forgotPasswordHandler} />
+      <MainButton
+        title={"Aceptar"}
+        onPress={forgotPasswordHandler}
+        fontSize={18}
+      />
       <Divider height={22} />
       <TouchableOpacity onPress={goBack}>
         <Text style={styles.text}>Volver</Text>

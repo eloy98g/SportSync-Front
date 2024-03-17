@@ -48,7 +48,7 @@ const Login = ({ setSection, navigation }: any) => {
         secure
       />
       <Divider height={22} />
-      <MainButton title={"Aceptar"} onPress={loginHandler} />
+      <MainButton title={"Aceptar"} onPress={loginHandler} fontSize={18}/>
       <Divider height={22} />
       <TouchableText
         onPress={goToForgotPassword}

@@ -1,5 +1,7 @@
 import React from "react";
 import { TextInput as Input, StyleSheet } from "react-native";
+
+// Theme
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
@@ -27,12 +29,15 @@ export default TextInput;
 
 const styles = StyleSheet.create({
   input: {
-    flex: 1,
-    maxHeight: 46,
+    width: "100%",
+    height: 46,
     borderWidth: 1,
     padding: 10,
+    paddingHorizontal:12,
+    backgroundColor: colors.white,
     borderRadius: 10,
     fontFamily: family.normal,
+    color: colors.black,
     fontSize: 18,
     textAlign: "left",
   },

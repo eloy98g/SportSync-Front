@@ -17,6 +17,7 @@ import Footer from "../components/Footer";
 
 // Hooks
 import { useAppSelector } from "../hooks";
+import EditProfile from "../screens/user/EditProfile";
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,7 @@ const AppNavigator = () => {
             <Stack.Screen name="Chat" component={ChatScreen} />
             <Stack.Screen name="SportStats" component={SportStats} />
             <Stack.Screen name="ActivityDetail" component={ActivityDetail} />
+            <Stack.Screen name="EditProfile" component={EditProfile} />
           </>
         ) : (
           <>
