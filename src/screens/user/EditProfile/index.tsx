@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 
 // Components
 import BackHeader from "../../../components/BackHeader";
@@ -21,17 +21,17 @@ const EditProfile = () => {
   return (
     <Screen>
       <BackHeader title={"Editar perfil"} />
-      <View style={styles.container}>
-        <Divider height={12} />
+      <ScrollView style={styles.container}>
+        <Divider height={92} />
         <ProfilePicturePicker
           editedUser={editedUser}
           setEditedUser={setEditedUser}
         />
         <Divider height={24} />
         <PersonalData editedUser={editedUser} setEditedUser={setEditedUser} />
-        <Divider height={12} />
+        <Divider height={24} />
         <Title text="Preferencias de juego" />
-        <Divider height={12} />
+        <Divider height={24} />
         <UserPreferences
           editedUser={editedUser}
           setEditedUser={setEditedUser}
@@ -40,7 +40,7 @@ const EditProfile = () => {
         <Title text="Tu cuenta" />
         <Divider height={12} />
         <Account />
-      </View>
+      </ScrollView>
     </Screen>
   );
 };
@@ -50,8 +50,7 @@ export default EditProfile;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    flex: 1,
-    paddingTop: 80,
-    paddingHorizontal: 12,
+    height:1,
+    paddingHorizontal: 24,
   },
 });
