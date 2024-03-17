@@ -14,6 +14,7 @@ import SECTIONS from "./sections";
 
 // Theme
 import { PHONE } from "../../theme/breakPoints";
+import Version from "../../components/Version";
 
 const HomeScreen = () => {
   return (
@@ -31,7 +32,9 @@ const HomeScreen = () => {
               <HomeSection title={section.title} data={section.data} />
             </React.Fragment>
           ))}
-          <Divider height={100} />
+           <Divider height={50} />
+          <Version />
+          <Divider height={80} />
         </ScrollView>
       </View>
     </Screen>
