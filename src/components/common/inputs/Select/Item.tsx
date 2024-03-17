@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   itemText: {
     fontFamily: family.normal,
     color: colors.black,
-    fontSize: 14,
+    fontSize: 18,
     textAlign: "left",
   },
   itemWrapper: {

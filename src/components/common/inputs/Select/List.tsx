@@ -1,14 +1,19 @@
-import React, { useLayoutEffect, useState } from "react";
-import { StyleSheet, Text, ScrollView } from "react-native";
-import colors from "../../../../theme/colors";
+import React from "react";
+import { StyleSheet, ScrollView } from "react-native";
+
+// Components
 import Divider from "../../Divider";
 import Item from "./Item";
+
+// Theme
+import colors from "../../../../theme/colors";
 
 interface Props {
   data: any;
   itemHandler: (T: any) => void;
   width: number;
 }
+
 const List = ({ data, itemHandler, width }: Props) => {
   const position = -(23 * data.length) - 20;
   return (

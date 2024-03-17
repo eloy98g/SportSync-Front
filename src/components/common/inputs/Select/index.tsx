@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: family.normal,
     color: colors.black,
-    fontSize: 14,
+    fontSize: 18,
     textAlign: "center",
   },
 });
