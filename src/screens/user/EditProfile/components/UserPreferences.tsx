@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import LocationPicker from "../../../../components/common/inputs/LocationPicker";
 import User from "../../../../store/types/User";
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
 const UserPreferences = ({ editedUser, setEditedUser }: Props) => {
   return (
     <View>
-      <Text></Text>
+      <LocationPicker />
     </View>
   );
 };
