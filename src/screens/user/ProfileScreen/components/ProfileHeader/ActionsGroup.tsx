@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import {
-  Settings,
-  BadgeAlert,
-  PenLine,
-  LogOut,
-  UserRoundPlus,
-} from "lucide-react-native";
+import { Settings, BadgeAlert, PenLine, LogOut } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
@@ -31,6 +25,8 @@ interface Props {
 
 const ActionsGroup = ({ isExternal, userGid }: Props) => {
   const [openReportSheet, setOpenReportSheet] = useState(false);
+
+  // TODO: logic for getting followers
   const [following, setFollowing] = useState(false);
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
