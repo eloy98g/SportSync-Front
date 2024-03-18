@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, StatusBar } from "react-native";
 
 // Components
 import Screen from "../../../components/common/Screen";
-import AuthSheet from "./components/AuthSheet";
+import Sheet from "../../../components/common/Sheet";
 import Container from "./components/Container";
 import Hero from "./components/Hero";
 import MainSection from "./components/MainSection";
@@ -14,27 +13,34 @@ import LogIn from "./sections/LogIn";
 import SignIn from "./sections/SignIn";
 
 const AuthScreen = ({ navigation }: any) => {
-  const [section, setSection] = useState<any>();
+  const [section, setSection] = useState<any>("LogIn");
+  const [open, setOpen] = useState(false);
 
   const sectionComponents: any = {
-    ForgotPassword: <ForgotPassword setSection={setSection} />,
-    LogIn: <LogIn setSection={setSection} navigation={navigation} />,
-    SignIn: <SignIn setSection={setSection} />,
+    ForgotPassword: (
+      <ForgotPassword setSection={setSection} setOpen={setOpen} />
+    ),
+    LogIn: (
+      <LogIn
+        setSection={setSection}
+        navigation={navigation}
+        setOpen={setOpen}
+      />
+    ),
+    SignIn: <SignIn setSection={setSection} setOpen={setOpen} />,
   };
 
   return (
     <Screen>
       <Container>
         <Hero />
-        <MainSection setSection={setSection} />
-        <AuthSheet section={section} setSection={setSection}>
+        <MainSection setSection={setSection} setOpen={setOpen} />
+        <Sheet open={open} openHandler={setOpen} height={400}>
           {sectionComponents[section]}
-        </AuthSheet>
+        </Sheet>
       </Container>
     </Screen>
   );
 };
 
 export default AuthScreen;
-
-const styles = StyleSheet.create({});

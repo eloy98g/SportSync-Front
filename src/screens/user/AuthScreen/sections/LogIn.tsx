@@ -18,7 +18,7 @@ import fetchUser from "../../../../store/features/user/methods/fetchUser";
 // Hooks
 import { useAppDispatch } from "../../../../hooks";
 
-const Login = ({ setSection, navigation }: any) => {
+const Login = ({ setSection, navigation, setOpen }: any) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,10 +26,10 @@ const Login = ({ setSection, navigation }: any) => {
 
   const loginHandler = () => {
     dispatch(fetchUser());
-    setSection();
+    setOpen(false);
     setTimeout(() => {
       navigation?.navigate("Home" as never);
-    });
+    },100);
   };
 
   const goToSignIn = () => setSection("SignIn");
@@ -48,7 +48,7 @@ const Login = ({ setSection, navigation }: any) => {
         secure
       />
       <Divider height={22} />
-      <MainButton title={"Aceptar"} onPress={loginHandler} fontSize={18}/>
+      <MainButton title={"Aceptar"} onPress={loginHandler} fontSize={18} />
       <Divider height={22} />
       <TouchableText
         onPress={goToForgotPassword}

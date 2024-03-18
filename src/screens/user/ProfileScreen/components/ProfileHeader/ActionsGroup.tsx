@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Settings, BadgeAlert, PenLine } from "lucide-react-native";
+import { Settings, BadgeAlert, PenLine, LogOut } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
 import IconButton from "../../../../../components/common/buttons/IconButton";
+import ReportSheet from "../../../../../components/Report/ReportSheet";
 import Divider from "../../../../../components/common/Divider";
+
+// Hooks
+import { useAppDispatch } from "../../../../../hooks";
 
 // Theme
 import colors from "../../../../../theme/colors";
-import ReportSheet from "../../../../../components/Report/ReportSheet";
+
+// Reducers
+import { logOut } from "../../../../../store/features/user/userSlice";
 
 interface Props {
   isExternal: boolean;
@@ -18,7 +24,8 @@ interface Props {
 
 const ActionsGroup = ({ isExternal, userGid }: Props) => {
   const [openReportSheet, setOpenReportSheet] = useState(false);
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+  const dispatch = useAppDispatch();
 
   const settingHandler = () => {};
 
@@ -26,8 +33,13 @@ const ActionsGroup = ({ isExternal, userGid }: Props) => {
     setOpenReportSheet(true);
   };
 
+  const logoutHandler = () => {
+    dispatch(logOut());
+    navigation.navigate("Home" as never);
+  };
+
   const editHandler = () => {
-    navigation.navigate("EditProfile" as never)
+    navigation.navigate("EditProfile" as never);
   };
 
   return (
@@ -47,6 +59,11 @@ const ActionsGroup = ({ isExternal, userGid }: Props) => {
           <IconButton
             onPress={settingHandler}
             icon={<Settings size={24} color={colors.white} />}
+          />
+          <Divider width={10} />
+          <IconButton
+            onPress={logoutHandler}
+            icon={<LogOut size={24} color={colors.white} />}
           />
         </>
       )}
