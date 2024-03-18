@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { BackHandler } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -25,6 +26,12 @@ const AppNavigator = () => {
   const stateUser = useAppSelector((state) => state.user.user);
   const loggedIn = !!stateUser.gid;
 
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", function () {
+      return true;
+    });
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -34,25 +41,20 @@ const AppNavigator = () => {
           animationTypeForReplace: "pop",
           gestureEnabled: false,
         }}
+        pre
         initialRouteName="Splash"
       >
-        {loggedIn ? (
-          <>
-            <Stack.Screen name="Splash" component={SplashScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Profile" component={ProfileScreen} />
-            <Stack.Screen name="ChatList" component={ChatListScreen} />
-            <Stack.Screen name="Chat" component={ChatScreen} />
-            <Stack.Screen name="SportStats" component={SportStats} />
-            <Stack.Screen name="ActivityDetail" component={ActivityDetail} />
-            <Stack.Screen name="EditProfile" component={EditProfile} />
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="Splash" component={SplashScreen} />
-            <Stack.Screen name="Auth" component={AuthScreen} />
-          </>
-        )}
+        <Stack.Screen name="Splash" component={SplashScreen} />
+        <Stack.Screen
+          name="Home"
+          component={loggedIn ? HomeScreen : AuthScreen}
+        />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="ChatList" component={ChatListScreen} />
+        <Stack.Screen name="Chat" component={ChatScreen} />
+        <Stack.Screen name="SportStats" component={SportStats} />
+        <Stack.Screen name="ActivityDetail" component={ActivityDetail} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
       </Stack.Navigator>
       <Footer />
     </NavigationContainer>

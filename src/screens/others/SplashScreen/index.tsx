@@ -21,7 +21,7 @@ const SplashScreen = () => {
   const dispatch = useAppDispatch();
   const loggedIn = !!stateUser.gid;
   const navigation = useNavigation();
-  
+
   const getData = async () => {
     dispatch(fetchCurrentActivities());
     dispatch(fetchPublicActivities());
@@ -31,7 +31,7 @@ const SplashScreen = () => {
   const splashHandler = async () => {
     await getData();
     setTimeout(() => {
-      navigation.navigate(loggedIn ? ("Home" as never) : ("Auth" as never));
+      navigation.navigate("Home" as never);
     }, 1000);
   };
 
