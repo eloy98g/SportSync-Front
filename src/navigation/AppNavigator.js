@@ -56,7 +56,7 @@ const AppNavigator = () => {
         <Stack.Screen name="ActivityDetail" component={ActivityDetail} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
       </Stack.Navigator>
-      <Footer />
+      {loggedIn && <Footer />}
     </NavigationContainer>
   );
 };
