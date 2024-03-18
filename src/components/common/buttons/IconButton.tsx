@@ -7,9 +7,13 @@ import Divider from "../Divider";
 interface Props {
   onPress: any;
   text?: string;
-  icon: any;
+  icon?: any;
   textStyle?: any;
   distance?: number;
+  borderStyle?: {
+    color: string;
+    radius: number;
+  };
 }
 
 const IconButton = ({
@@ -18,9 +22,19 @@ const IconButton = ({
   text,
   onPress,
   distance = 20,
+  borderStyle,
 }: Props) => {
+  console.log("borderStyle", borderStyle);
+  const containerStyle = [
+    styles.row,
+    borderStyle && {
+      borderRadius: borderStyle.radius,
+      borderColor: borderStyle.color,
+      borderWidth: 1,
+    },
+  ];
   return (
-    <TouchableOpacity onPress={onPress} style={styles.row}>
+    <TouchableOpacity onPress={onPress} style={containerStyle}>
       {icon}
       {text && (
         <>
@@ -38,5 +52,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 4,
+    paddingHorizontal: 10,
   },
 });

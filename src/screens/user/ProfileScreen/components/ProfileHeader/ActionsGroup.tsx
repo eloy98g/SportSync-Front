@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Settings, BadgeAlert, PenLine, LogOut } from "lucide-react-native";
+import {
+  Settings,
+  BadgeAlert,
+  PenLine,
+  LogOut,
+  UserRoundPlus,
+} from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
@@ -16,6 +22,7 @@ import colors from "../../../../../theme/colors";
 
 // Reducers
 import { logOut } from "../../../../../store/features/user/userSlice";
+import { family } from "../../../../../theme/fonts";
 
 interface Props {
   isExternal: boolean;
@@ -24,6 +31,7 @@ interface Props {
 
 const ActionsGroup = ({ isExternal, userGid }: Props) => {
   const [openReportSheet, setOpenReportSheet] = useState(false);
+  const [following, setFollowing] = useState(false);
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
 
@@ -33,6 +41,9 @@ const ActionsGroup = ({ isExternal, userGid }: Props) => {
     setOpenReportSheet(true);
   };
 
+  const followHandler = () => {
+    setFollowing((prev) => !prev);
+  };
   const logoutHandler = () => {
     dispatch(logOut());
     navigation.navigate("Home" as never);
@@ -45,10 +56,22 @@ const ActionsGroup = ({ isExternal, userGid }: Props) => {
   return (
     <View style={styles.group}>
       {isExternal ? (
-        <IconButton
-          onPress={reportHandler}
-          icon={<BadgeAlert size={24} color={colors.white} />}
-        />
+        <>
+          <IconButton
+            onPress={followHandler}
+            borderStyle={{
+              radius: 40,
+              color: colors.white,
+            }}
+            textStyle={styles.text}
+            distance={0}
+            text={following ? "Dejar de seguir" : "Seguir"}
+          />
+          <IconButton
+            onPress={reportHandler}
+            icon={<BadgeAlert size={24} color={colors.white} />}
+          />
+        </>
       ) : (
         <>
           <IconButton
@@ -82,5 +105,10 @@ const styles = StyleSheet.create({
   group: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  text: {
+    fontFamily: family.bold,
+    color: colors.white,
+    fontSize: 12,
   },
 });

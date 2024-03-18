@@ -36,7 +36,7 @@ const ReportSheet = ({ open, setOpen, userGid }: Props) => {
   };
 
   return (
-    <Sheet open={open} openHandler={setOpen} height={150}>
+    <Sheet open={open} openHandler={setOpen} height={200}>
       <View style={styles.container}>
         {REPORT_REASONS.map((item) => (
           <React.Fragment key={item.gid}>
