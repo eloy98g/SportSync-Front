@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
@@ -19,7 +19,6 @@ import colors from "../../../theme/colors";
 const SplashScreen = () => {
   const stateUser = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
-  const loggedIn = !!stateUser.gid;
   const navigation = useNavigation();
 
   const getData = async () => {

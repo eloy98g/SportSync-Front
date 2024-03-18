@@ -12,7 +12,7 @@ import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 
-const SignIn = ({ setSection }: any) => {
+const SignIn = ({ setSection, setOpen }: any) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
