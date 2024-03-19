@@ -1,4 +1,6 @@
 import { Share, Alert } from "react-native";
+
+// Utils
 import getDateWithDuration from "../../../../utils/date/getDateWithDuration";
 
 const shareActivity = async (data: any) => {

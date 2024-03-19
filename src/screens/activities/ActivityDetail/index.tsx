@@ -53,7 +53,7 @@ const ActivityDetail = ({ route }: any) => {
 
   return (
     <Screen>
-      <Header data={activityData} isAdmin={isAdmin} />
+      <Header data={activityData} isAdmin={isAdmin} playerView={playerView}/>
       <View style={styles.content}>
         <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
           <Divider height={200} />

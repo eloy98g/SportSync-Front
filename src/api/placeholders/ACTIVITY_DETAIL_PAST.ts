@@ -38,7 +38,7 @@ export default {
       },
     ],
   },
-  status: "finished",
+  status: "pending",
   teamPlayers: [
     {
       name: "A",
