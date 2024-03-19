@@ -4,13 +4,13 @@ import { CircleFadingPlus } from "lucide-react-native";
 
 // Components
 import Divider from "../../../../../components/common/Divider";
+import ActionSheet from "../ActionSheet";
 
 // Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
-import ActionSheet from "../ActionSheet";
 
-const Player = ({ data }: any) => {
+const Player = ({ data, activityData }: any) => {
   const [openSheet, setOpenSheet] = useState(false);
   const { image, name, gid } = data;
 
@@ -34,7 +34,12 @@ const Player = ({ data }: any) => {
         <Divider height={4} />
         <Text style={styles.name}>{name}</Text>
       </TouchableOpacity>
-      <ActionSheet user={data} open={openSheet} setOpen={setOpenSheet} />
+      <ActionSheet
+        user={data}
+        open={openSheet}
+        setOpen={setOpenSheet}
+        data={activityData}
+      />
     </>
   );
 };

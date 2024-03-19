@@ -18,7 +18,6 @@ const DatePicker = ({ value, setValue, placeholder }: Props) => {
   const title = unixToDate(value) || placeholder;
 
   const handleConfirm = (value: any) => {
-    console.log("datepicker value", value);
     setValue(value);
   };
 

@@ -14,6 +14,7 @@ interface Props {
     color: string;
     radius: number;
   };
+  padding?: boolean;
 }
 
 const IconButton = ({
@@ -23,8 +24,8 @@ const IconButton = ({
   onPress,
   distance = 20,
   borderStyle,
+  padding = false,
 }: Props) => {
-  console.log("borderStyle", borderStyle);
   const containerStyle = [
     styles.row,
     borderStyle && {
@@ -32,6 +33,7 @@ const IconButton = ({
       borderColor: borderStyle.color,
       borderWidth: 1,
     },
+    padding && { paddingVertical: 4, paddingHorizontal: 10 },
   ];
   return (
     <TouchableOpacity onPress={onPress} style={containerStyle}>
@@ -53,7 +55,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 4,
-    paddingHorizontal: 10,
   },
 });

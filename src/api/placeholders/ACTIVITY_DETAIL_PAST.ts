@@ -42,7 +42,7 @@ export default {
   teamPlayers: [
     {
       name: "A",
-      numPlayers: 5,
+      numPlayers: 2,
       players: [
         {
           gid: 1,

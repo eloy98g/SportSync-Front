@@ -24,7 +24,6 @@ const ProfilePicturePicker = ({ editedUser, setEditedUser }: Props) => {
       includeBase64: false,
       includeExtra: true,
     });
-    console.log("result", result);
   };
 
   return (

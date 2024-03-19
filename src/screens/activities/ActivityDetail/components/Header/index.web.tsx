@@ -12,9 +12,10 @@ import Details from "../Details";
 interface Props {
   data: any;
   isAdmin: boolean;
+  playerView?: boolean;
 }
 
-const Header = ({ data, isAdmin }: Props) => {
+const Header = ({ data, isAdmin, playerView }: Props) => {
   return (
     <View style={styles.container}>
       <Wrapper>
@@ -22,10 +23,10 @@ const Header = ({ data, isAdmin }: Props) => {
           <BackButton />
           <Divider width={8} />
           <Info data={data} />
-          <ActionsGroup isAdmin={isAdmin} />
+          <ActionsGroup isAdmin={isAdmin} data={data} playerView={playerView} />
         </View>
       </Wrapper>
-      <Details data={data}/>
+      <Details data={data} />
     </View>
   );
 };

@@ -13,6 +13,7 @@ import ChatScreen from "../screens/social/ChatScreen";
 import SportStats from "../screens/activities/SportStats";
 import ActivityDetail from "../screens/activities/ActivityDetail";
 import EditProfile from "../screens/user/EditProfile";
+import Review from "../screens/activities/Review";
 
 // Components
 import Footer from "../components/Footer";
@@ -55,6 +56,7 @@ const AppNavigator = () => {
         <Stack.Screen name="SportStats" component={SportStats} />
         <Stack.Screen name="ActivityDetail" component={ActivityDetail} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="Review" component={Review} />
       </Stack.Navigator>
       {loggedIn && <Footer />}
     </NavigationContainer>

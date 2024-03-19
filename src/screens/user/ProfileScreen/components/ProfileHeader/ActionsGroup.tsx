@@ -59,10 +59,12 @@ const ActionsGroup = ({ isExternal, userGid }: Props) => {
               radius: 40,
               color: colors.white,
             }}
+            padding
             textStyle={styles.text}
             distance={0}
             text={following ? "Dejar de seguir" : "Seguir"}
           />
+          <Divider width={10} />
           <IconButton
             onPress={reportHandler}
             icon={<BadgeAlert size={24} color={colors.white} />}

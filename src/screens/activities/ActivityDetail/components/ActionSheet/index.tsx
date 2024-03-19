@@ -18,10 +18,11 @@ import { family } from "../../../../../theme/fonts";
 interface Props {
   user: any;
   open: boolean;
+  data: any;
   setOpen: (T: any) => void;
 }
 
-const ActionSheet = ({ user, open, setOpen }: Props) => {
+const ActionSheet = ({ user, open, data, setOpen }: Props) => {
   const [openReport, setOpenReport] = useState(false);
   const navigation = useNavigation();
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -34,9 +35,16 @@ const ActionSheet = ({ user, open, setOpen }: Props) => {
     navigation.navigate("Profile" as never, { gid: gid } as never);
   };
 
-  const reviewHandler = () => {
+  const reportHandler = () => {
     setOpenReport(true);
     setOpen(false);
+  };
+  const reviewHandler = () => {
+    setOpen(false);
+    navigation.navigate(
+      "Review" as never,
+      { userGid, selectedUser: user, data } as never
+    );
   };
 
   const chatHandler = () => {
@@ -46,7 +54,7 @@ const ActionSheet = ({ user, open, setOpen }: Props) => {
 
   return (
     <Sheet open={open} openHandler={setOpen} height={150}>
-       <Divider width={12} />
+      <Divider width={12} />
       <View style={styles.row}>
         <Image style={styles.image} source={{ uri: image }} />
         <Divider width={20} />
@@ -60,6 +68,14 @@ const ActionSheet = ({ user, open, setOpen }: Props) => {
               textColor={colors.red}
               borderColor={colors.red}
               title="Reportar"
+              height={40}
+              onPress={reportHandler}
+            />
+            <Divider width={10} />
+            <MainButton
+              color={colors.white}
+              textColor={colors.primary}
+              title="Valorar"
               height={40}
               onPress={reviewHandler}
             />

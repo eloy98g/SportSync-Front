@@ -27,7 +27,13 @@ const AuthScreen = ({ navigation }: any) => {
         setOpen={setOpen}
       />
     ),
-    SignIn: <SignIn setSection={setSection} setOpen={setOpen} />,
+    SignIn: (
+      <SignIn
+        setSection={setSection}
+        setOpen={setOpen}
+        navigation={navigation}
+      />
+    ),
   };
 
   return (

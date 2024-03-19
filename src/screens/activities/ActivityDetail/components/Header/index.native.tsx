@@ -15,9 +15,10 @@ import { PHONE } from "../../../../../theme/breakPoints";
 interface Props {
   data: any;
   isAdmin: boolean;
+  playerView?:boolean
 }
 
-const Header = ({ data, isAdmin }: Props) => {
+const Header = ({ data, isAdmin , playerView}: Props) => {
   return (
     <View style={styles.container}>
       <Wrapper />
@@ -26,7 +27,7 @@ const Header = ({ data, isAdmin }: Props) => {
           <BackButton />
           <Divider width={8}/>
           <Info data={data} />
-          <ActionsGroup isAdmin={isAdmin} />
+          <ActionsGroup isAdmin={isAdmin}data={data} playerView={playerView}/>
         </View>
       </View>
       <Divider height={24}/>
@@ -58,5 +59,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
+    paddingLeft:8
   },
 });

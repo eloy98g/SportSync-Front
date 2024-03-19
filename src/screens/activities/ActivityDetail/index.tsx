@@ -20,14 +20,21 @@ import { PHONE } from "../../../theme/breakPoints";
 import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
 import StaticInfo from "./components/StaticInfo";
 import Actions from "./components/Actions";
+import isPlayer from "./methods/isPlayer";
+import JoinButton from "./components/JoinButton";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
   const gid = route.params?.gid;
   const [activityData, setActivityData] = useState<any>(ACTIVITY_DETAIL_PAST);
   const [status, setStatus] = useState("idle");
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [playerView, setPlayerView] = useState(false)
 
-  const isAdmin = userGid === activityData?.admin;
+  useEffect(() => {
+    setIsAdmin(userGid === activityData?.admin)
+    setPlayerView(isPlayer(userGid, activityData?.teamPlayers))
+  }, [userGid])
 
   useEffect(() => {
     setStatus("loading");
@@ -51,10 +58,11 @@ const ActivityDetail = ({ route }: any) => {
 
   return (
     <Screen>
-      <Header data={activityData} isAdmin={isAdmin} />
+      <Header data={activityData} isAdmin={isAdmin} playerView={playerView}/>
       <View style={styles.content}>
         <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
           <Divider height={200} />
+          <JoinButton data={activityData}/>
           <TouchableInfoContainer data={activityData} />
           <Divider height={18} />
           <Teams
@@ -62,6 +70,7 @@ const ActivityDetail = ({ route }: any) => {
             teamSize={activityData?.playersPerTeam}
             teams={activityData.teams}
             status={activityData.status}
+            activityData={activityData}
           />
           {activityData.status === "finished" && (
             <>
@@ -74,7 +83,7 @@ const ActivityDetail = ({ route }: any) => {
           )}
           <Divider height={6} />
           <StaticInfo data={activityData} />
-          <Actions data={activityData} />
+          <Actions data={activityData} playerView={playerView} userGid={userGid}/>
           <Divider height={24} />
         </ScrollView>
       </View>
