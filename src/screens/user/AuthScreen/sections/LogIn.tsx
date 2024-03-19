@@ -25,11 +25,11 @@ const Login = ({ setSection, navigation, setOpen }: any) => {
   const dispatch = useAppDispatch();
 
   const loginHandler = () => {
-    dispatch(fetchUser());
+    dispatch(fetchUser(1));
     setOpen(false);
     setTimeout(() => {
       navigation?.navigate("Home" as never);
-    },100);
+    });
   };
 
   const goToSignIn = () => setSection("SignIn");

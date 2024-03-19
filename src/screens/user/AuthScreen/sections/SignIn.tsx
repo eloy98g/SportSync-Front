@@ -7,17 +7,30 @@ import MainButton from "../../../../components/common/buttons/MainButton";
 import TextInput from "../../../../components/common/inputs/TextInput";
 import Divider from "../../../../components/common/Divider";
 
+// Hooks
+import { useAppDispatch } from "../../../../hooks";
+
 // Theme
 import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 
-const SignIn = ({ setSection, setOpen }: any) => {
+// Store
+import fetchUser from "../../../../store/features/user/methods/fetchUser";
+
+const SignIn = ({ setSection, setOpen, navigation }: any) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const dispatch = useAppDispatch();
 
-  const signInHandler = () => {};
+  const signInHandler = () => {
+    dispatch(fetchUser(2));
+    setOpen(false);
+    setTimeout(() => {
+      navigation?.navigate("Home" as never);
+    });
+  };
 
   const goToLogIn = () => setSection("LogIn");
 

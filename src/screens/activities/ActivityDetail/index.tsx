@@ -20,6 +20,7 @@ import { PHONE } from "../../../theme/breakPoints";
 import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
 import StaticInfo from "./components/StaticInfo";
 import Actions from "./components/Actions";
+import isPlayer from "./methods/isPlayer";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -28,6 +29,7 @@ const ActivityDetail = ({ route }: any) => {
   const [status, setStatus] = useState("idle");
 
   const isAdmin = userGid === activityData?.admin;
+  const playerView = isPlayer(userGid, activityData?.teamPlayers);
 
   useEffect(() => {
     setStatus("loading");
@@ -74,7 +76,7 @@ const ActivityDetail = ({ route }: any) => {
           )}
           <Divider height={6} />
           <StaticInfo data={activityData} />
-          <Actions data={activityData} />
+          <Actions data={activityData} playerView={playerView}/>
           <Divider height={24} />
         </ScrollView>
       </View>

@@ -17,6 +17,7 @@ const MainSection = (props: any) => {
     setSection("LogIn");
     setOpen(true);
   };
+
   const signInHandler = () => {
     setSection("SignIn");
     setOpen(true);
