@@ -15,7 +15,7 @@ interface Props {
 }
 
 const List = ({ data, itemHandler, width }: Props) => {
-  const position = -(23 * data.length) - 20;
+  const position = -(46 * data.length) -data.length;
   return (
     <ScrollView style={[styles.itemList, { width, bottom: position }]}>
       {data.map(({ label, value }: any) => (

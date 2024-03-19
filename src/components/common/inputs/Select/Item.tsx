@@ -29,9 +29,10 @@ const styles = StyleSheet.create({
   },
   itemWrapper: {
     width: "100%",
-    paddingVertical: 8,
-    paddingHorizontal: 12,
+    height:46,
     backgroundColor: colors.white,
     borderColor: colors.grey,
+    justifyContent:"center",
+    paddingHorizontal: 12
   },
 });
