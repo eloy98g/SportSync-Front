@@ -59,5 +59,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
+    paddingLeft:8
   },
 });

@@ -59,5 +59,6 @@ const styles = StyleSheet.create({
   group: {
     flexDirection: "row",
     alignItems: "center",
+    paddingHorizontal: 12
   },
 });

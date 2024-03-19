@@ -21,6 +21,7 @@ import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST
 import StaticInfo from "./components/StaticInfo";
 import Actions from "./components/Actions";
 import isPlayer from "./methods/isPlayer";
+import JoinButton from "./components/JoinButton";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -57,6 +58,7 @@ const ActivityDetail = ({ route }: any) => {
       <View style={styles.content}>
         <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
           <Divider height={200} />
+          <JoinButton data={activityData}/>
           <TouchableInfoContainer data={activityData} />
           <Divider height={18} />
           <Teams
