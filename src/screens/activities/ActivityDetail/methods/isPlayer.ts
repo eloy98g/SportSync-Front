@@ -4,7 +4,6 @@ const isPlayer = (userGid: number, teams: []) => {
   for (const team of teams as any) {
     for (const player of team.players) {
       if (player.gid == userGid) {
-        console.log("CHANED");
         aux = true;
       }
     }

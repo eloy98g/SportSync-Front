@@ -26,7 +26,6 @@ const IconButton = ({
   borderStyle,
   padding = false,
 }: Props) => {
-  console.log("borderStyle", borderStyle);
   const containerStyle = [
     styles.row,
     borderStyle && {

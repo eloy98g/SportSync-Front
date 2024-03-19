@@ -32,12 +32,10 @@ const ActivityDetail = ({ route }: any) => {
   const [playerView, setPlayerView] = useState(false)
 
   useEffect(() => {
-    console.log('inside effect usergidc')
     setIsAdmin(userGid === activityData?.admin)
     setPlayerView(isPlayer(userGid, activityData?.teamPlayers))
   }, [userGid])
 
-  console.log('playerView',playerView)
   useEffect(() => {
     setStatus("loading");
     if (gid) {
@@ -72,6 +70,7 @@ const ActivityDetail = ({ route }: any) => {
             teamSize={activityData?.playersPerTeam}
             teams={activityData.teams}
             status={activityData.status}
+            activityData={activityData}
           />
           {activityData.status === "finished" && (
             <>

@@ -28,7 +28,6 @@ const index = ({ data }: any) => {
       ? "Esta partida no influirá a tu nivel"
       : "Las partidas competitivas influyen en tu nivel";
 
-  console.log("sheet", sheet);
   return (
     <View style={styles.container}>
       <TouchableInfo

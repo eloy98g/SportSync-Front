@@ -19,10 +19,11 @@ interface Props {
   data: any;
   side: "left" | "right";
   teamSize: number;
+  activityData: any;
   status: any; // TODO change anys
 }
 
-const Team = ({ data, side, status, teamSize }: Props) => {
+const Team = ({ data, side, status, teamSize, activityData }: Props) => {
   const { name, players } = data;
 
   const wrapperStyle: StyleProp<ViewStyle> = [
@@ -37,7 +38,7 @@ const Team = ({ data, side, status, teamSize }: Props) => {
       newData.push({ gid: null });
     }
   }
-  
+
   return (
     <View style={styles.container}>
       <View style={wrapperStyle}>
@@ -48,7 +49,9 @@ const Team = ({ data, side, status, teamSize }: Props) => {
         data={newData}
         numColumns={2}
         contentContainerStyle={styles.list}
-        renderItem={({ item }) => <Player data={item} />}
+        renderItem={({ item }) => (
+          <Player data={item} activityData={activityData} />
+        )}
       />
     </View>
   );
