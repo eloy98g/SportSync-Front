@@ -1,11 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
+
+// Components
 import Divider from "../../../../../../components/common/Divider";
+import Player from "./Player";
+import Title from "./Title";
 
 // Theme
 import colors from "../../../../../../theme/colors";
 import { family } from "../../../../../../theme/fonts";
-import Player from "./Player";
 
 interface Props {
   data: any;
@@ -15,10 +18,10 @@ interface Props {
 
 const PlayerList = ({ data, review, setReview }: Props) => {
   const playerHandler = (gid: any) => {
-    setReview((prevState:any) => {
+    setReview((prevState: any) => {
       const isPlayerIncluded = prevState.players.includes(gid);
       const newPlayers = isPlayerIncluded
-        ? prevState.players.filter((player:any) => player !== gid)
+        ? prevState.players.filter((player: any) => player !== gid)
         : [...prevState.players, gid];
 
       return { ...prevState, players: newPlayers };
@@ -26,10 +29,11 @@ const PlayerList = ({ data, review, setReview }: Props) => {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        Puedes dejar de seleccionar aquellos jugadores que no quieras incluir en
-        la valoración.
-      </Text>
+      <Title
+        text={
+          "Puedes dejar de seleccionar aquellos jugadores que no quieras incluir en la valoración"
+        }
+      />
       <Divider height={12} />
       <ScrollView
         style={styles.verticalScroll}

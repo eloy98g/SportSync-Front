@@ -1,16 +1,19 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Star } from "lucide-react-native";
-import colors from "../../../../../../theme/colors";
-import { family } from "../../../../../../theme/fonts";
+
+// Components
 import Divider from "../../../../../../components/common/Divider";
 
-const Rating = ({ rating, setReview }) => {
+// Theme
+import colors from "../../../../../../theme/colors";
+import Title from "./Title";
+
+const Rating = ({ rating, setReview }: any) => {
   const ratingHandler = (number: number) => {
     setReview((prevState: any) => ({ ...prevState, rating: number }));
   };
 
-  console.log("rating", rating);
   const renderStars = () => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -29,8 +32,8 @@ const Rating = ({ rating, setReview }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>¿Cómo valorarías la experiencia?</Text>
-      <Divider height={12}/>
+      <Title text="¿Cómo valorarías la experiencia?" />
+      <Divider height={12} />
       <View style={styles.row}>{renderStars()}</View>
     </View>
   );
@@ -41,11 +44,6 @@ export default Rating;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-  },
-  text: {
-    fontFamily: family.normal,
-    fontSize: 18,
-    color: colors.grey,
   },
   row: {
     flexDirection: "row",
