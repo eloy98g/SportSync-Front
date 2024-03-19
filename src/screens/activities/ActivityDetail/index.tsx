@@ -28,10 +28,16 @@ const ActivityDetail = ({ route }: any) => {
   const gid = route.params?.gid;
   const [activityData, setActivityData] = useState<any>(ACTIVITY_DETAIL_PAST);
   const [status, setStatus] = useState("idle");
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [playerView, setPlayerView] = useState(false)
 
-  const isAdmin = userGid === activityData?.admin;
-  const playerView = isPlayer(userGid, activityData?.teamPlayers);
+  useEffect(() => {
+    console.log('inside effect usergidc')
+    setIsAdmin(userGid === activityData?.admin)
+    setPlayerView(isPlayer(userGid, activityData?.teamPlayers))
+  }, [userGid])
 
+  console.log('playerView',playerView)
   useEffect(() => {
     setStatus("loading");
     if (gid) {
@@ -78,7 +84,7 @@ const ActivityDetail = ({ route }: any) => {
           )}
           <Divider height={6} />
           <StaticInfo data={activityData} />
-          <Actions data={activityData} playerView={playerView}/>
+          <Actions data={activityData} playerView={playerView} userGid={userGid}/>
           <Divider height={24} />
         </ScrollView>
       </View>

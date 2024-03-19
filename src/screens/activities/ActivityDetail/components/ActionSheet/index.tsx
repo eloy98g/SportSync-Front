@@ -46,7 +46,7 @@ const ActionSheet = ({ user, open, setOpen }: Props) => {
 
   return (
     <Sheet open={open} openHandler={setOpen} height={150}>
-       <Divider width={12} />
+      <Divider width={12} />
       <View style={styles.row}>
         <Image style={styles.image} source={{ uri: image }} />
         <Divider width={20} />

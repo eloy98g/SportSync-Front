@@ -1,13 +1,16 @@
 const isPlayer = (userGid: number, teams: []) => {
-  let player = false;
-  teams.forEach((team: any) => {
-    team.players.forEach((player: any) => {
-      if (player.gid === userGid) {
-        player = true;
+  let aux = false;
+
+  for (const team of teams as any) {
+    for (const player of team.players) {
+      if (player.gid == userGid) {
+        console.log("CHANED");
+        aux = true;
       }
-    });
-  });
-  return player;
+    }
+  }
+
+  return aux;
 };
 
 export default isPlayer;

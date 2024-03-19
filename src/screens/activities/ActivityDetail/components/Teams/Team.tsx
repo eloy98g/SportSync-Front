@@ -30,19 +30,14 @@ const Team = ({ data, side, status, teamSize }: Props) => {
     { alignItems: side === "left" ? "flex-start" : "flex-end" },
   ];
 
-  console.log('teamSize',teamSize)
-  console.log('BEFORE data.length',players.length)
   let newData = players;
   if (status === "pending" && players.length < teamSize) {
-    console.log('inside')
     const elementosFaltantes = teamSize - players.length;
     for (let i = 0; i < elementosFaltantes; i++) {
       newData.push({ gid: null });
     }
   }
-
-  console.log('AFTER data.length',players.length)
-  console.log('newData',newData.length)
+  
   return (
     <View style={styles.container}>
       <View style={wrapperStyle}>

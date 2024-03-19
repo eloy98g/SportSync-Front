@@ -20,7 +20,7 @@ const fetchUser = createAsyncThunk(
     // }
     const user = userGid === 1 ? USER_1 : USER_2;
 
-    return mapUser(user);
+    return mapUser(USER_1);
   }
 );
 

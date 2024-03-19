@@ -1,20 +1,62 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState, useEffect } from "react";
+import { useWindowDimensions } from "react-native";
+
+// Components
+import Divider from "../../../../../components/common/Divider";
+import Sheet from "../../../../../components/common/Sheet";
+import Actions from "./components/Actions";
+import Comment from "./components/Comment";
+import PlayerList from "./components/PlayerList";
+import Rating from "./components/Rating";
+import Wrapper from "./components/Wrapper";
 
 interface Props {
-  user: any;
+  userGid: number;
   open: boolean;
   setOpen: (T: any) => void;
+  data: any;
+  selectedUser?: number;
 }
 
-const ReviewSheet = () => {
+const ReviewSheet = ({ userGid, open, setOpen, data, selectedUser }: Props) => {
+  const height = useWindowDimensions().height;
+  const [review, setReview] = useState({
+    players: selectedUser ? [selectedUser] : [],
+    rating: null,
+    comment: "",
+    reviewer: userGid,
+  });
+
+  useEffect(() => {
+    const playerGids = data.teamPlayers.flatMap((team: any) =>
+      team.players.map((player: any) => player.gid)
+    );
+    setReview((prevState: any) => ({ ...prevState, players: playerGids }));
+  }, []);
+
   return (
-    <View>
-      <Text></Text>
-    </View>
-  )
-}
+    <Sheet open={open} openHandler={setOpen} height={height - 100}>
+      <Wrapper>
+        <Divider height={12} />
+        {!selectedUser && (
+          <>
+            <PlayerList
+              data={data.teamPlayers}
+              review={review}
+              setReview={setReview}
+            />
+            <Divider height={12} />
+          </>
+        )}
+        <Rating />
+        <Divider height={12} />
+        <Comment />
+        <Divider height={12} />
+        <Actions />
+        <Divider height={12} />
+      </Wrapper>
+    </Sheet>
+  );
+};
 
-export default ReviewSheet
-
-const styles = StyleSheet.create({})
+export default ReviewSheet;

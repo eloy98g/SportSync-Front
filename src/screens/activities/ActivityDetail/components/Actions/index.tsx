@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
@@ -9,19 +9,25 @@ import Card from "../../../../../components/common/Card";
 // Theme
 import colors from "../../../../../theme/colors";
 import shareActivity from "../../methods/shareActivity";
+import ReviewSheet from "../ReviewSheet";
 
 interface Props {
   data: any;
   playerView?: boolean;
+  userGid?: number;
 }
 
-const Actions = ({ data, playerView }: Props) => {
+const Actions = ({ data, playerView, userGid }: Props) => {
+  const [reviewOpen, setReviewOpen] = useState(false);
   const chatHandler = () => {};
   const shareHandler = async () => {
     await shareActivity(data);
   };
 
-  const reviewHandler = () => {};
+  console.log('actions playerView',playerView)
+  const reviewHandler = () => {
+    setReviewOpen(true);
+  };
 
   return (
     <Card border={false}>
@@ -58,6 +64,12 @@ const Actions = ({ data, playerView }: Props) => {
           </>
         )}
       </View>
+      <ReviewSheet
+        open={reviewOpen}
+        setOpen={setReviewOpen}
+        data={data}
+        userGid={userGid}
+      />
     </Card>
   );
 };
