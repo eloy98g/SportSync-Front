@@ -55,6 +55,8 @@ const ActionSheet = ({ user, open, data, setOpen }: Props) => {
   return (
     <Sheet open={open} openHandler={setOpen} height={150}>
       <Divider width={12} />
+
+      {/* TODO: Convert this component to Player.Horizontal */}
       <View style={styles.row}>
         <Image style={styles.image} source={{ uri: image }} />
         <Divider width={20} />
