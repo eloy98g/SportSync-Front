@@ -29,7 +29,7 @@ const PublicActivity = (props: Activity) => {
   } = props;
   const { color, name } = sport;
   const navigation = useNavigation();
-  
+
   // TODO calcular distancia (obtener localizacion)
   const distance = "a 500m";
 
@@ -41,10 +41,7 @@ const PublicActivity = (props: Activity) => {
   };
 
   return (
-    <TouchableOpacity
-      onPress={activityHandler}
-      style={[styles.container, { backgroundColor: color || colors.primary }]}
-    >
+    <TouchableOpacity onPress={activityHandler} style={styles.container}>
       <View style={{ flex: 1 }}>
         <View style={styles.row}>
           <Text style={styles.title}>{name}</Text>
@@ -78,6 +75,7 @@ const styles = StyleSheet.create({
     height: 90,
     borderRadius: 12,
     padding: 10,
+    backgroundColor: colors.secondary
   },
   row: {
     flexDirection: "row",
