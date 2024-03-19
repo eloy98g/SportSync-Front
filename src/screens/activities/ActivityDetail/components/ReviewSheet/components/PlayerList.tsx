@@ -38,6 +38,7 @@ const PlayerList = ({ data, review, setReview }: Props) => {
         {data.map((team: any) => (
           <>
             <Text style={styles.text}>{team.name}</Text>
+            <Divider height={6} />
             <ScrollView
               key={team.name}
               horizontal
