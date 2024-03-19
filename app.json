@@ -2,6 +2,7 @@
   "expo": {
     "name": "Sport Up",
     "slug": "sport-up",
+    "scheme": "sportup",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/logos/logo.png",

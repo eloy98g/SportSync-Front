@@ -12,13 +12,13 @@ import ChatListScreen from "../screens/social/ChatListScreen";
 import ChatScreen from "../screens/social/ChatScreen";
 import SportStats from "../screens/activities/SportStats";
 import ActivityDetail from "../screens/activities/ActivityDetail";
+import EditProfile from "../screens/user/EditProfile";
 
 // Components
 import Footer from "../components/Footer";
 
 // Hooks
 import { useAppSelector } from "../hooks";
-import EditProfile from "../screens/user/EditProfile";
 
 const Stack = createStackNavigator();
 

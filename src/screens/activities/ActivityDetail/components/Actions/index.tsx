@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Alert, Share, StyleSheet, View } from "react-native";
 
 // Components
 import MainButton from "../../../../../components/common/buttons/MainButton";
@@ -8,10 +8,31 @@ import Card from "../../../../../components/common/Card";
 
 // Theme
 import colors from "../../../../../theme/colors";
+import getDateWithDuration from "../../../../../utils/date/getDateWithDuration";
 
 const Actions = ({ data }: any) => {
+  const { startDate, duration, name, description } = data;
   const chatHandler = () => {};
-  const shareHandler = () => {};
+  const shareHandler = async () => {
+    const date = getDateWithDuration(startDate, duration);
+    try {
+      const result = await Share.share({
+        title: name,
+        message: `*${name}*\n\n📅 ${date}\n💬 ${description}\n🔗 https://eloygomez.dev/`,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error: any) {
+      Alert.alert(error.message);
+    }
+  };
   const reviewHandler = () => {};
   return (
     <Card border={false}>
