@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import * as Linking from "expo-linking";
 import { StyleSheet, Text, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -37,6 +38,23 @@ const SplashScreen = () => {
   useEffect(() => {
     splashHandler();
   }, []);
+
+  
+  useEffect(() => {
+    const handleDeepLink = ({ url }: any) => {
+      const { path, queryParams } = Linking.parse(url);
+
+      if (path === "sportup" && queryParams?.gid) {
+        navigation.navigate(
+          "ActivityDetail" as never,
+          { gid: queryParams.gid } as never
+        );
+      }
+    };
+
+    Linking.addEventListener("url", handleDeepLink);
+  }, []);
+
 
   return (
     <Screen>
