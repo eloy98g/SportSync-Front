@@ -50,7 +50,7 @@ const ReviewSheet = ({ userGid, open, setOpen, data, selectedUser }: Props) => {
         )}
         <Rating rating={review.rating} setReview={setReview} />
         <Divider height={24} />
-        <Comment />
+        <Comment comment={review.comment} setReview={setReview} />
         <Divider height={24} />
         <Actions />
         <Divider height={12} />

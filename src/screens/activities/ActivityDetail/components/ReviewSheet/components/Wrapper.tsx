@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import Divider from "../../../../../../components/common/Divider";
 
 // Theme
@@ -10,8 +10,11 @@ const Wrapper = ({ children }: any) => {
   return (
     <View style={styles.container}>
       <Divider height={12} />
-      <Text style={styles.title}>¡Deja una valoración!</Text>
-      {children}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={styles.title}>¡Deja una valoración!</Text>
+        {children}
+        <Divider height={80} />
+      </ScrollView>
     </View>
   );
 };
