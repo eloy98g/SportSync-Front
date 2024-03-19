@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useWindowDimensions } from "react-native";
 
 // Components
-import Divider from "../../../../../components/common/Divider";
-import Sheet from "../../../../../components/common/Sheet";
+import BackHeader from "../../../components/BackHeader";
+import Screen from "../../../components/common/Screen";
+import Divider from "../../../components/common/Divider";
+import PlayerList from "./components/PlayerList";
 import Actions from "./components/Actions";
 import Comment from "./components/Comment";
-import PlayerList from "./components/PlayerList";
 import Rating from "./components/Rating";
 import Wrapper from "./components/Wrapper";
 
-interface Props {
-  userGid: number;
-  open: boolean;
-  setOpen: (T: any) => void;
-  data: any;
-  selectedUser?: number;
-}
+const Review = ({ route }: any) => {
 
-const ReviewSheet = ({ userGid, open, setOpen, data, selectedUser }: Props) => {
-  const height = useWindowDimensions().height;
+  console.log('route.parms',route.parms)
+  const { userGid, data, selectedUser } = route.params;
   const [review, setReview] = useState({
     players: selectedUser ? [selectedUser] : [],
     rating: null,
@@ -35,7 +29,8 @@ const ReviewSheet = ({ userGid, open, setOpen, data, selectedUser }: Props) => {
   }, []);
 
   return (
-    <Sheet open={open} openHandler={setOpen} height={height - 100}>
+    <Screen>
+      {/* <BackHeader title={"Valoración"} /> */}
       <Wrapper>
         <Divider height={12} />
         {!selectedUser && (
@@ -52,11 +47,11 @@ const ReviewSheet = ({ userGid, open, setOpen, data, selectedUser }: Props) => {
         <Divider height={24} />
         <Comment comment={review.comment} setReview={setReview} />
         <Divider height={24} />
-        <Actions />
+        <Actions review={review} />
         <Divider height={12} />
       </Wrapper>
-    </Sheet>
+    </Screen>
   );
 };
 
-export default ReviewSheet;
+export default Review;

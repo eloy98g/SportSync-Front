@@ -1,12 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, Image, View } from "react-native";
 
-// Components
-import Divider from "../../../../../../components/common/Divider";
-
 // Theme
-import colors from "../../../../../../theme/colors";
-import { family } from "../../../../../../theme/fonts";
+import colors from "../../../../theme/colors";
+import { family } from "../../../../theme/fonts";
 
 interface Props {
   data: any;
@@ -24,7 +21,6 @@ const Player = ({ data, onPress, selected }: Props) => {
   return (
     <TouchableOpacity style={containerStyle} onPress={onPress}>
       <Image style={styles.image} source={{ uri: image }} />
-
       <View style={styles.textContainer}>
         <Text style={textStyle}>{name}</Text>
       </View>

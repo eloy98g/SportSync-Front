@@ -2,13 +2,13 @@ import React from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 
 // Components
-import Divider from "../../../../../../components/common/Divider";
+import Divider from "../../../../components/common/Divider";
 import Player from "./Player";
 import Title from "./Title";
 
 // Theme
-import colors from "../../../../../../theme/colors";
-import { family } from "../../../../../../theme/fonts";
+import colors from "../../../../theme/colors";
+import { family } from "../../../../theme/fonts";
 
 interface Props {
   data: any;

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import MainButton from "../../../../../components/common/buttons/MainButton";
@@ -9,7 +10,6 @@ import Card from "../../../../../components/common/Card";
 // Theme
 import colors from "../../../../../theme/colors";
 import shareActivity from "../../methods/shareActivity";
-import ReviewSheet from "../ReviewSheet";
 
 interface Props {
   data: any;
@@ -18,15 +18,15 @@ interface Props {
 }
 
 const Actions = ({ data, playerView, userGid }: Props) => {
-  const [reviewOpen, setReviewOpen] = useState(false);
+  const navigation = useNavigation();
+
   const chatHandler = () => {};
   const shareHandler = async () => {
     await shareActivity(data);
   };
 
-  console.log('actions playerView',playerView)
   const reviewHandler = () => {
-    setReviewOpen(true);
+    navigation.navigate("Review" as never, { userGid, data } as never);
   };
 
   return (
@@ -64,12 +64,6 @@ const Actions = ({ data, playerView, userGid }: Props) => {
           </>
         )}
       </View>
-      <ReviewSheet
-        open={reviewOpen}
-        setOpen={setReviewOpen}
-        data={data}
-        userGid={userGid}
-      />
     </Card>
   );
 };

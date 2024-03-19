@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
-import Divider from "../../../../../../components/common/Divider";
-import TextArea from "../../../../../../components/common/inputs/TextArea";
+import Divider from "../../../../components/common/Divider";
+import TextArea from "../../../../components/common/inputs/TextArea";
 import Title from "./Title";
 
 const Comment = ({ comment, setReview }: any) => {

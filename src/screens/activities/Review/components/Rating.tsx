@@ -1,13 +1,13 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Star } from "lucide-react-native";
 
 // Components
-import Divider from "../../../../../../components/common/Divider";
+import Divider from "../../../../components/common/Divider";
+import Title from "./Title";
 
 // Theme
-import colors from "../../../../../../theme/colors";
-import Title from "./Title";
+import colors from "../../../../theme/colors";
 
 const Rating = ({ rating, setReview }: any) => {
   const ratingHandler = (number: number) => {
