@@ -32,13 +32,13 @@ const MapScreen = () => {
   const radiusHandler = ({ value, gid }: any) => {
     setRadius({ value, gid });
   };
-  
+
   return (
     <Screen>
       <BackHeader title={"Selecciona tu zona"} />
       <View style={styles.container}>
         <MapView
-          style={{flex:1}}
+          style={{ flex: 1 }}
           initialRegion={INITIAL_REGION}
           provider={PROVIDER_GOOGLE}
           showsUserLocation

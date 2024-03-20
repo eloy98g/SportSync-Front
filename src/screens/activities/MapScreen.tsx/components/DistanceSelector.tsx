@@ -66,5 +66,7 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     paddingHorizontal: 12,
+    width: "100%",
+    height: 46,
   },
 });
