@@ -20,7 +20,7 @@ const MapScreen = () => {
       <View style={styles.container}>
         <MapView
           style={StyleSheet.absoluteFill}
-          // initialRegion={INITIAL_REGION}
+          initialRegion={INITIAL_REGION}
           provider={PROVIDER_GOOGLE}
         />
       </View>
@@ -32,7 +32,8 @@ export default MapScreen;
 
 const styles = StyleSheet.create({
   container: {
-    width:"100%",height: "100%",
+    width: "100%",
+    height: "100%",
     paddingTop: 80,
   },
 });
