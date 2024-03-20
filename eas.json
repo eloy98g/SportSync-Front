@@ -9,7 +9,8 @@
     },
     "apk": {
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "image": "stable"
       }
     },
     "test": {
