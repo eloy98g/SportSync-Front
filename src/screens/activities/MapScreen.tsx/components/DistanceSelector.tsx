@@ -39,7 +39,7 @@ const DistanceSelector = ({ onPress, selected }: Props) => {
       </ScrollView>
       <Divider height={24} />
       <View style={styles.wrapper}>
-        <MainButton title="Aceptar" />
+        <MainButton title="Aceptar" fontSize={18}/>
       </View>
     </View>
   );
