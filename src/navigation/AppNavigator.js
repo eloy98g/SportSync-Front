@@ -12,6 +12,7 @@ import ChatListScreen from "../screens/social/ChatListScreen";
 import ChatScreen from "../screens/social/ChatScreen";
 import SportStats from "../screens/activities/SportStats";
 import ActivityDetail from "../screens/activities/ActivityDetail";
+import MapScreen from "../screens/activities/MapScreen.tsx";
 import EditProfile from "../screens/user/EditProfile";
 import Review from "../screens/activities/Review";
 
@@ -57,6 +58,7 @@ const AppNavigator = () => {
         <Stack.Screen name="ActivityDetail" component={ActivityDetail} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="Review" component={Review} />
+        <Stack.Screen name="MapScreen" component={MapScreen} />
       </Stack.Navigator>
       {loggedIn && <Footer />}
     </NavigationContainer>

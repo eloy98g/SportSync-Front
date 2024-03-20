@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
+  "expoServerPort": 8081,
   "packagerPort": 8081,
   "webpackServerPort": null,
   "expoServerNgrokUrl": "https://ab-yxy.eloy98g.front.exp.direct",
   "packagerNgrokUrl": "https://ab-yxy.eloy98g.front.exp.direct",
-  "ngrokPid": 45301,
+  "ngrokPid": 63942,
   "packagerPid": null
 }

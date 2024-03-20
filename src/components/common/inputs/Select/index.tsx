@@ -36,9 +36,9 @@ const Select = ({ value, setValue, data, placeholder }: Props) => {
 
   const title = value || placeholder;
   const icon = opened ? (
-    <ChevronUp color={colors.black} size={14} />
+    <ChevronUp color={colors.black} size={18} />
   ) : (
-    <ChevronDown color={colors.black} size={14} />
+    <ChevronDown color={colors.black} size={18} />
   );
 
   return (
