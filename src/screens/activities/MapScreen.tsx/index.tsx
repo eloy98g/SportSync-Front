@@ -4,10 +4,12 @@ import MapView, { Marker, PROVIDER_GOOGLE, Circle } from "react-native-maps";
 
 // Components
 import BackHeader from "../../../components/BackHeader";
+import Slider from "../../../components/common/inputs/Slider";
 import Screen from "../../../components/common/Screen";
 
 // Theme
 import colors, { rgbaPrimary } from "../../../theme/colors";
+import DistanceSelector from "./components/DistanceSelector";
 
 // TODO: this must be user's location
 const INITIAL_REGION = {
@@ -19,7 +21,7 @@ const INITIAL_REGION = {
 
 const MapScreen = () => {
   const [markerPosition, setMarkerPosition] = useState(INITIAL_REGION);
-  const [radius, setRadius] = useState(100);
+  const [radius, setRadius] = useState({ value: 500, gid: 1 });
 
   const handleMapPress = (event: any) => {
     const { coordinate } = event.nativeEvent;
@@ -27,12 +29,16 @@ const MapScreen = () => {
     setMarkerPosition(coordinate);
   };
 
+  const radiusHandler = ({ value, gid }: any) => {
+    setRadius({ value, gid });
+  };
+  
   return (
     <Screen>
       <BackHeader title={"Selecciona tu zona"} />
       <View style={styles.container}>
         <MapView
-          style={StyleSheet.absoluteFill}
+          style={{flex:1}}
           initialRegion={INITIAL_REGION}
           provider={PROVIDER_GOOGLE}
           showsUserLocation
@@ -48,7 +54,7 @@ const MapScreen = () => {
               />
               <Circle
                 center={markerPosition}
-                radius={radius}
+                radius={radius.value}
                 fillColor={rgbaPrimary(0.2)}
                 strokeColor={rgbaPrimary(0.9)}
                 strokeWidth={2}
@@ -56,6 +62,7 @@ const MapScreen = () => {
             </>
           )}
         </MapView>
+        <DistanceSelector onPress={radiusHandler} selected={radius.gid} />
       </View>
     </Screen>
   );
@@ -68,5 +75,10 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     paddingTop: 80,
+  },
+  radiusSelector: {
+    backgroundColor: colors.white,
+    padding: 40,
+    zIndex: 2,
   },
 });

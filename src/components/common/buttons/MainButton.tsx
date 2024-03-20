@@ -21,6 +21,7 @@ const MainButton = ({
   loading = false,
   fontSize = 16,
   height = 46,
+  ...props
 }) => {
   return (
     <TouchableOpacity
@@ -30,6 +31,7 @@ const MainButton = ({
       ]}
       onPress={active ? onPress : () => {}}
       activeOpacity={active ? 0.3 : 1}
+      {...props}
     >
       {loading ? (
         <ActivityIndicator size="small" color={textColor} />
