@@ -16,13 +16,15 @@ import { family } from "../../../../theme/fonts";
 // Utils
 import unixToDate from "../../../../utils/date/unixToDate";
 import Divider from "../../../../components/common/Divider";
+import Icon from "../../../../components/common/Icon";
+import getHour from "../../../../utils/date/getHour";
 
 const CurrentActivity = (props: Activity) => {
-  const { sport, name, type, startDate, gid } = props;
+  const { sport, name, type, startDate, duration, gid } = props;
   const navigation = useNavigation();
 
-  const typeText = type === "competitive" ? "Competitiva" : "normal";
   const date = unixToDate(startDate);
+  const hour = getHour(startDate);
 
   const activityHandler = () => {
     navigation.navigate("ActivityDetail" as never, { gid } as never);
@@ -31,14 +33,14 @@ const CurrentActivity = (props: Activity) => {
   return (
     <TouchableOpacity style={styles.container} onPress={activityHandler}>
       <Image style={styles.image} source={{ uri: sport.icon }} />
-      <Divider width={10}/>
+      <Divider width={8} />
+      <Icon icon={type} color={colors.black} size={16} />
+      <Divider width={8} />
       <View style={{ flex: 1 }}>
         <Text style={styles.name}>{name}</Text>
       </View>
-      <View style={{ width: 70 }}>
-        <Text style={styles.typeText}>{typeText}</Text>
-      </View>
-      <View style={{ width: 70 }}>
+      <Divider width={8} />
+      <View style={{ width: 90 }}>
         <Text style={styles.typeText}>{date}</Text>
       </View>
       <IconButton
