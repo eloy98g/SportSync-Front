@@ -34,8 +34,13 @@ const CurrentActivity = (props: Activity) => {
     <TouchableOpacity style={styles.container} onPress={activityHandler}>
       <Image style={styles.image} source={{ uri: sport.icon }} />
       <Divider width={8} />
-      <Icon icon={type} color={colors.black} size={16} />
-      <Divider width={8} />
+      {type === "competitive" && (
+        <>
+          {" "}
+          <Icon icon={type} color={colors.black} size={16} />
+          <Divider width={8} />
+        </>
+      )}
       <View style={{ flex: 1 }}>
         <Text style={styles.name}>{name}</Text>
       </View>
