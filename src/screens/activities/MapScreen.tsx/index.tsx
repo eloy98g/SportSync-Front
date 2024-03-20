@@ -5,8 +5,11 @@ import MapView, { Marker, PROVIDER_GOOGLE, Circle } from "react-native-maps";
 // Components
 import BackHeader from "../../../components/BackHeader";
 import Screen from "../../../components/common/Screen";
+
+// Theme
 import colors, { rgbaPrimary } from "../../../theme/colors";
 
+// TODO: this must be user's location
 const INITIAL_REGION = {
   latitude: 36.53485636626119,
   longitude: -6.293364831231988,
@@ -45,9 +48,9 @@ const MapScreen = () => {
               />
               <Circle
                 center={markerPosition}
-                radius={radius} // Change the radius as needed
-                fillColor={rgbaPrimary(0.2)} // Adjust color and opacity
-                strokeColor={rgbaPrimary(0.9)} // Adjust color and opacity
+                radius={radius}
+                fillColor={rgbaPrimary(0.2)}
+                strokeColor={rgbaPrimary(0.9)}
                 strokeWidth={2}
               />
             </>
