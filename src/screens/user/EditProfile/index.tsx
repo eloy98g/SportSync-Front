@@ -31,13 +31,13 @@ const EditProfile = () => {
         <Divider height={24} />
         <PersonalData editedUser={editedUser} setEditedUser={setEditedUser} />
         <Divider height={24} />
-        {/* <Title text="Preferencias de juego" />
+        <Title text="Preferencias de juego" />
         <Divider height={24} />
         <UserPreferences
           editedUser={editedUser}
           setEditedUser={setEditedUser}
         />
-        <Divider height={12} /> */}
+        <Divider height={12} />
         <MainButton onPress={saveData} title="Guardar cambios" fontSize={18} />
         <Divider height={60} />
       </ScrollView>
