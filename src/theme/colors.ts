@@ -13,4 +13,7 @@ const colors = {
   brown: "#AB6251",
 };
 
+export const rgbaPrimary = (opacity: number) =>
+  `rgba(44, 163, 208, ${opacity})`;
+
 export default colors;
