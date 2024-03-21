@@ -36,7 +36,6 @@ const CurrentActivity = (props: Activity) => {
       <Divider width={8} />
       {type === "competitive" && (
         <>
-          {" "}
           <Icon icon={type} color={colors.black} size={16} />
           <Divider width={8} />
         </>
