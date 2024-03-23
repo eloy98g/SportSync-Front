@@ -26,6 +26,7 @@ interface Props {
   image: ImageSourcePropType;
   filter?: boolean;
   marginBottom?: number;
+  onPress?: () => void
 }
 
 const ActionButton = ({
@@ -35,6 +36,7 @@ const ActionButton = ({
   image,
   filter = true,
   marginBottom,
+  onPress
 }: Props) => {
   const width = useWindowDimensions().width;
   const getSizeStyles = () => {
@@ -61,6 +63,7 @@ const ActionButton = ({
   return (
     <TouchableOpacity
       style={[styles.container, getSizeStyles(), { marginBottom }]}
+      onPress={onPress}
     >
       <ImageBackground style={styles.background} source={image}>
         {filter && <View style={styles.opacity} />}

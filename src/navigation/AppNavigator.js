@@ -15,6 +15,7 @@ import ActivityDetail from "../screens/activities/ActivityDetail";
 import MapScreen from "../screens/activities/MapScreen.tsx";
 import EditProfile from "../screens/user/EditProfile";
 import Review from "../screens/activities/Review";
+import CodeScanScreen from "../screens/activities/CodeScanScreen"
 
 // Components
 import Footer from "../components/Footer";
@@ -59,6 +60,7 @@ const AppNavigator = () => {
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="Review" component={Review} />
         <Stack.Screen name="MapScreen" component={MapScreen} />
+        <Stack.Screen name="CodeScanScreen" component={CodeScanScreen} />
       </Stack.Navigator>
       {loggedIn && <Footer />}
     </NavigationContainer>

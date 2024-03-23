@@ -1,4 +1,4 @@
-const SECTIONS = [
+const SECTIONS = (navigation: any) => [
   {
     title: "Acciones rápidas",
     data: [
@@ -28,9 +28,10 @@ const SECTIONS = [
       },
       {
         size: "normal",
-        title: "Escanear QR",
+        title: "Escanear Código",
         filter: false,
-        image: require("../../assets/images/actionButtons/find.jpg"),
+        image: require("../../assets/images/actionButtons/code.png"),
+        onPress: () => navigation.navigate("CodeScanScreen"),
       },
     ],
   },

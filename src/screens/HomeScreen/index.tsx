@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, ScrollView, View, StatusBar } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import PublicActivitiesList from "./components/publicActivities/PublicActivitiesList";
@@ -17,6 +18,7 @@ import { PHONE } from "../../theme/breakPoints";
 import Version from "../../components/Version";
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   return (
     <Screen>
       <View style={styles.content}>
@@ -26,13 +28,13 @@ const HomeScreen = () => {
           <Divider height={20} />
           <CurrentActivitiesList />
           <Divider height={20} />
-          {SECTIONS.map((section, index) => (
+          {SECTIONS(navigation).map((section, index) => (
             <React.Fragment key={index}>
               {index !== 0 && <Divider height={20} />}
               <HomeSection title={section.title} data={section.data} />
             </React.Fragment>
           ))}
-           <Divider height={50} />
+          <Divider height={50} />
           <Version />
           <Divider height={80} />
         </ScrollView>
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
   scroll: {
     width: "100%",
     maxWidth: PHONE,
-    height: 1
+    height: 1,
   },
 });
 
