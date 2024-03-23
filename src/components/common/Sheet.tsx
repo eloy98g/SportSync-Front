@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { View, Text } from "react-native";
 import { Sheet as TamaguiSheet } from "@tamagui/sheet";
 
 // Theme
@@ -6,25 +7,24 @@ import colors from "../../theme/colors";
 
 interface Props {
   open: boolean;
+  modal: boolean;
   openHandler: (T: boolean) => void;
   children: any;
-  height: number;
 }
 
 const Sheet = (props: Props) => {
-  const { open, openHandler, children, height } = props;
+  const { open, openHandler, children, modal } = props;
   const [position, setPosition] = useState(0);
 
   return (
     <TamaguiSheet
       dismissOnSnapToBottom
       forceRemoveScrollEnabled={open}
-      modal
+      modal={modal}
       open={open}
-      snapPoints={[height, 0]}
-      snapPointsMode={"constant"}
-      position={position}
-      onPositionChange={setPosition}
+      snapPointsMode={"fit"}
+      // position={position}
+      // onPositionChange={setPosition}
       disableDrag
       onOpenChange={openHandler}
       zIndex={100_000}
@@ -53,4 +53,7 @@ const Sheet = (props: Props) => {
   );
 };
 
+Sheet.defaultProps = {
+  modal: true,
+};
 export default Sheet;

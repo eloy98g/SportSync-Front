@@ -14,7 +14,7 @@ const InfoSheet = ({ open, setOpen, children }: Props) => {
   };
 
   return (
-    <Sheet open={open} openHandler={openHandler} height={240}>
+    <Sheet open={open} openHandler={openHandler} modal>
       {children}
     </Sheet>
   );
