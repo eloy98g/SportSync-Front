@@ -32,7 +32,7 @@ const CodeScanScreen = () => {
     if (value) {
       setStatus("loading");
 
-      // Api call for getting data of user trying to play an activity
+      // TODO: Api call for getting data of user trying to play an activity
 
       setTimeout(() => {
         setValue(null);
