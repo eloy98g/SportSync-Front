@@ -41,7 +41,7 @@ const AuthScreen = ({ navigation }: any) => {
       <Container>
         <Hero />
         <MainSection setSection={setSection} setOpen={setOpen} />
-        <Sheet open={open} openHandler={setOpen} height={400}>
+        <Sheet open={open} openHandler={setOpen} modal={false}>
           {sectionComponents[section]}
         </Sheet>
       </Container>
