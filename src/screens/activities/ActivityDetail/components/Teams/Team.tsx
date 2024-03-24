@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: family.normal,
-    fontsize: 20,
+    fontSize: 20,
     color: colors.grey,
   },
   titleWrapper: {

@@ -9,7 +9,9 @@ const TeamNames = ({ teams }: any) => {
   return (
     <View style={styles.container}>
       {teams.map((team: any) => (
-        <Text style={styles.name}>{team.name}</Text>
+        <Text key={team.name} style={styles.name}>
+          {team.name}
+        </Text>
       ))}
     </View>
   );
