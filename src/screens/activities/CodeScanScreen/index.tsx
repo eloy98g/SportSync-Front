@@ -10,18 +10,23 @@ import Screen from "../../../components/common/Screen";
 // Hooks
 import { useAppSelector } from "../../../hooks";
 
+// Placeholder
+import JOIN_CONFIRMATION from "../../../api/placeholders/JOIN_CONFIRMATION";
+
+// States
+import CodeError from "./states/CodeError";
+import CodeSuccess from "./states/CodeSuccess";
+import Loading from "./states/Loading";
+
 // Theme
 import colors from "../../../theme/colors";
-import CodeError from "./components/CodeError";
-import CodeSuccess from "./components/CodeSuccess";
-import Loading from "./components/Loading";
 
 type STATUS = "idle" | "loading" | "success" | "error";
 
 const CodeScanScreen = () => {
   const [value, setValue] = useState<string | null>(null);
-  const [status, setStatus] = useState<STATUS>("idle");
-  const [activity, setActivity] = useState();
+  const [status, setStatus] = useState<STATUS>("error");
+  const [activity, setActivity] = useState(JOIN_CONFIRMATION);
   const userGid = useAppSelector((state) => state.user.user.gid);
 
   const codeHandler = (val: string) => {

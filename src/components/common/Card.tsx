@@ -5,7 +5,12 @@ import { StyleSheet, View, Text } from "react-native";
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
-const Card = ({ children, title, border = true }: any) => (
+interface Props {
+  children: any;
+  title?: string;
+  border?: boolean;
+}
+const Card = ({ children, title, border = true }: Props) => (
   <View
     style={[
       styles.container,
@@ -23,7 +28,6 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     padding: 12,
-
     borderRadius: 8,
   },
   title: {
