@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
+import { ScrollView } from 'react-native-virtualized-view';
 
 // Components
 import TouchableInfoContainer from "./components/TouchableInfoContainer";
