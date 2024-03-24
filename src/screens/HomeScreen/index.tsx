@@ -1,27 +1,21 @@
 import React from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import PublicActivitiesList from "./components/publicActivities/PublicActivitiesList";
 import CurrentActivitiesList from "./components/currentActivities/CurrentActivitiesList";
-import Screen from "../../components/common/Screen";
-import Divider from "../../components/common/Divider";
-import HomeSection from "./components/HomeSection";
-import Header from "../../components/Header";
-
-// Sections
-import SECTIONS from "./sections";
-
-// Theme
-import { PHONE } from "../../theme/breakPoints";
-import Version from "../../components/Version";
 import QuickActions from "./components/sections/QuickActions";
 import SocialActions from "./components/sections/SocialActions";
 import OtherActions from "./components/sections/OtherActions";
+import Screen from "../../components/common/Screen";
+import Divider from "../../components/common/Divider";
+import Version from "../../components/Version";
+import Header from "../../components/Header";
+
+// Theme
+import { PHONE } from "../../theme/breakPoints";
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
   return (
     <Screen>
       <View style={styles.content}>
