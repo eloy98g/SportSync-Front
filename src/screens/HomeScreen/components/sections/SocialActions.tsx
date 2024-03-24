@@ -17,7 +17,7 @@ const SocialActions = () => {
   const largeHeight = itemWidth * 2 + dividerSize;
   
   const searchFriendHandler = () => {
-    // navigation.navigate("FindFriendScreen" as never);
+    navigation.navigate("FindUserScreen" as never);
   };
   const createActivityHandler = () => {
     // navigation.navigate("CreateActivity" as never);
