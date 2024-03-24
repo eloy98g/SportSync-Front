@@ -13,7 +13,7 @@ import { family } from "../../../theme/fonts";
 
 interface Props {
   title: string;
-  children: any;
+  children?: any;
 }
 
 const HomeSection = ({ title, children }: Props) => {
