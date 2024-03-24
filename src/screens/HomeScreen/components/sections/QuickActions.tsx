@@ -10,14 +10,16 @@ import HomeSection from "../HomeSection";
 const QuickActions = () => {
   const width = useWindowDimensions().width;
   const navigation = useNavigation();
-  const uploadScoreHandler = () => {};
-  const participationHandler = () => {
-    navigation.navigate("CodeScanScreen" as never);
-  };
 
   const paddingHorizontal = 24;
   const dividerWidth = 20;
   const itemWidth = (width - paddingHorizontal) / 2 - dividerWidth;
+
+  const uploadScoreHandler = () => {};
+
+  const participationHandler = () => {
+    navigation.navigate("CodeScanScreen" as never);
+  };
 
   return (
     <HomeSection title="Acciones rápidas">
@@ -31,6 +33,8 @@ const QuickActions = () => {
         />
         <Divider width={dividerWidth} />
         <ActionButton
+          width={itemWidth}
+          height={itemWidth}
           title="Registrar participación"
           image={require("../../../../assets/images/actionButtons/code.png")}
           onPress={participationHandler}
