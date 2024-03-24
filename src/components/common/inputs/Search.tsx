@@ -11,9 +11,10 @@ import { family } from "../../../theme/fonts";
 
 interface Props {
   onSearch: (T: any) => void;
+  placeholder?: string;
 }
 
-const Search = ({ onSearch }: Props) => {
+const Search = ({ onSearch, placeholder }: Props) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const Search = ({ onSearch }: Props) => {
       <Divider width={12} />
       <TextInput
         onChangeText={setSearch}
-        placeholder="Buscar por nombre de usuario"
+        placeholder={placeholder}
         value={search}
         style={styles.input}
       />
