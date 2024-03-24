@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import LottieView from "lottie-react-native";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const JoinAnimation = () => {
   const [shown, setShown] = useState<"none" | "flex">("flex");
   const animationRef = useRef<LottieView>(null);
+
   useEffect(() => {
     animationRef.current?.play();
   }, []);
+
   return (
     <View style={styles.container}>
       <LottieView

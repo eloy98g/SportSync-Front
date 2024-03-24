@@ -14,6 +14,7 @@ interface Props {
   duration: number;
   description: string;
 }
+
 const ActivityData = ({ hour, duration, description }: Props) => {
   return (
     <>

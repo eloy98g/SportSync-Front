@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 // Components
 import Divider from "../../../../components/common/Divider";
@@ -21,7 +21,7 @@ interface Props {
 }
 
 const CodeSuccess = ({ data }: Props) => {
-  const { gid, admin, name, description, duration, startDate } = data;
+  const { gid, admin, description, duration, startDate } = data;
 
   const hour = getHour(startDate);
 

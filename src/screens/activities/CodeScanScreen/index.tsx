@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
-import JOIN_CONFIRMATION from "../../../api/placeholders/JOIN_CONFIRMATION";
 
 // Components
 import BackHeader from "../../../components/BackHeader";
@@ -10,6 +9,9 @@ import Screen from "../../../components/common/Screen";
 
 // Hooks
 import { useAppSelector } from "../../../hooks";
+
+// Placeholder
+import JOIN_CONFIRMATION from "../../../api/placeholders/JOIN_CONFIRMATION";
 
 // States
 import CodeError from "./states/CodeError";
