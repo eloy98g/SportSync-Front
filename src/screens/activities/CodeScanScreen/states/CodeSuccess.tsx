@@ -1,21 +1,20 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import LottieView from "lottie-react-native";
 
 // Components
-import TouchableInfo from "../../ActivityDetail/components/TouchableInfoContainer/TouchableInfo"; // TODO: make touchable info reusable component
 import Divider from "../../../../components/common/Divider";
 import Card from "../../../../components/common/Card";
+import ActivityData from "../components/ActivityData";
+import JoinAnimation from "../components/JoinAnimation";
+import Actions from "../components/Actions";
+import Admin from "../components/Admin";
 
 // Theme
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
-import JOIN_CONFIRMATION from "../../../../api/placeholders/JOIN_CONFIRMATION";
+
+// Utils
 import getHour from "../../../../utils/date/getHour";
-import ActivityData from "../componentss/ActivityData";
-import Admin from "../componentss/Admin";
-import Actions from "../componentss/Actions";
-import JoinAnimation from "../componentss/JoinAnimation";
 
 interface Props {
   data: any;

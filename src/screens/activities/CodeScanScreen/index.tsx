@@ -23,7 +23,7 @@ type STATUS = "idle" | "loading" | "success" | "error";
 
 const CodeScanScreen = () => {
   const [value, setValue] = useState<string | null>(null);
-  const [status, setStatus] = useState<STATUS>("idle");
+  const [status, setStatus] = useState<STATUS>("error");
   const [activity, setActivity] = useState(JOIN_CONFIRMATION);
   const userGid = useAppSelector((state) => state.user.user.gid);
 

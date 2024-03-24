@@ -21,8 +21,15 @@ const CodeError = ({ data, setStatus }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>La actividad o el código no es correcto</Text>
-      <MainButton title="Intentalo de nuevo" onPress={handleBack} height={46} />
+      <Text style={styles.title}>La actividad o el código no es correcto</Text>
+      <Divider height={40} />
+      <View style={styles.buttonContainer}>
+        <MainButton
+          title="Intentalo de nuevo"
+          onPress={handleBack}
+          height={46}
+        />
+      </View>
     </View>
   );
 };
@@ -36,10 +43,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.white,
+    paddingHorizontal: 12,
   },
-  text: {
+  title: {
     fontFamily: family.normal,
     color: colors.primary,
-    fontSize: 14,
+    fontSize: 24,
+    textAlign: "center",
+  },
+  buttonContainer: {
+    width: "100%",
+    height: 50,
+    paddingHorizontal: 24,
   },
 });
