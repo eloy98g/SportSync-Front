@@ -1,12 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { ArrowRight } from "lucide-react-native";
+
 // Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
+import Divider from "../../../../../components/common/Divider";
 
 interface Props {
-  icon: any;
+  icon?: any;
   title: string;
   onPress: () => void;
 }
@@ -15,6 +17,7 @@ const TouchableInfo = ({ icon, title, onPress }: Props) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       {icon}
+      {icon && <Divider width={12}/>}
       <View style={styles.titleWrapper}>
         <Text style={styles.text}>{title}</Text>
       </View>
@@ -32,13 +35,12 @@ const styles = StyleSheet.create({
     borderColor: colors.lightenGrey,
     borderRadius: 8,
     flexDirection: "row",
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     alignItems: "center",
     height: 50,
   },
   titleWrapper: {
     flex: 1,
-    paddingLeft: 12,
   },
   text: {
     fontFamily: family.normal,

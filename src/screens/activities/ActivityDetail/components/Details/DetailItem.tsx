@@ -12,7 +12,6 @@ interface Props {
   title: string;
   subtitle: string;
   size?: number;
-
 }
 
 const DetailItem = ({ title, subtitle, size = 24 }: Props) => {

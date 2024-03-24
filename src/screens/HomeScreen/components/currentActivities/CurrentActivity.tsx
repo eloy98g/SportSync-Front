@@ -44,9 +44,10 @@ const CurrentActivity = (props: Activity) => {
         <Text style={styles.name}>{name}</Text>
       </View>
       <Divider width={8} />
-      <View style={{ width: 90 }}>
-        <Text style={styles.typeText}>{date}</Text>
-      </View>
+      <Text style={styles.typeText}>
+        {hour}   {date}
+      </Text>
+      <Divider width={8} />
       <IconButton
         icon={<ArrowRight color={colors.grey} size={20} />}
         onPress={activityHandler}
