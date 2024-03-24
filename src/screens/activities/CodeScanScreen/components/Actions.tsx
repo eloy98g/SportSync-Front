@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Divider from "../../../../components/common/Divider";
@@ -9,8 +10,15 @@ interface Props {
 }
 
 const Actions = ({ activityGid }: Props) => {
-  const chatHandler = () => {};
-  const detailHandler = () => {};
+  const navigation = useNavigation();
+  const chatHandler = () =>
+    navigation.navigate("Chat" as never, { chatId: activityGid } as never);
+
+  const detailHandler = () =>
+    navigation.navigate(
+      "ActivityDetail" as never,
+      { gid: activityGid } as never
+    );
 
   return (
     <>
