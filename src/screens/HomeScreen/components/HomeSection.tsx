@@ -13,23 +13,15 @@ import { family } from "../../../theme/fonts";
 
 interface Props {
   title: string;
-  data?: any;
+  children: any;
 }
 
-const HomeSection = ({ title, data }: Props) => {
+const HomeSection = ({ title, children }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Divider height={10} />
-      <View style={{ flex: 1 }}>
-        <MasonryList
-          data={data}
-          numColumns={2}
-          keyExtractor={(item: any) => item.id}
-          renderItem={({ item }: any) => <ActionButton {...item} />}
-          style={{ alignItems: "flex-end" }}
-        />
-      </View>
+      <View style={{ flex: 1, }}>{children}</View>
     </View>
   );
 };

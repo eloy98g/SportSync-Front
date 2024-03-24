@@ -16,6 +16,9 @@ import SECTIONS from "./sections";
 // Theme
 import { PHONE } from "../../theme/breakPoints";
 import Version from "../../components/Version";
+import QuickActions from "./components/sections/QuickActions";
+import SocialActions from "./components/sections/SocialActions";
+import OtherActions from "./components/sections/OtherActions";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -28,12 +31,11 @@ const HomeScreen = () => {
           <Divider height={20} />
           <CurrentActivitiesList />
           <Divider height={20} />
-          {SECTIONS(navigation).map((section, index) => (
-            <React.Fragment key={index}>
-              {index !== 0 && <Divider height={20} />}
-              <HomeSection title={section.title} data={section.data} />
-            </React.Fragment>
-          ))}
+          <QuickActions />
+          <Divider height={20} />
+          <SocialActions />
+          <Divider height={20} />
+          <OtherActions />
           <Divider height={50} />
           <Version />
           <Divider height={80} />
