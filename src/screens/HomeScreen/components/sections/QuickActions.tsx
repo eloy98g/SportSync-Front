@@ -13,7 +13,7 @@ const QuickActions = () => {
 
   const paddingHorizontal = 24;
   const dividerWidth = 20;
-  const itemWidth = (width - paddingHorizontal) / 2 - dividerWidth;
+  const itemWidth = (width - paddingHorizontal - dividerWidth) / 2;
 
   const uploadScoreHandler = () => {};
 
