@@ -19,13 +19,12 @@ export default {
     icon: "https://cdn-icons-png.flaticon.com/512/4498/4498011.png",
   },
   type: "normal",
-  teams: 2,
   playersPerTeam: 5,
   closed: false,
   chat: 1,
   score: null,
   status: "pending",
-  teamPlayers: [
+  teams: [
     {
       name: "A",
       players: [

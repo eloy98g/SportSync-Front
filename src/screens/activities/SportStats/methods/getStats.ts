@@ -1,12 +1,14 @@
 import getStreakVictory from "./getStreakVictory";
 
-// TODO: remove any's
-const getStats = (activities = []) => {
+// Types
+import Activity from "../../../../store/types/Activity";
+
+const getStats = (activities: Activity[]) => {
   let victories = 0;
   let ties = 0;
   let loses = 0;
 
-  activities.map((item: any) => {
+  activities.map((item: Activity) => {
     switch (item.result.result) {
       case "victory":
         victories++;
@@ -20,7 +22,7 @@ const getStats = (activities = []) => {
     }
   });
   const sortedArray = activities.sort(
-    (a: any, b: any) => a.startDate - b.startDate
+    (a: Activity, b: Activity) => a.startDate - b.startDate
   );
   const lastActivityDate =
     sortedArray[sortedArray.length - 1]?.startDate || false;

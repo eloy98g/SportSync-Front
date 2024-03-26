@@ -21,12 +21,38 @@ export default [
       gid: 1,
       name: "Fútbol",
       icon: "https://cdn-icons-png.flaticon.com/512/4498/4498011.png",
-      color: "#4DD67C"
+      color: "#4DD67C",
     },
     type: "normal",
-    teams: 2,
+    teams: [
+      {
+        name: "A",
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
+      },
+      {
+        name: "B",
+        players: [
+          {
+            gid: 3,
+            name: "John Smith",
+            image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
+          },
+          {
+            gid: 4,
+            name: "John Smith",
+            image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
+          },
+        ],
+      },
+    ],
     playersPerTeam: 5,
-    currentPlayers: 4,
     status: "pending",
     chat: 4,
   },
@@ -55,9 +81,24 @@ export default [
       color: "#EDFF54",
     },
     type: "competitive",
-    teams: 2,
+    teams: [
+      {
+        name: "A",
+        players: [
+          {
+            gid: 2,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
+      },
+      {
+        name: "B",
+        players: [],
+      },
+    ],
     playersPerTeam: 1,
-    currentPlayers: 1,
     status: "pending",
     chat: 5,
   },
@@ -86,9 +127,24 @@ export default [
       icon: "https://cdn.icon-icons.com/icons2/2385/PNG/512/tennis_racket_icon_144086.png",
     },
     type: "normal",
-    teams: 2,
+    teams: [
+      {
+        name: "A",
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
+      },
+      {
+        name: "B",
+        players: [],
+      },
+    ],
     playersPerTeam: 1,
-    currentPlayers: 1,
     status: "pending",
     chat: 6,
   },
@@ -117,9 +173,24 @@ export default [
       color: "#EDFF54",
     },
     type: "competitive",
-    teams: 2,
+    teams: [
+      {
+        name: "A",
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
+      },
+      {
+        name: "B",
+        players: [],
+      },
+    ],
     playersPerTeam: 1,
-    currentPlayers: 1,
     status: "pending",
     chat: 6,
   },

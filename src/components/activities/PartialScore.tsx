@@ -5,24 +5,27 @@ import { StyleSheet, Text, View } from "react-native";
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
-// TODO: change any for a proper type
+// Types
+import Score from "../../store/types/activity/Score";
+import Slot from "../../store/types/activity/Slot";
+
 interface Props {
-  data: any;
+  data: Score;
 }
 
 const PartialScore = ({ data }: Props) => {
   const { scores, winner } = data;
   return (
     <View style={styles.container}>
-      {scores?.map((score: any) => (
+      {scores?.map((slot: Slot) => (
         <Text
-          key={score.team}
+          key={slot.team}
           style={{
             ...styles.baseScore,
-            ...(winner !== null && winner !== score.team && styles.loserScore),
+            ...(winner !== null && winner !== slot.team && styles.loserScore),
           }}
         >
-          {score.points}
+          {slot.points}
         </Text>
       ))}
     </View>

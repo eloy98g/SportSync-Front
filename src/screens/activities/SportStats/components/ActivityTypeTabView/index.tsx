@@ -10,12 +10,22 @@ import TabTitle from "./tabs/TabTitle";
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
+// Types
+import Activity from "../../../../../store/types/Activity";
+import TabRoute from "../../../../../store/types/others/TabRoute";
+
+interface Props {
+  activities: Activity[];
+  routes: TabRoute[];
+  currentTab: string;
+  setCurrentTab: (T: string) => void;
+}
 const ActivityTypeTabView = ({
   activities,
   routes,
   currentTab,
   setCurrentTab,
-}: any) => {
+}: Props) => {
   return (
     <Tabs
       defaultValue="all"
@@ -29,14 +39,14 @@ const ActivityTypeTabView = ({
     >
       <YStack>
         <Tabs.List
-        unstyled
+          unstyled
           disablePassBorderRadius
           loop={false}
           borderBottomLeftRadius={0}
           borderBottomRightRadius={0}
           paddingBottom={4}
         >
-          {routes.map((route: any) => (
+          {routes.map((route: TabRoute) => (
             <TabTitle
               key={route.key}
               currentTab={currentTab}
@@ -47,7 +57,7 @@ const ActivityTypeTabView = ({
           ))}
         </Tabs.List>
       </YStack>
-      {routes.map((route: any) => (
+      {routes.map((route: TabRoute) => (
         <Tabs.Content flex={1} key={route.key} value={route.key}>
           <TabContent data={activities} />
         </Tabs.Content>

@@ -5,19 +5,22 @@ import { StyleSheet, View } from "react-native";
 import PartialScore from "./PartialScore";
 import FinalScore from "./FinalScore";
 
-// TODO: change any for a proper type
+// Types
+import Result from "../../store/types/activity/Result";
+import Score from "../../store/types/activity/Score";
+
 interface Props {
-  result: any;
+  result: Result;
 }
 
 const Score = ({ result }: Props) => {
   const { partialScores, finalScores } = result;
   return (
     <View style={styles.scoreWrapper}>
-      {partialScores.map((score: any) => (
+      {partialScores.map((score: Score) => (
         <PartialScore key={score.slot} data={score} />
       ))}
-      {finalScores.map((score: any) => (
+      {finalScores.map((score: Score) => (
         <FinalScore key={score.slot} data={score} />
       ))}
     </View>

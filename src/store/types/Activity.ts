@@ -1,3 +1,4 @@
+import Result, { ResultType } from "./activity/Result";
 import Place from "./Place";
 
 export type ActivityType = "normal" | "competitive";
@@ -31,4 +32,5 @@ export default interface Activity {
   currentPlayers: number;
   status: ActivityStatus;
   chat: number;
+  result: Result;
 }

@@ -9,7 +9,7 @@ type SIZE = "small" | "normal";
 
 interface Props {
   text: string;
-  onPress: any;
+  onPress: () => void;
   size?: SIZE;
 }
 

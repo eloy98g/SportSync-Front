@@ -1,8 +1,10 @@
-const getStreakVictory = (activities = []) => {
-  activities.sort((a: any, b: any) => a.startDate - b.startDate);
+import Activity from "../../../../store/types/Activity";
+
+const getStreakVictory = (activities: Activity[]) => {
+  activities.sort((a: Activity, b: Activity) => a.startDate - b.startDate);
   let victoryStreak = 0;
 
-  activities.map((activity: any) => {
+  activities.map((activity: Activity) => {
     if (activity.result.result === "victory") {
       victoryStreak++;
     } else {

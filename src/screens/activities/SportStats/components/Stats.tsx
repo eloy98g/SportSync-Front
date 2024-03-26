@@ -8,10 +8,11 @@ import StatResume from "./StatResume";
 
 // Methods
 import getStats from "../methods/getStats";
+import Activity from "../../../../store/types/Activity";
 
 // Todo remove anys
 interface Props {
-  activities: any;
+  activities: Activity[];
 }
 
 const Stats = ({ activities }: Props) => {
