@@ -7,13 +7,22 @@ import ResumeItem from "./ResumeItem";
 // Theme
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
+
+// Types
+import Stats from "../../../../store/types/stats";
+
+// Utils
 import unixToDate from "../../../../utils/date/unixToDate";
 
-const StatResume = ({ statData }: any) => {
+interface Props {
+  statData: Stats;
+}
+
+const StatResume = ({ statData }: Props) => {
   const { victories, ties, loses, victoryStreak, lastActivityDate } = statData;
 
   const dateText = lastActivityDate
-    ? `Última participación: ${unixToDate(lastActivityDate)}`
+    ? `Última participación: ${unixToDate(lastActivityDate as number)}`
     : "No se ha participado todavía";
   return (
     <View style={styles.container}>

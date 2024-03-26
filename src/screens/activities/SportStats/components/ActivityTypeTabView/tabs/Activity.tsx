@@ -13,25 +13,33 @@ import Tag from "../../../../../../components/activities/Tag";
 // Theme
 import colors from "../../../../../../theme/colors";
 
+// Types
+import ActivityT from "../../../../../../store/types/activity/Activity";
+import Slot from "../../../../../../store/types/activity/Slot";
+import TeamT from "../../../../../../store/types/activity/Team";
+
 // Utils
 import RESULT_COLORS from "../../../../../../utils/activity/resultColors";
 import unixToDate from "../../../../../../utils/date/unixToDate";
 
-// TODO: change any's
-const Activity = ({ data }: any) => {
+interface Props {
+  data: ActivityT;
+}
+
+const Activity = ({ data }: Props) => {
   const navigation = useNavigation();
 
-  const { result, teams, startDate, gid } = data;
+  const { result, teams, startDate, gid, userTeam: userT } = data;
   const borderColor = RESULT_COLORS[result.result];
 
-  const userTeam = teams.find((team: any) => team.userTeam);
-  const otherTeam = teams.find((team: any) => !team.userTeam);
+  const userTeam = teams.find((team: TeamT) => team.name === userT);
+  const otherTeam = teams.find((team: TeamT) => team.name !== userT);
 
   const userScore = result.finalScores[0].scores.find(
-    (team: any) => team.team === userTeam.name
+    (team: Slot) => team.team === userTeam?.name
   );
   const otherScore = result.finalScores[0].scores.find(
-    (team: any) => team.team !== userTeam.name
+    (team: Slot) => team.team !== userTeam?.name
   );
 
   const winner = result.finalScores[0].winner;
@@ -47,26 +55,32 @@ const Activity = ({ data }: any) => {
     >
       <View style={styles.content}>
         <View style={styles.teamWrapper}>
-          <Team image={userTeam.player.image} size={userTeam.numPlayers} />
+          <Team
+            image={userTeam?.players[0].image}
+            size={userTeam?.players.length}
+          />
         </View>
         <View style={styles.scoreWrapper}>
           <FinalScoreText
-            points={userScore.points}
-            team={userScore.team}
+            points={userScore?.points}
+            team={userScore?.team}
             winner={winner}
           />
           <Divider width={20} />
           <Minus color={colors.grey} />
           <Divider width={20} />
           <FinalScoreText
-            points={otherScore.points}
-            team={otherScore.team}
+            points={otherScore?.points}
+            team={otherScore?.team}
             winner={winner}
           />
         </View>
         {otherTeam && (
           <View style={styles.teamWrapper}>
-            <Team image={otherTeam.player.image} size={otherTeam.numPlayers} />
+            <Team
+              image={otherTeam?.players[0].image}
+              size={otherTeam?.players.length}
+            />
           </View>
         )}
         <Divider width={12} />

@@ -1,8 +1,8 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import colors from "../../../../theme/colors";
 
 // Components
+import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
 interface Props {

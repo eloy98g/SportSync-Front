@@ -8,9 +8,12 @@ import FinalScoreText from "./FinalScoreText";
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
-// TODO: change any for a proper type
+// Types
+import Score from "../../store/types/activity/Score";
+import Slot from "../../store/types/activity/Slot";
+
 interface Props {
-  data: any;
+  data: Score;
 }
 
 const FinalScore = ({ data }: Props) => {
@@ -18,8 +21,8 @@ const FinalScore = ({ data }: Props) => {
 
   return (
     <View style={styles.container}>
-      {scores.map((score: any) => (
-        <FinalScoreText key={score.team} {...score} winner={winner} />
+      {scores.map((slot: Slot) => (
+        <FinalScoreText key={slot.team} {...slot} winner={winner} />
       ))}
     </View>
   );

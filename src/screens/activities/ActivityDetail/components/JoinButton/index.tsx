@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 // Components
 import MainButton from "../../../../../components/common/buttons/MainButton";
@@ -11,7 +11,14 @@ import isActivityFull from "../../methods/isActivityFull";
 // Theme
 import colors from "../../../../../theme/colors";
 
-const JoinButton = ({ data }: any) => {
+// Types
+import Activity from "../../../../../store/types/activity/Activity";
+
+interface Props {
+  data: Activity;
+}
+
+const JoinButton = ({ data }: Props) => {
   const joinHandler = () => {
     // TODO: api call for joining
   };
@@ -35,5 +42,3 @@ const JoinButton = ({ data }: any) => {
 };
 
 export default JoinButton;
-
-const styles = StyleSheet.create({});

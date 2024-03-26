@@ -1,4 +1,4 @@
-const unixToDate = (unix: number | null): string => {
+const unixToDate = (unix: number): string => {
   if (unix !== null) {
     const dateObject = new Date(unix * 1000);
 

@@ -10,7 +10,7 @@ import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
 interface Props {
-  onSearch: (T: any) => void;
+  onSearch: (T: string) => void;
   placeholder?: string;
 }
 

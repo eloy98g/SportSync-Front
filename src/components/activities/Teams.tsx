@@ -1,19 +1,24 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+
+// Components
 import Team from "./Team";
 
+// Types
+import TeamT from "../../store/types/activity/Team";
+
 interface Props {
-  teams: any;
+  teams: TeamT[];
 }
 
 const Teams = ({ teams }: Props) => {
   return (
     <View style={styles.teamWrapper}>
-      {teams.map((team: any) => (
+      {teams.map((team: TeamT) => (
         <Team
           key={team.name}
-          image={team?.player?.image || team?.players[0]?.image}
-          size={team.numPlayers}
+          image={team.players[0]?.image}
+          size={team.players.length}
         />
       ))}
     </View>

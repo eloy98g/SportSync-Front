@@ -1,20 +1,22 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import MainButton from "../../../../components/common/buttons/MainButton";
 
 // Components
+import MainButton from "../../../../components/common/buttons/MainButton";
 import Divider from "../../../../components/common/Divider";
 
 // Theme
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
+// Types
+import Activity from "../../../../store/types/activity/Activity";
+
 interface Props {
-  data: any;
   setStatus: any;
 }
 
-const CodeError = ({ data, setStatus }: Props) => {
+const CodeError = ({ setStatus }: Props) => {
   const handleBack = () => {
     setStatus("idle");
   };

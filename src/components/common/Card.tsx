@@ -6,10 +6,11 @@ import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
 interface Props {
-  children: any;
+  children: React.JSX.Element | React.JSX.Element[];
   title?: string;
   border?: boolean;
 }
+
 const Card = ({ children, title, border = true }: Props) => (
   <View
     style={[

@@ -16,7 +16,7 @@ import { family } from "../../theme/fonts";
 
 interface Props {
   open: boolean;
-  setOpen: (T: any) => void;
+  setOpen: (T: boolean) => void;
   userGid: number;
 }
 

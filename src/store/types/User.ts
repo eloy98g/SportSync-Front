@@ -2,9 +2,9 @@ import { Gender } from "./Gender";
 import PlayArea, { EMPTY_PLAYAREA } from "./PlayArea";
 
 type User = {
-  gid: number | null;
-  name: string | null;
-  email: string | null;
+  gid: number;
+  name?: string;
+  email: string;
   phone: number | null;
   image: string | null;
   description: string | null;
@@ -13,16 +13,16 @@ type User = {
   creationDate: number | null;
   phoneVerified: boolean;
   emailVerified: boolean;
-  published: number | null;
-  participated: number | null;
-  lastParticipation: number | null;
+  published: number;
+  participated: number;
+  lastParticipation: number;
   gender: Gender;
 };
 
 export const EMPTY_USER: User = {
-  email: null,
-  name: null,
-  gid: null,
+  email: "",
+  name: "",
+  gid: 0,
   phone: null,
   image: null,
   description: null,
@@ -31,9 +31,9 @@ export const EMPTY_USER: User = {
   phoneVerified: false,
   emailVerified: false,
   creationDate: null,
-  published: null,
-  participated: null,
-  lastParticipation: null,
+  published: 0,
+  participated: 0,
+  lastParticipation: 0,
   gender: "Male",
 };
 

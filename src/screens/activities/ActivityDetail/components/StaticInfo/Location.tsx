@@ -9,7 +9,13 @@ import Divider from "../../../../../components/common/Divider";
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
-const Location = ({ place }: any) => {
+// Types
+import Place from "../../../../../store/types/Place";
+
+interface Props {
+  place: Place;
+}
+const Location = ({ place }: Props) => {
   const { address } = place;
 
   return (

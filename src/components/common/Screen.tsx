@@ -4,7 +4,11 @@ import { StyleSheet, View, StatusBar } from "react-native";
 // Theme
 import colors from "../../theme/colors";
 
-const Screen = ({ children }: any) => {
+interface Props {
+  children: React.JSX.Element | React.JSX.Element[] ;
+}
+
+const Screen = ({ children }: Props) => {
   return (
     <View style={styles.screen}>
       <StatusBar translucent backgroundColor="transparent" />

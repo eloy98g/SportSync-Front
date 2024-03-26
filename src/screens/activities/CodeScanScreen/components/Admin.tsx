@@ -9,7 +9,14 @@ import Divider from "../../../../components/common/Divider";
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
-const Admin = ({ admin }: any) => {
+// Types
+import Player from "../../../../store/types/activity/Player";
+
+interface Props {
+  admin: Player;
+}
+
+const Admin = ({ admin }: Props) => {
   return (
     <Card>
       <View style={styles.row}>

@@ -12,8 +12,15 @@ import InfoSheet from "./InfoSheet";
 // Theme
 import colors from "../../../../../theme/colors";
 
-const index = ({ data }: any) => {
-  const [sheet, setSheet] = useState("");
+// Types
+import Activity from "../../../../../store/types/activity/Activity";
+
+interface Props {
+  data: Activity;
+}
+
+const TouchableInfoContainer = ({ data }: Props) => {
+  const [sheet, setSheet] = useState<string | boolean>("");
   const { access, type } = data;
 
   const accessHandler = () => setSheet("Access");
@@ -51,7 +58,7 @@ const index = ({ data }: any) => {
   );
 };
 
-export default index;
+export default TouchableInfoContainer;
 
 const styles = StyleSheet.create({
   container: {

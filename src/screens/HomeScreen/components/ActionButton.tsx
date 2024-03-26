@@ -6,7 +6,6 @@ import {
   Text,
   View,
   ImageSourcePropType,
-  useWindowDimensions,
 } from "react-native";
 
 // Components

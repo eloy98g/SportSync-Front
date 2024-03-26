@@ -8,20 +8,30 @@ import Divider from "../../../components/common/Divider";
 import Screen from "../../../components/common/Screen";
 import Stats from "./components/Stats";
 
-const routes = [
+// Types
+import TabRoute from "../../../store/types/others/TabRoute";
+import Activity from "../../../store/types/activity/Activity";
+
+const routes: TabRoute[] = [
   { key: "all", title: "Todos" },
   { key: "normal", title: "Normal" },
   { key: "competitive", title: "Competitivo" },
 ];
 
+interface ScreenParams {
+  currentActivities: Activity[];
+}
+
 const SportStats = ({ route }: any) => {
   const [currentTab, setCurrentTab] = useState("all");
 
-  const activities = route.params?.currentActivities || [];
+  const { currentActivities: activities = [] } = route.params as ScreenParams;
+
   const sport = activities[0].sport;
   const currentActivities = activities.filter(
-    (item: any) => item.type === currentTab || currentTab === "all"
+    (item: Activity) => item.type === currentTab || currentTab === "all"
   );
+
   return (
     <Screen>
       <BackHeader title={sport.name} />

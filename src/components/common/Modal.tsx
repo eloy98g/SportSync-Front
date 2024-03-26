@@ -7,8 +7,8 @@ import {
 } from "react-native";
 
 interface Props {
-  children: any;
-  setVisible: () => void;
+  children: React.JSX.Element;
+  setVisible: (T: boolean) => void;
   visible: boolean;
   dismissable?: boolean;
 }
@@ -19,6 +19,7 @@ const Modal = ({
   visible,
   dismissable = true,
 }: Props) => {
+  const modalHandler = () => (dismissable ? () => setVisible(false) : () => {});
   return (
     <RNModal
       animationType="fade"
@@ -30,7 +31,7 @@ const Modal = ({
       <View style={styles.centeredView}>
         <TouchableOpacity
           style={styles.closeContainer}
-          onPress={dismissable ? setVisible : () => {}}
+          onPress={modalHandler}
         />
         <View style={[styles.modalView]}>{children}</View>
       </View>

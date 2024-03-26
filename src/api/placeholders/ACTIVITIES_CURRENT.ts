@@ -21,7 +21,7 @@ export default [
       gid: 1,
       name: "Fútbol",
       icon: "https://cdn-icons-png.flaticon.com/512/4498/4498011.png",
-      color: "#4DD67C"
+      color: "#4DD67C",
     },
     type: "normal",
     teams: 2,
@@ -55,9 +55,32 @@ export default [
       color: "#EDFF54",
     },
     type: "normal",
-    teams: 2,
     playersPerTeam: 1,
-    currentPlayers: 2,
+    userTeam: "B",
+    teams: [
+      {
+        name: "A",
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
+      },
+      {
+        name: "B",
+        players: [
+          {
+            gid: 5,
+            name: "Clara Oswald",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-5.jpg",
+          },
+        ],
+      },
+    ],
     status: "pending",
     chat: 2,
   },
@@ -86,9 +109,55 @@ export default [
       color: "#EDFF54",
     },
     type: "normal",
-    teams: 2,
+    teams: [
+      {
+        name: "A",
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+
+          {
+            gid: 7,
+            name: "Lola Gomez",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
+          },
+          {
+            gid: 8,
+            name: "Eloy Gomez",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
+          },
+        ],
+      },
+      {
+        name: "B",
+        players: [
+          {
+            gid: 3,
+            name: "John Smith",
+            image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
+          },
+          {
+            gid: 4,
+            name: "Rory Williams",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-4.jpg",
+          },
+          {
+            gid: 5,
+            name: "Clara Oswald",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-5.jpg",
+          },
+        ],
+      },
+    ],
     playersPerTeam: 1,
-    currentPlayers: 2,
     status: "pending",
     chat: 3,
   },

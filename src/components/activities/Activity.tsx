@@ -8,20 +8,19 @@ import Score from "./Score";
 import Teams from "./Teams";
 
 // Types
-import { ActivityType } from "../../store/types/Activity";
+import { ActivityType } from "../../store/types/activity/Activity";
 
 // Utils
 import RESULT_COLORS from "../../utils/activity/resultColors";
 
-interface Result {
-  result: "victory" | "defeat" | "tie";
-}
+// Types
+import Team from "../../store/types/activity/Team";
+import Result from "../../store/types/activity/Result";
 
-// Todo: change any to proper type
 interface Props {
   data: {
     result: Result;
-    teams: any;
+    teams: Team[];
     type: ActivityType;
     startDate: number;
     gid: number;
@@ -31,6 +30,7 @@ interface Props {
 const Activity = ({ data }: Props) => {
   const { result, teams, startDate, type, gid } = data;
   const borderColor = RESULT_COLORS[result.result];
+
   return (
     <View style={[styles.container, { borderLeftColor: borderColor }]}>
       <View style={styles.content}>

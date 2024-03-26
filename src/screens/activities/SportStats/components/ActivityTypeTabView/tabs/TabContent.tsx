@@ -2,13 +2,19 @@ import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
 
 // Components
+import ActivityT from "../../../../../../store/types/activity/Activity";
+
+// Components
 import Activity from "./Activity";
 
-// TODO: change any's
-const TabContent = ({ data = [] }: any) => {
+interface Props {
+  data: ActivityT[];
+}
+
+const TabContent = ({ data = [] }: Props) => {
   return (
     <ScrollView style={styles.container}>
-      {data.map((item: any) => (
+      {data.map((item: ActivityT) => (
         <Activity key={item.gid} data={item} />
       ))}
     </ScrollView>

@@ -1,14 +1,15 @@
 import React from "react";
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import { StyleProp } from "@tamagui/core";
+import { Text, TouchableOpacity, StyleSheet, TextStyle } from "react-native";
 
 // Components
 import Divider from "../Divider";
 
 interface Props {
-  onPress: any;
+  onPress: () => void;
   text?: string;
-  icon?: any;
-  textStyle?: any;
+  icon?: React.JSX.Element;
+  textStyle?: StyleProp<TextStyle>;
   distance?: number;
   borderStyle?: {
     color: string;

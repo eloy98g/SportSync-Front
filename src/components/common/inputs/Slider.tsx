@@ -1,14 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Slider as TMSlider, XStack } from "tamagui";
+import { StyleSheet } from "react-native";
+import { Slider as TMSlider } from "tamagui";
 
 interface Props {
-  children?: any;
+  children?: React.JSX.Element;
   defaultValue: number;
   max: number;
   step: number;
   orientation?: "vertical" | "horizontal";
-  onChange: (T:any) => void;
+  onChange: (T: number[]) => void;
 }
 
 const Slider = ({

@@ -5,13 +5,14 @@ import { StyleSheet, ScrollView, View } from "react-native";
 import Screen from "../../../components/common/Screen";
 import Search from "../../../components/common/inputs/Search";
 import BackHeader from "../../../components/BackHeader";
+import SearchUserItem from "./components/SearchUserItem";
+import Divider from "../../../components/common/Divider";
 
 // Types
 import UserSearch from "../../../store/types/UserSearch";
+
 // Placeholder
 import USER_SEARCH from "../../../api/placeholders/USER_SEARCH";
-import SearchUserItem from "./components/SearchUserItem";
-import Divider from "../../../components/common/Divider";
 
 const FindUserScreen = () => {
   const [users, setUsers] = useState<UserSearch[]>([]);
@@ -21,7 +22,6 @@ const FindUserScreen = () => {
     }
   };
 
-  console.log("users", users.length);
   return (
     <Screen>
       <BackHeader title="Buscar usuario" />

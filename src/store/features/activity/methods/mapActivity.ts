@@ -1,25 +1,25 @@
-import Activity from "../../../types/Activity";
-import { EMPTY_PLACE } from "../../../types/Place";
-import { EMPTY_SPORT } from "../../../types/Sport";
+import Activity from "../../../types/activity/Activity";
 
 const mapActivity = (data: any): Activity => {
   const newUser: Activity = {
-    gid: data.gid || null,
-    place: data.place || EMPTY_PLACE,
-    creationDate: data.creationDate || null,
-    startDate: data.startDate || null,
-    duration: data.duration || null,
-    admin: data.admin || null,
-    access: data.access || "public",
-    name: data.name || "",
-    description: data.description || "",
-    sport: data.sport || EMPTY_SPORT,
-    type: data.type || "normal",
-    teams: data.teams || 0,
-    playersPerTeam: data.playersPerTeam || 0,
-    currentPlayers: data.currentPlayers || 0,
-    status: data.status || "undefined",
-    chat: data.chat || null,
+    gid: data.gid,
+    place: data.place,
+    creationDate: data.creationDate,
+    startDate: data.startDate,
+    duration: data.duration,
+    admin: data.admin,
+    access: data.access,
+    name: data.name,
+    description: data.description,
+    sport: data.sport,
+    type: data.type,
+    teams: data.teams,
+    playersPerTeam: data.playersPerTeam,
+    status: data.status,
+    chat: data.chat,
+    price: data.price,
+    userTeam: data.userTeam,
+    result: data.result,
   };
 
   return newUser;

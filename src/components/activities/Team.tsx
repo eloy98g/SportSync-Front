@@ -6,8 +6,8 @@ import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
 interface Props {
-  image: string;
-  size: number;
+  image: string | undefined;
+  size: number ;
 }
 
 const Team = ({ image, size }: Props) => {
@@ -18,6 +18,10 @@ const Team = ({ image, size }: Props) => {
       <Text style={styles.text}>{teamText}</Text>
     </View>
   );
+};
+
+Team.defaultProps = {
+  size: 1,
 };
 
 export default Team;

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Platform, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 // Components
 import ChatIcon from "./components/ChatIcon";

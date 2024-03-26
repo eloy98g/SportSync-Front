@@ -1,29 +1,42 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Share2, MessageCircleMore, UserRoundCog } from "lucide-react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import IconButton from "../../../../../components/common/buttons/IconButton";
 import Divider from "../../../../../components/common/Divider";
 
+// Methods
+import shareActivity from "../../methods/shareActivity";
+
 // Theme
 import colors from "../../../../../theme/colors";
-import shareActivity from "../../methods/shareActivity";
+
+// Types
+import Activity from "../../../../../store/types/activity/Activity";
 
 interface Props {
   isAdmin: boolean;
   playerView?: boolean;
-  data: any;
+  data: Activity;
 }
 
 const ActionsGroup = ({ isAdmin, data, playerView }: Props) => {
-  const chatHandler = () => {};
+  const { chat } = data;
+  const navigation = useNavigation();
+
+  const chatHandler = () => {
+    navigation.navigate("Chat" as never, { chatId: chat } as never);
+  };
+
+  // Todo: logicas administrador
   const adminHandler = () => {};
+
   const shareHandler = async () => {
     await shareActivity(data);
   };
 
-  // Todo: logicas administrador
   return (
     <View style={styles.group}>
       {isAdmin && (
@@ -59,6 +72,6 @@ const styles = StyleSheet.create({
   group: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 12
+    paddingHorizontal: 12,
   },
 });

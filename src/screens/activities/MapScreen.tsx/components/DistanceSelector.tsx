@@ -2,12 +2,15 @@ import React from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 
 // Components
-import Distance from "./Distance";
-import Divider from "../../../../components/common/Divider";
-import colors from "../../../../theme/colors";
-import DISTANCES from "../DISTANCES";
-import { family } from "../../../../theme/fonts";
 import MainButton from "../../../../components/common/buttons/MainButton";
+import Divider from "../../../../components/common/Divider";
+import Distance from "./Distance";
+
+// Theme
+import colors from "../../../../theme/colors";
+import { family } from "../../../../theme/fonts";
+
+import DISTANCES from "../DISTANCES";
 
 interface Props {
   onPress: (T: any) => void;
@@ -39,7 +42,7 @@ const DistanceSelector = ({ onPress, selected }: Props) => {
       </ScrollView>
       <Divider height={24} />
       <View style={styles.wrapper}>
-        <MainButton title="Aceptar" fontSize={18}/>
+        <MainButton title="Aceptar" fontSize={18} onPress={onPress} />
       </View>
     </View>
   );

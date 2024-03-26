@@ -1,9 +1,14 @@
 import { StatusBar } from "react-native";
 import Popover from "react-native-popover-view";
 
-const PopOver = (props: any) => {
-  const { children, open, setOpen, parentRef } = props;
+interface Props {
+  children: React.JSX.Element;
+  open: boolean;
+  setOpen: (T: boolean) => void;
+  parentRef: any;
+}
 
+const PopOver = ({ children, open, setOpen, parentRef }: Props) => {
   const popoverHandler = () => {
     setOpen(false);
   };

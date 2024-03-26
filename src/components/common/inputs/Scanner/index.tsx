@@ -12,7 +12,7 @@ import {
 import PermissionError from "./components/PermissionError";
 
 interface Props {
-  setValue: (T: any) => void;
+  setValue: (T: string | null) => void;
 }
 
 const Scanner = ({ setValue }: Props) => {
@@ -30,7 +30,7 @@ const Scanner = ({ setValue }: Props) => {
 
   const onCodeScanned = useCallback((codes: Code[]) => {
     const value = codes[0]?.value;
-    setValue(value);
+    setValue(value || null);
   }, []);
 
   const codeScanner = useCodeScanner({
@@ -63,6 +63,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     overflow: "hidden",
-    borderRadius:20
+    borderRadius: 20,
   },
 });

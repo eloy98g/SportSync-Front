@@ -8,17 +8,20 @@ import Item from "./Item";
 // Theme
 import colors from "../../../../theme/colors";
 
+// Types
+import { SelectData, ValueType } from ".";
+
 interface Props {
-  data: any;
-  itemHandler: (T: any) => void;
+  data: SelectData[];
+  itemHandler: (T: ValueType) => void;
   width: number;
 }
 
 const List = ({ data, itemHandler, width }: Props) => {
-  const position = -(46 * data.length) -data.length;
+  const position = -(46 * data.length) - data.length;
   return (
     <ScrollView style={[styles.itemList, { width, bottom: position }]}>
-      {data.map(({ label, value }: any) => (
+      {data.map(({ label, value }: SelectData) => (
         <React.Fragment key={label}>
           <Divider width="100%" color={colors.lightenGrey} />
           <Item onPress={() => itemHandler(value)} label={label} />

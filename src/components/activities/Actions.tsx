@@ -7,7 +7,7 @@ import Tag from "./Tag";
 import Action from "./Action";
 
 // Types
-import { ActivityType } from "../../store/types/Activity";
+import { ActivityType } from "../../store/types/activity/Activity";
 
 // Utils
 import unixToDate from "../../utils/date/unixToDate";

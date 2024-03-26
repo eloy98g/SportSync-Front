@@ -1,10 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import MasonryList from "@react-native-seoul/masonry-list";
 
 // Components
 import Divider from "../../../components/common/Divider";
-import ActionButton from "./ActionButton";
 
 // Theme
 import colors from "../../../theme/colors";
@@ -13,7 +11,7 @@ import { family } from "../../../theme/fonts";
 
 interface Props {
   title: string;
-  children?: any;
+  children: React.JSX.Element | React.JSX.Element[];
 }
 
 const HomeSection = ({ title, children }: Props) => {
@@ -21,7 +19,7 @@ const HomeSection = ({ title, children }: Props) => {
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Divider height={10} />
-      <View style={{ flex: 1, }}>{children}</View>
+      <View style={{ flex: 1 }}>{children}</View>
     </View>
   );
 };

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, ActivityIndicator } from "react-native";
-import { ScrollView } from 'react-native-virtualized-view';
+import { ScrollView } from "react-native-virtualized-view";
 
 // Components
 import TouchableInfoContainer from "./components/TouchableInfoContainer";
 import Divider from "../../../components/common/Divider";
 import Screen from "../../../components/common/Screen";
+import StaticInfo from "./components/StaticInfo";
+import Actions from "./components/Actions";
+import JoinButton from "./components/JoinButton";
 import Header from "./components/Header";
 import Teams from "./components/Teams";
 import Result from "./components/Result";
@@ -19,29 +22,35 @@ import { PHONE } from "../../../theme/breakPoints";
 
 // Placeholder
 import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
-import StaticInfo from "./components/StaticInfo";
-import Actions from "./components/Actions";
+
+// Methods
 import isPlayer from "./methods/isPlayer";
-import JoinButton from "./components/JoinButton";
+
+// Types
+import Activity from "../../../store/types/activity/Activity";
+
+// Store
+import mapActivity from "../../../store/features/activity/methods/mapActivity";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
   const gid = route.params?.gid;
-  const [activityData, setActivityData] = useState<any>(ACTIVITY_DETAIL_PAST);
+  const [activityData, setActivityData] = useState<Activity>(
+    mapActivity(ACTIVITY_DETAIL_PAST)
+  );
   const [status, setStatus] = useState("idle");
-  const [isAdmin, setIsAdmin] = useState(false)
-  const [playerView, setPlayerView] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [playerView, setPlayerView] = useState(false);
 
   useEffect(() => {
-    setIsAdmin(userGid === activityData?.admin)
-    setPlayerView(isPlayer(userGid, activityData?.teamPlayers))
-  }, [userGid])
+    setIsAdmin(userGid === activityData.admin.gid);
+    setPlayerView(isPlayer(userGid, activityData.teams));
+  }, [userGid]);
 
   useEffect(() => {
     setStatus("loading");
     if (gid) {
       // TODO: Lógica para traerse los datos de una actividad
-      setActivityData(ACTIVITY_DETAIL_PAST);
       setStatus("success");
     } else {
       setStatus("error");
@@ -59,32 +68,32 @@ const ActivityDetail = ({ route }: any) => {
 
   return (
     <Screen>
-      <Header data={activityData} isAdmin={isAdmin} playerView={playerView}/>
+      <Header data={activityData} isAdmin={isAdmin} playerView={playerView} />
       <View style={styles.content}>
         <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
           <Divider height={200} />
-          <JoinButton data={activityData}/>
+          <JoinButton data={activityData} />
           <TouchableInfoContainer data={activityData} />
           <Divider height={18} />
           <Teams
-            data={activityData?.teamPlayers}
-            teamSize={activityData?.playersPerTeam}
-            teams={activityData.teams}
-            status={activityData.status}
-            activityData={activityData}
+            activity={activityData}
           />
           {activityData.status === "finished" && (
             <>
               <Divider height={18} />
               <Result
-                teams={activityData.teamPlayers}
+                teams={activityData.teams}
                 result={activityData.result}
               />
             </>
           )}
           <Divider height={6} />
           <StaticInfo data={activityData} />
-          <Actions data={activityData} playerView={playerView} userGid={userGid}/>
+          <Actions
+            data={activityData}
+            playerView={playerView}
+            userGid={userGid}
+          />
           <Divider height={24} />
         </ScrollView>
       </View>

@@ -11,8 +11,11 @@ import Card from "../../../../../components/common/Card";
 import colors from "../../../../../theme/colors";
 import shareActivity from "../../methods/shareActivity";
 
+// Activity
+import Activity from "../../../../../store/types/activity/Activity";
+
 interface Props {
-  data: any;
+  data: Activity;
   playerView?: boolean;
   userGid?: number;
 }
@@ -26,7 +29,7 @@ const Actions = ({ data, playerView, userGid }: Props) => {
   };
 
   const reviewHandler = () => {
-    navigation.navigate("Review" as never, { userGid, data } as never);
+    navigation.navigate("ReviewScreen" as never, { userGid, data } as never);
   };
 
   return (

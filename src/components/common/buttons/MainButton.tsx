@@ -10,19 +10,22 @@ import {
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
-const MainButton = ({
-  onPress = () => {},
-  title = "",
-  active = true,
-  color = colors.primary,
-  textColor = colors.white,
-  borderWidth = 1,
-  borderColor = colors.primary,
-  loading = false,
-  fontSize = 16,
-  height = 46,
-  ...props
-}) => {
+interface Props {
+  onPress: (T: any) => void;
+  title: string;
+  active?: boolean;
+  color?: string;
+  textColor?: string;
+  borderWidth?: number;
+  borderColor?: string;
+  loading?: boolean;
+  fontSize?: number;
+  height?: number;
+}
+
+const MainButton = ({ onPress, title, active, loading, ...props }: Props) => {
+  const { color, textColor, borderWidth, borderColor, fontSize, height } =
+    props;
   return (
     <TouchableOpacity
       style={[
@@ -44,12 +47,22 @@ const MainButton = ({
   );
 };
 
+MainButton.defaultProps = {
+  active: true,
+  color: colors.primary,
+  textColor: colors.white,
+  borderWidth: 1,
+  borderColor: colors.primary,
+  loading: false,
+  fontSize: 16,
+  height: 46,
+};
+
 export default MainButton;
 
 const styles = StyleSheet.create({
   confirmButton: {
     flex: 1,
-    height: 46,
     maxHeight: 46,
     justifyContent: "center",
     alignItems: "center",
@@ -57,7 +70,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: family.normal,
-    fontSize: 16,
     textAlign: "center",
   },
 });

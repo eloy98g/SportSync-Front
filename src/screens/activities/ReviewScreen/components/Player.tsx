@@ -5,8 +5,11 @@ import { StyleSheet, Text, TouchableOpacity, Image, View } from "react-native";
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
+// Types
+import PlayerT from "../../../../store/types/activity/Player";
+
 interface Props {
-  data: any;
+  data: PlayerT;
   onPress: () => void;
   selected: boolean;
 }

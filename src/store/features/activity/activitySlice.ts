@@ -5,7 +5,7 @@ import fetchCurrentActivities from "./methods/fetchCurrentActivities";
 import fetchPublicActivities from "./methods/fetchPublicActivities";
 
 // Types
-import Activity from "../../types/Activity";
+import Activity from "../../types/activity/Activity";
 
 type ActivityState = {
   loading: boolean;

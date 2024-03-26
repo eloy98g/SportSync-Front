@@ -11,7 +11,7 @@ import { family } from "../../theme/fonts";
 interface Props {
   title: string;
   text: string;
-  icon?: any;
+  icon?: React.JSX.Element;
 }
 const InfoItem = ({ title, text, icon }: Props) => {
   return (

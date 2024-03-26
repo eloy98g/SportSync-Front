@@ -11,6 +11,7 @@ const BackButton = () => {
   const backHandler = () => {
     navigation.goBack();
   };
+  
   return (
     <TouchableOpacity onPress={backHandler}>
       <ArrowLeft size={24} color={colors.white} />

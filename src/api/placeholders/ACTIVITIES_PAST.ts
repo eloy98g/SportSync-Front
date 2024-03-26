@@ -26,27 +26,29 @@ export default [
     type: "normal",
     chat: 1,
     status: "finished",
+    userTeam: "B",
+    playersPerTeam: 5,
     teams: [
       {
         name: "A",
-        numPlayers: 5,
-        player: {
-          gid: 1,
-          name: "John Doe",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
-        },
-        userTeam: false,
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
       },
       {
         name: "B",
-        numPlayers: 5,
-        player: {
-          gid: 3,
-          name: "John Smith",
-          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
-        },
-        userTeam: true,
+        players: [
+          {
+            gid: 3,
+            name: "John Smith",
+            image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
+          },
+        ],
       },
     ],
     result: {
@@ -91,27 +93,29 @@ export default [
     type: "normal",
     chat: 1,
     status: "finished",
+    userTeam: "B",
+    playersPerTeam: 2,
     teams: [
       {
         name: "A",
-        numPlayers: 2,
-        player: {
-          gid: 1,
-          name: "John Doe",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
-        },
-        userTeam: false,
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
       },
       {
         name: "B",
-        numPlayers: 2,
-        player: {
-          gid: 3,
-          name: "John Smith",
-          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
-        },
-        userTeam: true,
+        players: [
+          {
+            gid: 3,
+            name: "John Smith",
+            image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
+          },
+        ],
       },
     ],
     result: {
@@ -181,27 +185,29 @@ export default [
     type: "normal",
     chat: 1,
     status: "finished",
+    userTeam: "A",
+    playersPerTeam: 5,
     teams: [
       {
         name: "A",
-        numPlayers: 5,
-        player: {
-          gid: 1,
-          name: "John Doe",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
-        },
-        userTeam: true,
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
       },
       {
         name: "B",
-        numPlayers: 5,
-        player: {
-          gid: 3,
-          name: "John Smith",
-          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
-        },
-        userTeam: false,
+        players: [
+          {
+            gid: 3,
+            name: "John Smith",
+            image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
+          },
+        ],
       },
     ],
     result: {
@@ -246,27 +252,29 @@ export default [
     type: "normal",
     chat: 1,
     status: "finished",
+    userTeam: "A",
+    playersPerTeam: 5,
     teams: [
       {
         name: "A",
-        numPlayers: 5,
-        player: {
-          gid: 1,
-          name: "John Doe",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
-        },
-        userTeam: true,
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
       },
       {
         name: "B",
-        numPlayers: 5,
-        player: {
-          gid: 3,
-          name: "John Smith",
-          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
-        },
-        userTeam: false,
+        players: [
+          {
+            gid: 3,
+            name: "John Smith",
+            image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
+          },
+        ],
       },
     ],
     result: {

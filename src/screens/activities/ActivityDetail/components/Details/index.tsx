@@ -8,8 +8,11 @@ import DetailItem from "./DetailItem";
 // Utils
 import getFormattedPrice from "../../../../../utils/currency/getFormattedPrice";
 
+// Types
+import Activity from "../../../../../store/types/activity/Activity";
+
 interface Props {
-  data: any;
+  data: Activity;
 }
 
 const Details = ({ data }: Props) => {

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import MapView, { Marker, PROVIDER_GOOGLE, Circle } from "react-native-maps";
+import MapView, {
+  Marker,
+  PROVIDER_GOOGLE,
+  Circle,
+  MapPressEvent,
+  MarkerPressEvent,
+  LatLng,
+} from "react-native-maps";
 
 // Components
 import BackHeader from "../../../components/BackHeader";
-import Slider from "../../../components/common/inputs/Slider";
 import Screen from "../../../components/common/Screen";
 
 // Theme
@@ -19,13 +25,14 @@ const INITIAL_REGION = {
   longitudeDelta: 2,
 };
 
+type MAP_EVENT_TYPE = MarkerPressEvent | MapPressEvent;
+
 const MapScreen = () => {
-  const [markerPosition, setMarkerPosition] = useState(INITIAL_REGION);
+  const [markerPosition, setMarkerPosition] = useState<LatLng>(INITIAL_REGION);
   const [radius, setRadius] = useState({ value: 500, gid: 1 });
 
-  const handleMapPress = (event: any) => {
+  const handleMapPress = (event: MAP_EVENT_TYPE) => {
     const { coordinate } = event.nativeEvent;
-    console.log(" event.nativeEvent", coordinate);
     setMarkerPosition(coordinate);
   };
 

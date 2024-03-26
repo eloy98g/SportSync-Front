@@ -1,14 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import colors from "../../theme/colors";
-import { family } from "../../theme/fonts";
+
+// Components
 import MainButton from "../common/buttons/MainButton";
 import Divider from "../common/Divider";
 import Modal from "../common/Modal";
 
+// Theme
+import colors from "../../theme/colors";
+import { family } from "../../theme/fonts";
+
 interface Props {
   visible: boolean;
-  setVisible: any;
+  setVisible: (T: boolean) => void;
   onFinish: () => void;
 }
 

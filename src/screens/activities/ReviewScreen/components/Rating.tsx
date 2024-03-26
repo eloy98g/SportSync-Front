@@ -9,9 +9,16 @@ import Title from "./Title";
 // Theme
 import colors from "../../../../theme/colors";
 
-const Rating = ({ rating, setReview }: any) => {
+// Types
+import Review from "../../../../store/types/review";
+
+interface Props {
+  rating: number;
+  setReview: (T: any) => void;
+}
+const Rating = ({ rating, setReview }: Props) => {
   const ratingHandler = (number: number) => {
-    setReview((prevState: any) => ({ ...prevState, rating: number }));
+    setReview((prevState: Review) => ({ ...prevState, rating: number }));
   };
 
   const renderStars = () => {

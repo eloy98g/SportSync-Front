@@ -6,7 +6,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import colors from "../../../../../theme/colors";
 import { PHONE } from "../../../../../theme/breakPoints";
 
-const Wrapper = ({ children }: any) => {
+interface Props {
+  children: React.JSX.Element | React.JSX.Element[];
+}
+
+const Wrapper = ({ children }: Props) => {
   return (
     <LinearGradient
       colors={[colors.primary, colors.secondary]}
