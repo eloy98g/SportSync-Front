@@ -8,6 +8,7 @@ import { family } from "../../theme/fonts";
 interface Props {
   text: string;
 }
+
 const Label = ({ text }: Props) => <Text style={styles.title}>{text}</Text>;
 
 export default Label;

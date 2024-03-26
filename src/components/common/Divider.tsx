@@ -1,12 +1,12 @@
 import React from "react";
-import { DimensionValue } from "react-native";
-import { View } from "react-native";
+import { DimensionValue, View } from "react-native";
 
 interface Props {
   height?: DimensionValue;
   width?: DimensionValue;
   color?: string;
 }
+
 const Divider = ({
   height = 1,
   width = 1,

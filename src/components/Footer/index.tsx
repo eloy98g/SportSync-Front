@@ -48,8 +48,9 @@ const Footer = () => {
     return <View />;
   }
 
+  // TODO: check ref behaviour on mobile apps
   return (
-    <View style={styles.container} ref={tabRef}>
+    <View style={styles.container} ref={tabRef.current}>
       <View style={styles.content}>
         {ICONS.map((icon) => (
           <Tab

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
 import { Sheet as TamaguiSheet } from "@tamagui/sheet";
 
 // Theme
@@ -9,7 +8,7 @@ interface Props {
   open: boolean;
   modal: boolean;
   openHandler: (T: boolean) => void;
-  children: any;
+  children: React.JSX.Element;
 }
 
 const Sheet = (props: Props) => {
@@ -56,4 +55,5 @@ const Sheet = (props: Props) => {
 Sheet.defaultProps = {
   modal: true,
 };
+
 export default Sheet;

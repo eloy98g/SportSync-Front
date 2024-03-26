@@ -6,7 +6,7 @@ import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
 interface Props {
-  children: any;
+  children: React.JSX.Element;
   title?: string;
   border?: boolean;
 }

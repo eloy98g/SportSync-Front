@@ -12,7 +12,7 @@ import {
 import { ColorValue } from "react-native/types";
 
 interface Props {
-  icon: any;
+  icon: string;
   color?: ColorValue;
   size?: number;
 }
