@@ -11,7 +11,7 @@ import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
 // Store
-import UserSearch from "../../../../store/types/UserSearch";
+import UserSearch from "../../../../store/types/user/UserSearch";
 
 interface Props {
   data: UserSearch;

@@ -13,7 +13,7 @@ import Label from "../../../../components/common/Label";
 import GENDERS from "../../../../constants/GENDERS";
 
 // Types
-import User from "../../../../store/types/User";
+import User from "../../../../store/types/user/User";
 
 interface Props {
   editedUser: User;

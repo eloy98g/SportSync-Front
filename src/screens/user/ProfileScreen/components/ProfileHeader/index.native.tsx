@@ -11,7 +11,7 @@ import ProfileImage from "./ProfileImage";
 import { PHONE } from "../../../../../theme/breakPoints";
 
 // Types
-import User from "../../../../../store/types/User";
+import User from "../../../../../store/types/user/User";
 
 interface Props {
   data: User;

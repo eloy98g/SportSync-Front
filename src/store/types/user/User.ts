@@ -1,5 +1,4 @@
-import { Gender } from "./Gender";
-import PlayArea, { EMPTY_PLAYAREA } from "./PlayArea";
+import PlayArea, { EMPTY_PLAYAREA } from "../PlayArea";
 
 type User = {
   gid: number;
@@ -16,7 +15,7 @@ type User = {
   published: number;
   participated: number;
   lastParticipation: number;
-  gender: Gender;
+  gender: string;
 };
 
 export const EMPTY_USER: User = {
@@ -34,7 +33,7 @@ export const EMPTY_USER: User = {
   published: 0,
   participated: 0,
   lastParticipation: 0,
-  gender: "Male",
+  gender: "N/A",
 };
 
 export default User;

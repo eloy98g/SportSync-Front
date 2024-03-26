@@ -6,7 +6,7 @@ import Wrapper from "./Wrapper";
 import BackButton from "./BackButton";
 import ProfileImage from "./ProfileImage";
 
-import User from "../../../../../store/types/User";
+import User from "../../../../../store/types/user/User";
 import ActionsGroup from "./ActionsGroup";
 
 interface Props {

@@ -22,7 +22,7 @@ import { PHONE } from "../../../theme/breakPoints";
 import { family } from "../../../theme/fonts";
 
 // Types
-import User, { EMPTY_USER } from "../../../store/types/User";
+import User, { EMPTY_USER } from "../../../store/types/user/User";
 import colors from "../../../theme/colors";
 
 // Placeholders

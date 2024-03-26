@@ -4,7 +4,7 @@ import CHATS from "../../../../api/placeholders/CHATS";
 import USER_1 from "../../../../api/placeholders/USER_1";
 import ApiResponse from "../../../../api/types/ApiResponse";
 import Chat from "../../../types/Chat";
-import User from "../../../types/User";
+import User from "../../../types/user/User";
 import mapChat from "./mapChat";
 
 const fethChats = createAsyncThunk("chat/fetchChats", async () => {

@@ -1,5 +1,5 @@
 import { EMPTY_PLAYAREA } from "../../../types/PlayArea";
-import User from "../../../types/User";
+import User from "../../../types/user/User";
 
 const mapUser = (data: any): User => {
   const newUser: User = {

@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import fetchUser from "./methods/fetchUser";
 
 // Types
-import User, { EMPTY_USER } from "../../types/User";
+import User, { EMPTY_USER } from "../../types/user/User";
 
 type UserState = {
   loading: boolean;

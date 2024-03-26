@@ -6,7 +6,7 @@ import { Pencil } from "lucide-react-native";
 import colors from "../../../../theme/colors";
 import Divider from "../../../../components/common/Divider";
 import Label from "../../../../components/common/Label";
-import User from "../../../../store/types/User";
+import User from "../../../../store/types/user/User";
 
 interface Props {
   editedUser: User;

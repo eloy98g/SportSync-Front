@@ -9,7 +9,7 @@ import SearchUserItem from "./components/SearchUserItem";
 import Divider from "../../../components/common/Divider";
 
 // Types
-import UserSearch from "../../../store/types/UserSearch";
+import UserSearch from "../../../store/types/user/UserSearch";
 
 // Placeholder
 import USER_SEARCH from "../../../api/placeholders/USER_SEARCH";
