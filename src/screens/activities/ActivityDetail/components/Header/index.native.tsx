@@ -11,7 +11,7 @@ import Info from "./Info";
 
 // Theme
 import { PHONE } from "../../../../../theme/breakPoints";
-import Activity from "../../../../../store/types/Activity";
+import Activity from "../../../../../store/types/activity/Activity";
 
 interface Props {
   data: Activity;

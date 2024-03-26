@@ -27,7 +27,7 @@ import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST
 import isPlayer from "./methods/isPlayer";
 
 // Types
-import Activity from "../../../store/types/Activity";
+import Activity from "../../../store/types/activity/Activity";
 
 // Store
 import mapActivity from "../../../store/features/activity/methods/mapActivity";

@@ -1,7 +1,7 @@
 import getStreakVictory from "./getStreakVictory";
 
 // Types
-import Activity from "../../../../store/types/Activity";
+import Activity from "../../../../store/types/activity/Activity";
 
 const getStats = (activities: Activity[]) => {
   let victories = 0;

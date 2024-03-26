@@ -8,7 +8,7 @@ import StatResume from "./StatResume";
 
 // Methods
 import getStats from "../methods/getStats";
-import Activity from "../../../../store/types/Activity";
+import Activity from "../../../../store/types/activity/Activity";
 
 // Todo remove anys
 interface Props {

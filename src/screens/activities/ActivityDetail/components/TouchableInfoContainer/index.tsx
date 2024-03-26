@@ -13,7 +13,7 @@ import InfoSheet from "./InfoSheet";
 import colors from "../../../../../theme/colors";
 
 // Types
-import Activity from "../../../../../store/types/Activity";
+import Activity from "../../../../../store/types/activity/Activity";
 
 interface Props {
   data: Activity;

@@ -6,7 +6,7 @@ import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
 // Types
-import Activity from "../../../../../store/types/Activity";
+import Activity from "../../../../../store/types/activity/Activity";
 
 // Utils
 import getDateWithDuration from "../../../../../utils/date/getDateWithDuration";

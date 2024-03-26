@@ -1,4 +1,4 @@
-import Activity from "../../../../store/types/Activity";
+import Activity from "../../../../store/types/activity/Activity";
 import Team from "../../../../store/types/activity/Team";
 
 const isActivityFull = (data: Activity) => {

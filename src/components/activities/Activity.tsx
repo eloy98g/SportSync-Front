@@ -8,7 +8,7 @@ import Score from "./Score";
 import Teams from "./Teams";
 
 // Types
-import { ActivityType } from "../../store/types/Activity";
+import { ActivityType } from "../../store/types/activity/Activity";
 
 // Utils
 import RESULT_COLORS from "../../utils/activity/resultColors";

@@ -1,7 +1,4 @@
-import Activity from "../../../types/Activity";
-import { EMPTY_PLAYER } from "../../../types/activity/Player";
-import { EMPTY_PLACE } from "../../../types/Place";
-import { EMPTY_SPORT } from "../../../types/Sport";
+import Activity from "../../../types/activity/Activity";
 
 const mapActivity = (data: any): Activity => {
   const newUser: Activity = {

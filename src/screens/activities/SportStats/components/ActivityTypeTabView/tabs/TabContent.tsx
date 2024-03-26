@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
 
 // Components
-import ActivityT from "../../../../../../store/types/Activity";
+import ActivityT from "../../../../../../store/types/activity/Activity";
 
 // Components
 import Activity from "./Activity";

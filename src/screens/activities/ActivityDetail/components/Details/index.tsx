@@ -9,7 +9,7 @@ import DetailItem from "./DetailItem";
 import getFormattedPrice from "../../../../../utils/currency/getFormattedPrice";
 
 // Types
-import Activity from "../../../../../store/types/Activity";
+import Activity from "../../../../../store/types/activity/Activity";
 
 interface Props {
   data: Activity;

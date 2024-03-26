@@ -4,7 +4,7 @@ import { Share, Alert } from "react-native";
 import getDateWithDuration from "../../../../utils/date/getDateWithDuration";
 
 // Activity
-import Activity from "../../../../store/types/Activity";
+import Activity from "../../../../store/types/activity/Activity";
 
 // Todo: create Share component
 const shareActivity = async (data : Activity) => {

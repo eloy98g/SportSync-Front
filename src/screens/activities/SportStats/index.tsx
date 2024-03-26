@@ -10,7 +10,7 @@ import Stats from "./components/Stats";
 
 // Types
 import TabRoute from "../../../store/types/others/TabRoute";
-import Activity from "../../../store/types/Activity";
+import Activity from "../../../store/types/activity/Activity";
 
 const routes: TabRoute[] = [
   { key: "all", title: "Todos" },

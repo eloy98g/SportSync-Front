@@ -7,7 +7,7 @@ import Divider from "../../../../components/common/Divider";
 import Icon from "../../../../components/common/Icon";
 
 // Types
-import Activity from "../../../../store/types/Activity";
+import Activity from "../../../../store/types/activity/Activity";
 
 // Theme
 import colors from "../../../../theme/colors";

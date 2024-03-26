@@ -1,8 +1,8 @@
-import Player from "./activity/Player";
-import Result from "./activity/Result";
-import Team from "./activity/Team";
-import Place from "./Place";
-import Sport from "./Sport";
+import Player from "./Player";
+import Result from "./Result";
+import Team from "./Team";
+import Place from "../Place";
+import Sport from "../Sport";
 
 export type ActivityType = "normal" | "competitive";
 export type ActivityAccess = "public" | "private";

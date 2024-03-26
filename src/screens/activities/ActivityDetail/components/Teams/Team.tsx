@@ -16,7 +16,7 @@ import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
 // Types
-import Activity, { ActivityStatus } from "../../../../../store/types/Activity";
+import Activity, { ActivityStatus } from "../../../../../store/types/activity/Activity";
 import Team from "../../../../../store/types/activity/Team";
 
 interface Props {

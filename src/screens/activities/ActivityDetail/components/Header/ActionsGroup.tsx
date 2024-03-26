@@ -14,7 +14,7 @@ import shareActivity from "../../methods/shareActivity";
 import colors from "../../../../../theme/colors";
 
 // Types
-import Activity from "../../../../../store/types/Activity";
+import Activity from "../../../../../store/types/activity/Activity";
 
 interface Props {
   isAdmin: boolean;

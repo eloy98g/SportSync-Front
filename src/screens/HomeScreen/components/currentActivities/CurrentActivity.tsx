@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import IconButton from "../../../../components/common/buttons/IconButton";
 
 // Types
-import Activity from "../../../../store/types/Activity";
+import Activity from "../../../../store/types/activity/Activity";
 
 // Theme
 import colors from "../../../../theme/colors";

@@ -1,4 +1,4 @@
-import Activity from "../../../../store/types/Activity";
+import Activity from "../../../../store/types/activity/Activity";
 
 const getStreakVictory = (activities: Activity[]) => {
   activities.sort((a: Activity, b: Activity) => a.startDate - b.startDate);

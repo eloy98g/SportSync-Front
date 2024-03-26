@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import get from "../../../../api/get";
 import ACTIVITIES_CURRENT from "../../../../api/placeholders/ACTIVITIES_CURRENT";
 import ApiResponse from "../../../../api/types/ApiResponse";
-import Activity from "../../../types/Activity";
+import Activity from "../../../types/activity/Activity";
 import mapActivity from "./mapActivity"
 
 const fetchCurrentActivities = createAsyncThunk("activity/fetchCurrentActivities", async () => {

@@ -12,7 +12,7 @@ import { family } from "../../../../../theme/fonts";
 
 // Types
 import PlayerT from "../../../../../store/types/activity/Player";
-import Activity from "../../../../../store/types/Activity";
+import Activity from "../../../../../store/types/activity/Activity";
 
 interface Props {
   data: PlayerT;

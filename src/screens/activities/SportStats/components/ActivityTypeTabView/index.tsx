@@ -11,7 +11,7 @@ import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
 // Types
-import Activity from "../../../../../store/types/Activity";
+import Activity from "../../../../../store/types/activity/Activity";
 import TabRoute from "../../../../../store/types/others/TabRoute";
 
 interface Props {
