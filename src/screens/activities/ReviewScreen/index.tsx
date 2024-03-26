@@ -26,11 +26,11 @@ interface ScreenParams {
   selectedUser: Player;
 }
 
-const Review = ({ route }: any) => {
+const ReviewScreen = ({ route }: any) => {
   const { userGid, data, selectedUser } = route.params as ScreenParams;
 
   const [review, setReview] = useState<Review>({
-    players: selectedUser.gid ? [selectedUser.gid] : [],
+    players: selectedUser?.gid ? [selectedUser.gid] : [],
     rating: 0,
     comment: "",
     reviewer: userGid,
@@ -81,7 +81,7 @@ const Review = ({ route }: any) => {
   );
 };
 
-export default Review;
+export default ReviewScreen;
 
 const styles = StyleSheet.create({
   row: {

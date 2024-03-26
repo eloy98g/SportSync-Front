@@ -14,7 +14,7 @@ import SportStats from "../screens/activities/SportStats";
 import ActivityDetail from "../screens/activities/ActivityDetail";
 import MapScreen from "../screens/activities/MapScreen.tsx";
 import EditProfile from "../screens/user/EditProfile";
-import Review from "../screens/activities/Review";
+import ReviewScreen from "../screens/activities/ReviewScreen";
 import CodeScanScreen from "../screens/activities/CodeScanScreen";
 import FindUserScreen from "../screens/social/FindUserScreen";
 
@@ -59,7 +59,7 @@ const AppNavigator = () => {
         <Stack.Screen name="SportStats" component={SportStats} />
         <Stack.Screen name="ActivityDetail" component={ActivityDetail} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
-        <Stack.Screen name="Review" component={Review} />
+        <Stack.Screen name="ReviewScreen" component={ReviewScreen} />
         <Stack.Screen name="MapScreen" component={MapScreen} />
         <Stack.Screen name="CodeScanScreen" component={CodeScanScreen} />
         <Stack.Screen name="FindUserScreen" component={FindUserScreen} />

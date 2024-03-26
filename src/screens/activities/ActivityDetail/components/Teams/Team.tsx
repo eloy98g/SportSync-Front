@@ -17,10 +17,10 @@ import { family } from "../../../../../theme/fonts";
 
 // Types
 import Activity, { ActivityStatus } from "../../../../../store/types/activity/Activity";
-import Team from "../../../../../store/types/activity/Team";
+import TeamT from "../../../../../store/types/activity/Team";
 
 interface Props {
-  data: Team;
+  data: TeamT;
   side: "left" | "right";
   teamSize: number;
   activityData: Activity;

@@ -14,17 +14,18 @@ import Tag from "../../../../../../components/activities/Tag";
 import colors from "../../../../../../theme/colors";
 
 // Types
-import Activity from "../../../../../../store/types/activity/Activity";
+import ActivityT from "../../../../../../store/types/activity/Activity";
+import Slot from "../../../../../../store/types/activity/Slot";
+import TeamT from "../../../../../../store/types/activity/Team";
 
 // Utils
 import RESULT_COLORS from "../../../../../../utils/activity/resultColors";
 import unixToDate from "../../../../../../utils/date/unixToDate";
-import Slot from "../../../../../../store/types/activity/Slot";
-import TeamT from "../../../../../../store/types/activity/Team";
 
 interface Props {
-  data: Activity;
+  data: ActivityT;
 }
+
 const Activity = ({ data }: Props) => {
   const navigation = useNavigation();
 

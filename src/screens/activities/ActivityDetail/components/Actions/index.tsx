@@ -29,7 +29,7 @@ const Actions = ({ data, playerView, userGid }: Props) => {
   };
 
   const reviewHandler = () => {
-    navigation.navigate("Review" as never, { userGid, data } as never);
+    navigation.navigate("ReviewScreen" as never, { userGid, data } as never);
   };
 
   return (

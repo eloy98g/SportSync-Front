@@ -7,7 +7,7 @@ import FinalScore from "./FinalScore";
 
 // Types
 import Result from "../../store/types/activity/Result";
-import Score from "../../store/types/activity/Score";
+import ScoreT from "../../store/types/activity/Score";
 
 interface Props {
   result: Result;
@@ -17,10 +17,10 @@ const Score = ({ result }: Props) => {
   const { partialScores, finalScores } = result;
   return (
     <View style={styles.scoreWrapper}>
-      {partialScores.map((score: Score) => (
+      {partialScores.map((score: ScoreT) => (
         <PartialScore key={score.slot} data={score} />
       ))}
-      {finalScores.map((score: Score) => (
+      {finalScores.map((score: ScoreT) => (
         <FinalScore key={score.slot} data={score} />
       ))}
     </View>
