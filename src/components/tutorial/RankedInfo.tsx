@@ -2,12 +2,12 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
+import Divider from "../common/Divider";
 import Icon from "../common/Icon";
 import InfoItem from "./InfoItem";
 
 // Theme
 import colors from "../../theme/colors";
-import Divider from "../common/Divider";
 
 const RankedInfo = () => {
   return (
