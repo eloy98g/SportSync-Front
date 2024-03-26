@@ -16,8 +16,11 @@ import { family } from "../../../../theme/fonts";
 // Utils
 import getHour from "../../../../utils/date/getHour";
 
+// Types
+import Activity from "../../../../store/types/activity/Activity";
+
 interface Props {
-  data: any;
+  data: Activity;
 }
 
 const CodeSuccess = ({ data }: Props) => {

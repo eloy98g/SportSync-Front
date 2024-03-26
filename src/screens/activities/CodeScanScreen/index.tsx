@@ -20,16 +20,23 @@ import Loading from "./states/Loading";
 
 // Theme
 import colors from "../../../theme/colors";
+import useStatus from "../../../hooks/useStatus";
 
-type STATUS = "idle" | "loading" | "success" | "error";
+// Types
+import Activity from "../../../store/types/activity/Activity";
+import mapActivity from "../../../store/features/activity/methods/mapActivity";
+
+type VALUE = string | null;
 
 const CodeScanScreen = () => {
-  const [value, setValue] = useState<string | null>(null);
-  const [status, setStatus] = useState<STATUS>("idle");
-  const [activity, setActivity] = useState(JOIN_CONFIRMATION);
+  const [value, setValue] = useState<VALUE>(null);
+  const { status, setStatus } = useStatus();
+  const [activity, setActivity] = useState<Activity>(
+    mapActivity(JOIN_CONFIRMATION)
+  );
   const userGid = useAppSelector((state) => state.user.user.gid);
 
-  const codeHandler = (val: string) => {
+  const codeHandler = (val: VALUE) => {
     setValue(val);
   };
 
@@ -61,9 +68,7 @@ const CodeScanScreen = () => {
         )}
         {status === "loading" && <Loading />}
         {status === "success" && <CodeSuccess data={activity} />}
-        {status === "error" && (
-          <CodeError data={activity} setStatus={setStatus} />
-        )}
+        {status === "error" && <CodeError setStatus={setStatus} />}
       </View>
     </Screen>
   );
