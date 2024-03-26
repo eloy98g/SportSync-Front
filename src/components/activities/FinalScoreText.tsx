@@ -6,9 +6,9 @@ import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
 interface Props {
-  points: number;
-  team: string;
-  winner: string;
+  points?: number;
+  team?: string;
+  winner?: string;
 }
 
 const FinalScoreText = ({ points, team, winner }: Props) => {

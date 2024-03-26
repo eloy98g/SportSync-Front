@@ -12,7 +12,7 @@ import { useAppSelector } from "../../../hooks";
 // Theme
 import { PHONE } from "../../../theme/breakPoints";
 
-const ChatScreen = ({ route }) => {
+const ChatScreen = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
   // const chatId = route.params?.chatId;
 
@@ -20,7 +20,7 @@ const ChatScreen = ({ route }) => {
     <Screen>
       <BackHeader title="Chat" />
       <View style={styles.content}>
-        <Chat userGid={userGid || 0} chatId={1} />
+        <Chat userGid={userGid} chatId={1} />
       </View>
     </Screen>
   );
