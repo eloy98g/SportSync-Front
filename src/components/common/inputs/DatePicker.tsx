@@ -8,8 +8,8 @@ import { family } from "../../../theme/fonts";
 import unixToDate from "../../../utils/date/unixToDate";
 
 interface Props {
-  setValue: any;
-  value: number | null;
+  setValue: (T: Date) => void;
+  value: number;
   placeholder?: string;
 }
 
@@ -17,7 +17,7 @@ const DatePicker = ({ value, setValue, placeholder }: Props) => {
   const [visible, setVisible] = useState(false);
   const title = unixToDate(value) || placeholder;
 
-  const handleConfirm = (value: any) => {
+  const handleConfirm = (value: Date) => {
     setValue(value);
   };
 
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     height: 46,
-    paddingHorizontal:12
+    paddingHorizontal: 12,
   },
   title: {
     fontFamily: family.normal,

@@ -5,13 +5,15 @@ import { TextInput as Input, StyleSheet } from "react-native";
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
-const TextInput = ({
-  onChange,
-  value,
-  placeholder = "",
-  error = false,
-  secure = false,
-}: any) => {
+interface Props {
+  onChange: () => void;
+  value: string;
+  placeholder?: string;
+  error?: boolean;
+  secure?: boolean;
+}
+
+const TextInput = ({ onChange, value, placeholder, error, secure }: Props) => {
   const borderColor = error ? colors.red : colors.grey;
   return (
     <Input
@@ -25,6 +27,12 @@ const TextInput = ({
   );
 };
 
+TextInput.defaultProps = {
+  placeholder: "",
+  error: false,
+  secure: false,
+};
+
 export default TextInput;
 
 const styles = StyleSheet.create({
@@ -33,7 +41,7 @@ const styles = StyleSheet.create({
     height: 46,
     borderWidth: 1,
     padding: 10,
-    paddingHorizontal:12,
+    paddingHorizontal: 12,
     backgroundColor: colors.white,
     borderRadius: 10,
     fontFamily: family.normal,

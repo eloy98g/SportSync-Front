@@ -7,7 +7,13 @@ import { MapPin } from "lucide-react-native";
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
-const LocationPicker = ({ value, setValue }: any) => {
+// TODO: create types and finish functionallity
+interface Props {
+  value: any;
+  setValue: any;
+}
+
+const LocationPicker = ({ value, setValue }: Props) => {
   const navigation = useNavigation();
   const title = "Selecciona ubicación";
 

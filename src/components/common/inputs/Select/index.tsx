@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react-native";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  LayoutChangeEvent,
+} from "react-native";
 
 // Components
 import List from "./List";
@@ -9,11 +15,18 @@ import List from "./List";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 
+type ValueType = string | number;
+
+type SelectData = {
+  value: ValueType;
+  label: string;
+};
+
 interface Props {
-  value: any;
-  setValue: any;
+  value: ValueType;
+  setValue: (T: ValueType) => void;
   placeholder: string;
-  data?: any;
+  data: SelectData[];
 }
 
 const Select = ({ value, setValue, data, placeholder }: Props) => {
@@ -24,12 +37,12 @@ const Select = ({ value, setValue, data, placeholder }: Props) => {
     setOpened(!opened);
   };
 
-  const itemHandler = (val: any) => {
+  const itemHandler = (val: ValueType) => {
     setValue(val);
     setOpened(false);
   };
 
-  const onLayout = (event: any) => {
+  const onLayout = (event: LayoutChangeEvent) => {
     const { width } = event.nativeEvent.layout;
     setSelectWidth(width);
   };
@@ -54,11 +67,14 @@ const Select = ({ value, setValue, data, placeholder }: Props) => {
         <Text style={styles.title}>{title}</Text>
         {icon}
       </TouchableOpacity>
-      {opened && <List data={data} itemHandler={itemHandler} width={selectWidth}/>}
+      {opened && (
+        <List data={data} itemHandler={itemHandler} width={selectWidth} />
+      )}
     </View>
   );
 };
 
+export { SelectData, ValueType };
 export default Select;
 
 const styles = StyleSheet.create({

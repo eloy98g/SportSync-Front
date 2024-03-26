@@ -1,13 +1,19 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  NativeSyntheticEvent,
+  StyleSheet,
+  TextInputChangeEventData,
+} from "react-native";
 import { TextArea as RNTextArea } from "tamagui";
+
+// Theme
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
 interface Props {
   placeholder?: string;
-  value: any;
-  onChange: any;
+  value: string;
+  onChange: (T: NativeSyntheticEvent<TextInputChangeEventData>) => void;
   error?: boolean;
 }
 const TextArea = ({ placeholder, value, onChange, error = false }: Props) => {
