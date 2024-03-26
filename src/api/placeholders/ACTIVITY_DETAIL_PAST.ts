@@ -4,12 +4,16 @@ export default {
     lat: 37.7749,
     lng: -122.4194,
     radius: 500,
-    address: "Palacio Vistalegre"
+    address: "Palacio Vistalegre",
   },
   creationDate: 1709492837,
   startDate: 1712164031,
   duration: 90,
-  admin: 1,
+  admin: {
+    gid: 1,
+    name: "John Doe",
+    image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+  },
   price: 200,
   access: "public",
   name: "Partidazo de ternis",
@@ -20,8 +24,8 @@ export default {
     icon: "https://cdn-icons-png.flaticon.com/512/4498/4498011.png",
   },
   type: "normal",
-  teams: 2,
   playersPerTeam: 5,
+  userTeam: "A",
   closed: false,
   chat: 1,
   result: {
@@ -39,10 +43,9 @@ export default {
     ],
   },
   status: "finished",
-  teamPlayers: [
+  teams: [
     {
       name: "A",
-      numPlayers: 2,
       players: [
         {
           gid: 1,
@@ -78,7 +81,6 @@ export default {
     },
     {
       name: "B",
-      numPlayers: 5,
       players: [
         {
           gid: 3,

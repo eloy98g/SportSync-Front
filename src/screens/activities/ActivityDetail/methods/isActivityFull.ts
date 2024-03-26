@@ -1,12 +1,16 @@
-const isActivityFull = (data: any) => {
-  const { teams, playersPerTeam, teamPlayers } = data;
+import Activity from "../../../../store/types/Activity";
+import Team from "../../../../store/types/activity/Team";
 
-  const finalNumPlayers = teams * playersPerTeam;
+const isActivityFull = (data: Activity) => {
+  const { teams, playersPerTeam } = data;
+
+  const finalNumPlayers = teams.length * playersPerTeam;
   let currentPlayers = 0;
 
-  teamPlayers.forEach((team: any) => {
-    currentPlayers += team.numPlayers;
+  teams.forEach((team: Team) => {
+    currentPlayers += team.players.length;
   });
+  
   return currentPlayers === finalNumPlayers;
 };
 

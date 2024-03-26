@@ -1,5 +1,8 @@
-import Result, { ResultType } from "./activity/Result";
+import Player from "./activity/Player";
+import Result from "./activity/Result";
+import Team from "./activity/Team";
 import Place from "./Place";
+import Sport from "./Sport";
 
 export type ActivityType = "normal" | "competitive";
 export type ActivityAccess = "public" | "private";
@@ -16,20 +19,16 @@ export default interface Activity {
   creationDate: number;
   startDate: number;
   duration: number;
-  admin: number;
+  admin: Player;
   access: ActivityAccess;
+  type: ActivityType;
+  price: number;
   name: string;
   description: string;
-  sport: {
-    gid: number;
-    name: string;
-    icon: string;
-    color: string;
-  };
-  type: ActivityType;
-  teams: number;
+  sport: Sport;
+  teams: Team[];
+  userTeam: string;
   playersPerTeam: number;
-  currentPlayers: number;
   status: ActivityStatus;
   chat: number;
   result: Result;

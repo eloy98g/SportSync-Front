@@ -7,12 +7,7 @@ interface Props {
   color?: string;
 }
 
-const Divider = ({
-  height = 1,
-  width = 1,
-  color = "transparent",
-  ...rest
-}: Props) => (
+const Divider = ({ height, width, color, ...rest }: Props) => (
   <View
     style={{
       height: height,
@@ -23,5 +18,11 @@ const Divider = ({
     }}
   />
 );
+
+Divider.defaultProps = {
+  height: 1,
+  width: 1,
+  color: "transparent",
+};
 
 export default Divider;

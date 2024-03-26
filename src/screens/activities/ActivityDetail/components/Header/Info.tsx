@@ -1,11 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+
+// Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
+
+// Types
+import Activity from "../../../../../store/types/Activity";
+
+// Utils
 import getDateWithDuration from "../../../../../utils/date/getDateWithDuration";
 
 interface Props {
-  data: any;
+  data: Activity;
 }
 
 const Info = ({ data }: Props) => {

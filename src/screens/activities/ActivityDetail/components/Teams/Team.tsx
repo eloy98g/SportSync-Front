@@ -15,12 +15,16 @@ import Player from "./Player";
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
+// Types
+import Activity, { ActivityStatus } from "../../../../../store/types/Activity";
+import Team from "../../../../../store/types/activity/Team";
+
 interface Props {
-  data: any;
+  data: Team;
   side: "left" | "right";
   teamSize: number;
-  activityData: any;
-  status: any; // TODO change anys
+  activityData: Activity;
+  status: ActivityStatus;
 }
 
 const Team = ({ data, side, status, teamSize, activityData }: Props) => {
@@ -35,7 +39,7 @@ const Team = ({ data, side, status, teamSize, activityData }: Props) => {
   if (status === "pending" && players.length < teamSize) {
     const elementosFaltantes = teamSize - players.length;
     for (let i = 0; i < elementosFaltantes; i++) {
-      newData.push({ gid: null });
+      newData.push({ gid: 0, name: "", image: "" });
     }
   }
 
@@ -45,7 +49,7 @@ const Team = ({ data, side, status, teamSize, activityData }: Props) => {
         <Text style={styles.title}>{name}</Text>
       </View>
       <FlatList
-        keyExtractor={(item) => item.gid}
+        keyExtractor={(item) => item.gid.toString()}
         data={newData}
         numColumns={2}
         contentContainerStyle={styles.list}

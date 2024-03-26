@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 // Components
 import TeamNames from "../../../../../components/activities/TeamNames";
@@ -7,6 +7,8 @@ import Divider from "../../../../../components/common/Divider";
 import Teams from "../../../../../components/activities/Teams";
 import Card from "../../../../../components/common/Card";
 import Score from "../../../../../components/activities/Score";
+
+// Theme
 import { family } from "../../../../../theme/fonts";
 import colors from "../../../../../theme/colors";
 

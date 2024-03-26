@@ -1,15 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+
+// Components
 import Card from "../../../../../components/common/Card";
-import getAdmin from "../../methods/getAdmin";
 import Player from "../Teams/Player";
 import Description from "./Description";
 import Location from "./Location";
 
-const StaticInfo = ({ data }: any) => {
-  const { description, admin, teamPlayers, place } = data;
+// Store
+import Activity from "../../../../../store/types/Activity";
 
-  const adminData = getAdmin(admin, teamPlayers);
+interface Props {
+  data: Activity;
+}
+
+const StaticInfo = ({ data }: Props) => {
+  const { description, admin, place } = data;
+
   return (
     <View style={styles.container}>
       <Card title="Información" border={false}>
@@ -18,7 +25,7 @@ const StaticInfo = ({ data }: any) => {
       <Card title="Administrador" border={false}>
         <View style={styles.row}>
           <View style={styles.admin}>
-            <Player data={adminData} />
+            <Player data={admin} activityData={data}/>
           </View>
           <Location place={place} />
         </View>

@@ -5,9 +5,10 @@ import Sheet from "../../../../../components/common/Sheet";
 
 interface Props {
   open: boolean;
-  setOpen: (T: any) => void;
-  children: any;
+  setOpen: (T: boolean | string) => void;
+  children: React.JSX.Element | React.JSX.Element[];
 }
+
 const InfoSheet = ({ open, setOpen, children }: Props) => {
   const openHandler = () => {
     setOpen(!open);

@@ -5,10 +5,17 @@ import { StyleSheet, Text, View } from "react-native";
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
-const TeamNames = ({ teams }: any) => {
+// Types
+import Team from "../../store/types/activity/Team";
+
+interface Props {
+  teams: Team[];
+}
+
+const TeamNames = ({ teams }: Props) => {
   return (
     <View style={styles.container}>
-      {teams.map((team: any) => (
+      {teams.map((team: Team) => (
         <Text key={team.name} style={styles.name}>
           {team.name}
         </Text>

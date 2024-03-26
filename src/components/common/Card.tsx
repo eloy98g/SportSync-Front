@@ -10,6 +10,7 @@ interface Props {
   title?: string;
   border?: boolean;
 }
+
 const Card = ({ children, title, border = true }: Props) => (
   <View
     style={[

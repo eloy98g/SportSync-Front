@@ -5,12 +5,15 @@ import { View, StyleSheet } from "react-native";
 import Divider from "../../../../../components/common/Divider";
 import ActionsGroup from "./ActionsGroup";
 import BackButton from "./BackButton";
-import Wrapper from "./Wrapper";
+import Wrapper from "./Wrapper.web";
 import Info from "./Info";
 import Details from "../Details";
 
+// Types
+import Activity from "../../../../../store/types/Activity";
+
 interface Props {
-  data: any;
+  data: Activity;
   isAdmin: boolean;
   playerView?: boolean;
 }

@@ -2,13 +2,15 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { ArrowRight } from "lucide-react-native";
 
+// Components
+import Divider from "../../../../../components/common/Divider";
+
 // Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
-import Divider from "../../../../../components/common/Divider";
 
 interface Props {
-  icon?: any;
+  icon?: React.JSX.Element;
   title: string;
   onPress: () => void;
 }
@@ -17,7 +19,7 @@ const TouchableInfo = ({ icon, title, onPress }: Props) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       {icon}
-      {icon && <Divider width={12}/>}
+      {icon && <Divider width={12} />}
       <View style={styles.titleWrapper}>
         <Text style={styles.text}>{title}</Text>
       </View>

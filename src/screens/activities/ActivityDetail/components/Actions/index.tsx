@@ -11,8 +11,11 @@ import Card from "../../../../../components/common/Card";
 import colors from "../../../../../theme/colors";
 import shareActivity from "../../methods/shareActivity";
 
+// Activity
+import Activity from "../../../../../store/types/Activity";
+
 interface Props {
-  data: any;
+  data: Activity;
   playerView?: boolean;
   userGid?: number;
 }

@@ -6,17 +6,18 @@ import Card from "../../../../../components/common/Card";
 import TextLineDivider from "./TextDivider";
 import Team from "./Team";
 
+// Types
+import Activity from "../../../../../store/types/Activity";
+
 interface Props {
-  data: any;
-  teamSize: number;
-  teams: number;
-  activityData: any;
-  status: any; // TODO: change any's to proper clases
+  activity: Activity;
 }
 
-const Teams = ({ data = [], teamSize, teams, status, activityData }: Props) => {
-  const firstTeam = teams > 0 ? data[0] : null;
-  const secondTeam = teams > 1 ? data[1] : null;
+const Teams = ({ activity }: Props) => {
+  const { teams, playersPerTeam, status } = activity;
+  const numTeams = teams.length;
+  const firstTeam = numTeams > 0 ? teams[0] : null;
+  const secondTeam = numTeams > 1 ? teams[1] : null;
 
   return (
     <Card title="Jugadores">
@@ -25,9 +26,9 @@ const Teams = ({ data = [], teamSize, teams, status, activityData }: Props) => {
           <Team
             data={firstTeam}
             side="left"
-            teamSize={teamSize}
+            teamSize={playersPerTeam}
             status={status}
-            activityData={activityData}
+            activityData={activity}
           />
         )}
         {secondTeam && <TextLineDivider />}
@@ -35,9 +36,9 @@ const Teams = ({ data = [], teamSize, teams, status, activityData }: Props) => {
           <Team
             data={secondTeam}
             side="right"
-            teamSize={teamSize}
+            teamSize={playersPerTeam}
             status={status}
-            activityData={activityData}
+            activityData={activity}
           />
         )}
       </View>

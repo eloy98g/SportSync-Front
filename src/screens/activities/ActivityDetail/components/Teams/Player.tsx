@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import { CircleFadingPlus } from "lucide-react-native";
 
 // Components
@@ -10,7 +10,16 @@ import ActionSheet from "../ActionSheet";
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
-const Player = ({ data, activityData }: any) => {
+// Types
+import PlayerT from "../../../../../store/types/activity/Player";
+import Activity from "../../../../../store/types/Activity";
+
+interface Props {
+  data: PlayerT;
+  activityData: Activity;
+}
+
+const Player = ({ data, activityData }: Props) => {
   const [openSheet, setOpenSheet] = useState(false);
   const { image, name, gid } = data;
 
@@ -27,6 +36,7 @@ const Player = ({ data, activityData }: any) => {
       </TouchableOpacity>
     );
   }
+
   return (
     <>
       <TouchableOpacity style={styles.container} onPress={playerHandler}>

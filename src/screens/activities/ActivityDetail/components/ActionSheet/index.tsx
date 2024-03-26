@@ -15,11 +15,15 @@ import { useAppSelector } from "../../../../../hooks";
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
+// Types
+import Player from "../../../../../store/types/activity/Player";
+import Activity from "../../../../../store/types/Activity";
+
 interface Props {
-  user: any;
+  user: Player;
   open: boolean;
-  data: any;
-  setOpen: (T: any) => void;
+  data: Activity;
+  setOpen: (T: boolean) => void;
 }
 
 const ActionSheet = ({ user, open, data, setOpen }: Props) => {

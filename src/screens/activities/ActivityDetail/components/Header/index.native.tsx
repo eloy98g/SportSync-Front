@@ -11,9 +11,10 @@ import Info from "./Info";
 
 // Theme
 import { PHONE } from "../../../../../theme/breakPoints";
+import Activity from "../../../../../store/types/Activity";
 
 interface Props {
-  data: any;
+  data: Activity;
   isAdmin: boolean;
   playerView?:boolean
 }
