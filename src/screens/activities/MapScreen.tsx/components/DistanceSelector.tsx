@@ -11,6 +11,7 @@ import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
 import DISTANCES from "../DISTANCES";
+import DistanceT from "../../../../store/types/location/Distance";
 
 interface Props {
   onPress: (T: any) => void;
@@ -28,16 +29,15 @@ const DistanceSelector = ({ onPress, selected }: Props) => {
         showsHorizontalScrollIndicator={false}
       >
         <Divider width={12} />
-        {DISTANCES.map((item: any) => (
-          <>
+        {DISTANCES.map((item: DistanceT) => (
+          <React.Fragment key={item.gid}>
             <Distance
-              key={item.gid}
               {...item}
               selected={selected === item.gid}
               onPress={() => onPress(item)}
             />
             <Divider width={12} />
-          </>
+          </React.Fragment>
         ))}
       </ScrollView>
       <Divider height={24} />

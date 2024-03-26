@@ -4,18 +4,19 @@ import MapView, {
   Marker,
   PROVIDER_GOOGLE,
   Circle,
-  MapPressEvent,
-  MarkerPressEvent,
   LatLng,
 } from "react-native-maps";
 
 // Components
 import BackHeader from "../../../components/BackHeader";
+import DistanceSelector from "./components/DistanceSelector";
 import Screen from "../../../components/common/Screen";
 
 // Theme
 import colors, { rgbaPrimary } from "../../../theme/colors";
-import DistanceSelector from "./components/DistanceSelector";
+
+// Types
+import MAP_EVENT_TYPE from "../../../store/types/location/MapEventType";
 
 // TODO: this must be user's location
 const INITIAL_REGION = {
@@ -24,8 +25,6 @@ const INITIAL_REGION = {
   latitudeDelta: 2,
   longitudeDelta: 2,
 };
-
-type MAP_EVENT_TYPE = MarkerPressEvent | MapPressEvent;
 
 const MapScreen = () => {
   const [markerPosition, setMarkerPosition] = useState<LatLng>(INITIAL_REGION);
