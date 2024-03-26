@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  NativeSyntheticEvent,
-  StyleSheet,
-  TextInputChangeEventData,
-} from "react-native";
+import { StyleSheet } from "react-native";
 import { TextArea as RNTextArea } from "tamagui";
 
 // Theme
@@ -13,7 +9,7 @@ import { family } from "../../../theme/fonts";
 interface Props {
   placeholder?: string;
   value: string;
-  onChange: (T: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  onChange: (T: any) => void;
   error?: boolean;
 }
 const TextArea = ({ placeholder, value, onChange, error = false }: Props) => {

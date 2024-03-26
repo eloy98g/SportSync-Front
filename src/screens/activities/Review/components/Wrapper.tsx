@@ -17,7 +17,11 @@ import Divider from "../../../../components/common/Divider";
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
-const Wrapper = ({ children }: any) => {
+interface Props {
+  children: React.JSX.Element | React.JSX.Element[];
+}
+
+const Wrapper = ({ children }: Props) => {
   const navigation = useNavigation();
 
   const backHandler = () => {

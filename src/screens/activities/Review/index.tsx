@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
+
 // Components
 import Screen from "../../../components/common/Screen";
 import Divider from "../../../components/common/Divider";
@@ -13,20 +14,33 @@ import Wrapper from "./components/Wrapper";
 import { family } from "../../../theme/fonts";
 import colors from "../../../theme/colors";
 
+// Types
+import Review from "../../../store/types/review";
+import Activity from "../../../store/types/activity/Activity";
+import Player from "../../../store/types/activity/Player";
+import Team from "../../../store/types/activity/Team";
+
+interface ScreenParams {
+  userGid: number;
+  data: Activity;
+  selectedUser: Player;
+}
+
 const Review = ({ route }: any) => {
-  const { userGid, data, selectedUser } = route.params;
-  const [review, setReview] = useState({
-    players: selectedUser?.gid ? [selectedUser.gid] : [],
-    rating: null,
+  const { userGid, data, selectedUser } = route.params as ScreenParams;
+
+  const [review, setReview] = useState<Review>({
+    players: selectedUser.gid ? [selectedUser.gid] : [],
+    rating: 0,
     comment: "",
     reviewer: userGid,
   });
 
   useEffect(() => {
-    const playerGids = data.teamPlayers.flatMap((team: any) =>
-      team.players.map((player: any) => player.gid)
+    const playerGids = data.teams.flatMap((team: Team) =>
+      team.players.map((player: Player) => player.gid)
     );
-    setReview((prevState: any) => ({ ...prevState, players: playerGids }));
+    setReview((prevState: Review) => ({ ...prevState, players: playerGids }));
   }, []);
 
   return (
@@ -49,7 +63,7 @@ const Review = ({ route }: any) => {
         ) : (
           <>
             <PlayerList
-              data={data.teamPlayers}
+              data={data.teams}
               review={review}
               setReview={setReview}
             />

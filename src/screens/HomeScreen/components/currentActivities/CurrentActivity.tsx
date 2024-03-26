@@ -5,6 +5,8 @@ import { useNavigation } from "@react-navigation/native";
 
 // Components
 import IconButton from "../../../../components/common/buttons/IconButton";
+import Divider from "../../../../components/common/Divider";
+import Icon from "../../../../components/common/Icon";
 
 // Types
 import Activity from "../../../../store/types/activity/Activity";
@@ -15,12 +17,10 @@ import { family } from "../../../../theme/fonts";
 
 // Utils
 import unixToDate from "../../../../utils/date/unixToDate";
-import Divider from "../../../../components/common/Divider";
-import Icon from "../../../../components/common/Icon";
 import getHour from "../../../../utils/date/getHour";
 
 const CurrentActivity = (props: Activity) => {
-  const { sport, name, type, startDate, duration, gid } = props;
+  const { sport, name, type, startDate, gid } = props;
   const navigation = useNavigation();
 
   const date = unixToDate(startDate);

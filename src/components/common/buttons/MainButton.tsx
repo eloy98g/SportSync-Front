@@ -11,7 +11,7 @@ import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
 interface Props {
-  onPress: () => void;
+  onPress: (T: any) => void;
   title: string;
   active?: boolean;
   color?: string;

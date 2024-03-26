@@ -2,8 +2,9 @@ import getStreakVictory from "./getStreakVictory";
 
 // Types
 import Activity from "../../../../store/types/activity/Activity";
+import Stats from "../../../../store/types/stats";
 
-const getStats = (activities: Activity[]) => {
+const getStats = (activities: Activity[]): Stats => {
   let victories = 0;
   let ties = 0;
   let loses = 0;

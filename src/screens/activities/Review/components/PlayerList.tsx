@@ -10,23 +10,29 @@ import Title from "./Title";
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
+// Types
+import PlayerT from "../../../../store/types/activity/Player";
+import Review from "../../../../store/types/review";
+import Team from "../../../../store/types/activity/Team";
+
 interface Props {
-  data: any;
-  setReview: any;
-  review: any;
+  data: Team[];
+  setReview: (T: any) => void;
+  review: Review;
 }
 
 const PlayerList = ({ data, review, setReview }: Props) => {
-  const playerHandler = (gid: any) => {
-    setReview((prevState: any) => {
+  const playerHandler = (gid: number) => {
+    setReview((prevState: Review) => {
       const isPlayerIncluded = prevState.players.includes(gid);
       const newPlayers = isPlayerIncluded
-        ? prevState.players.filter((player: any) => player !== gid)
+        ? prevState.players.filter((player: number) => player !== gid)
         : [...prevState.players, gid];
 
       return { ...prevState, players: newPlayers };
     });
   };
+
   return (
     <View style={styles.container}>
       <Title
@@ -39,7 +45,7 @@ const PlayerList = ({ data, review, setReview }: Props) => {
         style={styles.verticalScroll}
         showsVerticalScrollIndicator={false}
       >
-        {data.map((team: any) => (
+        {data.map((team: Team) => (
           <>
             <Text style={styles.text}>{team.name}</Text>
             <Divider height={6} />
@@ -49,10 +55,10 @@ const PlayerList = ({ data, review, setReview }: Props) => {
               style={styles.horizontalScroll}
               showsHorizontalScrollIndicator={false}
             >
-              {team.players.map((player: any) => (
+              {team.players.map((player: PlayerT) => (
                 <>
                   <Player
-                    key={player.key}
+                    key={player.gid}
                     data={player}
                     onPress={() => playerHandler(player.gid)}
                     selected={review.players.includes(player.gid)}

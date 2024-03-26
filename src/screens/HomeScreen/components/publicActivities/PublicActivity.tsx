@@ -17,24 +17,19 @@ import { family } from "../../../../theme/fonts";
 import unixToDate from "../../../../utils/date/unixToDate";
 
 const PublicActivity = (props: Activity) => {
-  const {
-    sport,
-    access,
-    type,
-    startDate,
-    teams,
-    playersPerTeam,
-    currentPlayers,
-    gid,
-  } = props;
-  const { color, name } = sport;
+  const { sport, access, type, startDate, teams, playersPerTeam, gid } = props;
+  const { name } = sport;
   const navigation = useNavigation();
 
   // TODO calcular distancia (obtener localizacion)
   const distance = "a 500m";
 
   const date = unixToDate(startDate);
-  const totalPlayers = teams * playersPerTeam;
+  const currentPlayers = teams.reduce(
+    (sum, team) => sum + team.players.length,
+    0
+  );
+  const totalPlayers = teams.length * playersPerTeam;
 
   const activityHandler = () => {
     navigation.navigate("ActivityDetail" as never, { gid } as never);
@@ -75,7 +70,7 @@ const styles = StyleSheet.create({
     height: 90,
     borderRadius: 12,
     padding: 10,
-    backgroundColor: colors.secondary
+    backgroundColor: colors.secondary,
   },
   row: {
     flexDirection: "row",

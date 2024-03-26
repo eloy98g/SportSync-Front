@@ -1,6 +1,6 @@
 import Activity from "../../../../store/types/activity/Activity";
 
-const getStreakVictory = (activities: Activity[]) => {
+const getStreakVictory = (activities: Activity[]): number => {
   activities.sort((a: Activity, b: Activity) => a.startDate - b.startDate);
   let victoryStreak = 0;
 

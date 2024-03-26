@@ -18,10 +18,15 @@ const routes: TabRoute[] = [
   { key: "competitive", title: "Competitivo" },
 ];
 
+interface ScreenParams {
+  currentActivities: Activity[];
+}
+
 const SportStats = ({ route }: any) => {
   const [currentTab, setCurrentTab] = useState("all");
 
-  const activities = route.params?.currentActivities || [];
+  const { currentActivities: activities = [] } = route.params as ScreenParams;
+
   const sport = activities[0].sport;
   const currentActivities = activities.filter(
     (item: Activity) => item.type === currentTab || currentTab === "all"

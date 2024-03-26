@@ -9,7 +9,7 @@ import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
 interface Props {
-  title: string;
+  title: string | number;
   subtitle: string;
   color: string;
 }

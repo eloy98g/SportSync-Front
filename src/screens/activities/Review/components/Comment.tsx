@@ -6,12 +6,18 @@ import Divider from "../../../../components/common/Divider";
 import TextArea from "../../../../components/common/inputs/TextArea";
 import Title from "./Title";
 
-const Comment = ({ comment, setReview }: any) => {
+interface Props {
+  comment: string;
+  setReview: (T: any) => void;
+}
+
+const Comment = ({ comment, setReview }: Props) => {
   const [auxComment, setAuxComment] = useState(comment);
 
   useEffect(() => {
     setReview((prevState: any) => ({ ...prevState, comment: auxComment }));
-  }, [auxComment])
+  }, [auxComment]);
+
   return (
     <View style={styles.container}>
       <Title text="¿Qué te gustaría compartir con los demás?" />

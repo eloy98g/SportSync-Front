@@ -6,7 +6,14 @@ import { PieChart } from "react-native-gifted-charts";
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
-const StatChart = ({ statData }: any) => {
+// Types
+import Stats from "../../../../store/types/stats";
+
+interface Props {
+  statData: Stats
+}
+
+const StatChart = ({ statData }: Props) => {
   const { victories, loses, ties, percentage, total } = statData;
   const pieData = [
     { value: victories, color: colors.secondary },

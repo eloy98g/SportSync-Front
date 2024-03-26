@@ -1,9 +1,8 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { useWindowDimensions, StyleSheet, View } from "react-native";
+import { useWindowDimensions, StyleSheet } from "react-native";
 
 // Components
-import Divider from "../../../../components/common/Divider";
 import ActionButton from "../ActionButton";
 import HomeSection from "../HomeSection";
 
@@ -13,7 +12,7 @@ const OtherActions = () => {
 
   const paddingHorizontal = 24;
   const itemWidth = width - paddingHorizontal;
-  const itemHeight = itemWidth / 2
+  const itemHeight = itemWidth / 2;
 
   const uploadScoreHandler = () => {};
 

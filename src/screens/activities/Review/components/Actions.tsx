@@ -8,16 +8,22 @@ import Divider from "../../../../components/common/Divider";
 
 // Theme
 import colors from "../../../../theme/colors";
+import Review from "../../../../store/types/review";
 
-const Actions = ({ review }: any) => {
+interface Props {
+  review: Review;
+}
+const Actions = ({ review }: Props) => {
   const navigation = useNavigation();
 
   const cancelHandler = () => {
     navigation.goBack();
   };
+
   const acceptHandler = () => {
     // TODO: api call for sending review
   };
+  
   return (
     <View style={styles.row}>
       <MainButton
