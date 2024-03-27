@@ -2,7 +2,7 @@ import { StatusBar } from "react-native";
 import Popover from "react-native-popover-view";
 
 interface Props {
-  children: React.JSX.Element;
+  children: React.ReactNode;
   open: boolean;
   setOpen: (T: boolean) => void;
   parentRef: any;

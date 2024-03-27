@@ -10,7 +10,7 @@ import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
 interface Props {
-  icon?: React.JSX.Element;
+  icon?: React.ReactNode;
   title: string;
   onPress: () => void;
 }

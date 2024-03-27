@@ -6,7 +6,7 @@ import Sheet from "../../../../../components/common/Sheet";
 interface Props {
   open: boolean;
   setOpen: (T: boolean | string) => void;
-  children: React.JSX.Element | React.JSX.Element[];
+  children: React.ReactNode;
 }
 
 const InfoSheet = ({ open, setOpen, children }: Props) => {

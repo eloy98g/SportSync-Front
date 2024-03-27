@@ -7,7 +7,7 @@ import {
 } from "react-native";
 
 interface Props {
-  children: React.JSX.Element;
+  children: React.ReactNode;
   setVisible: (T: boolean) => void;
   visible: boolean;
   dismissable?: boolean;

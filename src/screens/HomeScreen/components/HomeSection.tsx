@@ -11,7 +11,7 @@ import { family } from "../../../theme/fonts";
 
 interface Props {
   title: string;
-  children: React.JSX.Element | React.JSX.Element[];
+  children: React.ReactNode;
 }
 
 const HomeSection = ({ title, children }: Props) => {

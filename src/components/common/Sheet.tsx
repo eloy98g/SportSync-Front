@@ -8,7 +8,7 @@ interface Props {
   open: boolean;
   modal: boolean;
   openHandler: (T: boolean) => void;
-  children: React.JSX.Element | React.JSX.Element[];
+  children: React.ReactNode;
 }
 
 const Sheet = (props: Props) => {

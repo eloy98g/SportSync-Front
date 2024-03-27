@@ -17,7 +17,7 @@ interface Props {
   size?: number;
 }
 
-const Icon = ({ icon, color, size = 30 }: Props): React.JSX.Element => {
+const Icon = ({ icon, color, size = 30 }: Props): React.ReactNode => {
   switch (icon) {
     case "home":
       return <Home size={size} color={color} />;
