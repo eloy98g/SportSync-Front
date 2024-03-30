@@ -1,36 +1,19 @@
-import React, { useState, ReactElement } from "react";
+import React from "react";
 
 // Components
-import Screen from "../../../components/common/Screen";
+import Create from "./Create";
 
-// Sections
-import Description from "./sections/Description";
-import Location from "./sections/Location";
-import Players from "./sections/Players";
-import Price from "./sections/Price";
-import Resume from "./sections/Resume";
-import Sport from "./sections/Sport";
-import Time from "./sections/Time";
-import Type from "./sections/Type";
-
-// Types
-import { CreateSection } from "../../../store/types/sections/CreateSection";
+// Context
+import { CreateProvider } from "./context/CreateContext";
+import BackHeader from "../../../components/BackHeader";
 
 const CreateActivity = () => {
-  const [section, setSection] = useState<CreateSection>("sport");
-
-  const sectionComponent: { [key in CreateSection]: ReactElement<any, any> } = {
-    sport: <Sport />,
-    location: <Location />,
-    description: <Description />,
-    players: <Players />,
-    price: <Price />,
-    resume: <Resume />,
-    time: <Time />,
-    type: <Type />,
-  };
-
-  return <Screen>{sectionComponent[section]}</Screen>;
+  return (
+    <CreateProvider>
+      <BackHeader title="Crear" />
+      <Create />
+    </CreateProvider>
+  );
 };
 
 export default CreateActivity;

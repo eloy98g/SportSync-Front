@@ -1,14 +1,10 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 const Sport = () => {
-  return (
-    <View>
-      <Text></Text>
-    </View>
-  )
-}
+  return <Text></Text>;
+};
 
-export default Sport
+export default Sport;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
