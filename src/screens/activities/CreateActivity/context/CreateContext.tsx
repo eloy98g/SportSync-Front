@@ -7,28 +7,35 @@ import React, {
 } from "react";
 import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY_SPORTS";
 import useStatus, { STATUS } from "../../../../hooks/useStatus";
+import Draft from "../../../../store/types/draft/Draft";
 import SportDraft from "../../../../store/types/draft/SportDraft";
 
 // Sections
 import { SectionName } from "../sections";
 
 interface ContextProps {
-  draft: any;
-  setDraft: Dispatch<SetStateAction<any>>;
+  draft: Draft;
+  setDraft: Dispatch<SetStateAction<Draft>>;
   setSection: Dispatch<SetStateAction<SectionName>>;
   section: SectionName;
   sports: SportDraft[];
   status: STATUS;
 }
 
+const INITIAL_DRAFT: Draft = {
+  sport: 0,
+};
+
 const INITIAL_DATA = {
-  draft: null,
+  draft: INITIAL_DRAFT,
   setDraft: () => {},
   setSection: () => {},
   section: "sport" as SectionName,
   status: "idle" as STATUS,
   sports: [],
 };
+
+
 
 const CreateContext = createContext<ContextProps>(INITIAL_DATA);
 
@@ -38,7 +45,7 @@ interface Props {
 
 const CreateProvider = ({ children }: Props) => {
   const [section, setSection] = useState<SectionName>("sport");
-  const [draft, setDraft] = useState();
+  const [draft, setDraft] = useState<Draft>(INITIAL_DRAFT);
   const [sports, setSports] = useState<SportDraft[]>([]);
   const { status, setStatus } = useStatus();
 

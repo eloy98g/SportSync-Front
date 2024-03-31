@@ -38,7 +38,6 @@ export default StatusBar;
 
 const styles = StyleSheet.create({
   container: {
-    height: 20,
   },
   progressContainer: {
     width: "100%",

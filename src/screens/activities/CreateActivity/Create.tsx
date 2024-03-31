@@ -47,8 +47,6 @@ const Create = () => {
     }
   };
 
-  console.log('status',status)
-
   if (status === "loading" || status === "idle") {
     return <Loading />;
   }
