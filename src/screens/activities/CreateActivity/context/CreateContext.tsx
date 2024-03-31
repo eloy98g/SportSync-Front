@@ -24,6 +24,8 @@ interface ContextProps {
 
 const INITIAL_DRAFT: Draft = {
   sport: 1,
+  teams: 2,
+  playersPerTeam: 1,
 };
 
 const INITIAL_DATA = {
