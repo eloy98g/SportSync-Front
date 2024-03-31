@@ -9,13 +9,14 @@ import Actions from "./components/Actions";
 import CreateContext from "./context/CreateContext";
 
 // Sections
-import Sections, { lastSection } from "./sections";
+import Sections, { lastSection, SectionName } from "./sections";
 
 // Theme
 import colors from "../../../theme/colors";
+import Loading from "./components/Loading";
 
 const Create = () => {
-  const { section, setSection } = useContext(CreateContext);
+  const { status, error, section, setSection } = useContext(CreateContext);
   const currentSection =
     Sections.find((element) => element.name === section) ?? Sections[0];
 
@@ -32,7 +33,7 @@ const Create = () => {
       Sections.find(
         (element) => element.position === currentSection.position - 1
       ) ?? Sections[0];
-    setSection(prevSection.name);
+    setSection(prevSection.name  as SectionName);
   };
 
   const rightAction = () => {
@@ -42,17 +43,19 @@ const Create = () => {
         Sections.find(
           (element) => element.position === currentSection.position + 1
         ) ?? Sections[0];
-      setSection(nextSection.name);
+      setSection(nextSection.name as SectionName);
     }
   };
 
+  console.log('status',status)
+
+  if (status === "loading" || status === "idle") {
+    return <Loading />;
+  }
+
   return (
     <View style={styles.container}>
-      <StatusBar
-        value={value}
-        position={position + 1}
-        max={Sections.length}
-      />
+      <StatusBar value={value} position={position + 1} max={Sections.length} />
       {component}
       <Actions
         showLeft={showLeft}
