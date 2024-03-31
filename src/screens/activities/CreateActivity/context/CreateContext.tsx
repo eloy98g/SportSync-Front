@@ -14,16 +14,16 @@ import SportDraft from "../../../../store/types/draft/SportDraft";
 import { SectionName } from "../sections";
 
 interface ContextProps {
-  draft: Draft;
   setDraft: Dispatch<SetStateAction<Draft>>;
   setSection: Dispatch<SetStateAction<SectionName>>;
+  draft: Draft;
   section: SectionName;
   sports: SportDraft[];
   status: STATUS;
 }
 
 const INITIAL_DRAFT: Draft = {
-  sport: 0,
+  sport: 1,
 };
 
 const INITIAL_DATA = {
@@ -34,8 +34,6 @@ const INITIAL_DATA = {
   status: "idle" as STATUS,
   sports: [],
 };
-
-
 
 const CreateContext = createContext<ContextProps>(INITIAL_DATA);
 
@@ -51,6 +49,7 @@ const CreateProvider = ({ children }: Props) => {
 
   useEffect(() => {
     // Todo: Api call for sports
+    // TODO: error handling
     setStatus("loading");
     setTimeout(() => {
       setSports(CREATE_ACTIVITY_SPORTS);
@@ -60,7 +59,14 @@ const CreateProvider = ({ children }: Props) => {
 
   return (
     <CreateContext.Provider
-      value={{ draft, setDraft, setSection, section, status, sports }}
+      value={{
+        draft,
+        setDraft,
+        setSection,
+        section,
+        status,
+        sports,
+      }}
     >
       {children}
     </CreateContext.Provider>

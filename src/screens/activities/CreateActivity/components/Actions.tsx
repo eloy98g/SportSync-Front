@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
@@ -7,6 +7,7 @@ import Divider from "../../../../components/common/Divider";
 
 // Theme
 import colors from "../../../../theme/colors";
+import CreateContext from "../context/CreateContext";
 
 interface Props {
   leftAction: () => void;

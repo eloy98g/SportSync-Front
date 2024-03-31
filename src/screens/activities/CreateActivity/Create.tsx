@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 // Components
 import StatusBar from "./components/StatusBar";
 import Actions from "./components/Actions";
+import Loading from "./components/Loading";
 
 // Context
 import CreateContext from "./context/CreateContext";
@@ -13,10 +14,9 @@ import Sections, { lastSection, SectionName } from "./sections";
 
 // Theme
 import colors from "../../../theme/colors";
-import Loading from "./components/Loading";
 
 const Create = () => {
-  const { status, error, section, setSection } = useContext(CreateContext);
+  const { status, section, setSection } = useContext(CreateContext);
   const currentSection =
     Sections.find((element) => element.name === section) ?? Sections[0];
 
@@ -33,7 +33,7 @@ const Create = () => {
       Sections.find(
         (element) => element.position === currentSection.position - 1
       ) ?? Sections[0];
-    setSection(prevSection.name  as SectionName);
+    setSection(prevSection.name as SectionName);
   };
 
   const rightAction = () => {
@@ -49,6 +49,10 @@ const Create = () => {
 
   if (status === "loading" || status === "idle") {
     return <Loading />;
+  }
+
+  if (status === "error") {
+    // TODO: render error
   }
 
   return (
