@@ -1,11 +1,11 @@
 import React from "react";
 
 // Components
+import BackHeader from "../../../components/BackHeader";
 import Create from "./Create";
 
 // Context
 import { CreateProvider } from "./context/CreateContext";
-import BackHeader from "../../../components/BackHeader";
 
 const CreateActivity = () => {
   return (

@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Progress } from "tamagui";
+
+// Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
@@ -23,7 +25,7 @@ const StatusBar = ({ value, max, position }: Props) => {
         style={styles.progressContainer}
       >
         <Progress.Indicator
-          animation="tooltip"
+          animation="lazy"
           unstyled
           style={styles.progress}
         />
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     fontSize: 14,
     color: colors.grey,
-    textAlign:"right",
-    paddingRight: 4
+    textAlign: "right",
+    paddingRight: 4,
   },
 });
