@@ -1,14 +1,17 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+// Components
+import SectionContainer from "../components/SectionContainer";
 
 const Location = () => {
   return (
-    <View>
-      <Text></Text>
-    </View>
-  )
-}
+    <SectionContainer>
+      <Text>Location</Text>
+    </SectionContainer>
+  );
+};
 
-export default Location
+export default Location;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

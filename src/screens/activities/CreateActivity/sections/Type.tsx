@@ -1,14 +1,17 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+// Components
+import SectionContainer from "../components/SectionContainer";
 
 const Type = () => {
   return (
-    <View>
-      <Text></Text>
-    </View>
-  )
-}
+    <SectionContainer>
+      <Text>Type</Text>
+    </SectionContainer>
+  );
+};
 
-export default Type
+export default Type;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

@@ -31,5 +31,9 @@ const Sections: Section[] = [
   { name: "resume", position: 7, component: <Resume /> },
 ];
 
-export { SectionName };
+const lastSection = Sections.reduce((prevItem, currentItem) => {
+  return currentItem.position > prevItem.position ? currentItem : prevItem;
+});
+
+export { SectionName, lastSection };
 export default Sections;

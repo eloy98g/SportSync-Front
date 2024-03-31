@@ -10,8 +10,8 @@ interface Props {
 }
 
 const CreateProvider = ({ children }: Props) => {
-  const [section, setSection] = useState<SectionName>("location");
-  const [draft, setDraft] = useState();
+  const [section, setSection] = useState<SectionName>("sport");
+  const [draft, setDraft] = useState(); 
 
   return (
     <CreateContext.Provider value={{ draft, setDraft, setSection, section }}>

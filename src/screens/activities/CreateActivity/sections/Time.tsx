@@ -1,14 +1,17 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+// Components
+import SectionContainer from "../components/SectionContainer";
 
 const Time = () => {
   return (
-    <View>
-      <Text></Text>
-    </View>
-  )
-}
+    <SectionContainer>
+      <Text>Time</Text>
+    </SectionContainer>
+  );
+};
 
-export default Time
+export default Time;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
