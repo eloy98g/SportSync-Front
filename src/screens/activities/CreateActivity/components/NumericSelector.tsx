@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     alignItems: "center",
+    justifyContent:"center"
   },
   text: {
     fontFamily: family.normal,

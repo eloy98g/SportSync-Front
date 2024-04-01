@@ -24,6 +24,7 @@ const Type = () => {
       type: prevState.type === "normal" ? "competitive" : "normal",
     }));
   };
+  
   return (
     <SectionContainer>
       <TypeSelector

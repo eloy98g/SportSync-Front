@@ -6,6 +6,7 @@ type Draft = {
   playersPerTeam: number;
   access: ActivityAccess;
   type: ActivityType;
+  price: number;
 };
 
 export default Draft;

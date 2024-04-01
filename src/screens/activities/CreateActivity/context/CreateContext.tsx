@@ -28,6 +28,7 @@ const INITIAL_DRAFT: Draft = {
   playersPerTeam: 1,
   access: "public",
   type: "normal",
+  price: 0
 };
 
 const INITIAL_DATA = {
