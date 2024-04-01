@@ -26,6 +26,8 @@ const INITIAL_DRAFT: Draft = {
   sport: 1,
   teams: 2,
   playersPerTeam: 1,
+  access: "public",
+  type: "normal",
 };
 
 const INITIAL_DATA = {
