@@ -1,20 +1,16 @@
 import React from "react";
 import Description from "./Description";
-import Location from "./Location";
+import Schedule from "./Schedule";
 import Players from "./Players";
-import Price from "./Price";
 import Resume from "./Resume";
 import Sport from "./Sport";
-import Time from "./Time";
 import Type from "./Type";
 
 type SectionName =
   | "sport"
   | "players"
   | "type"
-  | "location"
-  | "price"
-  | "time"
+  | "schedule"
   | "description"
   | "resume";
 
@@ -24,11 +20,9 @@ const Sections: Section[] = [
   { name: "sport", position: 0, component: <Sport /> },
   { name: "players", position: 1, component: <Players /> },
   { name: "type", position: 2, component: <Type /> },
-  { name: "location", position: 3, component: <Location /> },
-  { name: "price", position: 4, component: <Price /> },
-  { name: "time", position: 5, component: <Time /> },
-  { name: "description", position: 6, component: <Description /> },
-  { name: "resume", position: 7, component: <Resume /> },
+  { name: "schedule", position: 3, component: <Schedule /> },
+  { name: "description", position: 4, component: <Description /> },
+  { name: "resume", position: 5, component: <Resume /> },
 ];
 
 const lastSection = Sections.reduce((prevItem, currentItem) => {

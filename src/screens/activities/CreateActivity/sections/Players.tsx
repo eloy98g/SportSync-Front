@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import SectionContainer from "../components/SectionContainer";
 import NumericSelector from "../components/NumericSelector";
 import Divider from "../../../../components/common/Divider";
+import TextInput from "../../../../components/common/inputs/TextInput";
 
 // Context
 import CreateContext from "../context/CreateContext";
@@ -12,9 +13,9 @@ import CreateContext from "../context/CreateContext";
 // Theme
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
-import TextInput from "../../../../components/common/inputs/TextInput";
+
+// Utils
 import getFormattedPrice from "../../../../utils/currency/getFormattedPrice";
-import isValidNumber from "../../../../utils/currency/isValidNumber";
 
 const Players = () => {
   const { draft, setDraft } = useContext(CreateContext);
