@@ -28,7 +28,15 @@ const INITIAL_DRAFT: Draft = {
   playersPerTeam: 1,
   access: "public",
   type: "normal",
-  price: 0
+  price: 0,
+  place: {
+    address: "",
+    lat: null,
+    lng: null,
+  },
+  duration: 60,
+  day: Date.now(),
+  hour: Date.now(),
 };
 
 const INITIAL_DATA = {

@@ -20,7 +20,7 @@ const TextArea = ({ placeholder, value, onChange, error = false }: Props) => {
       style={[styles.container, { borderColor }]}
       placeholder={placeholder}
       value={value}
-      onChange={onChange}
+      onChangeText={onChange}
     />
   );
 };
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     borderWidth: 1,
     fontSize: 18,
-    textAlign: "left",
     color: colors.black,
     backgroundColor: colors.white,
   },
