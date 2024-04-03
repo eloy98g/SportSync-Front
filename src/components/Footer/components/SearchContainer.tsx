@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Hash, Plus, Search } from "lucide-react-native";
 
 // Components
@@ -10,27 +11,39 @@ import Divider from "../../common/Divider";
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
-const SearchContainer = () => {
+interface Props {
+  setSearchOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const SearchContainer = ({ setSearchOpen }: Props) => {
+  const navigation = useNavigation();
+
+  const createHandler = () => {
+    setSearchOpen(false);
+    navigation.navigate("CreateActivity" as never);
+  };
+  const searchHandler = () => {};
+  const codeHandler = () => {};
   return (
     <View style={styles.container}>
       <IconButton
         icon={<Search color={colors.primary} size={22} />}
         text="Buscar Actividad"
-        onPress={() => {}}
+        onPress={searchHandler}
         textStyle={styles.text}
       />
       <Divider height={10} />
       <IconButton
         icon={<Plus color={colors.primary} size={24} />}
         text="Crear Actividad"
-        onPress={() => {}}
+        onPress={createHandler}
         textStyle={styles.text}
       />
       <Divider height={10} />
       <IconButton
         icon={<Hash color={colors.primary} size={24} />}
         text="Tengo un código"
-        onPress={() => {}}
+        onPress={codeHandler}
         textStyle={styles.text}
       />
     </View>
@@ -41,7 +54,7 @@ export default SearchContainer;
 
 const styles = StyleSheet.create({
   container: {
-    width: 300,
+    width: 250,
     paddingHorizontal: 22,
     paddingVertical: 18,
     backgroundColor: colors.white,

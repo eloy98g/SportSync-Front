@@ -7,9 +7,11 @@ import SearchContainer from "./components/SearchContainer";
 import PopOver from "../common/PopOver";
 import Tab from "./components/Tab";
 
+// Hooks
+import { useAppSelector } from "../../hooks";
+
 // Methods
 import getActiveRouteState from "./methods/getActiveRouteState";
-import { useAppSelector } from "../../hooks";
 
 const SCREENS_WHITELIST = ["Home", "Profile"];
 
@@ -22,6 +24,7 @@ const Footer = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const tabRef = useRef();
 
+  console.log('searchOpen',searchOpen)
   const ICONS = [
     {
       key: "Home",
@@ -48,9 +51,8 @@ const Footer = () => {
     return <View />;
   }
 
-  // TODO: check ref behaviour on mobile apps
   return (
-    <View style={styles.container} ref={tabRef.current}>
+    <View style={styles.container} ref={tabRef}>
       <View style={styles.content}>
         {ICONS.map((icon) => (
           <Tab
@@ -60,7 +62,7 @@ const Footer = () => {
           />
         ))}
         <PopOver open={searchOpen} parentRef={tabRef} setOpen={setSearchOpen}>
-          <SearchContainer />
+          <SearchContainer setSearchOpen={setSearchOpen}/>
         </PopOver>
       </View>
     </View>
