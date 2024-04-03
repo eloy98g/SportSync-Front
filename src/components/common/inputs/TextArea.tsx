@@ -11,8 +11,15 @@ interface Props {
   value: string;
   onChange: (T: any) => void;
   error?: boolean;
+  height?: number;
 }
-const TextArea = ({ placeholder, value, onChange, error = false }: Props) => {
+const TextArea = ({
+  placeholder,
+  value,
+  onChange,
+  error = false,
+  height = 92,
+}: Props) => {
   const borderColor = error ? colors.red : colors.grey;
 
   return (
@@ -21,6 +28,7 @@ const TextArea = ({ placeholder, value, onChange, error = false }: Props) => {
       placeholder={placeholder}
       value={value}
       onChangeText={onChange}
+      height={height}
     />
   );
 };
@@ -30,7 +38,6 @@ export default TextArea;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 92,
     borderRadius: 10,
     fontFamily: family.normal,
     borderWidth: 1,

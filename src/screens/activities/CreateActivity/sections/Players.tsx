@@ -6,6 +6,7 @@ import SectionContainer from "../components/SectionContainer";
 import NumericSelector from "../components/NumericSelector";
 import Divider from "../../../../components/common/Divider";
 import TextInput from "../../../../components/common/inputs/TextInput";
+import Title from "../components/Title";
 
 // Context
 import CreateContext from "../context/CreateContext";
@@ -69,7 +70,7 @@ const Players = () => {
   return (
     <SectionContainer>
       <View style={styles.content}>
-        <Text style={styles.title}>Equipos</Text>
+        <Title title="Equipo" />
         <Divider height={12} />
         <NumericSelector
           onAdd={addTeam}
@@ -77,7 +78,7 @@ const Players = () => {
           quantity={teams}
         />
         <Divider height={40} />
-        <Text style={styles.title}>Jugadores por equipo</Text>
+        <Title title="Jugadores por equipo" />
         <Divider height={12} />
         <NumericSelector
           onAdd={addPlayer}
@@ -85,7 +86,7 @@ const Players = () => {
           quantity={playersPerTeam}
         />
         <Divider height={40} />
-        <Text style={styles.title}>Precio</Text>
+        <Title title="Precio" />
         <Text style={styles.subtitle}>
           ¿El partido o la actividad tiene algún coste?
         </Text>
@@ -112,11 +113,6 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-  },
-  title: {
-    fontFamily: family.normal,
-    fontSize: 28,
-    color: colors.black,
   },
   subtitle: {
     fontFamily: family.normal,

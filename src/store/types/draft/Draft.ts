@@ -12,6 +12,7 @@ type Draft = {
   hour: number;
   day: number;
   duration: number;
+  description: string;
 };
 
 export default Draft;

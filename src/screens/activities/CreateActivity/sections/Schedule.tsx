@@ -1,15 +1,14 @@
 import React, { useContext, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+
+// Components
 import Divider from "../../../../components/common/Divider";
 import DatePicker from "../../../../components/common/inputs/DatePicker";
 import LocationPicker from "../../../../components/common/inputs/LocationPicker";
 import TextArea from "../../../../components/common/inputs/TextArea";
-import TextInput from "../../../../components/common/inputs/TextInput";
-import colors from "../../../../theme/colors";
-import { family } from "../../../../theme/fonts";
-
-// Components
 import SectionContainer from "../components/SectionContainer";
+import Title from "../components/Title";
+
+// Context
 import CreateContext from "../context/CreateContext";
 
 const Schedule = () => {
@@ -36,7 +35,7 @@ const Schedule = () => {
     }));
   };
 
-  const addressHandler = (e:any) => {
+  const addressHandler = (e: any) => {
     setDraft((prevState) => ({
       ...prevState,
       place: { ...prevState.place, address: e },
@@ -52,7 +51,7 @@ const Schedule = () => {
 
   return (
     <SectionContainer>
-      <Text style={styles.title}>Lugar</Text>
+      <Title title="Lugar" />
       <Divider height={12} />
       <LocationPicker value={{ ...place }} setValue={locationHandler} />
       <Divider height={12} />
@@ -62,11 +61,11 @@ const Schedule = () => {
         onChange={addressHandler}
       />
       <Divider height={40} />
-      <Text style={styles.title}>Día</Text>
+      <Title title="Día" />
       <Divider height={12} />
       <DatePicker value={day} setValue={dayHandler} placeholder="Elige día" />
       <Divider height={40} />
-      <Text style={styles.title}>Hora Inicio</Text>
+      <Title title="Hora Inicio" />
       <Divider height={12} />
       <DatePicker
         value={hour}
@@ -75,7 +74,7 @@ const Schedule = () => {
         mode="time"
       />
       <Divider height={12} />
-      <Text style={styles.title}>Hora Fin</Text>
+      <Title title="Hora Fin" />
       <Divider height={12} />
       <DatePicker
         value={finishHour}
@@ -88,11 +87,3 @@ const Schedule = () => {
 };
 
 export default Schedule;
-
-const styles = StyleSheet.create({
-  title: {
-    fontFamily: family.normal,
-    fontSize: 28,
-    color: colors.black,
-  },
-});

@@ -37,6 +37,7 @@ const INITIAL_DRAFT: Draft = {
   duration: 60,
   day: Date.now(),
   hour: Date.now(),
+  description: ""
 };
 
 const INITIAL_DATA = {
