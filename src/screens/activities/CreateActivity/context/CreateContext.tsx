@@ -5,13 +5,22 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
+
+// Api placeholder
 import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY_SPORTS";
+
+// Hooks
 import useStatus, { STATUS } from "../../../../hooks/useStatus";
-import Draft from "../../../../store/types/draft/Draft";
-import SportDraft from "../../../../store/types/draft/SportDraft";
+
+// Initial State
+import INITIAL_DATA, { INITIAL_DRAFT } from "./initialState";
 
 // Sections
 import { SectionName } from "../sections";
+
+// Types
+import Draft from "../../../../store/types/draft/Draft";
+import SportDraft from "../../../../store/types/draft/SportDraft";
 
 interface ContextProps {
   setDraft: Dispatch<SetStateAction<Draft>>;
@@ -21,33 +30,6 @@ interface ContextProps {
   sports: SportDraft[];
   status: STATUS;
 }
-
-const INITIAL_DRAFT: Draft = {
-  sport: 1,
-  teams: 2,
-  playersPerTeam: 1,
-  access: "public",
-  type: "normal",
-  price: 0,
-  place: {
-    address: "",
-    lat: null,
-    lng: null,
-  },
-  duration: 60,
-  day: Date.now(),
-  hour: Date.now(),
-  description: ""
-};
-
-const INITIAL_DATA = {
-  draft: INITIAL_DRAFT,
-  setDraft: () => {},
-  setSection: () => {},
-  section: "sport" as SectionName,
-  status: "idle" as STATUS,
-  sports: [],
-};
 
 const CreateContext = createContext<ContextProps>(INITIAL_DATA);
 
