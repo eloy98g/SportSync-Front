@@ -1,3 +1,4 @@
+import { Calendar, CalendarClock, Clock } from "lucide-react-native";
 import React, { useState } from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -5,17 +6,27 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 // Theme
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
+import getHour from "../../../utils/date/getHour";
+
+// Utils
 import unixToDate from "../../../utils/date/unixToDate";
 
+type MODE = "date" | "datetime" | "time";
 interface Props {
   setValue: (T: Date) => void;
   value: number;
   placeholder?: string;
+  mode?: MODE;
 }
 
-const DatePicker = ({ value, setValue, placeholder }: Props) => {
+const DatePicker = ({ value, mode, setValue, placeholder }: Props) => {
   const [visible, setVisible] = useState(false);
-  const title = unixToDate(value) || placeholder;
+  const title =
+    mode === "time"
+      ? getHour(value)
+      : mode === "date"
+      ? unixToDate(value)
+      : "" || placeholder;
 
   const handleConfirm = (value: Date) => {
     setValue(value);
@@ -25,14 +36,23 @@ const DatePicker = ({ value, setValue, placeholder }: Props) => {
     setVisible((prevState: boolean) => !prevState);
   };
 
+  const icon =
+    mode === "time" ? (
+      <Clock color={colors.black} size={18} />
+    ) : mode === "date" ? (
+      <Calendar color={colors.black} size={18} />
+    ) : (
+      <CalendarClock color={colors.black} size={18} />
+    );
   return (
     <>
       <TouchableOpacity style={styles.container} onPress={visibilityHandler}>
         <Text style={styles.title}>{title}</Text>
+        {icon}
       </TouchableOpacity>
       <DateTimePickerModal
         isVisible={visible}
-        mode="date"
+        mode={mode}
         onConfirm={handleConfirm}
         onCancel={visibilityHandler}
       />
@@ -42,6 +62,7 @@ const DatePicker = ({ value, setValue, placeholder }: Props) => {
 
 DatePicker.defaultProps = {
   placeholder: "Selecciona una fecha",
+  mode: "date",
 };
 
 export default DatePicker;

@@ -7,7 +7,7 @@ import colors from "../../../../../theme/colors";
 import { PHONE } from "../../../../../theme/breakPoints";
 
 interface Props {
-  children: React.JSX.Element | React.JSX.Element[];
+  children: React.ReactNode;
 }
 
 const Wrapper = ({ children }: Props) => {

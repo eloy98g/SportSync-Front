@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { Slider as TMSlider } from "tamagui";
 
 interface Props {
-  children?: React.JSX.Element;
+  children?: React.ReactNode;
   defaultValue: number;
   max: number;
   step: number;

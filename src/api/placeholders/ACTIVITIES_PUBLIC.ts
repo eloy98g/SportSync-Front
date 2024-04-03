@@ -1,7 +1,7 @@
 export default [
   {
     gid: 4,
-    place: {
+    location: {
       lat: 37.7749,
       lng: -122.4194,
       radius: 500,
@@ -58,7 +58,7 @@ export default [
   },
   {
     gid: 5,
-    place: {
+    location: {
       lat: 37.7749,
       lng: -122.4194,
       radius: 500,
@@ -104,7 +104,7 @@ export default [
   },
   {
     gid: 6,
-    place: {
+    location: {
       lat: 37.7749,
       lng: -122.4194,
       radius: 500,
@@ -150,7 +150,7 @@ export default [
   },
   {
     gid: 7,
-    place: {
+    location: {
       lat: 37.7749,
       lng: -122.4194,
       radius: 500,

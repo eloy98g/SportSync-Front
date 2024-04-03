@@ -15,7 +15,7 @@ interface Props {
 }
 
 const StaticInfo = ({ data }: Props) => {
-  const { description, admin, place } = data;
+  const { description, admin, location } = data;
 
   return (
     <View style={styles.container}>
@@ -27,7 +27,7 @@ const StaticInfo = ({ data }: Props) => {
           <View style={styles.admin}>
             <Player data={admin} activityData={data}/>
           </View>
-          <Location place={place} />
+          <Location location={location} />
         </View>
       </Card>
     </View>

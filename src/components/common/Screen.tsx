@@ -5,7 +5,7 @@ import { StyleSheet, View, StatusBar } from "react-native";
 import colors from "../../theme/colors";
 
 interface Props {
-  children: React.JSX.Element | React.JSX.Element[] ;
+  children: React.ReactNode;
 }
 
 const Screen = ({ children }: Props) => {

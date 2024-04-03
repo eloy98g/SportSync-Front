@@ -1,7 +1,7 @@
 import Player from "./Player";
 import Result from "./Result";
 import Team from "./Team";
-import Place from "../Place";
+import Location from "../location/Location";
 import Sport from "../Sport";
 
 export type ActivityType = "normal" | "competitive";
@@ -15,7 +15,7 @@ export type ActivityStatus =
 
 export default interface Activity {
   gid: number;
-  place: Place;
+  location: Location;
   creationDate: number;
   startDate: number;
   duration: number;

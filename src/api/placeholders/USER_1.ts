@@ -5,7 +5,7 @@ export default {
   phone: 123456789,
   image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  playArea: {
+  location: {
     lat: 37.7749,
     lng: -122.4194,
     radius: 500,

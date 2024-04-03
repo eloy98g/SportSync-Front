@@ -6,17 +6,26 @@ import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
 interface Props {
-  onChange: () => void;
+  onChange: (T: any) => void;
   value: string;
   placeholder?: string;
   error?: boolean;
   secure?: boolean;
+  numeric?: boolean;
 }
 
-const TextInput = ({ onChange, value, placeholder, error, secure }: Props) => {
+const TextInput = ({
+  onChange,
+  numeric,
+  value,
+  placeholder,
+  error,
+  secure,
+}: Props) => {
   const borderColor = error ? colors.red : colors.grey;
   return (
     <Input
+      keyboardType={numeric ? "numeric" : "default"}
       style={[styles.input, { borderColor }]}
       onChangeText={onChange}
       value={value}
@@ -31,6 +40,7 @@ TextInput.defaultProps = {
   placeholder: "",
   error: false,
   secure: false,
+  numeric: false,
 };
 
 export default TextInput;

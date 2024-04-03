@@ -11,18 +11,26 @@ interface Props {
   value: string;
   onChange: (T: any) => void;
   error?: boolean;
+  height?: number;
 }
-const TextArea = ({ placeholder, value, onChange, error = false }: Props) => {
-  const borderColor = error ? colors.red : colors.grey;
 
+const TextArea = ({ placeholder, value, onChange, error, height }: Props) => {
+  const borderColor = error ? colors.red : colors.grey;
   return (
     <RNTextArea
       style={[styles.container, { borderColor }]}
       placeholder={placeholder}
       value={value}
-      onChange={onChange}
+      onChangeText={onChange}
+      placeholderTextColor={colors.grey}
+      height={height}
     />
   );
+};
+
+TextArea.defaultProps = {
+  error: false,
+  height: 92,
 };
 
 export default TextArea;
@@ -30,12 +38,11 @@ export default TextArea;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 92,
     borderRadius: 10,
+    textAlignVertical: 'top',
     fontFamily: family.normal,
     borderWidth: 1,
     fontSize: 18,
-    textAlign: "left",
     color: colors.black,
     backgroundColor: colors.white,
   },

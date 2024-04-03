@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-type STATUS = "idle" | "loading" | "success" | "error";
+export type STATUS = "idle" | "loading" | "success" | "empty" | "error";
 
 const useStatus = () => {
   const [status, setStatus] = useState<STATUS>("idle");

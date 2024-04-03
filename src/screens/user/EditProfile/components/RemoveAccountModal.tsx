@@ -1,8 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+
+// Components
 import MainButton from "../../../../components/common/buttons/MainButton";
 import Divider from "../../../../components/common/Divider";
 import Modal from "../../../../components/common/Modal";
+
+// Theme
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 

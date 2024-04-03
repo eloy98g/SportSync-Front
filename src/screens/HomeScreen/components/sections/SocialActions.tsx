@@ -15,12 +15,12 @@ const SocialActions = () => {
   const dividerSize = 20;
   const itemWidth = (width - paddingHorizontal) / 2 - 10;
   const largeHeight = itemWidth * 2 + dividerSize;
-  
+
   const searchFriendHandler = () => {
     navigation.navigate("FindUserScreen" as never);
   };
   const createActivityHandler = () => {
-    // navigation.navigate("CreateActivity" as never);
+    navigation.navigate("CreateActivity" as never);
   };
 
   const searchActivityHandler = () => {

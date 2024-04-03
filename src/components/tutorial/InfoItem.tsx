@@ -11,7 +11,7 @@ import { family } from "../../theme/fonts";
 interface Props {
   title: string;
   text: string;
-  icon?: React.JSX.Element;
+  icon?: React.ReactNode;
 }
 const InfoItem = ({ title, text, icon }: Props) => {
   return (
@@ -21,7 +21,7 @@ const InfoItem = ({ title, text, icon }: Props) => {
         {icon && <Divider width={8} />}
         <Text style={styles.title}>{title}</Text>
       </View>
-      <Divider height={8}/>
+      <Divider height={8} />
       <View style={styles.row}>
         <Text style={styles.text}>{text}</Text>
       </View>

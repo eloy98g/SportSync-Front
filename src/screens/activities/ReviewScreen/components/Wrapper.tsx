@@ -18,7 +18,7 @@ import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
 interface Props {
-  children: React.JSX.Element | React.JSX.Element[];
+  children: React.ReactNode;
 }
 
 const Wrapper = ({ children }: Props) => {

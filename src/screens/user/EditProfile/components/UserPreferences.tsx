@@ -9,13 +9,18 @@ interface Props {
 }
 
 const UserPreferences = ({ editedUser, setEditedUser }: Props) => {
+  const locationHandler = () => {};
+
   return (
     <View>
-      <LocationPicker />
+      <LocationPicker
+        value={editedUser.location}
+        setValue={locationHandler}
+        option="radius"
+        initialLocation={editedUser.location}
+      />
     </View>
   );
 };
 
 export default UserPreferences;
-
-const styles = StyleSheet.create({});

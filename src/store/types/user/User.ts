@@ -1,4 +1,4 @@
-import PlayArea, { EMPTY_PLAYAREA } from "../PlayArea";
+import Location, { EMPTY_LOCATION } from "../location/Location";
 
 type User = {
   gid: number;
@@ -7,7 +7,7 @@ type User = {
   phone: number | null;
   image: string | null;
   description: string | null;
-  playArea: PlayArea;
+  location: Location;
   birthDate: number | null;
   creationDate: number | null;
   phoneVerified: boolean;
@@ -25,7 +25,7 @@ export const EMPTY_USER: User = {
   phone: null,
   image: null,
   description: null,
-  playArea: EMPTY_PLAYAREA,
+  location: EMPTY_LOCATION,
   birthDate: null,
   phoneVerified: false,
   emailVerified: false,

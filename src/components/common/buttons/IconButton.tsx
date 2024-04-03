@@ -8,7 +8,7 @@ import Divider from "../Divider";
 interface Props {
   onPress: () => void;
   text?: string;
-  icon?: React.JSX.Element;
+  icon?: React.ReactNode;
   textStyle?: StyleProp<TextStyle>;
   distance?: number;
   borderStyle?: {
@@ -55,6 +55,5 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
   },
 });
