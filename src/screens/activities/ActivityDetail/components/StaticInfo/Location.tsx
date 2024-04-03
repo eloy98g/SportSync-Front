@@ -13,11 +13,11 @@ import { family } from "../../../../../theme/fonts";
 import LocationT from "../../../../../store/types/location/Location";
 
 interface Props {
-  place: LocationT;
+  location: LocationT;
 }
 
-const Location = ({ place }: Props) => {
-  const { address } = place;
+const Location = ({ location }: Props) => {
+  const { address } = location;
 
   return (
     <TouchableOpacity style={styles.container}>

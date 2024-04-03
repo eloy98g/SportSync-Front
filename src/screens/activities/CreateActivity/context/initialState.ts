@@ -9,7 +9,7 @@ const INITIAL_DRAFT: Draft = {
   access: "public",
   type: "normal",
   price: 0,
-  place: {
+  location: {
     address: "",
     latitude: 36.53485636626119, // TODO: user location
     longitude: -6.293364831231988,

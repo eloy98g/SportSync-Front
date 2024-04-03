@@ -3,7 +3,7 @@ import Activity from "../../../types/activity/Activity";
 const mapActivity = (data: any): Activity => {
   const newUser: Activity = {
     gid: data.gid,
-    place: data.place,
+    location: data.location,
     creationDate: data.creationDate,
     startDate: data.startDate,
     duration: data.duration,

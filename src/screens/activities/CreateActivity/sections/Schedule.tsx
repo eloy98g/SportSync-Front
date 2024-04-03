@@ -19,7 +19,7 @@ import Location from "../../../../store/types/location/Location";
 const Schedule = () => {
   const { draft, setDraft } = useContext(CreateContext);
 
-  const { place, duration, day, hour } = draft;
+  const { location, duration, day, hour } = draft;
   const durationUnix = duration * 60;
   const [finishHour, setFinishHour] = useState(hour + durationUnix);
 
@@ -36,14 +36,14 @@ const Schedule = () => {
   const locationHandler = (coords: Location) => {
     setDraft((prevState) => ({
       ...prevState,
-      place: { ...prevState.place, ...coords },
+      location: { ...prevState.location, ...coords },
     }));
   };
 
   const addressHandler = (e: any) => {
     setDraft((prevState) => ({
       ...prevState,
-      place: { ...prevState.place, address: e },
+      location: { ...prevState.location, address: e },
     }));
   };
 
@@ -65,16 +65,16 @@ const Schedule = () => {
         <Title title="Lugar" />
         <Label text="Ubicación" />
         <LocationPicker
-          value={{ ...place }}
+          value={{ ...location }}
           setValue={locationHandler}
           option="location"
-          initialLocation={draft.place}
+          initialLocation={location}
         />
         <Divider height={12} />
         <Label text="Indicaciones" />
         <TextArea
           placeholder="Añadir indicación extra"
-          value={place.address || ""}
+          value={location.address || ""}
           onChange={addressHandler}
         />
         <Divider height={24} />

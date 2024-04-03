@@ -22,7 +22,7 @@ import unixToDate from "../../../../../utils/date/unixToDate";
 
 const TimeResume = () => {
   const { draft } = useContext(CreateContext);
-  const { hour, day, duration, place } = draft;
+  const { hour, day, duration, location } = draft;
 
   const hourText = "Hora: " + getHour(hour);
   const dayText = "Día: " + unixToDate(day);
@@ -51,17 +51,17 @@ const TimeResume = () => {
       <Divider height={12} />
       <Text style={styles.title}>{"Localización"}</Text>
       <Divider height={6} />
-      {place.address && (
+      {location.address && (
         <>
           <Row>
             <MapPin size={18} color={colors.black} />
             <Divider width={12} />
-            <ResumeText text={place.address} />
+            <ResumeText text={location.address} />
           </Row>
           <Divider height={12} />
         </>
       )}
-      <MapView location={draft.place} />
+      <MapView location={draft.location} />
     </Card>
   );
 };

@@ -8,7 +8,7 @@ type Draft = {
   access: ActivityAccess;
   type: ActivityType;
   price: number;
-  place: Location;
+  location: Location;
   hour: number;
   day: number;
   duration: number;

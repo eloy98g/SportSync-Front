@@ -1,6 +1,6 @@
 export default {
   gid: 1,
-  place: {
+  location: {
     lat: 37.7749,
     lng: -122.4194,
     radius: 500,

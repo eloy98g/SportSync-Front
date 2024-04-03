@@ -15,7 +15,7 @@ export type ActivityStatus =
 
 export default interface Activity {
   gid: number;
-  place: Location;
+  location: Location;
   creationDate: number;
   startDate: number;
   duration: number;
