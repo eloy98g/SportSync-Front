@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
+
+// Theme
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 
@@ -16,5 +18,6 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     fontSize: 28,
     color: colors.black,
+    textAlign: "center",
   },
 });

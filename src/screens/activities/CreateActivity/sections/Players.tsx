@@ -70,7 +70,7 @@ const Players = () => {
   return (
     <SectionContainer>
       <View style={styles.content}>
-        <Title title="Equipo" />
+        <Title title="Equipos" />
         <Divider height={12} />
         <NumericSelector
           onAdd={addTeam}

@@ -13,15 +13,9 @@ interface Props {
   error?: boolean;
   height?: number;
 }
-const TextArea = ({
-  placeholder,
-  value,
-  onChange,
-  error = false,
-  height = 92,
-}: Props) => {
-  const borderColor = error ? colors.red : colors.grey;
 
+const TextArea = ({ placeholder, value, onChange, error, height }: Props) => {
+  const borderColor = error ? colors.red : colors.grey;
   return (
     <RNTextArea
       style={[styles.container, { borderColor }]}
@@ -33,12 +27,18 @@ const TextArea = ({
   );
 };
 
+TextArea.defaultProps = {
+  error: false,
+  height: 92,
+};
+
 export default TextArea;
 
 const styles = StyleSheet.create({
   container: {
     width: "100%",
     borderRadius: 10,
+    textAlignVertical: 'top',
     fontFamily: family.normal,
     borderWidth: 1,
     fontSize: 18,

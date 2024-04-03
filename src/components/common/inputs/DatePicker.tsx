@@ -1,3 +1,4 @@
+import { Calendar, CalendarClock, Clock } from "lucide-react-native";
 import React, { useState } from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -35,10 +36,19 @@ const DatePicker = ({ value, mode, setValue, placeholder }: Props) => {
     setVisible((prevState: boolean) => !prevState);
   };
 
+  const icon =
+    mode === "time" ? (
+      <Clock color={colors.black} size={18} />
+    ) : mode === "date" ? (
+      <Calendar color={colors.black} size={18} />
+    ) : (
+      <CalendarClock color={colors.black} size={18} />
+    );
   return (
     <>
       <TouchableOpacity style={styles.container} onPress={visibilityHandler}>
         <Text style={styles.title}>{title}</Text>
+        {icon}
       </TouchableOpacity>
       <DateTimePickerModal
         isVisible={visible}

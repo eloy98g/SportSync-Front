@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
+import { ScrollView, StyleSheet } from "react-native";
 
 // Components
-import Divider from "../../../../components/common/Divider";
-import DatePicker from "../../../../components/common/inputs/DatePicker";
 import LocationPicker from "../../../../components/common/inputs/LocationPicker";
+import DatePicker from "../../../../components/common/inputs/DatePicker";
 import TextArea from "../../../../components/common/inputs/TextArea";
 import SectionContainer from "../components/SectionContainer";
+import Divider from "../../../../components/common/Divider";
+import Label from "../../../../components/common/Label";
 import Title from "../components/Title";
 
 // Context
@@ -51,39 +53,55 @@ const Schedule = () => {
 
   return (
     <SectionContainer>
-      <Title title="Lugar" />
-      <Divider height={12} />
-      <LocationPicker value={{ ...place }} setValue={locationHandler} />
-      <Divider height={12} />
-      <TextArea
-        placeholder="Añadir indicación extra"
-        value={place.address}
-        onChange={addressHandler}
-      />
-      <Divider height={40} />
-      <Title title="Día" />
-      <Divider height={12} />
-      <DatePicker value={day} setValue={dayHandler} placeholder="Elige día" />
-      <Divider height={40} />
-      <Title title="Hora Inicio" />
-      <Divider height={12} />
-      <DatePicker
-        value={hour}
-        setValue={hourHandler}
-        placeholder="Elige hora de inicio"
-        mode="time"
-      />
-      <Divider height={12} />
-      <Title title="Hora Fin" />
-      <Divider height={12} />
-      <DatePicker
-        value={finishHour}
-        setValue={durationHandler}
-        placeholder="Elige hora de finalización"
-        mode="time"
-      />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.scroll}
+        contentContainerStyle={styles.content}
+      >
+        <Divider height={40} />
+        <Title title="Lugar" />
+        <Label text="Ubicación" />
+        <LocationPicker value={{ ...place }} setValue={locationHandler} />
+        <Divider height={12} />
+        <Label text="Indicaciones" />
+        <TextArea
+          placeholder="Añadir indicación extra"
+          value={place.address}
+          onChange={addressHandler}
+        />
+         <Divider height={24} />
+        <Title title="Fecha" />
+        <Divider height={12} />
+        <Label text="Día" />
+        <DatePicker value={day} setValue={dayHandler} placeholder="Elige día" />
+        <Divider height={12} />
+        <Label text="Hora inicio" />
+        <DatePicker
+          value={hour}
+          setValue={hourHandler}
+          placeholder="Elige hora de inicio"
+          mode="time"
+        />
+        <Divider height={12} />
+        <Label text="Hora finalización" />
+        <DatePicker
+          value={finishHour}
+          setValue={durationHandler}
+          placeholder="Elige hora de finalización"
+          mode="time"
+        />
+      </ScrollView>
     </SectionContainer>
   );
 };
 
 export default Schedule;
+
+const styles = StyleSheet.create({
+  scroll: {
+    height: 1,width:"100%"
+  },
+  content:{
+
+  }
+});

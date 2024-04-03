@@ -13,10 +13,10 @@ import CreateContext from "../context/CreateContext";
 const Description = () => {
   const { draft, setDraft } = useContext(CreateContext);
 
-  const descriptionHandler = (e: string) => {
+  const descriptionHandler = (e: any) => {
     setDraft((prevState) => ({
       ...prevState,
-      descripion: e,
+      description: e,
     }));
   };
 
