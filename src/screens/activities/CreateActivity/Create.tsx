@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
 import StatusBar from "./components/StatusBar";
 import Actions from "./components/Actions";
 import Loading from "./components/Loading";
+import ConfirmModal from "./components/ConfirmModal";
 
 // Context
 import CreateContext from "./context/CreateContext";
@@ -17,6 +18,7 @@ import colors from "../../../theme/colors";
 import { useNavigation } from "@react-navigation/native";
 
 const Create = () => {
+  const [modal, setModal] = useState("");
   const { status, section, setSection } = useContext(CreateContext);
   const navigation = useNavigation();
   const currentSection =
@@ -41,8 +43,15 @@ const Create = () => {
     }
   };
 
+  const finishHandler = () => {
+    console.log("publish");
+    // TODO: API call for publishing an activity
+    navigation.goBack();
+  };
+
   const rightAction = () => {
     if (currentSection.position === lastSection.position) {
+      setModal("Confirm");
     } else {
       const nextSection =
         Sections.find(
@@ -69,6 +78,11 @@ const Create = () => {
         rightAction={rightAction}
         leftTitle={leftTitle}
         rightTitle={rightTitle}
+      />
+      <ConfirmModal
+        visible={modal === "Confirm"}
+        setVisible={setModal}
+        onFinish={finishHandler}
       />
     </View>
   );

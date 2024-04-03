@@ -12,11 +12,11 @@ import { family } from "../../../../theme/fonts";
 
 interface Props {
   visible: boolean;
-  setVisible: any;
+  setVisible: (T: any) => void;
   onFinish: () => void;
 }
 
-const RemoveAccountModal = ({ visible, setVisible, onFinish }: Props) => {
+const ConfirmModal = ({ visible, setVisible, onFinish }: Props) => {
   const acceptHandler = () => {
     onFinish();
   };
@@ -27,35 +27,29 @@ const RemoveAccountModal = ({ visible, setVisible, onFinish }: Props) => {
   return (
     <Modal visible={visible} setVisible={setVisible}>
       <View style={styles.container}>
-        <Text style={styles.title}>Reportar usuario</Text>
+        <Text style={styles.title}>Confirmar Actividad</Text>
         <Divider height={16} />
         <Text style={styles.subtitle}>
-          {`Estás a punto de eliminar tu cuenta. Esta acción será definitiva.\n¿Seguro que quieres continuar?`}
+          {`Estás a punto de publicar una actividad.\n¿Confirmar creación?`}
         </Text>
         <Divider height={16} />
         <View style={styles.row}>
           <MainButton
-            title="Cancelar"
+            title="Editar"
             onPress={cancelHandler}
             borderColor={colors.primary}
             color={colors.white}
             textColor={colors.primary}
           />
           <Divider width={20} />
-          <MainButton
-            title="Eliminar"
-            onPress={acceptHandler}
-            borderColor={colors.red}
-            color={colors.white}
-            textColor={colors.red}
-          />
+          <MainButton title="Aceptar" onPress={acceptHandler} />
         </View>
       </View>
     </Modal>
   );
 };
 
-export default RemoveAccountModal;
+export default ConfirmModal;
 
 const styles = StyleSheet.create({
   container: {
