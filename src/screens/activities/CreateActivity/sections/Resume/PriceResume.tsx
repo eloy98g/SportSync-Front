@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { View } from "react-native";
 
 // Components
 import Divider from "../../../../../components/common/Divider";
@@ -28,7 +27,11 @@ const PriceResume = () => {
     " jugadores.";
 
   if (price === 0) {
-    return <View />;
+    return (
+      <Card title="Precio">
+        <ResumeText text={"Actividad gratuita"} />
+      </Card>
+    );
   }
   return (
     <Card title="Precio">

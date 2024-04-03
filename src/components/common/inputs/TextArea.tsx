@@ -22,6 +22,7 @@ const TextArea = ({ placeholder, value, onChange, error, height }: Props) => {
       placeholder={placeholder}
       value={value}
       onChangeText={onChange}
+      placeholderTextColor={colors.grey}
       height={height}
     />
   );

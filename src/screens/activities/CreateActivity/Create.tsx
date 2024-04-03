@@ -14,26 +14,31 @@ import Sections, { lastSection, SectionName } from "./sections";
 
 // Theme
 import colors from "../../../theme/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const Create = () => {
   const { status, section, setSection } = useContext(CreateContext);
+  const navigation = useNavigation();
   const currentSection =
     Sections.find((element) => element.name === section) ?? Sections[0];
 
   const { position, component } = currentSection;
   const value = ((position + 1) / Sections.length) * 100;
 
-  const showLeft = currentSection.position !== 0;
-  const leftTitle = "Volver";
+  const leftTitle = currentSection.position === 0 ? "Cancelar" : "Atrás";
   const rightTitle =
     currentSection.position === lastSection.position ? "Finalizar" : "Aceptar";
 
   const leftAction = () => {
-    const prevSection =
-      Sections.find(
-        (element) => element.position === currentSection.position - 1
-      ) ?? Sections[0];
-    setSection(prevSection.name as SectionName);
+    if (currentSection.position === 0) {
+      navigation.goBack();
+    } else {
+      const prevSection =
+        Sections.find(
+          (element) => element.position === currentSection.position - 1
+        ) ?? Sections[0];
+      setSection(prevSection.name as SectionName);
+    }
   };
 
   const rightAction = () => {
@@ -60,7 +65,6 @@ const Create = () => {
       <StatusBar value={value} position={position + 1} max={Sections.length} />
       {component}
       <Actions
-        showLeft={showLeft}
         leftAction={leftAction}
         rightAction={rightAction}
         leftTitle={leftTitle}
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     paddingHorizontal: 16,
-    paddingTop: 90,
+    paddingTop: 50,
     backgroundColor: colors.white,
   },
 });

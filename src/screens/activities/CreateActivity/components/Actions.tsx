@@ -13,11 +13,9 @@ interface Props {
   rightAction: () => void;
   leftTitle: string;
   rightTitle: string;
-  showLeft: boolean;
 }
 
 const Actions = ({
-  showLeft = true,
   leftAction,
   rightAction,
   leftTitle = "",
@@ -25,15 +23,13 @@ const Actions = ({
 }: Props) => {
   return (
     <View style={styles.container}>
-      {showLeft && (
-        <MainButton
-          title={leftTitle}
-          onPress={leftAction}
-          color={colors.white}
-          textColor={colors.primary}
-        />
-      )}
-      {showLeft && <Divider width={20} />}
+      <MainButton
+        title={leftTitle}
+        onPress={leftAction}
+        color={colors.white}
+        textColor={colors.primary}
+      />
+      <Divider width={20} />
       <MainButton title={rightTitle} onPress={rightAction} />
     </View>
   );

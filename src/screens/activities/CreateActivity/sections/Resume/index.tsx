@@ -4,6 +4,7 @@ import { StyleSheet, ScrollView } from "react-native";
 // Components
 import Divider from "../../../../../components/common/Divider";
 import SectionContainer from "../../components/SectionContainer";
+import DescriptionResume from "./DescriptionResume";
 import Title from "../../components/Title";
 import SportResume from "./SportResume";
 import TypeResume from "./TypeResume";
@@ -15,7 +16,7 @@ import PriceResume from "./PriceResume";
 const Resume = () => {
   return (
     <SectionContainer>
-      <ScrollView style={styles.scroll}>
+      <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         <Divider height={24} />
         <Title title="Resumen" />
         <Divider height={12} />
@@ -26,6 +27,10 @@ const Resume = () => {
         <PriceResume />
         <Divider height={12} />
         <TimeResume />
+        <Divider height={12} />
+        <DescriptionResume />
+
+        <Divider height={40} />
       </ScrollView>
     </SectionContainer>
   );
