@@ -13,6 +13,9 @@ import Title from "../components/Title";
 // Context
 import CreateContext from "../context/CreateContext";
 
+// Types
+import Location from "../../../../store/types/location/Location";
+
 const Schedule = () => {
   const { draft, setDraft } = useContext(CreateContext);
 
@@ -30,10 +33,10 @@ const Schedule = () => {
     setDraft((prevState) => ({ ...prevState, day: newDay }));
   };
 
-  const locationHandler = (lat: number, lng: number) => {
+  const locationHandler = (coords: Location) => {
     setDraft((prevState) => ({
       ...prevState,
-      place: { ...prevState.place, lat, lng },
+      place: { ...prevState.place, ...coords },
     }));
   };
 
@@ -61,15 +64,20 @@ const Schedule = () => {
         <Divider height={40} />
         <Title title="Lugar" />
         <Label text="Ubicación" />
-        <LocationPicker value={{ ...place }} setValue={locationHandler} />
+        <LocationPicker
+          value={{ ...place }}
+          setValue={locationHandler}
+          option="location"
+          initialLocation={draft.place}
+        />
         <Divider height={12} />
         <Label text="Indicaciones" />
         <TextArea
           placeholder="Añadir indicación extra"
-          value={place.address}
+          value={place.address || ""}
           onChange={addressHandler}
         />
-         <Divider height={24} />
+        <Divider height={24} />
         <Title title="Fecha" />
         <Divider height={12} />
         <Label text="Día" />
@@ -99,9 +107,8 @@ export default Schedule;
 
 const styles = StyleSheet.create({
   scroll: {
-    height: 1,width:"100%"
+    height: 1,
+    width: "100%",
   },
-  content:{
-
-  }
+  content: {},
 });

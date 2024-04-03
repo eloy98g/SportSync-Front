@@ -11,8 +11,10 @@ const INITIAL_DRAFT: Draft = {
   price: 0,
   place: {
     address: "",
-    lat: null,
-    lng: null,
+    latitude: 36.53485636626119, // TODO: user location
+    longitude: -6.293364831231988,
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1,
   },
   duration: 60,
   day: Date.now(),

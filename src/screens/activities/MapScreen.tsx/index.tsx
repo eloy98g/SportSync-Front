@@ -17,26 +17,34 @@ import colors, { rgbaPrimary } from "../../../theme/colors";
 
 // Types
 import MAP_EVENT_TYPE from "../../../store/types/location/MapEventType";
+import MainButton from "../../../components/common/buttons/MainButton";
+import { useNavigation } from "@react-navigation/native";
 
-// TODO: this must be user's location
-const INITIAL_REGION = {
-  latitude: 36.53485636626119,
-  longitude: -6.293364831231988,
-  latitudeDelta: 2,
-  longitudeDelta: 2,
-};
-
-const MapScreen = () => {
-  const [markerPosition, setMarkerPosition] = useState<LatLng>(INITIAL_REGION);
+const MapScreen = ({ route }: any) => {
+  const { mapHandler, option, initialLocation } = route.params;
+  const [markerPosition, setMarkerPosition] = useState<LatLng>(initialLocation);
   const [radius, setRadius] = useState({ value: 500, gid: 1 });
+  const [showButton, setShowButton] = useState(false);
+
+  const navigation = useNavigation();
 
   const handleMapPress = (event: MAP_EVENT_TYPE) => {
     const { coordinate } = event.nativeEvent;
     setMarkerPosition(coordinate);
+    if (option === "radius") {
+      mapHandler({ coordinates: coordinate, radius });
+    } else {
+      mapHandler(coordinate);
+      setShowButton(true);
+    }
   };
 
   const radiusHandler = ({ value, gid }: any) => {
     setRadius({ value, gid });
+  };
+
+  const backHandler = () => {
+    navigation.goBack();
   };
 
   return (
@@ -45,11 +53,11 @@ const MapScreen = () => {
       <View style={styles.container}>
         <MapView
           style={{ flex: 1 }}
-          initialRegion={INITIAL_REGION}
+          initialRegion={initialLocation}
           provider={PROVIDER_GOOGLE}
           showsUserLocation
           showsMyLocationButton
-          onPress={handleMapPress}
+          onPress={option !== "view" ? handleMapPress : () => {}}
         >
           {markerPosition && (
             <>
@@ -58,17 +66,26 @@ const MapScreen = () => {
                 onPress={handleMapPress}
                 pinColor={colors.primary}
               />
-              <Circle
-                center={markerPosition}
-                radius={radius.value}
-                fillColor={rgbaPrimary(0.2)}
-                strokeColor={rgbaPrimary(0.9)}
-                strokeWidth={2}
-              />
+              {option === "radius" && (
+                <Circle
+                  center={markerPosition}
+                  radius={radius.value}
+                  fillColor={rgbaPrimary(0.2)}
+                  strokeColor={rgbaPrimary(0.9)}
+                  strokeWidth={2}
+                />
+              )}
             </>
           )}
         </MapView>
-        <DistanceSelector onPress={radiusHandler} selected={radius.gid} />
+        {option === "radius" && (
+          <DistanceSelector onPress={radiusHandler} selected={radius.gid} />
+        )}
+        {showButton && (
+          <View style={styles.wrapper}>
+            <MainButton title="Aceptar" fontSize={18} onPress={backHandler} />
+          </View>
+        )}
       </View>
     </Screen>
   );
@@ -86,5 +103,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     padding: 40,
     zIndex: 2,
+  },
+  wrapper: {
+    width: "100%",
+    height: 80,
+    justifyContent: "center",
+    paddingHorizontal: 12,
+    position: "absolute",
+    bottom: 12,
+    backgroundColor: "transparent",
   },
 });

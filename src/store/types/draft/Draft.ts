@@ -1,5 +1,5 @@
 import { ActivityAccess, ActivityType } from "../activity/Activity";
-import Place from "../Place";
+import Location from "../location/Location";
 
 type Draft = {
   sport: number;
@@ -8,7 +8,7 @@ type Draft = {
   access: ActivityAccess;
   type: ActivityType;
   price: number;
-  place: Place;
+  place: Location;
   hour: number;
   day: number;
   duration: number;

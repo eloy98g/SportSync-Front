@@ -10,11 +10,12 @@ import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
 // Types
-import Place from "../../../../../store/types/Place";
+import LocationT from "../../../../../store/types/location/Location";
 
 interface Props {
-  place: Place;
+  place: LocationT;
 }
+
 const Location = ({ place }: Props) => {
   const { address } = place;
 

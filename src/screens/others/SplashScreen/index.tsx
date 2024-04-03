@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import * as Linking from "expo-linking";
-import { StyleSheet, Text, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, ActivityIndicator, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
@@ -16,6 +16,8 @@ import fetchChats from "../../../store/features/chat/methods/fetchChats";
 
 // Theme
 import colors from "../../../theme/colors";
+import Divider from "../../../components/common/Divider";
+import { family } from "../../../theme/fonts";
 
 const SplashScreen = () => {
   const stateUser = useAppSelector((state) => state.user.user);
@@ -39,7 +41,6 @@ const SplashScreen = () => {
     splashHandler();
   }, []);
 
-  
   useEffect(() => {
     const handleDeepLink = ({ url }: any) => {
       const { path, queryParams } = Linking.parse(url);
@@ -55,11 +56,16 @@ const SplashScreen = () => {
     Linking.addEventListener("url", handleDeepLink);
   }, []);
 
-
   return (
     <Screen>
-      <Text>SplashupScreen</Text>
+      <Image
+        style={styles.logo}
+        source={require("../../../assets/metadata/logo_unicolor.png")}
+      />
+      <Divider height={6} />
       <ActivityIndicator size="small" color={colors.primary} />
+      <Divider height={6} />
+      <Text style={styles.text}>Cargando...</Text>
     </Screen>
   );
 };
@@ -71,5 +77,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  text: {
+    fontFamily: family.normal,
+    color: colors.primary,
+    fontSize: 12,
+  },
+  logo: {
+    width: 70,
+    height: 70,
   },
 });

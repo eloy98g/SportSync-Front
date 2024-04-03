@@ -19,7 +19,14 @@ const MapView = ({ location }: Props) => {
   const title = "Ver mapa";
 
   const mapHandler = () => {
-    navigation.navigate("MapView" as never, { location } as never);
+    navigation.navigate(
+      "MapScreen" as never,
+      {
+        mapHandler: () => {},
+        option: "view",
+        initialLocation: location,
+      } as never
+    );
   };
 
   return (

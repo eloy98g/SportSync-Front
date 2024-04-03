@@ -29,7 +29,6 @@ const Resume = () => {
         <TimeResume />
         <Divider height={12} />
         <DescriptionResume />
-
         <Divider height={40} />
       </ScrollView>
     </SectionContainer>

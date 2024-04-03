@@ -20,14 +20,6 @@ import { family } from "../../../../../theme/fonts";
 import getHour from "../../../../../utils/date/getHour";
 import unixToDate from "../../../../../utils/date/unixToDate";
 
-// TODO: this must be user's location
-const INITIAL_REGION = {
-  latitude: 36.53485636626119,
-  longitude: -6.293364831231988,
-  latitudeDelta: 2,
-  longitudeDelta: 2,
-};
-
 const TimeResume = () => {
   const { draft } = useContext(CreateContext);
   const { hour, day, duration, place } = draft;
@@ -69,7 +61,7 @@ const TimeResume = () => {
           <Divider height={12} />
         </>
       )}
-      <MapView location={INITIAL_REGION} />
+      <MapView location={draft.place} />
     </Card>
   );
 };
