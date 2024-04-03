@@ -16,15 +16,17 @@ import getActiveRouteState from "./methods/getActiveRouteState";
 const SCREENS_WHITELIST = ["Home", "Profile"];
 
 const Footer = () => {
+  const [searchOpen, setSearchOpen] = useState(false);
   const userGid = useAppSelector((state) => state.user.user.gid);
+
   const navigation = useNavigation();
+
   const state = useNavigationState((state) => state);
   const selectedScreen = getActiveRouteState(state)?.name;
   const footerShown = SCREENS_WHITELIST.includes(selectedScreen);
-  const [searchOpen, setSearchOpen] = useState(false);
+  
   const tabRef = useRef();
 
-  console.log('searchOpen',searchOpen)
   const ICONS = [
     {
       key: "Home",
