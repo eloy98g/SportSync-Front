@@ -14,7 +14,7 @@ interface Props {
 
 const StatusBar = ({ value, max, position }: Props) => {
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.text}>
         {position} / {max}
       </Text>
@@ -27,7 +27,13 @@ const StatusBar = ({ value, max, position }: Props) => {
         <Progress.Indicator
           animation="lazy"
           unstyled
-          style={styles.progress}
+          style={[
+            styles.progress,
+            value === 100 && {
+              backgroundColor: colors.secondary,
+              borderColor: colors.secondary,
+            },
+          ]}
         />
       </Progress>
     </View>
@@ -37,14 +43,10 @@ const StatusBar = ({ value, max, position }: Props) => {
 export default StatusBar;
 
 const styles = StyleSheet.create({
-  container: {
-  },
   progressContainer: {
     width: "100%",
     height: 10,
     borderRadius: 30,
-    // borderWidth: 1,
-    // borderColor: colors.lightenGrey,
     backgroundColor: colors.lightenGrey,
     overflow: "hidden",
   },
