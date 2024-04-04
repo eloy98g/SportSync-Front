@@ -9,10 +9,11 @@ interface Props {
   modal: boolean;
   openHandler: (T: boolean) => void;
   children: React.ReactNode;
+  padding?:number
 }
 
 const Sheet = (props: Props) => {
-  const { open, openHandler, children, modal } = props;
+  const { open, openHandler, children, modal, padding=24 } = props;
   const [position, setPosition] = useState(0);
 
   return (
@@ -43,7 +44,7 @@ const Sheet = (props: Props) => {
         space="$5"
         borderTopLeftRadius={20}
         borderTopRightRadius={20}
-        paddingHorizontal={24}
+        paddingHorizontal={padding}
         backgroundColor={colors.white}
       >
         {children}

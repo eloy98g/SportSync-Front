@@ -2,8 +2,10 @@ import { ActivityType } from "../../../../store/types/activity/Activity";
 import PriceSlot from "../types/PriceSlot";
 import SortBy from "../types/SortBy";
 
+import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY_SPORTS";
+
 const INITIAL_FILTERS = {
-  sport: { id: 1, label: "Fútbol" },
+  sport: 1,
   type: "normal" as ActivityType,
   insideUserArea: true,
   price: "0-5€" as PriceSlot,
@@ -14,6 +16,7 @@ const INITIAL_STATE = {
   filters: INITIAL_FILTERS,
   setFilters: () => {},
   filteredActivies: [],
+  sports: CREATE_ACTIVITY_SPORTS,
 };
 
 export { INITIAL_FILTERS };

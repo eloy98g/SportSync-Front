@@ -11,6 +11,7 @@ import { SearchProvider } from "./context/SearchContext";
 
 // Theme
 import colors from "../../../theme/colors";
+import ActivitiesList from "./components/ActivitiesList";
 
 const SearchActivity = () => {
   return (
@@ -19,6 +20,7 @@ const SearchActivity = () => {
       <SearchProvider>
         <View style={styles.content}>
           <FiltersBar />
+          <ActivitiesList />
         </View>
       </SearchProvider>
     </Screen>

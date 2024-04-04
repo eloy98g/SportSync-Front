@@ -3,7 +3,7 @@ import PriceSlot from "./PriceSlot";
 import SortBy from "./SortBy";
 
 type SearchFilters = {
-  sport: { id: number; label: string };
+  sport: number,
   type: ActivityType;
   insideUserArea: boolean;
   price: PriceSlot;

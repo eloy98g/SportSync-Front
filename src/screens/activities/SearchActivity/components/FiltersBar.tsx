@@ -14,11 +14,11 @@ const FiltersBar = () => {
   const filterSheetHandler = () => {
     setSheetOpen(true);
   };
-  
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={filterSheetHandler}>
-        <SlidersHorizontal size={35} color={colors.darkPrimary} />
+        <SlidersHorizontal size={30} color={colors.darkPrimary} />
       </TouchableOpacity>
       <FiltersSheet open={sheetOpen} openHandler={setSheetOpen} />
     </View>
@@ -30,8 +30,6 @@ export default FiltersBar;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    position: "absolute",
-    top: 80,
     zIndex: 10,
     backgroundColor: "white",
     height: 50,
