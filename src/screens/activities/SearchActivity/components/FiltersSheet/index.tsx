@@ -13,6 +13,7 @@ import TypeFilter from "./TypeFilter";
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 import { SearchProvider } from "../../context/SearchContext";
+import Divider from "../../../../../components/common/Divider";
 
 interface Props {
   open: boolean;
@@ -25,7 +26,9 @@ const FiltersSheet = ({ open, openHandler }: Props) => {
       <SearchProvider>
         <Text style={styles.title}>Filtros</Text>
         <SportFilter />
+        <Divider height={12}/>
         <TypeFilter />
+        <Divider height={12}/>
         <AreaFilter />
         <PriceFilter />
         <SortByFilter />
@@ -39,7 +42,7 @@ export default FiltersSheet;
 const styles = StyleSheet.create({
   title: {
     fontFamily: family.normal,
-    color: colors.darkPrimary,
+    color: colors.primary,
     fontSize: 24,
   },
 });
