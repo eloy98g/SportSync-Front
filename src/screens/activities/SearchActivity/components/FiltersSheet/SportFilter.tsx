@@ -1,15 +1,13 @@
-import React, { useContext, useState } from "react";
-import { StyleSheet, ScrollView, View, Text } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet, ScrollView, View } from "react-native";
 
 // Components
+import Divider from "../../../../../components/common/Divider";
 import SportTag from "./SportTag";
+import Title from "./Title";
 
 // Context
 import SearchContext from "../../context/SearchContext";
-
-// Types
-import Divider from "../../../../../components/common/Divider";
-import Title from "./Title";
 
 const SportFilter = () => {
   const { sports, filters, setFilters } = useContext(SearchContext);

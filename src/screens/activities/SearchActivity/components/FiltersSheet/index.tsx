@@ -3,17 +3,19 @@ import { StyleSheet, Text, View } from "react-native";
 
 // Components
 import Sheet from "../../../../../components/common/Sheet";
+import Divider from "../../../../../components/common/Divider";
 import AreaFilter from "./AreaFilter";
 import PriceFilter from "./PriceFilter";
 import SortByFilter from "./SortByFilter";
 import SportFilter from "./SportFilter";
 import TypeFilter from "./TypeFilter";
 
+// Context
+import { SearchProvider } from "../../context/SearchContext";
+
 // Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
-import { SearchProvider } from "../../context/SearchContext";
-import Divider from "../../../../../components/common/Divider";
 
 interface Props {
   open: boolean;
@@ -26,11 +28,13 @@ const FiltersSheet = ({ open, openHandler }: Props) => {
       <SearchProvider>
         <Text style={styles.title}>Filtros</Text>
         <SportFilter />
-        <Divider height={12}/>
+        <Divider height={12} />
         <TypeFilter />
-        <Divider height={12}/>
+        <Divider height={12} />
         <AreaFilter />
+        <Divider height={12} />
         <PriceFilter />
+        <Divider height={12} />
         <SortByFilter />
       </SearchProvider>
     </Sheet>

@@ -4,17 +4,15 @@ import { StyleSheet, ScrollView, View } from "react-native";
 // Components
 import Tag from "../../../../../components/common/buttons/Tag";
 import Divider from "../../../../../components/common/Divider";
+import Title from "./Title";
 
 // Context
 import SearchContext from "../../context/SearchContext";
 
 // Types
-import Title from "./Title";
-
-// Store
 import { ActivityType } from "../../../../../store/types/activity/Activity";
 
-const SportFilter = () => {
+const TypeFilter = () => {
   const { filters, setFilters } = useContext(SearchContext);
 
   const setType = (type: ActivityType) => {
@@ -37,22 +35,22 @@ const SportFilter = () => {
       >
         <Divider width={24} />
         <Tag
-          selected={filters.type === "competitive"}
-          onPress={() => setType("competitive")}
-          text={"Competitivo"}
-        />
-        <Divider width={12} />
-        <Tag
           selected={filters.type === "normal"}
           onPress={() => setType("normal")}
           text={"Normal"}
+        />
+        <Divider width={12} />
+        <Tag
+          selected={filters.type === "competitive"}
+          onPress={() => setType("competitive")}
+          text={"Competitivo"}
         />
       </ScrollView>
     </View>
   );
 };
 
-export default SportFilter;
+export default TypeFilter;
 
 const styles = StyleSheet.create({
   container: {
