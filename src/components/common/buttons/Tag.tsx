@@ -6,20 +6,25 @@ import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
 interface Props {
-  selected: boolean;
-  onPress: () => void;
+  selected?: boolean;
+  onPress?: () => void;
   text: string;
 }
 
-const Tag = ({ selected, onPress, text }: Props) => {
+const Tag = ({ selected = true, onPress, text }: Props) => {
   const containerStyle = [
     styles.container,
     selected && styles.containerSelected,
   ];
   const textStyle = [styles.text, selected && styles.textSelected];
-  
+
+  const clickHandler = () => {
+    if (onPress) {
+      onPress();
+    }
+  };
   return (
-    <TouchableOpacity style={containerStyle} onPress={onPress}>
+    <TouchableOpacity style={containerStyle} onPress={clickHandler}>
       <Text style={textStyle}>{text}</Text>
     </TouchableOpacity>
   );

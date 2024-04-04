@@ -9,15 +9,11 @@ import Title from "./Title";
 // Context
 import SearchContext from "../../context/SearchContext";
 
+// Filters
+import priceValues from "../../filters/priceValues";
+
 // Types
 import PriceSlot from "../../types/PriceSlot";
-
-const prices: { value: PriceSlot; label: string }[] = [
-  { value: "0-5€", label: "0 - 5€" },
-  { value: "5€-10€", label: "5€ - 10€" },
-  { value: "10€-15€", label: "10€ - 15€" },
-  { value: "+15€", label: "más de 15€" },
-];
 
 const PriceFilter = () => {
   const { filters, setFilters } = useContext(SearchContext);
@@ -41,7 +37,7 @@ const PriceFilter = () => {
         showsHorizontalScrollIndicator={false}
       >
         <Divider width={24} />
-        {prices.map((price) => (
+        {priceValues.map((price) => (
           <React.Fragment>
             <Tag
               selected={filters.price === price.value}

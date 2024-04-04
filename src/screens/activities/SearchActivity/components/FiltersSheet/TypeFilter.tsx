@@ -9,6 +9,9 @@ import Title from "./Title";
 // Context
 import SearchContext from "../../context/SearchContext";
 
+// Filters
+import typeValues from "../../filters/typeValues";
+
 // Types
 import { ActivityType } from "../../../../../store/types/activity/Activity";
 
@@ -34,17 +37,16 @@ const TypeFilter = () => {
         showsHorizontalScrollIndicator={false}
       >
         <Divider width={24} />
-        <Tag
-          selected={filters.type === "normal"}
-          onPress={() => setType("normal")}
-          text={"Normal"}
-        />
-        <Divider width={12} />
-        <Tag
-          selected={filters.type === "competitive"}
-          onPress={() => setType("competitive")}
-          text={"Competitivo"}
-        />
+        {typeValues.map((sortValue) => (
+          <React.Fragment>
+            <Tag
+              selected={filters.type === sortValue.value}
+              onPress={() => setType(sortValue.value)}
+              text={sortValue.label}
+            />
+            <Divider width={12} />
+          </React.Fragment>
+        ))}
       </ScrollView>
     </View>
   );

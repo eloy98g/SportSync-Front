@@ -9,14 +9,11 @@ import Title from "./Title";
 // Context
 import SearchContext from "../../context/SearchContext";
 
+// Filters
+import sortingValues from "../../filters/sortingValues";
+
 // Types
 import SortBy from "../../types/SortBy";
-
-const sortingValues: { value: SortBy; label: string }[] = [
-  { value: "recent", label: "Más recientes" },
-  { value: "numPlayers", label: "Número de jugadores" },
-  { value: "closest", label: "Más cercano" },
-];
 
 const SortByFilter = () => {
   const { filters, setFilters } = useContext(SearchContext);
@@ -31,7 +28,7 @@ const SortByFilter = () => {
   return (
     <View style={styles.container}>
       <View style={styles.titleWraper}>
-        <Title title="Precio" />
+        <Title title="Ordenar por" />
       </View>
       <Divider height={6} />
       <ScrollView

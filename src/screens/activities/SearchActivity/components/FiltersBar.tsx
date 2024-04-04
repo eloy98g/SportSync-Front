@@ -7,7 +7,8 @@ import FiltersSheet from "./FiltersSheet";
 
 // Theme
 import colors from "../../../../theme/colors";
-
+import TagContainer from "./TagContainer";
+import Divider from "../../../../components/common/Divider";
 const FiltersBar = () => {
   const [sheetOpen, setSheetOpen] = useState(false);
 
@@ -20,6 +21,8 @@ const FiltersBar = () => {
       <TouchableOpacity onPress={filterSheetHandler}>
         <SlidersHorizontal size={30} color={colors.primary} />
       </TouchableOpacity>
+      <Divider width={12} />
+      <TagContainer />
       <FiltersSheet open={sheetOpen} openHandler={setSheetOpen} />
     </View>
   );
@@ -33,9 +36,9 @@ const styles = StyleSheet.create({
     zIndex: 10,
     backgroundColor: "white",
     height: 50,
+    paddingLeft: 12,
     alignItems: "center",
     flexDirection: "row",
-    paddingHorizontal: 12,
     shadowColor: "rgba(0,0,0,0,4)",
     shadowOffset: {
       width: 0,
