@@ -12,6 +12,7 @@ import TypeFilter from "./TypeFilter";
 // Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
+import { SearchProvider } from "../../context/SearchContext";
 
 interface Props {
   open: boolean;
@@ -21,12 +22,14 @@ interface Props {
 const FiltersSheet = ({ open, openHandler }: Props) => {
   return (
     <Sheet open={open} openHandler={openHandler} padding={0}>
-      <Text style={styles.title}>Filtros</Text>
-      <SportFilter />
-      <TypeFilter />
-      <AreaFilter />
-      <PriceFilter />
-      <SortByFilter />
+      <SearchProvider>
+        <Text style={styles.title}>Filtros</Text>
+        <SportFilter />
+        <TypeFilter />
+        <AreaFilter />
+        <PriceFilter />
+        <SortByFilter />
+      </SearchProvider>
     </Sheet>
   );
 };

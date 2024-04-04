@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
+import ActivitiesList from "./components/ActivitiesList";
 import BackHeader from "../../../components/BackHeader";
 import Screen from "../../../components/common/Screen";
 import FiltersBar from "./components/FiltersBar";
@@ -11,7 +12,6 @@ import { SearchProvider } from "./context/SearchContext";
 
 // Theme
 import colors from "../../../theme/colors";
-import ActivitiesList from "./components/ActivitiesList";
 
 const SearchActivity = () => {
   return (

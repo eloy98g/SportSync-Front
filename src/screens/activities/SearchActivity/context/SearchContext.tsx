@@ -49,8 +49,7 @@ const SearchProvider = ({ children }: Props) => {
     }, 1000);
   }, []);
 
-  console.log('CREATE_ACTIVITY_SPORTS',CREATE_ACTIVITY_SPORTS.length)
-  console.log('sports',sports.length)
+
   const filteredActivies = publicActivities;
 
   return (

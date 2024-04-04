@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
 
 // Components
@@ -8,16 +8,16 @@ import SportTag from "./SportTag";
 import SearchContext from "../../context/SearchContext";
 
 // Types
-import Sport from "../../../../../store/types/sport/Sport";
 import Divider from "../../../../../components/common/Divider";
 import Title from "./Title";
 
 const SportFilter = () => {
-  const { sports, filters } = useContext(SearchContext);
+  const { sports, filters, setFilters } = useContext(SearchContext);
 
-  const sportHandler = (sport: Sport) => {};
+  const sportHandler = (gid: number) => {
+    setFilters((prevState) => ({ ...prevState, sport: gid }));
+  };
 
-  console.log("sports", sports);
   return (
     <View style={styles.container}>
       <View style={styles.titleWraper}>
@@ -33,7 +33,7 @@ const SportFilter = () => {
         {sports.map((sport) => (
           <React.Fragment>
             <SportTag
-              onPress={() => sportHandler(sport)}
+              onPress={() => sportHandler(sport.gid)}
               {...sport}
               selected={sport.gid === filters.sport}
             />

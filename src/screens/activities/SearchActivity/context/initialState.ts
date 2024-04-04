@@ -3,8 +3,9 @@ import PriceSlot from "../types/PriceSlot";
 import SortBy from "../types/SortBy";
 
 import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY_SPORTS";
+import SearchFilters from "../types/SearchFilters";
 
-const INITIAL_FILTERS = {
+const INITIAL_FILTERS: SearchFilters = {
   sport: 1,
   type: "normal" as ActivityType,
   insideUserArea: true,
