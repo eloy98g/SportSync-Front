@@ -18,6 +18,7 @@ import ReviewScreen from "../screens/activities/ReviewScreen";
 import CodeScanScreen from "../screens/activities/CodeScanScreen";
 import FindUserScreen from "../screens/social/FindUserScreen";
 import CreateActivity from "../screens/activities/CreateActivity";
+import SearchActivity from "../screens/activities/SearchActivity";
 
 // Components
 import Footer from "../components/Footer";
@@ -65,6 +66,7 @@ const AppNavigator = () => {
         <Stack.Screen name="CodeScanScreen" component={CodeScanScreen} />
         <Stack.Screen name="FindUserScreen" component={FindUserScreen} />
         <Stack.Screen name="CreateActivity" component={CreateActivity} />
+        <Stack.Screen name="SearchActivity" component={SearchActivity} />
       </Stack.Navigator>
       {loggedIn && <Footer />}
     </NavigationContainer>

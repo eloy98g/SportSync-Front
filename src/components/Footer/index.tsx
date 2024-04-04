@@ -24,7 +24,7 @@ const Footer = () => {
   const state = useNavigationState((state) => state);
   const selectedScreen = getActiveRouteState(state)?.name;
   const footerShown = SCREENS_WHITELIST.includes(selectedScreen);
-  
+
   const tabRef = useRef();
 
   const ICONS = [
@@ -64,7 +64,7 @@ const Footer = () => {
           />
         ))}
         <PopOver open={searchOpen} parentRef={tabRef} setOpen={setSearchOpen}>
-          <SearchContainer setSearchOpen={setSearchOpen}/>
+          <SearchContainer setSearchOpen={setSearchOpen} />
         </PopOver>
       </View>
     </View>

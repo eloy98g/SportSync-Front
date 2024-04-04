@@ -14,9 +14,10 @@ import { family } from "../../theme/fonts";
 interface Props {
   onBack?: () => void;
   title?: string;
+  showShadow?: boolean;
 }
 
-const BackHeader = ({ onBack = () => {}, title }: Props) => {
+const BackHeader = ({ onBack = () => {}, title, showShadow = true }: Props) => {
   const navigation = useNavigation();
 
   const backHandler = () => {
@@ -25,7 +26,7 @@ const BackHeader = ({ onBack = () => {}, title }: Props) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, showShadow && styles.shadow]}>
       <View style={styles.content}>
         <TouchableOpacity onPress={backHandler} style={styles.row}>
           <ArrowLeft size={24} color={colors.black} />
@@ -38,8 +39,8 @@ const BackHeader = ({ onBack = () => {}, title }: Props) => {
 };
 
 BackHeader.defaultProps = {
-  onBack :() => {}
-}
+  onBack: () => {},
+};
 export default BackHeader;
 
 const styles = StyleSheet.create({
@@ -48,6 +49,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     zIndex: 10,
+    backgroundColor: "white",
+  },
+  shadow: {
     shadowColor: "rgba(0,0,0,0,4)",
     shadowOffset: {
       width: 0,
@@ -56,7 +60,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.17,
     shadowRadius: 3.05,
     elevation: 4,
-    backgroundColor: "white",
   },
   content: {
     width: "100%",
