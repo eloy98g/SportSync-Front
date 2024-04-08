@@ -10,12 +10,10 @@ import SortByFilter from "./SortByFilter";
 import SportFilter from "./SportFilter";
 import TypeFilter from "./TypeFilter";
 
-// Context
-import { SearchProvider } from "../../context/SearchContext";
-
 // Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
+import { ScrollView } from "tamagui";
 
 interface Props {
   open: boolean;
@@ -24,8 +22,8 @@ interface Props {
 
 const FiltersSheet = ({ open, openHandler }: Props) => {
   return (
-    <Sheet open={open} openHandler={openHandler} padding={0}>
-      <SearchProvider>
+    <Sheet open={open} openHandler={openHandler} padding={0} modal={false}>
+      <View style={styles.container}>
         <Text style={styles.title}>Filtros</Text>
         <SportFilter />
         <Divider height={12} />
@@ -36,7 +34,7 @@ const FiltersSheet = ({ open, openHandler }: Props) => {
         <PriceFilter />
         <Divider height={12} />
         <SortByFilter />
-      </SearchProvider>
+      </View>
     </Sheet>
   );
 };
@@ -48,5 +46,10 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     color: colors.primary,
     fontSize: 24,
+    textAlign: "center",
+  },
+  container: {
+    width: "100%",
+    height: 500,
   },
 });

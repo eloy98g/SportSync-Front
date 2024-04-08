@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
@@ -12,16 +12,19 @@ import { SearchProvider } from "./context/SearchContext";
 
 // Theme
 import colors from "../../../theme/colors";
+import FiltersSheet from "./components/FiltersSheet";
 
 const SearchActivity = () => {
+  const [sheetOpen, setSheetOpen] = useState(false);
   return (
     <Screen>
-      <BackHeader title="Buscar" showShadow={false} />
       <SearchProvider>
+        <BackHeader title="Buscar" showShadow={false} />
         <View style={styles.content}>
-          <FiltersBar />
+          <FiltersBar setOpen={setSheetOpen} />
           <ActivitiesList />
         </View>
+        <FiltersSheet open={sheetOpen} openHandler={setSheetOpen}  />
       </SearchProvider>
     </Screen>
   );

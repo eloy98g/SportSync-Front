@@ -1,11 +1,14 @@
 import { ActivityType } from "../../../../store/types/activity/Activity";
-import PriceSlot from "../types/PriceSlot";
-import SortBy from "../types/SortBy";
 
+// Placeholder
 import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY_SPORTS";
-import SearchFilters from "../types/SearchFilters";
+
+// Filters
 import priceValues from "../filters/priceValues";
 import sortingValues from "../filters/sortingValues";
+
+// Types
+import SearchFilters from "../types/SearchFilters";
 
 const INITIAL_FILTERS: SearchFilters = {
   sport: 1,
@@ -18,7 +21,7 @@ const INITIAL_FILTERS: SearchFilters = {
 const INITIAL_STATE = {
   filters: INITIAL_FILTERS,
   setFilters: () => {},
-  filteredActivies: [],
+  filteredActivities: [],
   sports: CREATE_ACTIVITY_SPORTS,
 };
 

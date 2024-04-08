@@ -38,7 +38,7 @@ const PriceFilter = () => {
       >
         <Divider width={24} />
         {priceValues.map((price) => (
-          <React.Fragment>
+          <React.Fragment key={price.value}>
             <Tag
               selected={filters.price === price.value}
               onPress={() => setPrice(price.value)}

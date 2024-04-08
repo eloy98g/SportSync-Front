@@ -9,12 +9,13 @@ import FilteredActivity from "./FilteredActivity";
 import SearchContext from "../context/SearchContext";
 
 const ActivitiesList = () => {
-  const { filteredActivies } = useContext(SearchContext);
+  const { filteredActivities } = useContext(SearchContext);
 
+  console.log('filteredActivities',filteredActivities.length)
   return (
     <ScrollView style={styles.scroll}>
       <Divider height={12} />
-      {filteredActivies.map((activity) => (
+      {filteredActivities.map((activity) => (
         <React.Fragment key={activity.gid}>
           <FilteredActivity {...activity} />
           <Divider height={12} />

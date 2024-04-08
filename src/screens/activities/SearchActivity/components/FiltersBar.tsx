@@ -4,17 +4,18 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 // Components
 import Divider from "../../../../components/common/Divider";
-import FiltersSheet from "./FiltersSheet";
 import TagContainer from "./TagContainer";
 
 // Theme
 import colors from "../../../../theme/colors";
 
-const FiltersBar = () => {
-  const [sheetOpen, setSheetOpen] = useState(false);
+interface Props {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+const FiltersBar = ({ setOpen }: Props) => {
   const filterSheetHandler = () => {
-    setSheetOpen(true);
+    setOpen(true);
   };
 
   return (
@@ -24,7 +25,6 @@ const FiltersBar = () => {
       </TouchableOpacity>
       <Divider width={12} />
       <TagContainer />
-      <FiltersSheet open={sheetOpen} openHandler={setSheetOpen} />
     </View>
   );
 };

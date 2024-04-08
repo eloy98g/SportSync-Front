@@ -22,7 +22,7 @@ import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY
 
 interface ContextProps {
   setFilters: Dispatch<SetStateAction<SearchFilters>>;
-  filteredActivies: Activity[];
+  filteredActivities: Activity[];
   filters: SearchFilters;
   sports: Sport[];
 }
@@ -34,12 +34,14 @@ interface Props {
 }
 
 const SearchProvider = ({ children }: Props) => {
-  const [filters, setFilters] = useState<SearchFilters>(INITIAL_FILTERS);
-  const [sports, setSports] = useState<Sport[]>(CREATE_ACTIVITY_SPORTS);
-
   const publicActivities = useAppSelector(
     (state) => state.activity.publicActivities
   );
+
+  const [filters, setFilters] = useState<SearchFilters>(INITIAL_FILTERS);
+  const [sports, setSports] = useState<Sport[]>(CREATE_ACTIVITY_SPORTS);
+  const [filteredActivities, setFilteredActivities] =
+    useState<Activity[]>(publicActivities);
 
   useEffect(() => {
     // TODO: api call for fetching Sports
@@ -49,12 +51,19 @@ const SearchProvider = ({ children }: Props) => {
     }, 1000);
   }, []);
 
-
-  const filteredActivies = publicActivities;
+  useEffect(() => {
+    console.log("updating filters");
+    const auxArray = publicActivities.filter(
+      (activity) =>
+        activity.sport.gid === filters.sport && activity.type === filters.type
+    );
+    console.log("auxArray", auxArray.length);
+    setFilteredActivities(auxArray);
+  }, [filters]);
 
   return (
     <SearchContext.Provider
-      value={{ filters, setFilters, filteredActivies, sports }}
+      value={{ filters, setFilters, filteredActivities, sports }}
     >
       {children}
     </SearchContext.Provider>
