@@ -20,14 +20,14 @@ import { SectionName } from "../sections";
 
 // Types
 import Draft from "../../../../store/types/draft/Draft";
-import SportDraft from "../../../../store/types/draft/SportDraft";
+import Sport from "../../../../store/types/sport/Sport";
 
 interface ContextProps {
   setDraft: Dispatch<SetStateAction<Draft>>;
   setSection: Dispatch<SetStateAction<SectionName>>;
   draft: Draft;
   section: SectionName;
-  sports: SportDraft[];
+  sports: Sport[];
   status: STATUS;
 }
 
@@ -40,7 +40,7 @@ interface Props {
 const CreateProvider = ({ children }: Props) => {
   const [section, setSection] = useState<SectionName>("sport");
   const [draft, setDraft] = useState<Draft>(INITIAL_DRAFT);
-  const [sports, setSports] = useState<SportDraft[]>([]);
+  const [sports, setSports] = useState<Sport[]>([]);
   const { status, setStatus } = useStatus();
 
   useEffect(() => {

@@ -18,6 +18,7 @@ import { family } from "../../../../theme/fonts";
 
 // Utils
 import unixToDate from "../../../../utils/date/unixToDate";
+import getFormattedPrice from "../../../../utils/currency/getFormattedPrice";
 import formattedDistance from "../../../../utils/distances/formattedDistance";
 import distanceBetween from "../../../../utils/distances/distanceBetween";
 
@@ -30,10 +31,12 @@ const PublicActivity = (props: Activity) => {
     teams,
     playersPerTeam,
     gid,
+    price,
     location,
   } = props;
   const { name } = sport;
   const navigation = useNavigation();
+
   const userLocation = useAppSelector((state) => state.user.user.location);
   const distance =
     "a " + formattedDistance(distanceBetween(userLocation, location));
@@ -55,16 +58,22 @@ const PublicActivity = (props: Activity) => {
         <View style={styles.row}>
           <Text style={styles.title}>{name}</Text>
           <View style={styles.icons}>
-            <Icon icon={access} color={colors.black} size={14} />
+            <Icon icon={access} color={colors.black} size={18} />
             {type !== "normal" && (
               <>
                 <Divider width={5} />
-                <Icon icon={type} color={colors.black} size={14} />
+                <Icon icon={type} color={colors.black} size={18} />
               </>
             )}
           </View>
         </View>
         <Text style={styles.subText}>{distance}</Text>
+      </View>
+      <View style={styles.row}>
+        <View />
+        <Text style={styles.subText}>
+          {price ? getFormattedPrice(price) : "Gratis"}
+        </Text>
       </View>
       <View style={styles.row}>
         <Text style={styles.subText}>{date}</Text>
@@ -80,10 +89,10 @@ export default PublicActivity;
 
 const styles = StyleSheet.create({
   container: {
-    width: 150,
-    height: 90,
+    width: "100%",
+    height: 100,
     borderRadius: 12,
-    padding: 10,
+    padding: 12,
     backgroundColor: colors.secondary,
   },
   row: {
@@ -92,7 +101,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 14,
+    fontSize: 18,
     color: colors.black,
     fontFamily: family.bold,
   },
@@ -100,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   subText: {
-    fontSize: 10,
+    fontSize: 14,
     color: colors.black,
     fontFamily: family.semibold,
   },

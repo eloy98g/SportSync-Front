@@ -44,7 +44,6 @@ const Create = () => {
   };
 
   const finishHandler = () => {
-    console.log("publish");
     // TODO: API call for publishing an activity
     navigation.goBack();
   };

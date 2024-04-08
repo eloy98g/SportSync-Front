@@ -4,14 +4,16 @@ import { StyleSheet, View, Text } from "react-native";
 // Theme
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
+import Divider from "./Divider";
 
 interface Props {
   children: React.ReactNode;
   title?: string;
   border?: boolean;
+  titlePadding?: number;
 }
 
-const Card = ({ children, title, border = true }: Props) => (
+const Card = ({ children, title, border = true, titlePadding = 6 }: Props) => (
   <View
     style={[
       styles.container,
@@ -19,6 +21,7 @@ const Card = ({ children, title, border = true }: Props) => (
     ]}
   >
     {title && <Text style={styles.title}>{title}</Text>}
+    {titlePadding && <Divider height={6} />}
     {children}
   </View>
 );

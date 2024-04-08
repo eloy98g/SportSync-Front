@@ -22,7 +22,12 @@ const SearchContainer = ({ setSearchOpen }: Props) => {
     setSearchOpen(false);
     navigation.navigate("CreateActivity" as never);
   };
-  const searchHandler = () => {};
+
+  const searchHandler = () => {
+    setSearchOpen(false);
+    navigation.navigate("SearchActivity" as never);
+  };
+
   const codeHandler = () => {};
   return (
     <View style={styles.container}>

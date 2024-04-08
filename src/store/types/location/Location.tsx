@@ -4,6 +4,7 @@ type Location = {
   latitudeDelta?: number;
   longitudeDelta?: number;
   address?: string;
+  radius?: number;
 };
 
 const EMPTY_LOCATION = {
@@ -12,6 +13,7 @@ const EMPTY_LOCATION = {
   longitude: 0,
   latitudeDelta: 0.1,
   longitudeDelta: 0.1,
+  radius: 5000,
 };
 
 export { EMPTY_LOCATION };

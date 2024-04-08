@@ -24,7 +24,7 @@ const SocialActions = () => {
   };
 
   const searchActivityHandler = () => {
-    // navigation.navigate("SearchActivityScreen" as never);
+    navigation.navigate("SearchActivity" as never);
   };
 
   return (

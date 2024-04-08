@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Sheet as TamaguiSheet } from "@tamagui/sheet";
 
 // Theme
@@ -9,11 +9,11 @@ interface Props {
   modal: boolean;
   openHandler: (T: boolean) => void;
   children: React.ReactNode;
+  padding?: number;
 }
 
 const Sheet = (props: Props) => {
-  const { open, openHandler, children, modal } = props;
-  const [position, setPosition] = useState(0);
+  const { open, openHandler, children, modal, padding = 24 } = props;
 
   return (
     <TamaguiSheet
@@ -22,8 +22,6 @@ const Sheet = (props: Props) => {
       modal={modal}
       open={open}
       snapPointsMode={"fit"}
-      // position={position}
-      // onPositionChange={setPosition}
       disableDrag
       onOpenChange={openHandler}
       zIndex={100_000}
@@ -43,7 +41,7 @@ const Sheet = (props: Props) => {
         space="$5"
         borderTopLeftRadius={20}
         borderTopRightRadius={20}
-        paddingHorizontal={24}
+        paddingHorizontal={padding}
         backgroundColor={colors.white}
       >
         {children}

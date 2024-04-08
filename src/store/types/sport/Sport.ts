@@ -1,7 +1,7 @@
-type SportDraft = {
+type Sport = {
   gid: number;
   image: string;
   name: string;
 };
 
-export default SportDraft;
+export default Sport;

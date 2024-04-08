@@ -6,7 +6,7 @@ import { Text, TouchableOpacity, StyleSheet, TextStyle } from "react-native";
 import Divider from "../Divider";
 
 interface Props {
-  onPress: () => void;
+  onPress: (T:any) => void;
   text?: string;
   icon?: React.ReactNode;
   textStyle?: StyleProp<TextStyle>;

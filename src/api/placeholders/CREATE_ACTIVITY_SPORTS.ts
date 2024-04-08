@@ -1,6 +1,6 @@
-import SportDraft from "../../store/types/draft/SportDraft";
+import Sport from "../../store/types/sport/Sport";
 
-const data: SportDraft[] = [
+const data: Sport[] = [
   {
     gid: 1,
     name: "Fútbol",

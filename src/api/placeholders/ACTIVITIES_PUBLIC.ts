@@ -1,11 +1,12 @@
-export default [
+import Activity from "../../store/types/activity/Activity";
+const data: Activity[] = [
   {
     gid: 4,
     location: {
-      lat: 37.7749,
-      lng: -122.4194,
-      radius: 500,
+      latitude: 37.7749,
+      longitude: -122.4194,
     },
+    price: 200,
     creationDate: 1708492837,
     startDate: 1712164031,
     duration: 90,
@@ -59,10 +60,10 @@ export default [
   {
     gid: 5,
     location: {
-      lat: 37.7749,
-      lng: -122.4194,
-      radius: 500,
+      latitude: 37.7742,
+      longitude: -122.4194,
     },
+    price: 400,
     creationDate: 1708492837,
     startDate: 1712164031,
     duration: 90,
@@ -105,18 +106,17 @@ export default [
   {
     gid: 6,
     location: {
-      lat: 37.7749,
-      lng: -122.4194,
-      radius: 500,
+      latitude: 0,
+      longitude: 0,
     },
     creationDate: 1708492837,
     startDate: 1712164031,
     duration: 90,
+    price: 1000,
     admin: {
       gid: 2,
       name: "Mary Pond",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
-      color: "#EDFF54",
     },
     access: "public",
     name: "Activity 5",
@@ -124,9 +124,10 @@ export default [
     sport: {
       gid: 2,
       name: "Ténis",
+      color: "#EDFF54",
       icon: "https://cdn.icon-icons.com/icons2/2385/PNG/512/tennis_racket_icon_144086.png",
     },
-    type: "normal",
+    type: "competitive",
     teams: [
       {
         name: "A",
@@ -151,13 +152,13 @@ export default [
   {
     gid: 7,
     location: {
-      lat: 37.7749,
-      lng: -122.4194,
-      radius: 500,
+      latitude: 37.7742,
+      longitude: -122.4194,
     },
     creationDate: 1708492837,
     startDate: 1712164031,
     duration: 90,
+    price: 1400,
     admin: {
       gid: 2,
       name: "Mary Pond",
@@ -194,4 +195,98 @@ export default [
     status: "pending",
     chat: 6,
   },
+  {
+    gid: 8,
+    location: {
+      latitude: 37.7749,
+      longitude: -122.4194,
+    },
+    creationDate: 1708492837,
+    startDate: 1712164031,
+    duration: 90,
+    price: 2500,
+    admin: {
+      gid: 2,
+      name: "Mary Pond",
+      image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
+    },
+    access: "public",
+    name: "Activity 5",
+    description: "This is a placeholder activity.",
+    sport: {
+      gid: 1,
+      name: "Fútbol",
+      icon: "https://cdn.icon-icons.com/icons2/2385/PNG/512/tennis_racket_icon_144086.png",
+      color: "#EDFF54",
+    },
+    type: "competitive",
+    teams: [
+      {
+        name: "A",
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
+      },
+      {
+        name: "B",
+        players: [],
+      },
+    ],
+    playersPerTeam: 6,
+    status: "pending",
+    chat: 6,
+  },
+  {
+    gid: 9,
+    location: {
+      latitude: 37.7749,
+      longitude: -122.4194,
+    },
+    creationDate: 1708492837,
+    startDate: 1712164031,
+    duration: 90,
+    price: 0,
+    admin: {
+      gid: 2,
+      name: "Mary Pond",
+      image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
+    },
+    access: "public",
+    name: "Activity 5",
+    description: "This is a placeholder activity.",
+    sport: {
+      gid: 2,
+      name: "Ténis",
+      color: "#EDFF54",
+      icon: "https://cdn.icon-icons.com/icons2/2385/PNG/512/tennis_racket_icon_144086.png",
+    },
+    type: "normal",
+    teams: [
+      {
+        name: "A",
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
+      },
+      {
+        name: "B",
+        players: [],
+      },
+    ],
+    playersPerTeam: 1,
+    status: "pending",
+    chat: 6,
+  },
 ];
+
+export default data;
