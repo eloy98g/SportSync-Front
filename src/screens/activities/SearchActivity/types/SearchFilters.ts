@@ -7,7 +7,7 @@ type SearchFilters = {
   type: ActivityType | null;
   insideUserArea: boolean;
   price: PriceSlot | null;
-  sortBy: SortBy | null;
+  sortBy: SortBy;
 };
 
 export default SearchFilters;

@@ -23,6 +23,7 @@ import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY
 // Methods
 import insideRangePrice from "../methods/insideRangePrice";
 import isPointInsideRadius from "../../../../utils/distances/isPointInsideRadius";
+import sortActivities from "../methods/sortActivities";
 
 interface ContextProps {
   setFilters: Dispatch<SetStateAction<SearchFilters>>;
@@ -69,7 +70,9 @@ const SearchProvider = ({ children }: Props) => {
           ? isPointInsideRadius(userLocation, activity.location)
           : true)
     );
-    setFilteredActivities(auxArray);
+
+    const finalArray = sortActivities(auxArray, filters.sortBy, userLocation);
+    setFilteredActivities(finalArray);
   }, [filters]);
 
   return (

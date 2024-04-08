@@ -1,6 +1,9 @@
 // Placeholder
 import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY_SPORTS";
 
+// Filters
+import sortingValues from "../filters/sortingValues";
+
 // Types
 import SearchFilters from "../types/SearchFilters";
 
@@ -9,7 +12,7 @@ const INITIAL_FILTERS: SearchFilters = {
   type: null,
   insideUserArea: false,
   price: null,
-  sortBy: null,
+  sortBy: sortingValues[0].value,
 };
 
 const INITIAL_STATE = {
