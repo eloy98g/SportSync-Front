@@ -38,7 +38,7 @@ const SortByFilter = () => {
       >
         <Divider width={24} />
         {sortingValues.map((sortValue) => (
-          <React.Fragment>
+          <React.Fragment key={sortValue.value}>
             <Tag
               selected={filters.sortBy === sortValue.value}
               onPress={() => setPrice(sortValue.value)}

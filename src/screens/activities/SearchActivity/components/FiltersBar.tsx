@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { SlidersHorizontal } from "lucide-react-native";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
-// Componentd
+// Components
+import Divider from "../../../../components/common/Divider";
 import FiltersSheet from "./FiltersSheet";
+import TagContainer from "./TagContainer";
 
 // Theme
 import colors from "../../../../theme/colors";
-import TagContainer from "./TagContainer";
-import Divider from "../../../../components/common/Divider";
+
 const FiltersBar = () => {
   const [sheetOpen, setSheetOpen] = useState(false);
 

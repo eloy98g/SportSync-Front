@@ -1,16 +1,24 @@
 import React, { useContext } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
+
+// Components
 import Divider from "../../../../components/common/Divider";
+import FilteredActivity from "./FilteredActivity";
+
+// Context
 import SearchContext from "../context/SearchContext";
 
 const ActivitiesList = () => {
   const { filteredActivies } = useContext(SearchContext);
- 
+
   return (
     <ScrollView style={styles.scroll}>
-      <Divider height={12}/>
+      <Divider height={12} />
       {filteredActivies.map((activity) => (
-        <Text key={activity.gid}>{activity.name}</Text>
+        <React.Fragment key={activity.gid}>
+          <FilteredActivity {...activity} />
+          <Divider height={12} />
+        </React.Fragment>
       ))}
     </ScrollView>
   );
@@ -19,9 +27,9 @@ const ActivitiesList = () => {
 export default ActivitiesList;
 
 const styles = StyleSheet.create({
-  scroll:{
-    width:"100%",
-    height:1,
-    paddingHorizontal: 12
-  }
+  scroll: {
+    width: "100%",
+    height: 1,
+    paddingHorizontal: 12,
+  },
 });

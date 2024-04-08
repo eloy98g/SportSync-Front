@@ -38,7 +38,7 @@ const TypeFilter = () => {
       >
         <Divider width={24} />
         {typeValues.map((sortValue) => (
-          <React.Fragment>
+          <React.Fragment key={sortValue.value}>
             <Tag
               selected={filters.type === sortValue.value}
               onPress={() => setType(sortValue.value)}

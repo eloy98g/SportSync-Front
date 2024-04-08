@@ -29,7 +29,7 @@ const SportFilter = () => {
       >
         <Divider width={24} />
         {sports.map((sport) => (
-          <React.Fragment>
+          <React.Fragment key={sport.gid}>
             <SportTag
               onPress={() => sportHandler(sport.gid)}
               {...sport}
