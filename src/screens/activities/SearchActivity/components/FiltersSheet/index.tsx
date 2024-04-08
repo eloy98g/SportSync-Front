@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 // Components
 import Sheet from "../../../../../components/common/Sheet";
 import Divider from "../../../../../components/common/Divider";
+import ResetButton from "./ResetButton";
 import AreaFilter from "./AreaFilter";
 import PriceFilter from "./PriceFilter";
 import SortByFilter from "./SortByFilter";
@@ -24,6 +25,7 @@ const FiltersSheet = ({ open, openHandler }: Props) => {
     <Sheet open={open} openHandler={openHandler} padding={0} modal={false}>
       <View style={styles.container}>
         <Text style={styles.title}>Filtros</Text>
+        <Divider height={12} />
         <SportFilter />
         <Divider height={12} />
         <TypeFilter />
@@ -33,6 +35,8 @@ const FiltersSheet = ({ open, openHandler }: Props) => {
         <PriceFilter />
         <Divider height={12} />
         <SortByFilter />
+        <Divider height={24} />
+        <ResetButton />
       </View>
     </Sheet>
   );
@@ -49,6 +53,9 @@ const styles = StyleSheet.create({
   },
   container: {
     width: "100%",
-    height: 500,
+    height: 550,
+  },
+  resetButton: {
+    width: 120,
   },
 });
