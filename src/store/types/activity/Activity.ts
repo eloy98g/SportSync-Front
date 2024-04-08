@@ -27,9 +27,9 @@ export default interface Activity {
   description: string;
   sport: Sport;
   teams: Team[];
-  userTeam: string;
+  userTeam?: string;
   playersPerTeam: number;
   status: ActivityStatus;
   chat: number;
-  result: Result;
+  result?: Result;
 }

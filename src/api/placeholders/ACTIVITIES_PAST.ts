@@ -2,8 +2,8 @@ export default [
   {
     gid: 1,
     location: {
-      lat: 37.7749,
-      lng: -122.4194,
+      latitude: 37.7749,
+      longitude: -122.4194,
       radius: 500,
     },
     creationDate: 1709492837,
@@ -69,8 +69,8 @@ export default [
   {
     gid: 2,
     location: {
-      lat: 37.7749,
-      lng: -122.4194,
+      latitude: 37.7749,
+      longitude: -122.4194,
       radius: 500,
     },
     creationDate: 1709492837,
@@ -161,8 +161,8 @@ export default [
   {
     gid: 3,
     location: {
-      lat: 37.7749,
-      lng: -122.4194,
+      latitude: 37.7749,
+      longitude: -122.4194,
       radius: 500,
     },
     creationDate: 1709492837,
@@ -228,8 +228,8 @@ export default [
   {
     gid: 4,
     location: {
-      lat: 37.7749,
-      lng: -122.4194,
+      latitude: 37.7749,
+      longitude: -122.4194,
       radius: 500,
     },
     creationDate: 1709492837,

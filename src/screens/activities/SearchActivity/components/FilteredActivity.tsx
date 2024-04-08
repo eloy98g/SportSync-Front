@@ -6,6 +6,9 @@ import { useNavigation } from "@react-navigation/native";
 import Divider from "../../../../components/common/Divider";
 import Icon from "../../../../components/common/Icon";
 
+// Hooks
+import { useAppSelector } from "../../../../hooks";
+
 // Types
 import Activity from "../../../../store/types/activity/Activity";
 
@@ -15,14 +18,28 @@ import { family } from "../../../../theme/fonts";
 
 // Utils
 import unixToDate from "../../../../utils/date/unixToDate";
+import getFormattedPrice from "../../../../utils/currency/getFormattedPrice";
+import formattedDistance from "../../../../utils/distances/formattedDistance";
+import distanceBetween from "../../../../utils/distances/distanceBetween";
 
 const PublicActivity = (props: Activity) => {
-  const { sport, access, type, startDate, teams, playersPerTeam, gid } = props;
+  const {
+    sport,
+    access,
+    type,
+    startDate,
+    teams,
+    playersPerTeam,
+    gid,
+    price,
+    location,
+  } = props;
   const { name } = sport;
   const navigation = useNavigation();
 
-  // TODO calcular distancia (obtener localizacion)
-  const distance = "a 500m";
+  const userLocation = useAppSelector((state) => state.user.user.location);
+  const distance =
+    "a " + formattedDistance(distanceBetween(userLocation, location));
 
   const date = unixToDate(startDate);
   const currentPlayers = teams.reduce(
@@ -51,6 +68,12 @@ const PublicActivity = (props: Activity) => {
           </View>
         </View>
         <Text style={styles.subText}>{distance}</Text>
+      </View>
+      <View style={styles.row}>
+        <View />
+        <Text style={styles.subText}>
+          {price ? getFormattedPrice(price) : "Gratis"}
+        </Text>
       </View>
       <View style={styles.row}>
         <Text style={styles.subText}>{date}</Text>

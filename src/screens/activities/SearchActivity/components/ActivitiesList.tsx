@@ -11,7 +11,6 @@ import SearchContext from "../context/SearchContext";
 const ActivitiesList = () => {
   const { filteredActivities } = useContext(SearchContext);
 
-  console.log('filteredActivities',filteredActivities.length)
   return (
     <ScrollView style={styles.scroll}>
       <Divider height={12} />

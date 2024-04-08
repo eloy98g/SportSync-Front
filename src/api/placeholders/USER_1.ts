@@ -6,8 +6,8 @@ export default {
   image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   location: {
-    lat: 37.7749,
-    lng: -122.4194,
+    latitude: 37.7749,
+    longitude: -122.4194,
     radius: 500,
   },
   birthDate: 1013510655,

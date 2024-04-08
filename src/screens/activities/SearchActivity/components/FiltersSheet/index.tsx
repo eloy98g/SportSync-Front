@@ -13,7 +13,6 @@ import TypeFilter from "./TypeFilter";
 // Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
-import { ScrollView } from "tamagui";
 
 interface Props {
   open: boolean;

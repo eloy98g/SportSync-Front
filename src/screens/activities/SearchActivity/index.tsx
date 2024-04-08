@@ -6,13 +6,13 @@ import ActivitiesList from "./components/ActivitiesList";
 import BackHeader from "../../../components/BackHeader";
 import Screen from "../../../components/common/Screen";
 import FiltersBar from "./components/FiltersBar";
+import FiltersSheet from "./components/FiltersSheet";
 
 // Context
 import { SearchProvider } from "./context/SearchContext";
 
 // Theme
 import colors from "../../../theme/colors";
-import FiltersSheet from "./components/FiltersSheet";
 
 const SearchActivity = () => {
   const [sheetOpen, setSheetOpen] = useState(false);
