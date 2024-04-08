@@ -31,17 +31,17 @@ const TagContainer = () => {
         style={styles.scroll}
         showsHorizontalScrollIndicator={false}
       >
-        <Divider width={12} />
-        <Tag text={sportText} />
-        <Divider width={12} />
-        <Tag text={typeText} />
+        {sportText !== "" && <Divider width={12} />}
+        {sportText !== "" && <Tag text={sportText} />}
+        {typeText !== "" && <Divider width={12} />}
+        {typeText !== "" && <Tag text={typeText} />}
         <Divider width={12} />
         <Tag text={areaText} />
-        <Divider width={12} />
-        <Tag text={priceText} />
-        <Divider width={12} />
-        <Tag text={sortByText} />
-        <Divider width={12} />
+        {priceText !== "" && <Divider width={12} />}
+        {priceText !== "" && <Tag text={priceText} />}
+        {sortByText !== "" && <Divider width={12} />}
+        {sortByText !== "" && <Tag text={sortByText} />}
+        {sortByText !== "" && <Divider width={12} />}
       </ScrollView>
     </View>
   );

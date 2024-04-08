@@ -60,10 +60,12 @@ const SearchProvider = ({ children }: Props) => {
   useEffect(() => {
     const auxArray = publicActivities.filter(
       (activity) =>
-        activity.sport.gid === filters.sport &&
-        activity.type === filters.type &&
-        insideRangePrice(activity.price, filters.price) &&
-        (filters.insideUserArea
+        (filters?.sport ? activity.sport.gid === filters?.sport : true) &&
+        (filters?.type ? activity.type === filters?.type : true) &&
+        (filters?.price
+          ? insideRangePrice(activity.price, filters?.price)
+          : true) &&
+        (filters?.insideUserArea
           ? isPointInsideRadius(userLocation, activity.location)
           : true)
     );

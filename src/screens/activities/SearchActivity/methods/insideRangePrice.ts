@@ -6,12 +6,14 @@ const insideRangePrice = (activityPrice: number, range: PriceSlot) => {
   } else if (range === "+15€" && activityPrice > 1500) {
     return true;
   } else {
-    const prices = range.match(/\d+/g) || "0";
-    const lowPrice = parseInt(prices[0]) * 100;
-    const highPrice = parseInt(prices[1]) * 100;
+    if (range) {
+      const prices = range.match(/\d+/g) || "0";
+      const lowPrice = parseInt(prices[0]) * 100;
+      const highPrice = parseInt(prices[1]) * 100;
 
-    if (activityPrice >= lowPrice && activityPrice <= highPrice) {
-      return true;
+      if (activityPrice >= lowPrice && activityPrice <= highPrice) {
+        return true;
+      }
     }
   }
 };
