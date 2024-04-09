@@ -31,6 +31,7 @@ const MainButton = ({ onPress, title, active, loading, ...props }: Props) => {
       style={[
         styles.confirmButton,
         { backgroundColor: color, borderWidth, borderColor, height },
+        !active && { opacity: 0.5 },
       ]}
       onPress={active ? onPress : () => {}}
       activeOpacity={active ? 0.3 : 1}
