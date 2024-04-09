@@ -28,7 +28,11 @@ const SearchContainer = ({ setSearchOpen }: Props) => {
     navigation.navigate("SearchActivity" as never);
   };
 
-  const codeHandler = () => {};
+  const codeHandler = () => {
+    setSearchOpen(false);
+    navigation.navigate("ActivityCodeScreen" as never);
+  };
+  
   return (
     <View style={styles.container}>
       <IconButton
