@@ -12,17 +12,27 @@ import { PHONE } from "../../theme/breakPoints";
 import { family } from "../../theme/fonts";
 
 interface Props {
-  onBack?: () => void;
+  backAction?: () => void;
   title?: string;
   showShadow?: boolean;
+  onBack?: () => void;
 }
 
-const BackHeader = ({ onBack = () => {}, title, showShadow = true }: Props) => {
+const BackHeader = ({
+  backAction = () => {},
+  title,
+  showShadow = true,
+  onBack,
+}: Props) => {
   const navigation = useNavigation();
 
   const backHandler = () => {
-    onBack();
-    navigation.goBack();
+    if (onBack) {
+      onBack();
+    } else {
+      backAction();
+      navigation.goBack();
+    }
   };
 
   return (
@@ -40,6 +50,7 @@ const BackHeader = ({ onBack = () => {}, title, showShadow = true }: Props) => {
 
 BackHeader.defaultProps = {
   onBack: () => {},
+  backAction: () => {},
 };
 export default BackHeader;
 

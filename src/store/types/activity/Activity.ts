@@ -11,6 +11,7 @@ export type ActivityStatus =
   | "pending"
   | "closed"
   | "ongoing"
+  | "waitingScore"
   | "finished";
 
 export default interface Activity {
