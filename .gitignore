@@ -13,7 +13,6 @@ web-build/
 *.app/
 *.apk
 *.expo
-eas.json
 
 # macOS
 .DS_Store
