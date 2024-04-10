@@ -42,8 +42,6 @@ const LocationPicker = ({ location, setValue, option }: Props) => {
     longitudeDelta: 0.1,
   };
 
-  console.log('sending mapLocation',mapLocation)
-
   const mapHandler = () => {
     navigation.navigate(
       "MapScreen" as never,
