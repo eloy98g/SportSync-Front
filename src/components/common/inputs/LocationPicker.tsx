@@ -1,42 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MapPin } from "lucide-react-native";
 
+// Hooks
+import { useAppSelector } from "../../../hooks";
+
 // Theme
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
+
+// Types
 import MapOption from "../../../store/types/location/MapOption";
 import Location from "../../../store/types/location/Location";
-
-// TODO: this must be user's location
-const INITIAL_REGION = {
-  latitude: 36.53485636626119,
-  longitude: -6.293364831231988,
-  latitudeDelta: 0.1,
-  longitudeDelta: 0.1,
-};
+import getAddress from "../../../utils/location/getAddress";
 
 interface Props {
-  value: any;
+  location: Location;
   setValue: any;
   option?: MapOption;
-  initialLocation: Location;
 }
 
-const LocationPicker = ({
-  value,
-  setValue,
-  option,
-  initialLocation,
-}: Props) => {
+const LocationPicker = ({ location, setValue, option }: Props) => {
+  const userLocation = useAppSelector((state) => state.user.user).location;
+  const [title, setTitle] = useState(userLocation?.address || "Selecciona ubicación");
   const navigation = useNavigation();
-  const title = "Selecciona ubicación"; // TODO: añadir nombre por lat y lng
+
+  const getTitle = async () => {
+    const address = await getAddress(location);
+    setTitle(address || "Selecciona ubicación");
+  };
+
+  useEffect(() => {
+    getTitle();
+  }, [location]);
+
+  const mapLocation: Location = location || {
+    latitude: userLocation.latitude,
+    longitude: userLocation.longitude,
+    latitudeDelta: 0.1,
+    longitudeDelta: 0.1,
+  };
+
+  console.log('sending mapLocation',mapLocation)
 
   const mapHandler = () => {
     navigation.navigate(
       "MapScreen" as never,
-      { mapHandler: setValue, option, initialLocation } as never
+      { mapHandler: setValue, option, mapLocation } as never
     );
   };
 
@@ -49,7 +60,6 @@ const LocationPicker = ({
 };
 
 LocationPicker.defaultProps = {
-  initialLocation: INITIAL_REGION,
   option: "location",
 };
 

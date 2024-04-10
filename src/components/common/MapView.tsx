@@ -24,7 +24,7 @@ const MapView = ({ location }: Props) => {
       {
         mapHandler: () => {},
         option: "view",
-        initialLocation: location,
+        mapLocation: location,
       } as never
     );
   };

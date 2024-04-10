@@ -5,6 +5,7 @@ import fetchUser from "./methods/fetchUser";
 
 // Types
 import User, { EMPTY_USER } from "../../types/user/User";
+import Location from "../../types/location/Location";
 
 type UserState = {
   loading: boolean;
@@ -25,6 +26,9 @@ const userSlice = createSlice({
     logOut: (state) => {
       state.user = EMPTY_USER;
     },
+    setLocation: (state, action: PayloadAction<Location>) => {
+      state.user.location = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUser.pending, (state) => {
@@ -44,6 +48,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { logOut } = userSlice.actions;
+export const { logOut, setLocation } = userSlice.actions;
 
 export default userSlice.reducer;

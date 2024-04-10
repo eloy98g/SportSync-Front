@@ -23,7 +23,12 @@
         "foregroundImage": "./src/assets/metadata/logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.eloy98g.sportup"
+      "package": "com.eloy98g.sportup",
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
     },
     "web": {
       "favicon": "./src/assets/metadata/logo.png"
@@ -39,6 +44,12 @@
         {
           "cameraPermission": "Permite a UserApp el acceso a la cámara",
           "enableCodeScanner": true
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permite a UserApp el acceso a tu ubicación"
         }
       ]
     ]

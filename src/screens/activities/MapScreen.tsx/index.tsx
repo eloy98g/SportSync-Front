@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import MapView, {
   Marker,
   PROVIDER_GOOGLE,
@@ -8,6 +9,7 @@ import MapView, {
 } from "react-native-maps";
 
 // Components
+import MainButton from "../../../components/common/buttons/MainButton";
 import BackHeader from "../../../components/BackHeader";
 import DistanceSelector from "./components/DistanceSelector";
 import Screen from "../../../components/common/Screen";
@@ -17,12 +19,10 @@ import colors, { rgbaPrimary } from "../../../theme/colors";
 
 // Types
 import MAP_EVENT_TYPE from "../../../store/types/location/MapEventType";
-import MainButton from "../../../components/common/buttons/MainButton";
-import { useNavigation } from "@react-navigation/native";
 
 const MapScreen = ({ route }: any) => {
-  const { mapHandler, option, initialLocation } = route.params;
-  const [markerPosition, setMarkerPosition] = useState<LatLng>(initialLocation);
+  const { mapHandler, option, mapLocation } = route.params;
+  const [markerPosition, setMarkerPosition] = useState<LatLng>({...mapLocation});
   const [radius, setRadius] = useState({ value: 500, gid: 1 });
   const [showButton, setShowButton] = useState(false);
 
@@ -46,14 +46,14 @@ const MapScreen = ({ route }: any) => {
   const backHandler = () => {
     navigation.goBack();
   };
-
+  
   return (
     <Screen>
       <BackHeader title={"Selecciona tu zona"} />
       <View style={styles.container}>
         <MapView
           style={{ flex: 1 }}
-          initialRegion={initialLocation}
+          initialRegion={mapLocation}
           provider={PROVIDER_GOOGLE}
           showsUserLocation
           showsMyLocationButton
