@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Screen from "../../../components/common/Screen";
+import Divider from "../../../components/common/Divider";
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "../../../hooks";
@@ -13,11 +14,15 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 import fetchCurrentActivities from "../../../store/features/activity/methods/fetchCurrentActivities";
 import fetchPublicActivities from "../../../store/features/activity/methods/fetchPublicActivities";
 import fetchChats from "../../../store/features/chat/methods/fetchChats";
+import { setLocation } from "../../../store/features/user/userSlice";
 
 // Theme
 import colors from "../../../theme/colors";
-import Divider from "../../../components/common/Divider";
 import { family } from "../../../theme/fonts";
+
+// Utils
+import getLocationPermissions from "../../../utils/location/getLocationPermissions";
+import getLocation from "../../../utils/location/getLocation";
 
 const SplashScreen = () => {
   const stateUser = useAppSelector((state) => state.user.user);
@@ -32,6 +37,12 @@ const SplashScreen = () => {
 
   const splashHandler = async () => {
     await getData();
+    const locationPermission = await getLocationPermissions();
+    if (locationPermission) {
+      const location = await getLocation();
+      dispatch(setLocation(location));
+      
+    }
     setTimeout(() => {
       navigation.navigate("Home" as never);
     }, 1000);

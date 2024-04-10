@@ -8,6 +8,8 @@ export default {
   location: {
     latitude: 37.7749,
     longitude: -122.4194,
+    latitudeDelta: 37.7749,
+    longitudeDelta: -122.4194,
     radius: 500,
   },
   birthDate: 1013510655,

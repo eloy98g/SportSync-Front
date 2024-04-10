@@ -65,10 +65,9 @@ const Schedule = () => {
         <Title title="Lugar" />
         <Label text="Ubicación" />
         <LocationPicker
-          value={{ ...location }}
           setValue={locationHandler}
           option="location"
-          initialLocation={location}
+          location={location}
         />
         <Divider height={12} />
         <Label text="Indicaciones" />
