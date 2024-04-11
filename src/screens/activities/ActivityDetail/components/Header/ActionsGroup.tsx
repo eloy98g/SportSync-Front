@@ -30,8 +30,12 @@ const ActionsGroup = ({ isAdmin, data, playerView }: Props) => {
     navigation.navigate("Chat" as never, { chatId: chat } as never);
   };
 
-  // Todo: logicas administrador
-  const adminHandler = () => {};
+  const adminHandler = () => {
+    navigation.navigate(
+      "ActivityAdminScreen" as never,
+      { data: data } as never
+    );
+  };
 
   const shareHandler = async () => {
     await shareActivity(data);

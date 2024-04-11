@@ -5,6 +5,7 @@ import { StyleSheet, View, Text } from "react-native";
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 import Divider from "./Divider";
+import Label from "./Label";
 
 interface Props {
   children: React.ReactNode;
@@ -20,7 +21,7 @@ const Card = ({ children, title, border = true, titlePadding = 6 }: Props) => (
       border && { borderWidth: 1, borderColor: colors.lightenGrey },
     ]}
   >
-    {title && <Text style={styles.title}>{title}</Text>}
+    {title && <Label text={title} />}
     {titlePadding && <Divider height={6} />}
     {children}
   </View>

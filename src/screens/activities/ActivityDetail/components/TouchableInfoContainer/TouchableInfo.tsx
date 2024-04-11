@@ -15,6 +15,7 @@ interface Props {
   onPress: () => void;
 }
 
+// TODO: turn this component into a common button
 const TouchableInfo = ({ icon, title, onPress }: Props) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
