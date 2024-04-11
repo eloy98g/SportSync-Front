@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, ScrollView, Text } from "react-native";
 
 // Components
+import MainButton from "../../../components/common/buttons/MainButton";
 import BackHeader from "../../../components/BackHeader";
 import Divider from "../../../components/common/Divider";
 import Screen from "../../../components/common/Screen";
@@ -9,14 +10,15 @@ import Description from "./components/Description";
 import Visibility from "./components/Visibility";
 import ChangeTeams from "./components/ChangeTeams";
 
+// Hooks
+import useStatus from "../../../hooks/useStatus";
+
 // Types
 import Activity from "../../../store/types/activity/Activity";
 
 // Theme
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
-import MainButton from "../../../components/common/buttons/MainButton";
-import useStatus from "../../../hooks/useStatus";
 
 interface Props {
   route: {

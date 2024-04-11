@@ -2,16 +2,12 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 // Components
-import TouchableInfo from "../../ActivityDetail/components/TouchableInfoContainer/TouchableInfo";
+import TextArea from "../../../../components/common/inputs/TextArea";
 import Divider from "../../../../components/common/Divider";
-import Icon from "../../../../components/common/Icon";
 import Label from "../../../../components/common/Label";
 
 // Types
 import Activity from "../../../../store/types/activity/Activity";
-
-// Theme
-import TextArea from "../../../../components/common/inputs/TextArea";
 
 interface Props {
   data: Activity;

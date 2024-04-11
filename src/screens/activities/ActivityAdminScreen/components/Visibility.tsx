@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Components
 import TouchableInfo from "../../ActivityDetail/components/TouchableInfoContainer/TouchableInfo";
@@ -11,19 +11,23 @@ import Activity from "../../../../store/types/activity/Activity";
 
 // Theme
 import colors from "../../../../theme/colors";
+import VisibilitySheet from "./VisibilitySheet";
 
 interface Props {
   data: Activity;
-  setActivity:  React.Dispatch<React.SetStateAction<Activity>>
+  setActivity: React.Dispatch<React.SetStateAction<Activity>>;
 }
 
-const Visibility = ({ data }: Props) => {
+const Visibility = ({ data, setActivity }: Props) => {
+  const [sheetOpen, setSheetOpen] = useState(false);
   const { access } = data;
 
   const accessText =
     access === "public" ? "Actividad pública" : "Actividad privada";
 
-  const accessHandler = () => {};
+  const accessHandler = () => {
+    setSheetOpen(true);
+  };
 
   return (
     <>
@@ -33,6 +37,12 @@ const Visibility = ({ data }: Props) => {
         icon={<Icon icon={access} size={24} color={colors.black} />}
         title={accessText}
         onPress={accessHandler}
+      />
+      <VisibilitySheet
+        open={sheetOpen}
+        openHandler={setSheetOpen}
+        access={access}
+        setActivity={setActivity}
       />
     </>
   );
