@@ -11,7 +11,6 @@ import Label from "../../../../components/common/Label";
 import Activity from "../../../../store/types/activity/Activity";
 
 // Theme
-import colors from "../../../../theme/colors";
 import TextArea from "../../../../components/common/inputs/TextArea";
 
 interface Props {
@@ -19,10 +18,15 @@ interface Props {
   setActivity: React.Dispatch<React.SetStateAction<Activity>>;
 }
 
-const Price = ({ data }: Props) => {
+const Description = ({ data, setActivity }: Props) => {
   const { description } = data;
 
-  const descriptionHandler = () => {};
+  const descriptionHandler = (e: any) => {
+    setActivity((prevState) => ({
+      ...prevState,
+      description: e,
+    }));
+  };
 
   return (
     <>
@@ -38,6 +42,6 @@ const Price = ({ data }: Props) => {
   );
 };
 
-export default Price;
+export default Description;
 
 const styles = StyleSheet.create({});

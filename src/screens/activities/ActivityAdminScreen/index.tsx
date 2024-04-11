@@ -5,7 +5,7 @@ import { StyleSheet, View, ScrollView, Text } from "react-native";
 import BackHeader from "../../../components/BackHeader";
 import Divider from "../../../components/common/Divider";
 import Screen from "../../../components/common/Screen";
-import Price from "./components/Price";
+import Description from "./components/Description";
 import Visibility from "./components/Visibility";
 import ChangeTeams from "./components/ChangeTeams";
 
@@ -55,7 +55,7 @@ const ActivityAdminScreen = ({ route }: Props) => {
             <Divider height={16} />
             <ChangeTeams data={activity} setActivity={setActivity} />
             <Divider height={16} />
-            <Price data={activity} setActivity={setActivity} />
+            <Description data={activity} setActivity={setActivity} />
             <Divider height={16} />
             <View style={styles.buttonWrapper}>
               <MainButton
