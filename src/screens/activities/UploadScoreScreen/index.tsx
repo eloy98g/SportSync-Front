@@ -61,9 +61,7 @@ const UploadScoreScreen = () => {
             setSection={setSection}
           />
         )}
-        {section === "score" && (
-          <ActivityScore selectedActivity={selectedActivity} />
-        )}
+        {section === "score" && <ActivityScore activity={selectedActivity} />}
       </View>
     </Screen>
   );
@@ -75,7 +73,7 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     height: "100%",
-    paddingHorizontal: 12,
+    paddingHorizontal: 18,
     paddingTop: 96,
   },
 });
