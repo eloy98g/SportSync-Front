@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { ArrowRight } from "lucide-react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import IconButton from "../../../../components/common/buttons/IconButton";
@@ -19,19 +18,20 @@ import { family } from "../../../../theme/fonts";
 import unixToDate from "../../../../utils/date/unixToDate";
 import getHour from "../../../../utils/date/getHour";
 
-const CurrentActivity = (props: Activity) => {
-  const { sport, name, type, startDate, gid } = props;
-  const navigation = useNavigation();
+interface Props {
+  data: Activity;
+  onPress: (T: any) => void;
+  showButton: boolean;
+}
+
+const CurrentActivity = ({ onPress, data, showButton }: Props) => {
+  const { sport, name, type, startDate } = data;
 
   const date = unixToDate(startDate);
   const hour = getHour(startDate);
 
-  const activityHandler = () => {
-    navigation.navigate("ActivityDetail" as never, { gid } as never);
-  };
-
   return (
-    <TouchableOpacity style={styles.container} onPress={activityHandler}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image style={styles.image} source={{ uri: sport.icon }} />
       <Divider width={8} />
       {type === "competitive" && (
@@ -45,18 +45,24 @@ const CurrentActivity = (props: Activity) => {
       </View>
       <Divider width={8} />
       <Text style={styles.typeText}>
-        {hour}   {date}
+        {hour} {date}
       </Text>
       <Divider width={8} />
-      <IconButton
-        icon={<ArrowRight color={colors.grey} size={20} />}
-        onPress={activityHandler}
-      />
+      {showButton && (
+        <IconButton
+          icon={<ArrowRight color={colors.grey} size={20} />}
+          onPress={onPress}
+        />
+      )}
     </TouchableOpacity>
   );
 };
 
 export default CurrentActivity;
+
+CurrentActivity.defaultProps = {
+  showButton: true,
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -20,6 +20,7 @@ import FindUserScreen from "../screens/social/FindUserScreen";
 import CreateActivity from "../screens/activities/CreateActivity";
 import SearchActivity from "../screens/activities/SearchActivity";
 import ActivityCodeScreen from "../screens/activities/ActivityCodeScreen";
+import UploadScoreScreen from "../screens/activities/UploadScoreScreen";
 
 // Components
 import Footer from "../components/Footer";
@@ -72,6 +73,7 @@ const AppNavigator = () => {
           name="ActivityCodeScreen"
           component={ActivityCodeScreen}
         />
+        <Stack.Screen name="UploadScoreScreen" component={UploadScoreScreen} />
       </Stack.Navigator>
       {loggedIn && <Footer />}
     </NavigationContainer>

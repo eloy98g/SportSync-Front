@@ -15,7 +15,9 @@ const QuickActions = () => {
   const dividerWidth = 20;
   const itemWidth = (width - paddingHorizontal - dividerWidth) / 2;
 
-  const uploadScoreHandler = () => {};
+  const uploadScoreHandler = () => {
+    navigation.navigate("UploadScoreScreen" as never);
+  };
 
   const participationHandler = () => {
     navigation.navigate("CodeScanScreen" as never);

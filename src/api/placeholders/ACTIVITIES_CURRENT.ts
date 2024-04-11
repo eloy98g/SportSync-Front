@@ -158,7 +158,7 @@ export default [
       },
     ],
     playersPerTeam: 1,
-    status: "pending",
+    status: "waitingScore",
     chat: 3,
   },
 ];
