@@ -44,6 +44,9 @@ const SearchProvider = ({ children }: Props) => {
   );
 
   const userLocation = useAppSelector((state) => state.user.user.location);
+  const favoriteSports = useAppSelector(
+    (state) => state.user.user.favoriteSports
+  );
 
   const [filters, setFilters] = useState<SearchFilters>(INITIAL_FILTERS);
   const [sports, setSports] = useState<Sport[]>(CREATE_ACTIVITY_SPORTS);
@@ -55,13 +58,16 @@ const SearchProvider = ({ children }: Props) => {
     // setSports(//)
     setTimeout(() => {
       setSports(CREATE_ACTIVITY_SPORTS);
+      setFilters((prevState) => ({ ...prevState, sports: favoriteSports }));
     }, 1000);
   }, []);
 
   useEffect(() => {
     const auxArray = publicActivities.filter(
       (activity) =>
-        (filters?.sport ? activity.sport.gid === filters?.sport : true) &&
+        (filters?.sports.length > 0
+          ? filters?.sports.includes(activity.sport.gid)
+          : true) &&
         (filters?.type ? activity.type === filters?.type : true) &&
         (filters?.price
           ? insideRangePrice(activity.price, filters?.price)

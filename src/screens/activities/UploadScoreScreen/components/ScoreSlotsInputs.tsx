@@ -25,7 +25,6 @@ const ScoreSlotsInputs = ({ slotValues, setSlotsValues }: Props) => {
         }
         return teamSlot;
       });
-      console.log('updatedSlots',updatedSlots)
       return updatedSlots;
     });
   };

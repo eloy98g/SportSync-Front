@@ -8,7 +8,7 @@ import sortingValues from "../filters/sortingValues";
 import SearchFilters from "../types/SearchFilters";
 
 const INITIAL_FILTERS: SearchFilters = {
-  sport: null,
+  sports: [],
   type: null,
   insideUserArea: false,
   price: null,

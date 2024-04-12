@@ -18,6 +18,7 @@ const mapUser = (data: any): User => {
     participated: data?.participated || null,
     lastParticipation: data?.lastParticipation || null,
     gender: data?.gender,
+    favoriteSports: data?.favoriteSports
   };
 
   return newUser;

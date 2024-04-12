@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Methods
 import fetchUser from "./methods/fetchUser";
-
+import toggleSport from "./methods/toggleSport";
 // Types
 import User, { EMPTY_USER } from "../../types/user/User";
 import Location from "../../types/location/Location";
@@ -29,6 +29,11 @@ const userSlice = createSlice({
     setLocation: (state, action: PayloadAction<Location>) => {
       state.user.location = action.payload;
     },
+    toggleFavoriteSport: (state, action: PayloadAction<number>) => {
+      const currentFavorites = state.user.favoriteSports;
+      const sport = action.payload;
+      state.user.favoriteSports = toggleSport(currentFavorites, sport);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUser.pending, (state) => {
@@ -48,6 +53,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { logOut, setLocation } = userSlice.actions;
+export const { logOut, setLocation, toggleFavoriteSport } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,3 +1,4 @@
+import { Circle, Star } from "lucide-react-native";
 import React from "react";
 import {
   StyleSheet,
@@ -16,22 +17,40 @@ interface Props {
   name: string;
   gid: number;
   onPress: (T: number) => void;
-  selected: boolean;
+  selected?: boolean;
+  favorite?: boolean;
 }
 
-const SportCard = ({ image, name, gid, onPress, selected = true }: Props) => {
+const SportCard = ({
+  image,
+  name,
+  gid,
+  onPress,
+  selected,
+  favorite,
+}: Props) => {
   const clickHandler = () => {
     onPress(gid);
   };
   return (
     <TouchableOpacity onPress={clickHandler}>
       <ImageBackground
-        style={[styles.container, selected && styles.selected]}
+        style={styles.container}
         source={{ uri: image }}
       >
         <View style={styles.content}>
           <Text style={styles.title}>{name}</Text>
         </View>
+        {favorite && (
+          <View style={styles.favWrapper}>
+            {<Star fill={colors.primary} color={colors.primary} size={24} />}
+          </View>
+        )}
+         {selected && (
+          <View style={styles.favWrapper}>
+            {<Circle fill={colors.primary} color={colors.primary} size={24} />}
+          </View>
+        )}
         <View style={styles.opacity} />
       </ImageBackground>
     </TouchableOpacity>
@@ -59,6 +78,12 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     fontSize: 18,
     color: colors.white,
+  },
+  favWrapper: {
+    position: "absolute",
+    top: 12,
+    right: 12,
+    zIndex: 4,
   },
   opacity: {
     position: "absolute",

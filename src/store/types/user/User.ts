@@ -16,6 +16,7 @@ type User = {
   participated: number;
   lastParticipation: number;
   gender: string;
+  favoriteSports: number[]
 };
 
 export const EMPTY_USER: User = {
@@ -34,6 +35,7 @@ export const EMPTY_USER: User = {
   participated: 0,
   lastParticipation: 0,
   gender: "N/A",
+  favoriteSports:[]
 };
 
 export default User;
