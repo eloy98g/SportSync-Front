@@ -5,7 +5,7 @@ import { SectionName } from "../sections";
 const INITIAL_DRAFT: Draft = {
   sport: 1,
   teams: 2,
-  playersPerTeam: 1,
+  playersPerTeam: 2,
   access: "public",
   type: "normal",
   price: 0,

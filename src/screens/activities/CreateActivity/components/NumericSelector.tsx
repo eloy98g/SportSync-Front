@@ -15,16 +15,22 @@ interface Props {
   onRemove: () => void;
   separation?: number;
   quantity: number;
+  max?: number;
+  min?: number;
 }
+
 const NumericSelector = ({
   onAdd,
   onRemove,
   separation = 40,
   quantity,
+  max = 99999,
+  min = 0,
 }: Props) => {
   return (
     <View style={styles.container}>
       <ActionButton
+        active={quantity > min}
         size={42}
         icon={<Minus color={colors.white} size={25} />}
         onPress={onRemove}
@@ -38,6 +44,7 @@ const NumericSelector = ({
         size={42}
         icon={<Plus color={colors.white} size={25} />}
         onPress={onAdd}
+        active={quantity < max}
       />
     </View>
   );
@@ -50,7 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     alignItems: "center",
-    justifyContent:"center"
+    justifyContent: "center",
   },
   text: {
     fontFamily: family.normal,

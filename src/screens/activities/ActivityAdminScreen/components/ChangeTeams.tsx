@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 import { Swords } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -29,6 +30,10 @@ const ChangeTeams = ({ data, setActivity }: Props) => {
       } as never
     );
   };
+
+  if (data.teams.length !== 2) {
+    return <View />;
+  }
 
   return (
     <>
