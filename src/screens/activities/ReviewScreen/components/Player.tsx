@@ -14,6 +14,7 @@ interface Props {
   selected: boolean;
 }
 
+// TODO: this should be a common component called PressablePlayer
 const Player = ({ data, onPress, selected }: Props) => {
   const { image, name } = data;
   const containerStyle = [
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
     width: 70,
     borderRadius: 8,
     justifyContent: "center",
+    marginLeft: 6
   },
   image: {
     height: 50,

@@ -28,6 +28,7 @@ import Footer from "../components/Footer";
 
 // Hooks
 import { useAppSelector } from "../hooks";
+import ModifyTeamScreen from "../screens/activities/ModifyTeamScreen";
 
 const Stack = createStackNavigator();
 
@@ -75,6 +76,7 @@ const AppNavigator = () => {
           component={ActivityAdminScreen}
         />
 
+        <Stack.Screen name="ModifyTeamScreen" component={ModifyTeamScreen} />
         <Stack.Screen
           name="ActivityCodeScreen"
           component={ActivityCodeScreen}

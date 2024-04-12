@@ -1,5 +1,6 @@
 import React from "react";
 import { Swords } from "lucide-react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import TouchableInfo from "../../ActivityDetail/components/TouchableInfoContainer/TouchableInfo";
@@ -17,8 +18,17 @@ interface Props {
   setActivity: React.Dispatch<React.SetStateAction<Activity>>;
 }
 
-const ChangeTeams = ({ data }: Props) => {
-  const teamsHandler = () => {};
+const ChangeTeams = ({ data, setActivity }: Props) => {
+  const navigation = useNavigation();
+  const teamsHandler = () => {
+    navigation.navigate(
+      "ModifyTeamScreen" as never,
+      {
+        activity: data,
+        setActivity,
+      } as never
+    );
+  };
 
   return (
     <>

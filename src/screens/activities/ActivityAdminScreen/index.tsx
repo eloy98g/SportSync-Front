@@ -27,9 +27,10 @@ interface Props {
 }
 
 const ActivityAdminScreen = ({ route }: Props) => {
-  const { status, setStatus } = useStatus();
   const { data } = route.params;
+
   const [activity, setActivity] = useState(data);
+  const { status, setStatus } = useStatus();
 
   const finishHandler = async () => {
     // TODO: Api call for editing an activity
@@ -38,9 +39,6 @@ const ActivityAdminScreen = ({ route }: Props) => {
       setStatus("success");
     }, 300);
   };
-
-  if (!data) {
-  }
 
   return (
     <Screen>
@@ -85,10 +83,10 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     flex: 1,
+    paddingHorizontal: 16,
   },
   scroll: {
     width: "100%",
-    paddingHorizontal: 16,
   },
   errorContainer: {
     flex: 1,
