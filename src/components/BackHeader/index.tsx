@@ -19,7 +19,7 @@ interface Props {
 }
 
 const BackHeader = ({
-  backAction = () => {},
+  backAction,
   title,
   showShadow = true,
   onBack,
@@ -30,7 +30,9 @@ const BackHeader = ({
     if (onBack) {
       onBack();
     } else {
-      backAction();
+      if (backAction) {
+        backAction();
+      }
       navigation.goBack();
     }
   };
@@ -49,7 +51,6 @@ const BackHeader = ({
 };
 
 BackHeader.defaultProps = {
-  onBack: () => {},
   backAction: () => {},
 };
 export default BackHeader;

@@ -21,12 +21,14 @@ import CreateActivity from "../screens/activities/CreateActivity";
 import SearchActivity from "../screens/activities/SearchActivity";
 import ActivityCodeScreen from "../screens/activities/ActivityCodeScreen";
 import UploadScoreScreen from "../screens/activities/UploadScoreScreen";
+import ActivityAdminScreen from "../screens/activities/ActivityAdminScreen";
 
 // Components
 import Footer from "../components/Footer";
 
 // Hooks
 import { useAppSelector } from "../hooks";
+import ModifyTeamScreen from "../screens/activities/ModifyTeamScreen";
 
 const Stack = createStackNavigator();
 
@@ -69,6 +71,12 @@ const AppNavigator = () => {
         <Stack.Screen name="FindUserScreen" component={FindUserScreen} />
         <Stack.Screen name="CreateActivity" component={CreateActivity} />
         <Stack.Screen name="SearchActivity" component={SearchActivity} />
+        <Stack.Screen
+          name="ActivityAdminScreen"
+          component={ActivityAdminScreen}
+        />
+
+        <Stack.Screen name="ModifyTeamScreen" component={ModifyTeamScreen} />
         <Stack.Screen
           name="ActivityCodeScreen"
           component={ActivityCodeScreen}

@@ -36,16 +36,26 @@ const SplashScreen = () => {
   };
 
   const splashHandler = async () => {
-    await getData();
-    const locationPermission = await getLocationPermissions();
-    if (locationPermission) {
-      const location = await getLocation();
-      dispatch(setLocation(location));
-      
+    try {
+      console.log("1");
+      await getData();
+      console.log("2");
+      const locationPermission = await getLocationPermissions();
+      console.log("3");
+      if (locationPermission) {
+        console.log("4");
+        const location = await getLocation();
+        console.log('6')
+        dispatch(setLocation(location));
+        console.log('7')
+      }
+      console.log("5");
+      setTimeout(() => {
+        navigation.navigate("Home" as never);
+      }, 1000);
+    } catch (error) {
+      console.log("error", error.message);
     }
-    setTimeout(() => {
-      navigation.navigate("Home" as never);
-    }, 1000);
   };
 
   useEffect(() => {
