@@ -1,3 +1,4 @@
+import { Circle } from "lucide-react-native";
 import React from "react";
 import {
   StyleSheet,
@@ -21,13 +22,15 @@ interface Props {
 const SportTag = ({ image, name, onPress, selected }: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <ImageBackground
-        style={[styles.container, selected && styles.selected]}
-        source={{ uri: image }}
-      >
+      <ImageBackground style={styles.container} source={{ uri: image }}>
         <View style={styles.content}>
           <Text style={styles.title}>{name}</Text>
         </View>
+        {selected && (
+          <View style={styles.selectedWrapper}>
+            {<Circle fill={colors.primary} color={colors.primary} size={14} />}
+          </View>
+        )}
         <View style={styles.opacity} />
       </ImageBackground>
     </TouchableOpacity>
@@ -49,9 +52,11 @@ const styles = StyleSheet.create({
     padding: 6,
     zIndex: 3,
   },
-  selected: {
-    borderWidth: 2,
-    borderColor: colors.primary,
+  selectedWrapper: {
+    position: "absolute",
+    top: 6,
+    right: 6,
+    zIndex: 4,
   },
   title: {
     fontFamily: family.normal,
