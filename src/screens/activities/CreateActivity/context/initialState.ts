@@ -1,5 +1,7 @@
-import Draft from "../../../../store/types/draft/Draft";
 import { STATUS } from "../../../../hooks/useStatus";
+
+// Types
+import Draft from "../../../../store/types/draft/Draft";
 import { SectionName } from "../sections";
 
 const INITIAL_DRAFT: Draft = {

@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { Swords } from "lucide-react-native";
+import { Swords, UserX } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
@@ -31,18 +31,34 @@ const ChangeTeams = ({ data, setActivity }: Props) => {
     );
   };
 
-  if (data.teams.length !== 2) {
-    return <View />;
-  }
-
+  const playersHandler = () => {
+    navigation.navigate(
+      "DeletePlayersScreen" as never,
+      {
+        activity: data,
+        setActivity,
+      } as never
+    );
+  };
   return (
     <>
       <Label text="Equipos" />
       <Divider height={8} />
+      {data.teams.length === 2 && (
+        <>
+          <TouchableInfo
+            icon={<Swords size={24} color={colors.black} />}
+            title={"Modificar equipos"}
+            onPress={teamsHandler}
+          />
+          <Divider height={12} />
+        </>
+      )}
+      
       <TouchableInfo
-        icon={<Swords size={24} color={colors.black} />}
-        title={"Modificar equipos"}
-        onPress={teamsHandler}
+        icon={<UserX size={24} color={colors.black} />}
+        title={"Eliminar jugadores"}
+        onPress={playersHandler}
       />
     </>
   );
