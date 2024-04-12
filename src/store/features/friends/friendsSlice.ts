@@ -23,12 +23,14 @@ const friendsSlice = createSlice({
   initialState,
   reducers: {
     unfollowPlayer: (state, action: PayloadAction<number>) => {
+      // TODO: API call for following a player
       const newArray = state.friends.filter(
         (player) => player.gid !== action.payload
       );
       state.friends = newArray;
     },
     followPlayer: (state, action: PayloadAction<Player>) => {
+      // TODO: API call for unfollowing a player
       const newArray = [...state.friends, action.payload];
       state.friends = newArray;
     },

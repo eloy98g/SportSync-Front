@@ -5,17 +5,17 @@ import { StyleSheet, ScrollView, View } from "react-native";
 import Screen from "../../../components/common/Screen";
 import Search from "../../../components/common/inputs/Search";
 import BackHeader from "../../../components/BackHeader";
-import SearchUserItem from "./components/SearchUserItem";
 import Divider from "../../../components/common/Divider";
-
-// Types
-import UserSearch from "../../../store/types/user/UserSearch";
+import PlayerCard from "../../../components/social/PlayerCard";
 
 // Placeholder
 import USER_SEARCH from "../../../api/placeholders/USER_SEARCH";
 
+// Types
+import Player from "../../../store/types/activity/Player";
+
 const FindUserScreen = () => {
-  const [users, setUsers] = useState<UserSearch[]>([]);
+  const [users, setUsers] = useState<Player[]>([]);
   const searchHandler = async (search: string) => {
     if (search.length > 4) {
       setUsers(USER_SEARCH);
@@ -32,9 +32,9 @@ const FindUserScreen = () => {
         />
         <ScrollView style={styles.scroll}>
           <Divider height={12} />
-          {users.map((user: UserSearch) => (
+          {users.map((user: Player) => (
             <React.Fragment key={user.gid}>
-              <SearchUserItem data={user} />
+              <PlayerCard data={user} />
               <Divider height={12} />
             </React.Fragment>
           ))}
