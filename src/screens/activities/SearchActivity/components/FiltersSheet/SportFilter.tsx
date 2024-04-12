@@ -13,7 +13,13 @@ const SportFilter = () => {
   const { sports, filters, setFilters } = useContext(SearchContext);
 
   const sportHandler = (gid: number) => {
-    setFilters((prevState) => ({ ...prevState, sport: gid }));
+    const sportSelected = filters.sports.includes(gid);
+    setFilters((prevState) => ({
+      ...prevState,
+      sports: sportSelected
+        ? prevState.sports.filter((item) => item !== gid)
+        : [...prevState.sports, gid],
+    }));
   };
 
   return (
@@ -33,7 +39,7 @@ const SportFilter = () => {
             <SportTag
               onPress={() => sportHandler(sport.gid)}
               {...sport}
-              selected={sport.gid === filters.sport}
+              selected={filters.sports.includes(sport.gid)}
             />
             <Divider width={10} />
           </React.Fragment>

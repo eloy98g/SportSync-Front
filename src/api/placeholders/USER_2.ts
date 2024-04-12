@@ -18,5 +18,7 @@ export default {
   creationDate: 1707734655,
   published: 10,
   participated: 23,
+  gender: "female",
   lastParticipation: 1710243855,
+  favoriteSports: [1, 2],
 };

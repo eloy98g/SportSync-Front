@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Methods
 import fetchUser from "./methods/fetchUser";
-
+import toggleSport from "./methods/toggleSport";
 // Types
 import User, { EMPTY_USER } from "../../types/user/User";
 import Location from "../../types/location/Location";
@@ -32,13 +32,7 @@ const userSlice = createSlice({
     toggleFavoriteSport: (state, action: PayloadAction<number>) => {
       const currentFavorites = state.user.favoriteSports;
       const sport = action.payload;
-      if (currentFavorites.includes(sport)) {
-        state.user.favoriteSports = currentFavorites.filter(
-          (item) => item !== sport
-        );
-      } else {
-        state.user.favoriteSports = [...currentFavorites, sport];
-      }
+      state.user.favoriteSports = toggleSport(currentFavorites, sport);
     },
   },
   extraReducers: (builder) => {

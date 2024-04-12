@@ -34,7 +34,7 @@ const SplashScreen = () => {
     dispatch(fetchCurrentActivities());
     dispatch(fetchPublicActivities());
     dispatch(fetchChats());
-    dispatch(fetchFriends(stateUser.gid));
+    dispatch(fetchFriends(stateUser.gid))
   };
 
   const splashHandler = async () => {
@@ -47,9 +47,9 @@ const SplashScreen = () => {
       if (locationPermission) {
         console.log("4");
         const location = await getLocation();
-        console.log("6");
+        console.log('6')
         dispatch(setLocation(location));
-        console.log("7");
+        console.log('7')
       }
       console.log("5");
       setTimeout(() => {

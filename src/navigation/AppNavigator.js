@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Screens
+import FavoriteSportsScreen from "../screens/user/FavoriteSportsScreen";
 import HomeScreen from "../screens/HomeScreen";
 import SplashScreen from "../screens/others/SplashScreen";
 import ProfileScreen from "../screens/user/ProfileScreen";
@@ -68,6 +69,10 @@ const AppNavigator = () => {
         <Stack.Screen name="ActivityDetail" component={ActivityDetail} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="ReviewScreen" component={ReviewScreen} />
+        <Stack.Screen
+          name="FavoriteSportsScreen"
+          component={FavoriteSportsScreen}
+        />
         <Stack.Screen name="MapScreen" component={MapScreen} />
         <Stack.Screen name="CodeScanScreen" component={CodeScanScreen} />
         <Stack.Screen name="FindUserScreen" component={FindUserScreen} />
