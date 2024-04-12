@@ -32,7 +32,6 @@ const friendsSlice = createSlice({
     followPlayer: (state, action: PayloadAction<Player>) => {
       // TODO: API call for unfollowing a player
       const newArray = [...state.friends, action.payload];
-      console.log('newArray',newArray.length)
       state.friends = newArray;
     },
   },
