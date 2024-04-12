@@ -1,4 +1,6 @@
-export default {
+import User from "../../store/types/user/User";
+
+const data: User = {
   gid: 1,
   name: "John Doe",
   email: "john.doe@example.com",
@@ -18,5 +20,9 @@ export default {
   creationDate: 1707734655,
   published: 10,
   participated: 23,
+  gender: "male",
   lastParticipation: 1710243855,
+  favoriteSports: [1, 2],
 };
+
+export default data;

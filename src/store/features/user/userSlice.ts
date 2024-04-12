@@ -29,6 +29,17 @@ const userSlice = createSlice({
     setLocation: (state, action: PayloadAction<Location>) => {
       state.user.location = action.payload;
     },
+    toggleFavoriteSport: (state, action: PayloadAction<number>) => {
+      const currentFavorites = state.user.favoriteSports;
+      const sport = action.payload;
+      if (currentFavorites.includes(sport)) {
+        state.user.favoriteSports = currentFavorites.filter(
+          (item) => item !== sport
+        );
+      } else {
+        state.user.favoriteSports = [...currentFavorites, sport];
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUser.pending, (state) => {
@@ -48,6 +59,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { logOut, setLocation } = userSlice.actions;
+export const { logOut, setLocation, toggleFavoriteSport } = userSlice.actions;
 
 export default userSlice.reducer;
