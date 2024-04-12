@@ -54,7 +54,7 @@ const SportStats = () => {
           text={"Ver más"}
           onPress={moreStatsHandler}
         />
-        <ChevronRight color={colors.grey} size={14} />
+        <ChevronRight color={colors.grey} size={12} />
       </View>
     </>
   );
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontFamily: family.bold,
+    fontFamily: family.light,
     color: colors.grey,
     fontSize: 14,
   },

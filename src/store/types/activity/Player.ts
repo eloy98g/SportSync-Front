@@ -2,6 +2,7 @@ type Player = {
   gid: number;
   name: string;
   image: string;
+  verified?: boolean;
 };
 
 const EMPTY_PLAYER: Player = {

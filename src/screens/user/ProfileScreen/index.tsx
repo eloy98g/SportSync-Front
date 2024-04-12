@@ -5,7 +5,6 @@ import { StyleSheet, View, ActivityIndicator, ScrollView } from "react-native";
 import Screen from "../../../components/common/Screen";
 import ProfileHeader from "./components/ProfileHeader";
 import Description from "./components/Description";
-import LineDivider from "../../../components/common/LineDivider";
 import Divider from "../../../components/common/Divider";
 import Information from "./components/Information";
 import SportsContainer from "./components/SportsContainer";
@@ -28,6 +27,7 @@ import colors from "../../../theme/colors";
 // Placeholders
 import USER_1 from "../../../api/placeholders/USER_1";
 import USER_2 from "../../../api/placeholders/USER_2";
+import MainActions from "./components/MainActions";
 
 const ProfileScreen = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -69,9 +69,11 @@ const ProfileScreen = ({ route }: any) => {
           <Name name={userData.name} verified={verified} />
           <Divider height={10} />
           <Description description={userData.description} />
-          <LineDivider height={28} color={colors.lightenGrey} />
+          <Divider height={28} />
+          {!isExternal && <MainActions />}
+          <Divider height={28} />
           <Information data={userData} />
-          <LineDivider height={28} color={colors.lightenGrey} />
+          <Divider height={28} />
           <SportContainerProvider userGid={userData.gid}>
             <SportsContainer />
           </SportContainerProvider>

@@ -1,31 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
-import IconButton from "../../../../components/common/buttons/IconButton";
-import Divider from "../../../../components/common/Divider";
+import IconButton from "../common/buttons/IconButton";
+import Divider from "../common/Divider";
+
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks";
+
+// Theme
+import colors from "../../theme/colors";
+import { family } from "../../theme/fonts";
 
 // Types
-import colors from "../../../../theme/colors";
-import { family } from "../../../../theme/fonts";
+import Player from "../../store/types/activity/Player";
 
 // Store
-import UserSearch from "../../../../store/types/user/UserSearch";
+import {
+  followPlayer,
+  unfollowPlayer,
+} from "../../store/features/friends/friendsSlice";
 
 interface Props {
-  data: UserSearch;
+  data: Player;
 }
 
-const SearchUserItem = ({ data }: Props) => {
-  const { image, name, verified, followed, gid } = data;
-
-  const [following, setFollowing] = useState(followed);
+const PlayerCard = ({ data }: Props) => {
+  const { image, name, verified, gid } = data;
+  const friendList = useAppSelector((state) => state.friends.friends);
+  const followed = friendList.some((user: Player) => user.gid === gid);
+  const dispatch = useAppDispatch();
   const navigation = useNavigation();
 
   const followHandler = () => {
-    setFollowing((prevState) => !prevState);
-    // TODO: api call for following an user
+    if (followed) {
+      dispatch(unfollowPlayer(gid));
+    } else {
+      dispatch(followPlayer(data));
+    }
   };
 
   const profileHandler = () => {
@@ -42,7 +55,7 @@ const SearchUserItem = ({ data }: Props) => {
         {verified && (
           <Image
             style={styles.verified}
-            source={require("../../../../assets/images/verified.png")}
+            source={require("../../assets/images/verified.png")}
           />
         )}
       </TouchableOpacity>
@@ -55,13 +68,13 @@ const SearchUserItem = ({ data }: Props) => {
         padding
         textStyle={styles.buttonText}
         distance={0}
-        text={following ? "Dejar de seguir" : "Seguir"}
+        text={followed ? "Dejar de seguir" : "Seguir"}
       />
     </View>
   );
 };
 
-export default SearchUserItem;
+export default PlayerCard;
 
 const styles = StyleSheet.create({
   container: {
