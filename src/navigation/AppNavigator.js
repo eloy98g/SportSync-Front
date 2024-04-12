@@ -22,6 +22,7 @@ import SearchActivity from "../screens/activities/SearchActivity";
 import ActivityCodeScreen from "../screens/activities/ActivityCodeScreen";
 import UploadScoreScreen from "../screens/activities/UploadScoreScreen";
 import ActivityAdminScreen from "../screens/activities/ActivityAdminScreen";
+import DeletePlayersScreen from "../screens/activities/DeletePlayersScreen";
 
 // Components
 import Footer from "../components/Footer";
@@ -79,7 +80,10 @@ const AppNavigator = () => {
           name="ActivityAdminScreen"
           component={ActivityAdminScreen}
         />
-
+        <Stack.Screen
+          name="DeletePlayersScreen"
+          component={DeletePlayersScreen}
+        />
         <Stack.Screen name="ModifyTeamScreen" component={ModifyTeamScreen} />
         <Stack.Screen
           name="ActivityCodeScreen"

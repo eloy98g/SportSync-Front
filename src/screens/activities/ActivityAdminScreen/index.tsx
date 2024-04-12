@@ -3,12 +3,14 @@ import { StyleSheet, View, ScrollView, Text } from "react-native";
 
 // Components
 import MainButton from "../../../components/common/buttons/MainButton";
+import LineDivider from "../../../components/common/LineDivider";
 import BackHeader from "../../../components/BackHeader";
 import Divider from "../../../components/common/Divider";
 import Screen from "../../../components/common/Screen";
 import Description from "./components/Description";
 import Visibility from "./components/Visibility";
 import ChangeTeams from "./components/ChangeTeams";
+import DeleteSection from "./components/DeleteSection";
 
 // Hooks
 import useStatus from "../../../hooks/useStatus";
@@ -64,6 +66,10 @@ const ActivityAdminScreen = ({ route }: Props) => {
                 loading={status === "loading"}
               />
             </View>
+            <Divider height={12} />
+            <LineDivider height={36} color={colors.lightenGrey} />
+            <DeleteSection />
+            <Divider height={50} />
           </ScrollView>
         ) : (
           <View style={styles.errorContainer}>

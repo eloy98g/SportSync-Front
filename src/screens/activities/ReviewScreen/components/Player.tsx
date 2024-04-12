@@ -12,14 +12,15 @@ interface Props {
   data: PlayerT;
   onPress: () => void;
   selected: boolean;
+  selectionColor?: string;
 }
 
 // TODO: this should be a common component called PressablePlayer
-const Player = ({ data, onPress, selected }: Props) => {
+const Player = ({ data, onPress, selected, selectionColor }: Props) => {
   const { image, name } = data;
   const containerStyle = [
     styles.container,
-    selected && { backgroundColor: colors.primary },
+    selected && { backgroundColor: selectionColor || colors.primary },
   ];
   const textStyle = [styles.name, selected && { color: colors.white }];
   return (
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     width: 70,
     borderRadius: 8,
     justifyContent: "center",
-    marginLeft: 6
+    marginLeft: 6,
   },
   image: {
     height: 50,

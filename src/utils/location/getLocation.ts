@@ -11,19 +11,24 @@ const getLocation = async () => {
   };
 
   try {
+    console.log('aa 1')
     const { coords } = await getCurrentPositionAsync();
 
+    console.log('aa 2')
     const { latitude, longitude } = coords;
 
     location.latitude = latitude;
     location.longitude = longitude;
 
+    console.log('aa 3')
     const address = await getAddress(location);
+    console.log('aa 4')
     location.address = address;
 
     return location;
   } catch (e) {
     console.log("error fetching location", e.message);
+    console.log('aa 5')
     return location;
   }
 };
