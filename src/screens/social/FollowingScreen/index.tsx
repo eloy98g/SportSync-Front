@@ -35,6 +35,7 @@ const FollowingScreen = () => {
   const userGid = useAppSelector((state) => state.user.user.gid);
   const friendList = useAppSelector((state) => state.friends.friends);
 
+  console.log('friendList',friendList.length)
   const dispatch = useAppDispatch();
 
   useEffect(() => {
