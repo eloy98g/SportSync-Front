@@ -30,6 +30,8 @@ import Footer from "../components/Footer";
 // Hooks
 import { useAppSelector } from "../hooks";
 import ModifyTeamScreen from "../screens/activities/ModifyTeamScreen";
+import FollowersScreen from "../screens/social/FollowersScreen";
+import FollowingScreen from "../screens/social/FollowingScreen";
 
 const Stack = createStackNavigator();
 
@@ -72,6 +74,8 @@ const AppNavigator = () => {
         <Stack.Screen name="FindUserScreen" component={FindUserScreen} />
         <Stack.Screen name="CreateActivity" component={CreateActivity} />
         <Stack.Screen name="SearchActivity" component={SearchActivity} />
+        <Stack.Screen name="FollowersScreen" component={FollowersScreen} />
+        <Stack.Screen name="FollowingScreen" component={FollowingScreen} />
         <Stack.Screen
           name="ActivityAdminScreen"
           component={ActivityAdminScreen}

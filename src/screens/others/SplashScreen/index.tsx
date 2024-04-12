@@ -23,6 +23,7 @@ import { family } from "../../../theme/fonts";
 // Utils
 import getLocationPermissions from "../../../utils/location/getLocationPermissions";
 import getLocation from "../../../utils/location/getLocation";
+import fetchFriends from "../../../store/features/friends/methods/fetchFriends";
 
 const SplashScreen = () => {
   const stateUser = useAppSelector((state) => state.user.user);
@@ -33,6 +34,7 @@ const SplashScreen = () => {
     dispatch(fetchCurrentActivities());
     dispatch(fetchPublicActivities());
     dispatch(fetchChats());
+    dispatch(fetchFriends(stateUser.gid));
   };
 
   const splashHandler = async () => {
@@ -45,9 +47,9 @@ const SplashScreen = () => {
       if (locationPermission) {
         console.log("4");
         const location = await getLocation();
-        console.log('6')
+        console.log("6");
         dispatch(setLocation(location));
-        console.log('7')
+        console.log("7");
       }
       console.log("5");
       setTimeout(() => {

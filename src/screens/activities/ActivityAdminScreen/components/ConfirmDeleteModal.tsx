@@ -5,6 +5,8 @@ import { StyleSheet, Text, View } from "react-native";
 import MainButton from "../../../../components/common/buttons/MainButton";
 import Divider from "../../../../components/common/Divider";
 import Modal from "../../../../components/common/Modal";
+
+// Hooks
 import { STATUS } from "../../../../hooks/useStatus";
 
 // Theme

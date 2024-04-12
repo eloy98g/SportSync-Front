@@ -26,12 +26,11 @@ interface Props {
 const ActionsGroup = ({ isExternal, userGid }: Props) => {
   const [openReportSheet, setOpenReportSheet] = useState(false);
 
-  // TODO: logic for getting followers
   const [following, setFollowing] = useState(false);
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
 
-  const settingHandler = () => {};
+  // const settingHandler = () => {};
 
   const reportHandler = () => {
     setOpenReportSheet(true);
@@ -40,14 +39,15 @@ const ActionsGroup = ({ isExternal, userGid }: Props) => {
   const followHandler = () => {
     setFollowing((prev) => !prev);
   };
+
   const logoutHandler = () => {
     dispatch(logOut());
     navigation.navigate("Home" as never);
   };
 
-  const editHandler = () => {
-    navigation.navigate("EditProfile" as never);
-  };
+  // const editHandler = () => {
+  //   navigation.navigate("EditProfile" as never);
+  // };
 
   return (
     <View style={styles.group}>
@@ -72,7 +72,7 @@ const ActionsGroup = ({ isExternal, userGid }: Props) => {
         </>
       ) : (
         <>
-          <IconButton
+          {/* <IconButton
             onPress={editHandler}
             icon={<PenLine size={24} color={colors.white} />}
           />
@@ -81,7 +81,7 @@ const ActionsGroup = ({ isExternal, userGid }: Props) => {
             onPress={settingHandler}
             icon={<Settings size={24} color={colors.white} />}
           />
-          <Divider width={10} />
+          <Divider width={10} /> */}
           <IconButton
             onPress={logoutHandler}
             icon={<LogOut size={24} color={colors.white} />}
