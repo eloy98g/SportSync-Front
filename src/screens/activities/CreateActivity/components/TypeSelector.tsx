@@ -13,12 +13,20 @@ interface Props {
   onPress: () => void;
   title: string;
   description: string;
+  height?: number;
 }
 
-const TypeSelector = ({ selected, onPress, title, description }: Props) => {
+const TypeSelector = ({
+  selected,
+  onPress,
+  title,
+  height,
+  description,
+}: Props) => {
   const containerStyle = [
     styles.container,
     selected && { borderColor: colors.primary },
+    { height },
   ];
   return (
     <TouchableOpacity style={containerStyle} onPress={onPress}>
@@ -34,7 +42,6 @@ export default TypeSelector;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 150,
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: 12,
@@ -50,6 +57,7 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     color: colors.black,
     fontSize: 14,
-    borderWidth:1,borderColor:"transparent"
+    borderWidth: 1,
+    borderColor: "transparent",
   },
 });

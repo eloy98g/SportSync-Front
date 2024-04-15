@@ -37,7 +37,7 @@ const Type = () => {
   return (
     <SectionContainer>
       <View style={styles.container}>
-        <Label text="Acceso"/>
+        <Label text="Acceso" />
         <Divider height={6} />
         <Row>
           <TypeSelector
@@ -45,6 +45,7 @@ const Type = () => {
             description={"Las actividades será abierta a cualquier usuario"}
             selected={visibility === "public"}
             onPress={visibilityHandler}
+            height={150}
           />
           <Divider width={24} />
           <TypeSelector
@@ -54,10 +55,11 @@ const Type = () => {
             }
             selected={visibility === "private"}
             onPress={visibilityHandler}
+            height={150}
           />
         </Row>
         <Divider height={24} />
-        <Label text="Tipo de partido o actividad"/>
+        <Label text="Tipo de partido o actividad" />
         <Divider height={6} />
         <Row>
           <TypeSelector
@@ -65,6 +67,7 @@ const Type = () => {
             description={"El resultado no influirá en las puntuación personal."}
             selected={type === "normal"}
             onPress={competiitveHandler}
+            height={150}
           />
           <Divider width={24} />
           <TypeSelector
@@ -74,10 +77,11 @@ const Type = () => {
             }
             selected={type === "competitive"}
             onPress={competiitveHandler}
+            height={150}
           />
         </Row>
         <Divider height={24} />
-        <Label text="Acceso"/>
+        <Label text="Acceso" />
         <Divider height={6} />
         <Row>
           <TypeSelector
@@ -86,7 +90,8 @@ const Type = () => {
               "Los usuarios se unirán sin necesidad de aprobación por parte del administrador."
             }
             selected={access === "open"}
-            onPress={competiitveHandler}
+            onPress={accessHandler}
+            height={150}
           />
           <Divider width={24} />
           <TypeSelector
@@ -96,6 +101,7 @@ const Type = () => {
             }
             selected={access === "closed"}
             onPress={accessHandler}
+            height={150}
           />
         </Row>
       </View>

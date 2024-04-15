@@ -22,6 +22,7 @@ import { family } from "../../../theme/fonts";
 // Types
 import Activity from "../../../store/types/activity/Activity";
 import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
+import Access from "./components/Access";
 
 interface Props {
   route: {
@@ -53,13 +54,12 @@ const ActivityAdminScreen = ({ route }: Props) => {
     } catch (error) {}
   }, []);
 
-
   return (
     <Screen>
       <BackHeader title="Administrar" />
       <Divider height={80} />
       <View style={styles.content}>
-        {status === "loading" || status === "idle" ? (
+        {status === "loading" || status === "idle" ? (
           <View></View>
         ) : status === "error" ? (
           <View style={styles.errorContainer}>
@@ -74,6 +74,8 @@ const ActivityAdminScreen = ({ route }: Props) => {
           >
             <Divider height={16} />
             <Visibility data={activity} setActivity={setActivity} />
+            <Divider height={16} />
+            <Access data={activity} setActivity={setActivity} />
             <Divider height={16} />
             <ChangeTeams data={activity} setActivity={setActivity} />
             <Divider height={16} />
