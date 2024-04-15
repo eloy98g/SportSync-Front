@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
+import LottieView from "lottie-react-native";
 import {
   Code,
   useCameraDevice,
@@ -53,6 +54,17 @@ const Scanner = ({ setValue }: Props) => {
           enableZoomGesture={true}
         />
       )}
+      <LottieView
+        loop={true}
+        autoPlay
+        speed={1}
+        style={{
+          width: "100%",
+          height: 300,
+          backgroundColor: "transparent",
+        }}
+        source={require("../../../../assets/animations/scan.json")}
+      />
     </View>
   );
 };
@@ -63,6 +75,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     overflow: "hidden",
-    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
