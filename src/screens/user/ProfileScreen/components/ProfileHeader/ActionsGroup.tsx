@@ -9,7 +9,7 @@ import ReportSheet from "../../../../../components/Report/ReportSheet";
 import Divider from "../../../../../components/common/Divider";
 
 // Hooks
-import { useAppDispatch } from "../../../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../../../hooks";
 
 // Theme
 import colors from "../../../../../theme/colors";
@@ -17,37 +17,39 @@ import colors from "../../../../../theme/colors";
 // Reducers
 import { logOut } from "../../../../../store/features/user/userSlice";
 import { family } from "../../../../../theme/fonts";
+import { followPlayer } from "../../../../../store/features/friends/friendsSlice";
+import Activity from "../../../../../store/types/activity/Activity";
+import Player from "../../../../../store/types/activity/Player";
+import User from "../../../../../store/types/user/User";
 
 interface Props {
   isExternal: boolean;
-  userGid: number;
+  data: User;
 }
 
-const ActionsGroup = ({ isExternal, userGid }: Props) => {
+const ActionsGroup = ({ isExternal, data }: Props) => {
+  const { gid, name, image } = data;
   const [openReportSheet, setOpenReportSheet] = useState(false);
 
-  const [following, setFollowing] = useState(false);
   const navigation = useNavigation();
-  const dispatch = useAppDispatch();
 
-  // const settingHandler = () => {};
+  const friends = useAppSelector((state) => state.friends.friends);
+  const following = friends.some((player) => player.gid === gid);
+  
+  const dispatch = useAppDispatch();
 
   const reportHandler = () => {
     setOpenReportSheet(true);
   };
 
   const followHandler = () => {
-    setFollowing((prev) => !prev);
+    dispatch(followPlayer({ gid, name, image } as Player));
   };
 
   const logoutHandler = () => {
     dispatch(logOut());
     navigation.navigate("Home" as never);
   };
-
-  // const editHandler = () => {
-  //   navigation.navigate("EditProfile" as never);
-  // };
 
   return (
     <View style={styles.group}>
@@ -71,27 +73,15 @@ const ActionsGroup = ({ isExternal, userGid }: Props) => {
           />
         </>
       ) : (
-        <>
-          {/* <IconButton
-            onPress={editHandler}
-            icon={<PenLine size={24} color={colors.white} />}
-          />
-          <Divider width={10} />
-          <IconButton
-            onPress={settingHandler}
-            icon={<Settings size={24} color={colors.white} />}
-          />
-          <Divider width={10} /> */}
-          <IconButton
-            onPress={logoutHandler}
-            icon={<LogOut size={24} color={colors.white} />}
-          />
-        </>
+        <IconButton
+          onPress={logoutHandler}
+          icon={<LogOut size={24} color={colors.white} />}
+        />
       )}
       <ReportSheet
         open={openReportSheet}
         setOpen={setOpenReportSheet}
-        userGid={userGid}
+        userGid={gid}
       />
     </View>
   );
