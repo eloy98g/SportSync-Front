@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 // Components
 import LocationPicker from "../../../../components/common/inputs/LocationPicker";
@@ -15,13 +15,12 @@ import CreateContext from "../context/CreateContext";
 
 // Types
 import Location from "../../../../store/types/location/Location";
+import TextInput from "../../../../components/common/inputs/TextInput";
 
 const Schedule = () => {
   const { draft, setDraft } = useContext(CreateContext);
 
   const { location, duration, day, hour } = draft;
-  const durationUnix = duration * 60;
-  const [finishHour, setFinishHour] = useState(hour + durationUnix);
 
   const hourHandler = (e: any) => {
     const newHour = Date.parse(e) / 1000;
@@ -48,19 +47,18 @@ const Schedule = () => {
   };
 
   const durationHandler = (e: any) => {
-    const newHour = Date.parse(e) / 1000;
-    setFinishHour(newHour);
-    const newDuration = (newHour - hour) / 60;
-    setDraft((prevState) => ({ ...prevState, duration: newDuration }));
+    const newDuration = e.replace(/[,.]/g, "");
+    setDraft((prevState) => ({
+      ...prevState,
+      duration: parseInt(newDuration),
+    }));
   };
+
+  const durationText = duration > 0 ? duration.toString() : duration;
 
   return (
     <SectionContainer>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={styles.scroll}
-        contentContainerStyle={styles.content}
-      >
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
         <Divider height={40} />
         <Title title="Lugar" />
         <Label text="Ubicación" />
@@ -84,19 +82,21 @@ const Schedule = () => {
         <Divider height={12} />
         <Label text="Hora inicio" />
         <DatePicker
-          value={hour}
+          value={hour * 1000}
           setValue={hourHandler}
           placeholder="Elige hora de inicio"
           mode="time"
         />
         <Divider height={12} />
-        <Label text="Hora finalización" />
-        <DatePicker
-          value={finishHour}
-          setValue={durationHandler}
-          placeholder="Elige hora de finalización"
-          mode="time"
-        />
+        <Label text="Duración" />
+        <View style={styles.durationContainer}>
+          <TextInput
+            value={durationText}
+            placeholder={"0"}
+            onChange={durationHandler}
+            numeric
+          />
+        </View>
       </ScrollView>
     </SectionContainer>
   );
@@ -109,5 +109,7 @@ const styles = StyleSheet.create({
     height: 1,
     width: "100%",
   },
-  content: {},
+  durationContainer: {
+    width: "100%",
+  },
 });

@@ -1,6 +1,6 @@
 const unixToDate = (unix: number): string => {
   if (unix !== null) {
-    const dateObject = new Date(unix * 1000);
+    const dateObject = new Date(unix);
 
     const formattedDate = new Intl.DateTimeFormat("es-ES", {
       day: "2-digit",

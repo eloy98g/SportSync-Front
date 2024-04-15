@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Calendar, Clock, Hourglass, MapPin } from "lucide-react-native";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 
 // Components
 import Divider from "../../../../../components/common/Divider";
@@ -19,14 +19,25 @@ import { family } from "../../../../../theme/fonts";
 // Utils
 import getHour from "../../../../../utils/date/getHour";
 import unixToDate from "../../../../../utils/date/unixToDate";
+import getAddress from "../../../../../utils/location/getAddress";
 
 const TimeResume = () => {
   const { draft } = useContext(CreateContext);
   const { hour, day, duration, location } = draft;
+  const [locationAddress, setLocationAddress] = useState<string>();
 
   const hourText = "Hora: " + getHour(hour);
   const dayText = "Día: " + unixToDate(day);
   const durationText = "Duración: " + duration + " min.";
+
+  const getLocationAddress = async () => {
+    const address = await getAddress(location);
+    setLocationAddress(address);
+  };
+
+  useEffect(() => {
+    getLocationAddress();
+  }, []);
 
   return (
     <Card title="Programada para:">
@@ -51,16 +62,15 @@ const TimeResume = () => {
       <Divider height={12} />
       <Text style={styles.title}>{"Localización"}</Text>
       <Divider height={6} />
-      {location.address && (
-        <>
-          <Row>
-            <MapPin size={18} color={colors.black} />
-            <Divider width={12} />
-            <ResumeText text={location.address} />
-          </Row>
-          <Divider height={12} />
-        </>
-      )}
+      <Row>
+        <MapPin size={18} color={colors.black} />
+        <Divider width={12} />
+        <View>
+          {locationAddress && <ResumeText text={locationAddress} />}
+          {location?.address && <ResumeText text={location?.address} />}
+        </View>
+      </Row>
+      <Divider height={12} />
       <MapView location={draft.location} />
     </Card>
   );

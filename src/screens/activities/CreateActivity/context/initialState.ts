@@ -20,7 +20,7 @@ const INITIAL_DRAFT: Draft = {
   },
   duration: 60,
   day: Date.now(),
-  hour: Date.now(),
+  hour: Date.now()/1000,
   description: "",
 };
 
