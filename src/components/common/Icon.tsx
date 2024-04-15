@@ -10,6 +10,7 @@ import {
   Smile,
   Zap,
   ZapOff,
+  Inbox,
 } from "lucide-react-native";
 import { ColorValue } from "react-native/types";
 
@@ -23,6 +24,9 @@ const Icon = ({ icon, color, size = 30 }: Props) => {
   switch (icon) {
     case "home":
       return <Home size={size} color={color} />;
+    case "requests":{
+      return <Inbox size={size} color={color} />;
+    }
     case "search":
       return <Target size={size} color={color} />;
     case "profile":

@@ -22,7 +22,10 @@ import { family } from "../../../theme/fonts";
 // Types
 import Activity from "../../../store/types/activity/Activity";
 import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
+import USERS_REQUESTS from "../../../api/placeholders/USERS_REQUESTS";
 import Access from "./components/Access";
+import Requests from "./components/Requests";
+import Player from "../../../store/types/activity/Player";
 
 interface Props {
   route: {
@@ -34,6 +37,7 @@ const ActivityAdminScreen = ({ route }: Props) => {
   const { activityGid } = route.params;
 
   const [activity, setActivity] = useState<Activity>({} as Activity);
+  const [requests, setRequests] = useState<Player[]>([]);
   const { status, setStatus } = useStatus();
   const { status: editStatus, setStatus: setEditStatus } = useStatus();
 
@@ -50,6 +54,7 @@ const ActivityAdminScreen = ({ route }: Props) => {
     try {
       // TODO: Api call for getting activity data by activityGid
       setActivity(ACTIVITY_DETAIL_PAST);
+      setRequests(USERS_REQUESTS);
       setStatus("success");
     } catch (error) {}
   }, []);
@@ -72,6 +77,8 @@ const ActivityAdminScreen = ({ route }: Props) => {
             showsVerticalScrollIndicator={false}
             style={styles.scroll}
           >
+            <Divider height={16} />
+            <Requests data={activity} requests={requests} />
             <Divider height={16} />
             <Visibility data={activity} setActivity={setActivity} />
             <Divider height={16} />
