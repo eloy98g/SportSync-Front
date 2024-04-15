@@ -14,8 +14,6 @@ import typeValues from "../filters/typeValues";
 const TagContainer = () => {
   const { filters, sports } = useContext(SearchContext);
 
-  const sportText =
-    sports.find((sport) => sport.gid === filters.sport)?.name || "";
   const typeText =
     typeValues.find((type) => type.value === filters.type)?.label || "";
   const areaText = filters.insideUserArea ? "En mi zona" : "Cualquier zona";
@@ -31,8 +29,17 @@ const TagContainer = () => {
         style={styles.scroll}
         showsHorizontalScrollIndicator={false}
       >
-        {sportText !== "" && <Divider width={12} />}
-        {sportText !== "" && <Tag text={sportText} />}
+        {filters.sports.map((gid) => {
+          const sportName = sports.find((sport) => sport.gid === gid)?.name;
+          if (sportName) {
+            return (
+              <>
+                <Divider width={12} />
+                <Tag text={sportName} />
+              </>
+            );
+          }
+        })}
         {typeText !== "" && <Divider width={12} />}
         {typeText !== "" && <Tag text={typeText} />}
         <Divider width={12} />
