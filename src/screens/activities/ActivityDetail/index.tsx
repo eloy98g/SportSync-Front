@@ -72,7 +72,7 @@ const ActivityDetail = ({ route }: any) => {
       <View style={styles.content}>
         <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
           <Divider height={200} />
-          <JoinButton data={activityData} />
+          <JoinButton data={activityData} userGid={userGid}/>
           <TouchableInfoContainer data={activityData} />
           <Divider height={18} />
           <Teams

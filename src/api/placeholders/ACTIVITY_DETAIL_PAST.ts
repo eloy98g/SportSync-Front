@@ -42,7 +42,7 @@ export default {
       },
     ],
   },
-  status: "finished",
+  status: "pending",
   teams: [
     {
       name: "A",
