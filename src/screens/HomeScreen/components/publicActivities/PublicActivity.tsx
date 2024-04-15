@@ -31,6 +31,7 @@ const PublicActivity = (props: Activity) => {
     playersPerTeam,
     gid,
     location,
+    access,
   } = props;
   const { name } = sport;
   const navigation = useNavigation();
@@ -55,7 +56,8 @@ const PublicActivity = (props: Activity) => {
         <View style={styles.row}>
           <Text style={styles.title}>{name}</Text>
           <View style={styles.icons}>
-            <Icon icon={visibility} color={colors.black} size={14} />
+            <Divider width={5} />
+            <Icon icon={access} color={colors.black} size={14} />
             {type !== "normal" && (
               <>
                 <Divider width={5} />

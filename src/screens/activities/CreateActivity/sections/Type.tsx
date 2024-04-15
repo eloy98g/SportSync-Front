@@ -83,7 +83,7 @@ const Type = () => {
           <TypeSelector
             title={"Abierta"}
             description={
-              "Los usuarios se unirán sin necesidad de aprobación por parte del administrador "
+              "Los usuarios se unirán sin necesidad de aprobación por parte del administrador."
             }
             selected={access === "open"}
             onPress={competiitveHandler}
@@ -92,7 +92,7 @@ const Type = () => {
           <TypeSelector
             title={"Cerrada"}
             description={
-              "Cuando un usuario quiera unirse, te llegará una notificación y podrás adminitirlo o no"
+              "Cuando un usuario quiera unirse, te llegará una notificación y podrás adminitirlo o no."
             }
             selected={access === "closed"}
             onPress={accessHandler}
