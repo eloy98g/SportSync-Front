@@ -10,11 +10,11 @@ import CreateContext from "../context/CreateContext";
 
 const Type = () => {
   const { draft, setDraft } = useContext(CreateContext);
-  const { access, type } = draft;
+  const { visibility, type } = draft;
   const visibilityHandler = () => {
     setDraft((prevState) => ({
       ...prevState,
-      access: prevState.access === "private" ? "public" : "private",
+      visibility: prevState.visibility === "private" ? "public" : "private",
     }));
   };
 
@@ -24,7 +24,7 @@ const Type = () => {
       type: prevState.type === "normal" ? "competitive" : "normal",
     }));
   };
-  
+
   return (
     <SectionContainer>
       <TypeSelector
@@ -32,7 +32,7 @@ const Type = () => {
         description={
           "Las actividades públicas son actividades abiertas a cualquier persona"
         }
-        selected={access === "public"}
+        selected={visibility === "public"}
         onPress={visibilityHandler}
       />
       <Divider height={12} />
@@ -41,7 +41,7 @@ const Type = () => {
         description={
           "Las actividades privadas son actividades sólo accesibles a usuarios con código o invitación"
         }
-        selected={access === "private"}
+        selected={visibility === "private"}
         onPress={visibilityHandler}
       />
       <Divider height={36} />

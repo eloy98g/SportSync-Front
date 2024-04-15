@@ -8,21 +8,21 @@ import Sheet from "../../../../components/common/Sheet";
 
 // Types
 import Activity, {
-  ActivityAccess,
+  ActivityVisibility,
 } from "../../../../store/types/activity/Activity";
 
 interface Props {
   open: boolean;
-  access: ActivityAccess;
+  visibility: ActivityVisibility;
   openHandler: React.Dispatch<React.SetStateAction<boolean>>;
   setActivity: React.Dispatch<React.SetStateAction<Activity>>;
 }
 
-const VisibilitySheet = ({ open, access, openHandler, setActivity }: Props) => {
+const VisibilitySheet = ({ open, visibility, openHandler, setActivity }: Props) => {
   const visibilityHandler = () => {
     setActivity((prevState) => ({
       ...prevState,
-      access: prevState.access === "private" ? "public" : "private",
+      visibility: prevState.visibility === "private" ? "public" : "private",
     }));
   };
 
@@ -34,16 +34,16 @@ const VisibilitySheet = ({ open, access, openHandler, setActivity }: Props) => {
           description={
             "Las actividades públicas son actividades abiertas a cualquier persona"
           }
-          selected={access === "public"}
+          selected={visibility === "public"}
           onPress={visibilityHandler}
         />
-         <Divider height={12} />
+        <Divider height={12} />
         <TypeSelector
           title={"Privada"}
           description={
             "Las actividades privadas son actividades sólo accesibles a usuarios con código o invitación"
           }
-          selected={access === "private"}
+          selected={visibility === "private"}
           onPress={visibilityHandler}
         />
       </View>
@@ -56,6 +56,6 @@ export default VisibilitySheet;
 const styles = StyleSheet.create({
   content: {
     width: "100%",
-    paddingTop: 12
+    paddingTop: 12,
   },
 });

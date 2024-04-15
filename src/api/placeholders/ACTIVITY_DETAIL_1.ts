@@ -10,7 +10,8 @@ export default {
   duration: 90,
   admin: 1,
   price: 200,
-  access: "public",
+  visibility: "public",
+  access: "open",
   name: "Activity 1",
   description: "This is a placeholder activity.",
   sport: {
@@ -66,8 +67,7 @@ export default {
         {
           gid: 3,
           name: "John Smith",
-          image:
-            "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         {
           gid: 4,

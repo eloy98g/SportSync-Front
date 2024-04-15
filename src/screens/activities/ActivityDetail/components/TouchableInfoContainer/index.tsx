@@ -21,14 +21,14 @@ interface Props {
 
 const TouchableInfoContainer = ({ data }: Props) => {
   const [sheet, setSheet] = useState<string | boolean>("");
-  const { access, type } = data;
+  const { visibility, type } = data;
 
-  const accessHandler = () => setSheet("Access");
+  const accessHandler = () => setSheet("Visibility");
 
   const typeHandler = () => setSheet("Ranked");
 
   const accessText =
-    access === "public" ? "Actividad pública" : "Actividad privada";
+    visibility === "public" ? "Actividad pública" : "Actividad privada";
 
   const typeText =
     type === "normal"
@@ -38,7 +38,7 @@ const TouchableInfoContainer = ({ data }: Props) => {
   return (
     <View style={styles.container}>
       <TouchableInfo
-        icon={<Icon icon={access} size={24} color={colors.black} />}
+        icon={<Icon icon={visibility} size={24} color={colors.black} />}
         title={accessText}
         onPress={accessHandler}
       />
@@ -48,7 +48,7 @@ const TouchableInfoContainer = ({ data }: Props) => {
         title={typeText}
         onPress={typeHandler}
       />
-      <InfoSheet open={sheet === "Access"} setOpen={setSheet}>
+      <InfoSheet open={sheet === "Visibility"} setOpen={setSheet}>
         <AccessInfo />
       </InfoSheet>
       <InfoSheet open={sheet === "Ranked"} setOpen={setSheet}>

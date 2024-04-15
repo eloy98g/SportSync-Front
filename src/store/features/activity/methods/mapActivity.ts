@@ -1,13 +1,14 @@
 import Activity from "../../../types/activity/Activity";
 
 const mapActivity = (data: any): Activity => {
-  const newUser: Activity = {
+  const newActivity: Activity = {
     gid: data.gid,
     location: data.location,
     creationDate: data.creationDate,
     startDate: data.startDate,
     duration: data.duration,
     admin: data.admin,
+    visibility: data.visibility,
     access: data.access,
     name: data.name,
     description: data.description,
@@ -22,7 +23,7 @@ const mapActivity = (data: any): Activity => {
     result: data.result,
   };
 
-  return newUser;
+  return newActivity;
 };
 
 export default mapActivity;

@@ -8,7 +8,8 @@ const INITIAL_DRAFT: Draft = {
   sport: 1,
   teams: 2,
   playersPerTeam: 2,
-  access: "public",
+  visibility: "public",
+  access: "open",
   type: "normal",
   price: 0,
   location: {
@@ -20,7 +21,7 @@ const INITIAL_DRAFT: Draft = {
   },
   duration: 60,
   day: Date.now(),
-  hour: Date.now()/1000,
+  hour: Date.now() / 1000,
   description: "",
 };
 

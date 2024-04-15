@@ -15,18 +15,18 @@ import colors from "../../../../../theme/colors";
 
 const TypeResume = () => {
   const { draft } = useContext(CreateContext);
-  const { access, type } = draft;
+  const { visibility, type } = draft;
 
-  const accessText =
-    access === "private" ? "Actividad privada" : "Actividad pública";
+  const visibilityText =
+    visibility === "private" ? "Actividad privada" : "Actividad pública";
 
   return (
     <Card title="Tipo">
       <Divider height={6} />
       <Row>
-        <Icon icon={access} size={18} color={colors.black} />
+        <Icon icon={visibility} size={18} color={colors.black} />
         <Divider width={12} />
-        <ResumeText text={accessText} />
+        <ResumeText text={visibilityText} />
       </Row>
       {type === "competitive" && (
         <>

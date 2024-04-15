@@ -17,7 +17,8 @@ const data: Activity = {
     image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
   },
   price: 200,
-  access: "public",
+  visibility: "public",
+  access: "open",
   name: "Partidazo de ternis",
   description: "This is a placeholder activity.",
   sport: {

@@ -14,7 +14,7 @@ export default [
       name: "John Doe",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
     },
-    access: "public",
+    visibility: "public",
     name: "Partido en el parque",
     description: "This is a placeholder activity.",
     sport: {
@@ -45,7 +45,7 @@ export default [
       name: "John Doe",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
     },
-    access: "public",
+    visibility: "public",
     name: "Torneo guallaba",
     description: "This is a placeholder activity.",
     sport: {
@@ -99,7 +99,7 @@ export default [
       name: "Mary Pond",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
     },
-    access: "public",
+    visibility: "public",
     name: "Tenis Open Arena",
     description: "This is a placeholder activity.",
     sport: {
