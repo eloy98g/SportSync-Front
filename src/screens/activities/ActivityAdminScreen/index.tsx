@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, ScrollView, Text } from "react-native";
 
 // Components
@@ -15,39 +15,59 @@ import DeleteSection from "./components/DeleteSection";
 // Hooks
 import useStatus from "../../../hooks/useStatus";
 
-// Types
-import Activity from "../../../store/types/activity/Activity";
-
 // Theme
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
+// Types
+import Activity from "../../../store/types/activity/Activity";
+import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
+
 interface Props {
   route: {
-    params: { data: Activity };
+    params: { activityGid: number };
   };
 }
 
 const ActivityAdminScreen = ({ route }: Props) => {
-  const { data } = route.params;
+  const { activityGid } = route.params;
 
-  const [activity, setActivity] = useState(data);
+  const [activity, setActivity] = useState<Activity>({} as Activity);
   const { status, setStatus } = useStatus();
+  const { status: editStatus, setStatus: setEditStatus } = useStatus();
 
   const finishHandler = async () => {
     // TODO: Api call for editing an activity
-    setStatus("loading");
+    setEditStatus("loading");
     setTimeout(() => {
-      setStatus("success");
+      setEditStatus("success");
     }, 300);
   };
+
+  useEffect(() => {
+    setStatus("loading");
+    try {
+      // TODO: Api call for getting activity data by activityGid
+      setActivity(ACTIVITY_DETAIL_PAST);
+      setStatus("success");
+    } catch (error) {}
+  }, []);
+
 
   return (
     <Screen>
       <BackHeader title="Administrar" />
       <Divider height={80} />
       <View style={styles.content}>
-        {data ? (
+        {status === "loading" || status === "idle" ? (
+          <View></View>
+        ) : status === "error" ? (
+          <View style={styles.errorContainer}>
+            <Text style={styles.error}>
+              {"Error al obtener los datos de la actividad"}
+            </Text>
+          </View>
+        ) : (
           <ScrollView
             showsVerticalScrollIndicator={false}
             style={styles.scroll}
@@ -63,7 +83,7 @@ const ActivityAdminScreen = ({ route }: Props) => {
               <MainButton
                 title="Guardar cambios"
                 onPress={finishHandler}
-                loading={status === "loading"}
+                loading={editStatus === "loading"}
               />
             </View>
             <Divider height={12} />
@@ -71,12 +91,6 @@ const ActivityAdminScreen = ({ route }: Props) => {
             <DeleteSection />
             <Divider height={50} />
           </ScrollView>
-        ) : (
-          <View style={styles.errorContainer}>
-            <Text style={styles.error}>
-              {"Error al obtener los datos de la actividad"}
-            </Text>
-          </View>
         )}
       </View>
     </Screen>

@@ -1,4 +1,6 @@
-export default {
+import Activity from "../../store/types/activity/Activity";
+
+const data: Activity = {
   gid: 1,
   location: {
     latitude: 37.7749,
@@ -22,11 +24,11 @@ export default {
     gid: 1,
     name: "Fútbol",
     icon: "https://cdn-icons-png.flaticon.com/512/4498/4498011.png",
+    color: "",
   },
   type: "normal",
   playersPerTeam: 5,
   userTeam: "A",
-  closed: false,
   chat: 1,
   result: {
     result: "defeat",
@@ -111,3 +113,5 @@ export default {
     },
   ],
 };
+
+export default data;
