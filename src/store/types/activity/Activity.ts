@@ -1,11 +1,12 @@
+import Location from "../location/Location";
 import Player from "./Player";
 import Result from "./Result";
 import Team from "./Team";
-import Location from "../location/Location";
 import Sport from "../Sport";
 
 export type ActivityType = "normal" | "competitive";
-export type ActivityAccess = "public" | "private";
+export type ActivityAccess = "open" | "closed";
+export type ActivityVisibility = "public" | "private";
 export type ActivityStatus =
   | "draft"
   | "pending"
@@ -22,6 +23,7 @@ export default interface Activity {
   duration: number;
   admin: Player;
   access: ActivityAccess;
+  visibility: ActivityVisibility;
   type: ActivityType;
   price: number;
   name: string;

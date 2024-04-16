@@ -15,7 +15,8 @@ const data: Activity[] = [
       name: "Mary Pond",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
     },
-    access: "public",
+    visibility: "public",
+    access: "open",
     name: "Activity 4",
     description: "This is a placeholder activity.",
     sport: {
@@ -72,7 +73,8 @@ const data: Activity[] = [
       name: "Mary Pond",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
     },
-    access: "public",
+    visibility: "public",
+    access: "open",
     name: "Activity 5",
     description: "This is a placeholder activity.",
     sport: {
@@ -118,7 +120,8 @@ const data: Activity[] = [
       name: "Mary Pond",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
     },
-    access: "public",
+    visibility: "public",
+    access: "open",
     name: "Activity 5",
     description: "This is a placeholder activity.",
     sport: {
@@ -164,7 +167,8 @@ const data: Activity[] = [
       name: "Mary Pond",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
     },
-    access: "public",
+    visibility: "public",
+    access: "open",
     name: "Activity 5",
     description: "This is a placeholder activity.",
     sport: {
@@ -210,7 +214,8 @@ const data: Activity[] = [
       name: "Mary Pond",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
     },
-    access: "public",
+    visibility: "public",
+    access: "open",
     name: "Activity 5",
     description: "This is a placeholder activity.",
     sport: {
@@ -256,7 +261,8 @@ const data: Activity[] = [
       name: "Mary Pond",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
     },
-    access: "public",
+    visibility: "public",
+    access: "open",
     name: "Activity 5",
     description: "This is a placeholder activity.",
     sport: {

@@ -11,6 +11,7 @@ export default Row;
 
 const styles = StyleSheet.create({
   row: {
+    width:"100%",
     flexDirection: "row",
     alignItems: "center",
   },

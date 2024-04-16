@@ -24,13 +24,14 @@ import distanceBetween from "../../../../utils/distances/distanceBetween";
 const PublicActivity = (props: Activity) => {
   const {
     sport,
-    access,
+    visibility,
     type,
     startDate,
     teams,
     playersPerTeam,
     gid,
     location,
+    access,
   } = props;
   const { name } = sport;
   const navigation = useNavigation();
@@ -55,6 +56,7 @@ const PublicActivity = (props: Activity) => {
         <View style={styles.row}>
           <Text style={styles.title}>{name}</Text>
           <View style={styles.icons}>
+            <Divider width={5} />
             <Icon icon={access} color={colors.black} size={14} />
             {type !== "normal" && (
               <>

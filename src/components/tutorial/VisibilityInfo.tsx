@@ -9,33 +9,33 @@ import InfoItem from "./InfoItem";
 // Theme
 import colors from "../../theme/colors";
 
-const AccessInfo = () => {
+const VisibilityInfo = () => {
   return (
     <View style={styles.container}>
       <InfoItem
-        title={"Actividad abierta"}
+        title={"Actividad pública"}
         text={
-          "Los usuarios se unirán sin necesidad de aprobación por parte del administrador."
+          "Las actividades públicas son actividades abiertas a cualquier persona"
         }
-        icon={<Icon icon="open" size={18} color={colors.black} />}
+        icon={<Icon icon="public" size={18} color={colors.black} />}
       />
       <Divider height={30} />
       <InfoItem
-        title={"Actividad cerrada"}
+        title={"Actividad privada"}
         text={
-          "Cuando un usuario quiera unirse, te llegará una notificación y podrás adminitirlo o no."
+          "Las actividades privadas son actividades sólo accesibles a usuarios con código o invitación"
         }
-        icon={<Icon icon="closed" size={18} color={colors.black} />}
+        icon={<Icon icon="private" size={18} color={colors.black} />}
       />
     </View>
   );
 };
 
-export default AccessInfo;
+export default VisibilityInfo;
 
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    paddingTop: 8
+    paddingTop: 8,
   },
 });

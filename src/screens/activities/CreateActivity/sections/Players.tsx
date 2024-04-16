@@ -86,7 +86,7 @@ const Players = () => {
           onAdd={addPlayer}
           onRemove={removePlayers}
           quantity={playersPerTeam}
-          min={2}
+          min={1}
         />
         <Divider height={40} />
         <Title title="Precio" />

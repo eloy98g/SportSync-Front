@@ -26,7 +26,7 @@ const ProfileHeader = ({ data, isExternal }: Props) => {
       <View style={styles.content}>
         <View style={styles.actions}>
           <BackButton />
-          <ActionsGroup isExternal={isExternal} userGid={gid}/>
+          <ActionsGroup isExternal={isExternal} data={data}/>
         </View>
         <ProfileImage image={image} />
       </View>

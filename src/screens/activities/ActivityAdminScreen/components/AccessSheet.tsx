@@ -8,21 +8,22 @@ import Sheet from "../../../../components/common/Sheet";
 
 // Types
 import Activity, {
+  ActivityAccess,
   ActivityVisibility,
 } from "../../../../store/types/activity/Activity";
 
 interface Props {
   open: boolean;
-  visibility: ActivityVisibility;
+  access: ActivityAccess;
   openHandler: React.Dispatch<React.SetStateAction<boolean>>;
   setActivity: React.Dispatch<React.SetStateAction<Activity>>;
 }
 
-const VisibilitySheet = ({ open, visibility, openHandler, setActivity }: Props) => {
-  const visibilityHandler = () => {
+const AccessSheet = ({ open, access, openHandler, setActivity }: Props) => {
+  const accessHandler = () => {
     setActivity((prevState) => ({
       ...prevState,
-      visibility: prevState.visibility === "private" ? "public" : "private",
+      access: prevState.access === "open" ? "closed" : "open",
     }));
   };
 
@@ -30,28 +31,28 @@ const VisibilitySheet = ({ open, visibility, openHandler, setActivity }: Props) 
     <Sheet open={open} openHandler={openHandler}>
       <View style={styles.content}>
         <TypeSelector
-          title={"Pública"}
+          title={"Abierta"}
           description={
-            "Las actividades públicas son actividades abiertas a cualquier persona"
+            "Los usuarios se unirán sin necesidad de aprobación por parte del administrador."
           }
-          selected={visibility === "public"}
-          onPress={visibilityHandler}
+          selected={access === "open"}
+          onPress={accessHandler}
         />
         <Divider height={12} />
         <TypeSelector
-          title={"Privada"}
+          title={"Cerrada"}
           description={
-            "Las actividades privadas son actividades sólo accesibles a usuarios con código o invitación"
+            "Cuando un usuario quiera unirse, te llegará una notificación y podrás adminitirlo o no."
           }
-          selected={visibility === "private"}
-          onPress={visibilityHandler}
+          selected={access === "closed"}
+          onPress={accessHandler}
         />
       </View>
     </Sheet>
   );
 };
 
-export default VisibilitySheet;
+export default AccessSheet;
 
 const styles = StyleSheet.create({
   content: {

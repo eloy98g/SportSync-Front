@@ -5,6 +5,7 @@ import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY
 import sortingValues from "../filters/sortingValues";
 
 // Types
+import { STATUS } from "../../../../hooks/useStatus";
 import SearchFilters from "../types/SearchFilters";
 
 const INITIAL_FILTERS: SearchFilters = {
@@ -20,6 +21,7 @@ const INITIAL_STATE = {
   setFilters: () => {},
   filteredActivities: [],
   sports: CREATE_ACTIVITY_SPORTS,
+  status: "idle" as STATUS,
 };
 
 export { INITIAL_FILTERS };

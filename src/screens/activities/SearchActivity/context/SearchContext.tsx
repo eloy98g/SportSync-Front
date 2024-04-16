@@ -8,6 +8,7 @@ import React, {
 
 // Hooks
 import { useAppSelector } from "../../../../hooks";
+import useStatus, { STATUS } from "../../../../hooks/useStatus";
 
 // Initial State
 import INITIAL_STATE, { INITIAL_FILTERS } from "./initialState";
@@ -22,14 +23,17 @@ import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY
 
 // Methods
 import insideRangePrice from "../methods/insideRangePrice";
-import isPointInsideRadius from "../../../../utils/distances/isPointInsideRadius";
 import sortActivities from "../methods/sortActivities";
+
+// Utils
+import isPointInsideRadius from "../../../../utils/distances/isPointInsideRadius";
 
 interface ContextProps {
   setFilters: Dispatch<SetStateAction<SearchFilters>>;
   filteredActivities: Activity[];
   filters: SearchFilters;
   sports: Sport[];
+  status: STATUS;
 }
 
 const SearchContext = createContext<ContextProps>(INITIAL_STATE);
@@ -39,10 +43,10 @@ interface Props {
 }
 
 const SearchProvider = ({ children }: Props) => {
+  const { status, setStatus } = useStatus();
   const publicActivities = useAppSelector(
     (state) => state.activity.publicActivities
   );
-
   const userLocation = useAppSelector((state) => state.user.user.location);
   const favoriteSports = useAppSelector(
     (state) => state.user.user.favoriteSports
@@ -54,12 +58,18 @@ const SearchProvider = ({ children }: Props) => {
     useState<Activity[]>(publicActivities);
 
   useEffect(() => {
-    // TODO: api call for fetching Sports
-    // setSports(//)
-    setTimeout(() => {
-      setSports(CREATE_ACTIVITY_SPORTS);
-      setFilters((prevState) => ({ ...prevState, sports: favoriteSports }));
-    }, 1000);
+    setStatus("loading");
+    try {
+      // TODO: api call for fetching Sports
+      // setSports(//)
+      setTimeout(() => {
+        setSports(CREATE_ACTIVITY_SPORTS);
+        setFilters((prevState) => ({ ...prevState, sports: favoriteSports }));
+        setStatus("success");
+      }, 1000);
+    } catch (error) {
+      setStatus("error");
+    }
   }, []);
 
   useEffect(() => {
@@ -83,7 +93,7 @@ const SearchProvider = ({ children }: Props) => {
 
   return (
     <SearchContext.Provider
-      value={{ filters, setFilters, filteredActivities, sports }}
+      value={{ filters, setFilters, status, filteredActivities, sports }}
     >
       {children}
     </SearchContext.Provider>

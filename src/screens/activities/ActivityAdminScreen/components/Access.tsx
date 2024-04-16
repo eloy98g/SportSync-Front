@@ -2,10 +2,8 @@ import React, { useState } from "react";
 
 // Components
 import TouchableInfo from "../../ActivityDetail/components/TouchableInfoContainer/TouchableInfo";
-import Divider from "../../../../components/common/Divider";
 import Icon from "../../../../components/common/Icon";
-import Label from "../../../../components/common/Label";
-import VisibilitySheet from "./VisibilitySheet";
+import AccessSheet from "./AccessSheet";
 
 // Types
 import Activity from "../../../../store/types/activity/Activity";
@@ -18,34 +16,31 @@ interface Props {
   setActivity: React.Dispatch<React.SetStateAction<Activity>>;
 }
 
-const Visibility = ({ data, setActivity }: Props) => {
+const Access = ({ data, setActivity }: Props) => {
   const [sheetOpen, setSheetOpen] = useState(false);
-  const { visibility } = data;
+  const { access } = data;
 
-  const visibilityText =
-  visibility === "public" ? "Actividad pública" : "Actividad privada";
+  const accessText = access === "open" ? "Abierta" : "Cerrada";
 
-  const visibilityHandler = () => {
+  const accessHandler = () => {
     setSheetOpen(true);
   };
 
   return (
     <>
-      <Label text="Cambiar visiblidad" />
-      <Divider height={8} />
       <TouchableInfo
-        icon={<Icon icon={visibility} size={24} color={colors.black} />}
-        title={visibilityText}
-        onPress={visibilityHandler}
+        icon={<Icon icon={access} size={24} color={colors.black} />}
+        title={accessText}
+        onPress={accessHandler}
       />
-      <VisibilitySheet
+      <AccessSheet
         open={sheetOpen}
         openHandler={setSheetOpen}
-        visibility={visibility}
+        access={access}
         setActivity={setActivity}
       />
     </>
   );
 };
 
-export default Visibility;
+export default Access;

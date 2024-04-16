@@ -51,6 +51,7 @@ const DatePicker = ({ value, mode, setValue, placeholder }: Props) => {
         {icon}
       </TouchableOpacity>
       <DateTimePickerModal
+        minimumDate={new Date()}
         isVisible={visible}
         mode={mode}
         onConfirm={handleConfirm}

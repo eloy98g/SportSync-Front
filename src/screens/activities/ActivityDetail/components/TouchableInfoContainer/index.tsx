@@ -14,6 +14,7 @@ import colors from "../../../../../theme/colors";
 
 // Types
 import Activity from "../../../../../store/types/activity/Activity";
+import VisibilityInfo from "../../../../../components/tutorial/VisibilityInfo";
 
 interface Props {
   data: Activity;
@@ -21,14 +22,14 @@ interface Props {
 
 const TouchableInfoContainer = ({ data }: Props) => {
   const [sheet, setSheet] = useState<string | boolean>("");
-  const { access, type } = data;
+  const { visibility, type, access } = data;
 
-  const accessHandler = () => setSheet("Access");
+  const sheetHandler = (type: string) => setSheet(type);
 
-  const typeHandler = () => setSheet("Ranked");
+  const visibilityText =
+    visibility === "public" ? "Actividad pública" : "Actividad privada";
 
-  const accessText =
-    access === "public" ? "Actividad pública" : "Actividad privada";
+  const accessText = visibility === "public" ? "Abierta" : "Cerrada";
 
   const typeText =
     type === "normal"
@@ -40,14 +41,23 @@ const TouchableInfoContainer = ({ data }: Props) => {
       <TouchableInfo
         icon={<Icon icon={access} size={24} color={colors.black} />}
         title={accessText}
-        onPress={accessHandler}
+        onPress={() => sheetHandler("Access")}
+      />
+      <Divider height={18} />
+      <TouchableInfo
+        icon={<Icon icon={visibility} size={24} color={colors.black} />}
+        title={visibilityText}
+        onPress={() => sheetHandler("Visibility")}
       />
       <Divider height={18} />
       <TouchableInfo
         icon={<Icon icon={type} size={24} color={colors.black} />}
         title={typeText}
-        onPress={typeHandler}
+        onPress={() => sheetHandler("Type")}
       />
+      <InfoSheet open={sheet === "Visibility"} setOpen={setSheet}>
+        <VisibilityInfo />
+      </InfoSheet>
       <InfoSheet open={sheet === "Access"} setOpen={setSheet}>
         <AccessInfo />
       </InfoSheet>

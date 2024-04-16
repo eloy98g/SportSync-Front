@@ -8,6 +8,9 @@ import {
   Medal,
   Ban,
   Smile,
+  Zap,
+  ZapOff,
+  Inbox,
 } from "lucide-react-native";
 import { ColorValue } from "react-native/types";
 
@@ -21,6 +24,9 @@ const Icon = ({ icon, color, size = 30 }: Props) => {
   switch (icon) {
     case "home":
       return <Home size={size} color={color} />;
+    case "requests":{
+      return <Inbox size={size} color={color} />;
+    }
     case "search":
       return <Target size={size} color={color} />;
     case "profile":
@@ -29,6 +35,10 @@ const Icon = ({ icon, color, size = 30 }: Props) => {
       return <Lock size={size} color={color} />;
     case "public":
       return <Users size={size} color={color} />;
+    case "open":
+      return <Zap size={size} color={color} />;
+    case "closed":
+      return <ZapOff size={size} color={color} />;
     case "competitive":
       return <Medal size={size} color={color} />;
     case "normal":

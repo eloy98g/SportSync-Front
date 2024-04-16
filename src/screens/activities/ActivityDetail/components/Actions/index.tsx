@@ -23,7 +23,9 @@ interface Props {
 const Actions = ({ data, playerView, userGid }: Props) => {
   const navigation = useNavigation();
 
-  const chatHandler = () => {};
+  const chatHandler = () => {
+    navigation.navigate("Chat" as never, { chatId: data.gid } as never);
+  };
   const shareHandler = async () => {
     await shareActivity(data);
   };

@@ -14,7 +14,7 @@ export default [
       name: "John Doe",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
     },
-    access: "public",
+    visibility: "public",
     name: "Partido de futbol",
     description: "This is a placeholder activity.",
     sport: {
@@ -81,7 +81,7 @@ export default [
       name: "John Doe",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
     },
-    access: "public",
+    visibility: "public",
     name: "Partido de tenis",
     description: "This is a placeholder activity.",
     sport: {
@@ -173,7 +173,7 @@ export default [
       name: "John Doe",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
     },
-    access: "public",
+    visibility: "public",
     name: "pachanguita de futbol",
     description: "This is a placeholder activity.",
     sport: {
@@ -240,7 +240,7 @@ export default [
       name: "John Doe",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
     },
-    access: "public",
+    visibility: "public",
     name: "pachanguita de futbol",
     description: "This is a placeholder activity.",
     sport: {

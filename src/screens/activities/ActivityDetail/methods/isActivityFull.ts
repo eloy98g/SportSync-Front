@@ -8,9 +8,12 @@ const isActivityFull = (data: Activity) => {
   let currentPlayers = 0;
 
   teams.forEach((team: Team) => {
-    currentPlayers += team.players.length;
+    currentPlayers += team.players.filter(
+      (player) =>
+        player.gid !== 0 && player.gid !== null && player.gid !== undefined
+    ).length;
   });
-  
+
   return currentPlayers === finalNumPlayers;
 };
 

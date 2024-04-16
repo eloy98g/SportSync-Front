@@ -23,7 +23,7 @@ interface Props {
 }
 
 const ActionsGroup = ({ isAdmin, data, playerView }: Props) => {
-  const { chat } = data;
+  const { chat, gid } = data;
   const navigation = useNavigation();
 
   const chatHandler = () => {
@@ -33,7 +33,7 @@ const ActionsGroup = ({ isAdmin, data, playerView }: Props) => {
   const adminHandler = () => {
     navigation.navigate(
       "ActivityAdminScreen" as never,
-      { data: data } as never
+      { activityGid: gid } as never
     );
   };
 

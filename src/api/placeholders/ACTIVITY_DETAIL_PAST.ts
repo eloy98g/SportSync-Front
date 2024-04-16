@@ -1,4 +1,6 @@
-export default {
+import Activity from "../../store/types/activity/Activity";
+
+const data: Activity = {
   gid: 1,
   location: {
     latitude: 37.7749,
@@ -15,18 +17,19 @@ export default {
     image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
   },
   price: 200,
-  access: "public",
+  visibility: "public",
+  access: "open",
   name: "Partidazo de ternis",
   description: "This is a placeholder activity.",
   sport: {
     gid: 1,
     name: "Fútbol",
     icon: "https://cdn-icons-png.flaticon.com/512/4498/4498011.png",
+    color: "",
   },
   type: "normal",
   playersPerTeam: 5,
   userTeam: "A",
-  closed: false,
   chat: 1,
   result: {
     result: "defeat",
@@ -42,7 +45,7 @@ export default {
       },
     ],
   },
-  status: "finished",
+  status: "pending",
   teams: [
     {
       name: "A",
@@ -111,3 +114,5 @@ export default {
     },
   ],
 };
+
+export default data;

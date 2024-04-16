@@ -29,8 +29,8 @@ const HomeScreen = () => {
           <Divider height={20} />
           <SocialActions />
           <Divider height={20} />
-          <OtherActions />
-          <Divider height={50} />
+          {/* <OtherActions />
+          <Divider height={50} /> */}
           <Version />
           <Divider height={80} />
         </ScrollView>
