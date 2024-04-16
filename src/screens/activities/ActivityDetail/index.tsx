@@ -31,6 +31,7 @@ import Activity from "../../../store/types/activity/Activity";
 
 // Store
 import mapActivity from "../../../store/features/activity/methods/mapActivity";
+import AdminButton from "./components/AdminButton";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -72,19 +73,15 @@ const ActivityDetail = ({ route }: any) => {
       <View style={styles.content}>
         <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
           <Divider height={200} />
-          <JoinButton data={activityData} userGid={userGid}/>
+          {!isAdmin && <JoinButton data={activityData} userGid={userGid} />}
+          {isAdmin && <AdminButton data={activityData} />}
           <TouchableInfoContainer data={activityData} />
           <Divider height={18} />
-          <Teams
-            activity={activityData}
-          />
+          <Teams activity={activityData} />
           {activityData.status === "finished" && (
             <>
               <Divider height={18} />
-              <Result
-                teams={activityData.teams}
-                result={activityData.result}
-              />
+              <Result teams={activityData.teams} result={activityData.result} />
             </>
           )}
           <Divider height={6} />
