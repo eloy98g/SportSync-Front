@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import TouchableInfo from "../../ActivityDetail/components/TouchableInfoContainer/TouchableInfo";
 import Divider from "../../../../components/common/Divider";
 import Icon from "../../../../components/common/Icon";
 import Label from "../../../../components/common/Label";
-import VisibilitySheet from "./VisibilitySheet";
 
 // Types
 import Activity from "../../../../store/types/activity/Activity";
+import Player from "../../../../store/types/activity/Player";
 
 // Theme
 import colors from "../../../../theme/colors";
-import Player from "../../../../store/types/activity/Player";
 
 interface Props {
   data: Activity;
@@ -20,13 +20,21 @@ interface Props {
 }
 
 const Requests = ({ data, requests }: Props) => {
+  const navigation = useNavigation();
   const requestsText =
     "(" +
     requests.length +
     ") " +
     (requests.length > 1 ? "Peticiones" : "Petición");
 
-  const requestsHandler = () => {};
+  const requestsHandler = () => {
+    navigation.navigate(
+      "RequestListScreen" as never,
+      {
+        activityGid: data.gid,
+      } as never
+    );
+  };
 
   return (
     <>
