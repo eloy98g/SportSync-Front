@@ -31,20 +31,27 @@ const data: Activity = {
   playersPerTeam: 5,
   userTeam: "A",
   chat: 1,
-  result: {
-    result: "defeat",
-    partialScores: [],
-    finalScores: [
-      {
-        slot: 1,
-        winner: "A",
-        scores: [
-          { team: "A", points: 2 },
-          { team: "B", points: 1 },
-        ],
-      },
-    ],
-  },
+  // TODO: remove old result
+  // result: {
+  //   result: "defeat",
+
+  //   partialScores: [],
+  //   finalScores: [
+  //     {
+  //       slot: 1,
+  //       winner: "A",
+  //       scores: [
+  //         { team: "A", points: 2 },
+  //         { team: "B", points: 1 },
+  //       ],
+  //     },
+  //   ],
+  // },
+  // TODO: add new result
+  result: [
+    { team: "A", points: 2, slot: 1 },
+    { team: "B", points: 1, slot: 1 },
+  ],
   status: "pending",
   teams: [
     {

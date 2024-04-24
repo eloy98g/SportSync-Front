@@ -13,7 +13,7 @@ import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 
 // Store
-import fetchUser from "../../../../store/features/user/methods/fetchUser";
+import signIn from "../../../../store/features/user/methods/signUp";
 
 // Hooks
 import { useAppDispatch } from "../../../../hooks";
@@ -25,14 +25,14 @@ const Login = ({ setSection, navigation, setOpen }: any) => {
   const dispatch = useAppDispatch();
 
   const loginHandler = () => {
-    dispatch(fetchUser(1));
+    // Login
     setOpen(false);
     setTimeout(() => {
       navigation?.navigate("Home" as never);
     });
   };
 
-  const goToSignIn = () => setSection("SignIn");
+  const goToSignIn = () => setSection("SignUp");
   const goToForgotPassword = () => setSection("ForgotPassword");
 
   return (

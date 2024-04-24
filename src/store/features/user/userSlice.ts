@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Methods
-import fetchUser from "./methods/fetchUser";
+import signUp from "./methods/signUp";
 import toggleSport from "./methods/toggleSport";
 // Types
 import User, { EMPTY_USER } from "../../types/user/User";
@@ -36,17 +36,17 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUser.pending, (state) => {
+    builder.addCase(signUp.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(
-      fetchUser.fulfilled,
+      signUp.fulfilled,
       (state, action: PayloadAction<User>) => {
         state.user = action.payload;
         state.loading = false;
       }
     );
-    builder.addCase(fetchUser.rejected, (state, action) => {
+    builder.addCase(signUp.rejected, (state, action) => {
       state.error = action.error.message || "Error desconocido";
       state.loading = false;
     });

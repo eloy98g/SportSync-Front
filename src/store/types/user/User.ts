@@ -12,9 +12,9 @@ type User = {
   creationDate: number | null;
   phoneVerified: boolean;
   emailVerified: boolean;
-  published: number;
-  participated: number;
-  lastParticipation: number;
+  published: number; // TODO: this must be calculated runtime
+  participated: number;  // TODO: this must be calculated runtime
+  lastParticipation: number;  // TODO: this must be calculated runtime
   gender: string;
   favoriteSports: number[]
 };

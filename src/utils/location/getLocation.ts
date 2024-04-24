@@ -15,25 +15,26 @@ const getLocation = async () => {
 
   try {
     console.log("aa 1");
-    let { status } = await requestForegroundPermissionsAsync();
-    if (status !== "granted") {
-      return location;
-    }
-    const { coords } = await getCurrentPositionAsync();
+    // TODO: Fix this
+    // let { status } = await requestForegroundPermissionsAsync();
+    // if (status !== "granted") {
+    //   return location;
+    // }
+    // const { coords } = await getCurrentPositionAsync();
 
-    console.log("aa 2");
-    const { latitude, longitude } = coords;
+    // console.log("aa 2");
+    // const { latitude, longitude } = coords;
 
-    location.latitude = latitude;
-    location.longitude = longitude;
+    // location.latitude = latitude;
+    // location.longitude = longitude;
 
-    console.log("aa 3");
-    const address = await getAddress(location);
-    console.log("aa 4");
-    location.address = address;
+    // console.log("aa 3");
+    // const address = await getAddress(location);
+    // console.log("aa 4");
+    // location.address = address;
 
     return location;
-  } catch (e) {
+  } catch (e: any) {
     console.log("error fetching location", e.message);
     console.log("aa 5");
     return location;
