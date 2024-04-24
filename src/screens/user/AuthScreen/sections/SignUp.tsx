@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 // Components
@@ -8,7 +8,7 @@ import TextInput from "../../../../components/common/inputs/TextInput";
 import Divider from "../../../../components/common/Divider";
 
 // Hooks
-import { useAppDispatch } from "../../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 
 // Theme
 import { PHONE } from "../../../../theme/breakPoints";
@@ -16,21 +16,36 @@ import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 
 // Store
-import fetchUser from "../../../../store/features/user/methods/fetchUser";
+import signUp from "../../../../store/features/user/methods/signUp";
 
-const SignIn = ({ setSection, setOpen, navigation }: any) => {
-  const [user, setUser] = useState("");
+// Utils
+import { validPassword } from "../../../../utils/auth/validPassword";
+import { validEmail } from "../../../../utils/auth/validEmail";
+
+const SignUp = ({ setSection, setOpen, navigation }: any) => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const dispatch = useAppDispatch();
 
-  const signInHandler = () => {
-    dispatch(fetchUser(2));
-    setOpen(false);
-    setTimeout(() => {
-      navigation?.navigate("Home" as never);
-    });
+  const buttonActive =
+    validPassword(password) &&
+    validPassword(password2) &&
+    password === password2 &&
+    validEmail(email);
+
+  const dispatch = useAppDispatch();
+  const { loading, error, user } = useAppSelector((state) => state.user);
+
+  const signInHandler = async () => {
+    dispatch(signUp({ email: email, password }));
   };
+
+  useEffect(() => {
+    if (user.gid) {
+      setOpen(false);
+      navigation.navigate("Home" as never);
+    }
+  }, [user]);
 
   const goToLogIn = () => setSection("LogIn");
 
@@ -38,7 +53,7 @@ const SignIn = ({ setSection, setOpen, navigation }: any) => {
     <View style={styles.container}>
       <Text style={styles.title}>Regístrate</Text>
       <Divider height={22} />
-      <TextInput value={user} onChange={setUser} placeholder="Usuario" />
+      <TextInput value={email} onChange={setEmail} placeholder="Usuario" />
       <Divider height={22} />
       <TextInput
         value={password}
@@ -54,8 +69,15 @@ const SignIn = ({ setSection, setOpen, navigation }: any) => {
         secure
       />
       <Divider height={22} />
-      <MainButton title={"Aceptar"} onPress={signInHandler} fontSize={18} />
+      <MainButton
+        title={"Aceptar"}
+        onPress={signInHandler}
+        fontSize={18}
+        loading={loading}
+        active={buttonActive}
+      />
       <Divider height={22} />
+      {error !== "" && <Text style={styles.error}>{error}</Text>}
       <View style={styles.row}>
         <Text style={styles.text}>¿Ya tienes cuenta? </Text>
         <TouchableText
@@ -68,7 +90,7 @@ const SignIn = ({ setSection, setOpen, navigation }: any) => {
   );
 };
 
-export default SignIn;
+export default SignUp;
 
 const styles = StyleSheet.create({
   container: {
@@ -87,6 +109,11 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 18,
     textAlign: "left",
+  },
+  error: {
+    fontFamily: family.normal,
+    color: colors.red,
+    fontSize: 14,
   },
   row: {
     flexDirection: "row",

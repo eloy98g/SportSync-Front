@@ -31,7 +31,8 @@ import MainActions from "./components/MainActions";
 
 const ProfileScreen = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
-  const [userData, setUserData] = useState<User>(EMPTY_USER);
+  const user = useAppSelector((state) => state.user.user);
+  const [userData, setUserData] = useState<User>(user);
   const [status, setStatus] = useState("idle");
   const gid = route.params?.gid;
 
@@ -42,9 +43,9 @@ const ProfileScreen = ({ route }: any) => {
     setStatus("loading");
     // TODO: Lógica para traerse los datos de un usuario
     if (isExternal) {
-      setUserData(USER_2);
+      // setUserData(USER_2);
     } else {
-      setUserData(USER_1);
+      // setUserData(USER_1);
     }
     setStatus("success");
   }, []);
@@ -60,6 +61,7 @@ const ProfileScreen = ({ route }: any) => {
 
   // Todo: error handling
 
+  console.log('userData',userData)
   return (
     <Screen>
       <ProfileHeader data={userData} isExternal={isExternal} />

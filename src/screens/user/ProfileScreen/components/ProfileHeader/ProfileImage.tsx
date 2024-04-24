@@ -6,7 +6,7 @@ const ProfileImage = ({ image }: any) => {
   return (
     <Image
       style={[styles.image, { left: width * 0.5 - 60 }]}
-      source={{ uri: image || "" }}
+      source={{ uri: image || "https://cdn-icons-png.flaticon.com/512/10337/10337609.png" }}
     />
   );
 };

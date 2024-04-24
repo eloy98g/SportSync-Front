@@ -10,7 +10,7 @@ import MainSection from "./components/MainSection";
 // Sections
 import ForgotPassword from "./sections/ForgotPassword";
 import LogIn from "./sections/LogIn";
-import SignIn from "./sections/SignIn";
+import SignUp from "./sections/SignUp";
 
 type SECTION = "LogIn" | "ForgotPassword" | "SignIn";
 const AuthScreen = ({ navigation }: any) => {
@@ -28,8 +28,8 @@ const AuthScreen = ({ navigation }: any) => {
         setOpen={setOpen}
       />
     ),
-    SignIn: (
-      <SignIn
+    SignUp: (
+      <SignUp
         setSection={setSection}
         setOpen={setOpen}
         navigation={navigation}

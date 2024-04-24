@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Methods
-import fetchUser from "./methods/fetchUser";
+import signUp from "./methods/signUp";
 import toggleSport from "./methods/toggleSport";
 // Types
 import User, { EMPTY_USER } from "../../types/user/User";
 import Location from "../../types/location/Location";
+import signIn from "./methods/signIn";
 
 type UserState = {
   loading: boolean;
@@ -36,17 +37,27 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUser.pending, (state) => {
+    // Sign Up
+    builder.addCase(signUp.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      fetchUser.fulfilled,
-      (state, action: PayloadAction<User>) => {
-        state.user = action.payload;
-        state.loading = false;
-      }
-    );
-    builder.addCase(fetchUser.rejected, (state, action) => {
+    builder.addCase(signUp.fulfilled, (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(signUp.rejected, (state, action) => {
+      state.error = action.error.message || "Error desconocido";
+      state.loading = false;
+    });
+    // Sign In
+    builder.addCase(signIn.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(signIn.rejected, (state, action) => {
       state.error = action.error.message || "Error desconocido";
       state.loading = false;
     });
