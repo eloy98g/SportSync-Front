@@ -19,17 +19,23 @@ const Information = ({ data }: Props) => {
     published,
   } = data;
 
+  console.log("creationDate", creationDate);
+
   return (
     <View style={styles.container}>
       {phoneVerified && <VerifiedLine text={"Correo electrónico confirmado"} />}
       {phoneVerified && <Divider height={4} />}
       {emailVerified && <VerifiedLine text={"Móvil confirmado"} />}
       {emailVerified && <Divider height={8} />}
-      <Text style={styles.text}>{published} actividades publicadas</Text>
-      <Divider height={8} />
-      <Text style={styles.text}>{participated} participaciones</Text>
-      <Divider height={8} />
-      <Text style={styles.text}>Usuario desde {unixToDate(creationDate)}</Text>
+      {published > 0 && (
+        <Text style={styles.text}>{published} actividades publicadas</Text>
+      )}
+      {published > 0 && <Divider height={8} />}
+      {participated > 0 && (
+        <Text style={styles.text}>{participated} participaciones</Text>
+      )}
+      {participated > 0 && <Divider height={8} />}
+      <Text style={styles.text}>Usuario desde {unixToDate(creationDate || 0)}</Text>
     </View>
   );
 };

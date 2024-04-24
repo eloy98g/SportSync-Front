@@ -6,6 +6,7 @@ import toggleSport from "./methods/toggleSport";
 // Types
 import User, { EMPTY_USER } from "../../types/user/User";
 import Location from "../../types/location/Location";
+import signIn from "./methods/signIn";
 
 type UserState = {
   loading: boolean;
@@ -36,17 +37,27 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Sign Up
     builder.addCase(signUp.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(
-      signUp.fulfilled,
-      (state, action: PayloadAction<User>) => {
-        state.user = action.payload;
-        state.loading = false;
-      }
-    );
+    builder.addCase(signUp.fulfilled, (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+      state.loading = false;
+    });
     builder.addCase(signUp.rejected, (state, action) => {
+      state.error = action.error.message || "Error desconocido";
+      state.loading = false;
+    });
+    // Sign In
+    builder.addCase(signIn.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(signIn.rejected, (state, action) => {
       state.error = action.error.message || "Error desconocido";
       state.loading = false;
     });

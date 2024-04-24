@@ -76,8 +76,8 @@ const SignUp = ({ setSection, setOpen, navigation }: any) => {
         loading={loading}
         active={buttonActive}
       />
-      {error !== "" && <Text style={styles.error}>{error}</Text>}
       <Divider height={22} />
+      {error !== "" && <Text style={styles.error}>{error}</Text>}
       <View style={styles.row}>
         <Text style={styles.text}>¿Ya tienes cuenta? </Text>
         <TouchableText

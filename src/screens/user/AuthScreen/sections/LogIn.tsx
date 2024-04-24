@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 // Components
@@ -13,24 +13,28 @@ import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 
 // Store
-import signIn from "../../../../store/features/user/methods/signUp";
+import signIn from "../../../../store/features/user/methods/signIn";
 
 // Hooks
-import { useAppDispatch } from "../../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 
 const Login = ({ setSection, navigation, setOpen }: any) => {
-  const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useAppDispatch();
+  const { loading, error, user } = useAppSelector((state) => state.user);
 
   const loginHandler = () => {
-    // Login
-    setOpen(false);
-    setTimeout(() => {
-      navigation?.navigate("Home" as never);
-    });
+    dispatch(signIn({ email: email, password }));
   };
+
+  useEffect(() => {
+    if (user.gid) {
+      setOpen(false);
+      navigation.navigate("Home" as never);
+    }
+  }, [user]);
 
   const goToSignIn = () => setSection("SignUp");
   const goToForgotPassword = () => setSection("ForgotPassword");
@@ -39,7 +43,7 @@ const Login = ({ setSection, navigation, setOpen }: any) => {
     <View style={styles.container}>
       <Text style={styles.title}>Inicia sesión</Text>
       <Divider height={30} />
-      <TextInput value={user} onChange={setUser} placeholder="Usuario" />
+      <TextInput value={email} onChange={setEmail} placeholder="Usuario" />
       <Divider height={22} />
       <TextInput
         value={password}
@@ -48,7 +52,8 @@ const Login = ({ setSection, navigation, setOpen }: any) => {
         secure
       />
       <Divider height={22} />
-      <MainButton title={"Aceptar"} onPress={loginHandler} fontSize={18} />
+      <MainButton title={"Aceptar"} onPress={loginHandler} fontSize={18}  loading={loading}/>
+      {error !== "" && <Text style={styles.error}>{error}</Text>}
       <Divider height={22} />
       <TouchableText
         onPress={goToForgotPassword}
@@ -87,6 +92,11 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 18,
     textAlign: "center",
+  },
+  error: {
+    fontFamily: family.normal,
+    color: colors.red,
+    fontSize: 14,
   },
   row: {
     flexDirection: "row",
