@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Platform, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 // Components
 import ChatIcon from "./components/ChatIcon";
@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
   },
   content: {
     width: "100%",
-    height: 50,
-    paddingTop: 10,
+    height: 80,
+    paddingTop: 40,
     flexDirection: "row",
     justifyContent: "space-between",
 

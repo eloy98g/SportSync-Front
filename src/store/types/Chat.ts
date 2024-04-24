@@ -3,13 +3,13 @@ import Message from "./Message";
 export type ChatType = "activity" | "private";
 
 type Chat = {
-  gid: number |null;
+  gid: number;
   name: string;
-  dateStart: number |null;
-  dateEnd: number |null;
+  dateStart: number;
+  dateEnd: number;
   image: string;
-  type: ChatType |null;
-  lastMessage: Message | null;
+  type: ChatType;
+  lastMessage: Message;
 };
 
 export default Chat;

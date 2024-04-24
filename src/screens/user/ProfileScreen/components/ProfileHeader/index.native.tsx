@@ -11,7 +11,7 @@ import ProfileImage from "./ProfileImage";
 import { PHONE } from "../../../../../theme/breakPoints";
 
 // Types
-import User from "../../../../../store/types/User";
+import User from "../../../../../store/types/user/User";
 
 interface Props {
   data: User;
@@ -19,14 +19,14 @@ interface Props {
 }
 
 const ProfileHeader = ({ data, isExternal }: Props) => {
-  const { image } = data;
+  const { image, gid } = data;
   return (
     <View style={styles.container}>
       <Wrapper />
       <View style={styles.content}>
         <View style={styles.actions}>
           <BackButton />
-          <ActionsGroup isExternal={isExternal} />
+          <ActionsGroup isExternal={isExternal} data={data}/>
         </View>
         <ProfileImage image={image} />
       </View>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: PHONE,
     paddingHorizontal: 12,
-    paddingTop: 16,
+    paddingTop: 46,
     zIndex: 3,
   },
   actions: {

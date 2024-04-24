@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import get from "../../../../api/get";
 import ACTIVITIES_PUBLIC from "../../../../api/placeholders/ACTIVITIES_PUBLIC";
 import ApiResponse from "../../../../api/types/ApiResponse";
-import Activity from "../../../types/Activity";
+import Activity from "../../../types/activity/Activity";
 import mapActivity from "./mapActivity";
 
 const fetchPublicActivities = createAsyncThunk("activity/fetchPublicActivities", async () => {

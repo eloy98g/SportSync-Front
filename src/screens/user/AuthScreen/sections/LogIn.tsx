@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import TouchableText from "../../../../components/common/buttons/TouchableText";
@@ -19,18 +18,17 @@ import fetchUser from "../../../../store/features/user/methods/fetchUser";
 // Hooks
 import { useAppDispatch } from "../../../../hooks";
 
-const Login = ({ setSection }: any) => {
+const Login = ({ setSection, navigation, setOpen }: any) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const navigation = useNavigation();
 
   const dispatch = useAppDispatch();
 
   const loginHandler = () => {
-    dispatch(fetchUser());
-    setSection();
+    dispatch(fetchUser(1));
+    setOpen(false);
     setTimeout(() => {
-      navigation.navigate("Home" as never);
+      navigation?.navigate("Home" as never);
     });
   };
 
@@ -50,7 +48,7 @@ const Login = ({ setSection }: any) => {
         secure
       />
       <Divider height={22} />
-      <MainButton title={"Aceptar"} onPress={loginHandler} />
+      <MainButton title={"Aceptar"} onPress={loginHandler} fontSize={18} />
       <Divider height={22} />
       <TouchableText
         onPress={goToForgotPassword}
@@ -88,7 +86,7 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     color: colors.primary,
     fontSize: 18,
-    textAlign: "center"
+    textAlign: "center",
   },
   row: {
     flexDirection: "row",

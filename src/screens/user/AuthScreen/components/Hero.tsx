@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     paddingHorizontal: 30,
-    paddingTop: 40,
+    paddingTop: 80,
   },
   text: {
     fontFamily: family.bold,

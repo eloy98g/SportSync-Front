@@ -2,9 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Methods
 import fetchUser from "./methods/fetchUser";
-
+import toggleSport from "./methods/toggleSport";
 // Types
-import User, { EMPTY_USER } from "../../types/User";
+import User, { EMPTY_USER } from "../../types/user/User";
+import Location from "../../types/location/Location";
 
 type UserState = {
   loading: boolean;
@@ -21,7 +22,19 @@ const initialState: UserState = {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logOut: (state) => {
+      state.user = EMPTY_USER;
+    },
+    setLocation: (state, action: PayloadAction<Location>) => {
+      state.user.location = action.payload;
+    },
+    toggleFavoriteSport: (state, action: PayloadAction<number>) => {
+      const currentFavorites = state.user.favoriteSports;
+      const sport = action.payload;
+      state.user.favoriteSports = toggleSport(currentFavorites, sport);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchUser.pending, (state) => {
       state.loading = true;
@@ -39,5 +52,7 @@ const userSlice = createSlice({
     });
   },
 });
+
+export const { logOut, setLocation, toggleFavoriteSport } = userSlice.actions;
 
 export default userSlice.reducer;

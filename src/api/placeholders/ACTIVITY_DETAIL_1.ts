@@ -1,31 +1,31 @@
 export default {
   gid: 1,
-  place: {
-    lat: 37.7749,
-    lng: -122.4194,
+  location: {
+    latitude: 37.7749,
+    longitude: -122.4194,
     radius: 500,
   },
   creationDate: 1709492837,
   startDate: 1712164031,
-  endDate: 171217431,
+  duration: 90,
   admin: 1,
   price: 200,
-  access: "public",
+  visibility: "public",
+  access: "open",
   name: "Activity 1",
   description: "This is a placeholder activity.",
   sport: {
     gid: 1,
     name: "Fútbol",
-    icon: "https://i.pinimg.com/564x/95/b3/99/95b39952cb3adbcb58a1ae99680bdf35.jpg",
+    icon: "https://cdn-icons-png.flaticon.com/512/4498/4498011.png",
   },
   type: "normal",
-  teams: 2,
   playersPerTeam: 5,
   closed: false,
   chat: 1,
   score: null,
   status: "pending",
-  teamPlayers: [
+  teams: [
     {
       name: "A",
       players: [
@@ -41,6 +41,24 @@ export default {
           image:
             "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
         },
+        {
+          gid: 6,
+          name: "David Tennant",
+          image:
+            "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+        },
+        {
+          gid: 7,
+          name: "Lola Gomez",
+          image:
+            "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
+        },
+        {
+          gid: 8,
+          name: "Eloy Gomez",
+          image:
+            "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
+        },
       ],
     },
     {
@@ -49,8 +67,7 @@ export default {
         {
           gid: 3,
           name: "John Smith",
-          image:
-            "https://www.conpaas.org/wp-content/uploads/2016/06/team-3.jpg",
+          image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
         },
         {
           gid: 4,

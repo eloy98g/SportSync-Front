@@ -1,10 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import MasonryList from "@react-native-seoul/masonry-list";
 
 // Components
 import Divider from "../../../components/common/Divider";
-import ActionButton from "./ActionButton";
 
 // Theme
 import colors from "../../../theme/colors";
@@ -13,23 +11,15 @@ import { family } from "../../../theme/fonts";
 
 interface Props {
   title: string;
-  data?: any;
+  children: React.ReactNode;
 }
 
-const HomeSection = ({ title, data }: Props) => {
+const HomeSection = ({ title, children }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Divider height={10} />
-      <View style={{ flex: 1 }}>
-        <MasonryList
-          data={data}
-          numColumns={2}
-          keyExtractor={(item: any) => item.id}
-          renderItem={({ item }: any) => <ActionButton {...item} />}
-          style={{ alignItems: "flex-end" }}
-        />
-      </View>
+      <View style={{ flex: 1 }}>{children}</View>
     </View>
   );
 };

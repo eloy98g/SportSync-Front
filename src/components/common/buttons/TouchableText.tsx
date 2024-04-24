@@ -1,9 +1,9 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { StyleProp, Text, TextStyle, TouchableOpacity } from "react-native";
 
 interface Props {
-  textStyle?: any;
-  onPress: any;
+  textStyle?: StyleProp<TextStyle>;
+  onPress: ()=>void;
   text: string;
 }
 

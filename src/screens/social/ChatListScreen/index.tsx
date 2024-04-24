@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
 
 // Components
+import Divider from "../../../components/common/Divider";
 import BackHeader from "../../../components/BackHeader";
 import Screen from "../../../components/common/Screen";
 import ChatCard from "./components/ChatCard";
@@ -12,8 +13,6 @@ import { useAppSelector } from "../../../hooks";
 // Types
 import Chat from "../../../store/types/Chat";
 import { PHONE } from "../../../theme/breakPoints";
-import Divider from "../../../components/common/Divider";
-import colors from "../../../theme/colors";
 
 const ChatListScreen = () => {
   const chats = useAppSelector((state) => state.chat.chat);
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     maxWidth: PHONE,
     paddingHorizontal: 12,
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 80,
   },
   divider: {
     width: "100%",

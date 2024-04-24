@@ -1,27 +1,27 @@
 export default [
   {
     gid: 1,
-    place: {
-      lat: 37.7749,
-      lng: -122.4194,
+    location: {
+      latitude: 37.7749,
+      longitude: -122.4194,
       radius: 500,
     },
     creationDate: 1709492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 1,
       name: "John Doe",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
     },
-    access: "public",
-    name: "Activity 1",
+    visibility: "public",
+    name: "Partido en el parque",
     description: "This is a placeholder activity.",
     sport: {
       gid: 1,
       name: "Fútbol",
-      icon: "https://i.pinimg.com/564x/95/b3/99/95b39952cb3adbcb58a1ae99680bdf35.jpg",
-      color: "#4DD67C"
+      icon: "https://cdn-icons-png.flaticon.com/512/4498/4498011.png",
+      color: "#4DD67C",
     },
     type: "normal",
     teams: 2,
@@ -32,21 +32,21 @@ export default [
   },
   {
     gid: 2,
-    place: {
-      lat: 37.7749,
-      lng: -122.4194,
+    location: {
+      latitude: 37.7749,
+      longitude: -122.4194,
       radius: 500,
     },
     creationDate: 1708492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 1,
       name: "John Doe",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
     },
-    access: "public",
-    name: "Activity 2",
+    visibility: "public",
+    name: "Torneo guallaba",
     description: "This is a placeholder activity.",
     sport: {
       gid: 2,
@@ -55,29 +55,52 @@ export default [
       color: "#EDFF54",
     },
     type: "normal",
-    teams: 2,
     playersPerTeam: 1,
-    currentPlayers: 2,
+    userTeam: "B",
+    teams: [
+      {
+        name: "A",
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+        ],
+      },
+      {
+        name: "B",
+        players: [
+          {
+            gid: 5,
+            name: "Clara Oswald",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-5.jpg",
+          },
+        ],
+      },
+    ],
     status: "pending",
     chat: 2,
   },
   {
     gid: 3,
-    place: {
-      lat: 37.7749,
-      lng: -122.4194,
+    location: {
+      latitude: 37.7749,
+      longitude: -122.4194,
       radius: 500,
     },
     creationDate: 1708492837,
     startDate: 1712164031,
-    endDate: 171217431,
+    duration: 90,
     admin: {
       gid: 2,
       name: "Mary Pond",
       image: "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
     },
-    access: "public",
-    name: "Activity 1",
+    visibility: "public",
+    name: "Tenis Open Arena",
     description: "This is a placeholder activity.",
     sport: {
       gid: 2,
@@ -86,10 +109,56 @@ export default [
       color: "#EDFF54",
     },
     type: "normal",
-    teams: 2,
+    teams: [
+      {
+        name: "A",
+        players: [
+          {
+            gid: 1,
+            name: "John Doe",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-1.jpg",
+          },
+
+          {
+            gid: 7,
+            name: "Lola Gomez",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
+          },
+          {
+            gid: 8,
+            name: "Eloy Gomez",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-2.jpg",
+          },
+        ],
+      },
+      {
+        name: "B",
+        players: [
+          {
+            gid: 3,
+            name: "John Smith",
+            image: "https://acepro.es/wp-content/uploads/2016/01/tutor-8.jpg",
+          },
+          {
+            gid: 4,
+            name: "Rory Williams",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-4.jpg",
+          },
+          {
+            gid: 5,
+            name: "Clara Oswald",
+            image:
+              "https://www.conpaas.org/wp-content/uploads/2016/06/team-5.jpg",
+          },
+        ],
+      },
+    ],
     playersPerTeam: 1,
-    currentPlayers: 2,
-    status: "pending",
+    status: "waitingScore",
     chat: 3,
   },
 ];

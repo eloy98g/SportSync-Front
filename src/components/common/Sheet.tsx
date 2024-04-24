@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { Sheet as TamaguiSheet } from "@tamagui/sheet";
+
+// Theme
 import colors from "../../theme/colors";
 
-const Sheet = (props: any) => {
-  const { open, openHandler, children } = props;
-  const [position, setPosition] = useState(0);
+interface Props {
+  open: boolean;
+  modal: boolean;
+  openHandler: (T: boolean) => void;
+  children: React.ReactNode;
+  padding?: number;
+}
+
+const Sheet = (props: Props) => {
+  const { open, openHandler, children, modal, padding = 24 } = props;
 
   return (
     <TamaguiSheet
       dismissOnSnapToBottom
       forceRemoveScrollEnabled={open}
-      modal
+      modal={modal}
       open={open}
-      snapPoints={[440, 0]}
-      snapPointsMode={"constant"}
-      position={position}
-      onPositionChange={setPosition}
+      snapPointsMode={"fit"}
       disableDrag
       onOpenChange={openHandler}
       zIndex={100_000}
@@ -25,8 +31,9 @@ const Sheet = (props: any) => {
         animation="100ms"
         enterStyle={{ opacity: 0 }}
         exitStyle={{ opacity: 0 }}
+        backgrounded
+        backgroundColor="rgba(0,0,0,0.2)"
       />
-      <TamaguiSheet.Handle />
       <TamaguiSheet.Frame
         padding="$3"
         justifyContent="center"
@@ -34,12 +41,17 @@ const Sheet = (props: any) => {
         space="$5"
         borderTopLeftRadius={20}
         borderTopRightRadius={20}
+        paddingHorizontal={padding}
         backgroundColor={colors.white}
       >
         {children}
       </TamaguiSheet.Frame>
     </TamaguiSheet>
   );
+};
+
+Sheet.defaultProps = {
+  modal: true,
 };
 
 export default Sheet;

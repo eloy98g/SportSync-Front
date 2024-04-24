@@ -1,30 +1,43 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 // Components
-import Divider from "../../../../components/common/Divider";
-import TextInput from "../../../../components/common/inputs/TextInput";
+import TouchableText from "../../../../components/common/buttons/TouchableText";
 import MainButton from "../../../../components/common/buttons/MainButton";
+import TextInput from "../../../../components/common/inputs/TextInput";
+import Divider from "../../../../components/common/Divider";
+
+// Hooks
+import { useAppDispatch } from "../../../../hooks";
 
 // Theme
 import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
-import TouchableText from "../../../../components/common/buttons/TouchableText";
 
-const SignIn = ({ setSection }: any) => {
+// Store
+import fetchUser from "../../../../store/features/user/methods/fetchUser";
+
+const SignIn = ({ setSection, setOpen, navigation }: any) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const dispatch = useAppDispatch();
 
-  const signInHandler = () => {};
+  const signInHandler = () => {
+    dispatch(fetchUser(2));
+    setOpen(false);
+    setTimeout(() => {
+      navigation?.navigate("Home" as never);
+    });
+  };
 
   const goToLogIn = () => setSection("LogIn");
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Regístrate</Text>
-      <Divider height={30} />
+      <Divider height={22} />
       <TextInput value={user} onChange={setUser} placeholder="Usuario" />
       <Divider height={22} />
       <TextInput
@@ -41,7 +54,7 @@ const SignIn = ({ setSection }: any) => {
         secure
       />
       <Divider height={22} />
-      <MainButton title={"Aceptar"} onPress={signInHandler} />
+      <MainButton title={"Aceptar"} onPress={signInHandler} fontSize={18} />
       <Divider height={22} />
       <View style={styles.row}>
         <Text style={styles.text}>¿Ya tienes cuenta? </Text>

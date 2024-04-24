@@ -16,13 +16,14 @@ import { family } from "../../../../theme/fonts";
 import getTextByDate from "../../../../utils/date/getTextByDate";
 
 const ChatCard = (props: Chat) => {
-  const { image, name, lastMessage } = props;
+  const { image, name, lastMessage, gid } = props;
   const navigation = useNavigation();
   const date = getTextByDate(lastMessage?.date || 0);
 
   const chatHandler = () => {
-    navigation.navigate("Chat");
+    navigation.navigate("Chat" as never, { chatId: gid } as never);
   };
+  
   return (
     <TouchableOpacity style={styles.container} onPress={chatHandler}>
       <Image style={styles.image} source={{ uri: image }} />

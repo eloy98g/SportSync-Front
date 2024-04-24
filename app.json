@@ -1,36 +1,57 @@
 {
   "expo": {
-    "name": "anthares",
-    "slug": "anthares",
+    "name": "Sport Up",
+    "slug": "sport-up",
+    "scheme": "sportup",
     "version": "1.0.0",
+    "owner": "eloy98g",
     "orientation": "portrait",
-    "icon": "./src/assets/logos/logo.png",
+    "icon": "./src/assets/metadata/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/metadata/splashScreen.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.eloy98g.sportup"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/logos/logo.png",
+        "foregroundImage": "./src/assets/metadata/logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.eloy98g.anthares"
+      "package": "com.eloy98g.sportup",
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
     },
     "web": {
-      "favicon": "./src/assets/logos/logo.png"
+      "favicon": "./src/assets/metadata/logo.png"
     },
     "extra": {
       "eas": {
-        "projectId": "5fc6840d-c740-4056-bd4a-bce89447111b"
+        "projectId": "2a4f84c1-c00e-4016-9de5-d419e272f4d4"
       }
-    }
+    },
+    "plugins": [
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermission": "Permite a UserApp el acceso a la cámara",
+          "enableCodeScanner": true
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permite a UserApp el acceso a tu ubicación"
+        }
+      ]
+    ]
   }
 }

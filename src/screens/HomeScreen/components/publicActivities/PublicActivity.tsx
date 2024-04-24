@@ -1,10 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+// Components
 import Divider from "../../../../components/common/Divider";
 import Icon from "../../../../components/common/Icon";
 
+// Hooks
+import { useAppSelector } from "../../../../hooks";
+
 // Types
-import Activity from "../../../../store/types/Activity";
+import Activity from "../../../../store/types/activity/Activity";
 
 // Theme
 import colors from "../../../../theme/colors";
@@ -12,33 +18,45 @@ import { family } from "../../../../theme/fonts";
 
 // Utils
 import unixToDate from "../../../../utils/date/unixToDate";
+import formattedDistance from "../../../../utils/distances/formattedDistance";
+import distanceBetween from "../../../../utils/distances/distanceBetween";
 
 const PublicActivity = (props: Activity) => {
   const {
     sport,
-    access,
+    visibility,
     type,
     startDate,
     teams,
     playersPerTeam,
-    currentPlayers,
+    gid,
+    location,
+    access,
   } = props;
-  const { color, name } = sport;
-
-  // TODO calcular distancia
-  const distance = "a 500m";
+  const { name } = sport;
+  const navigation = useNavigation();
+  const userLocation = useAppSelector((state) => state.user.user.location);
+  const distance =
+    "a " + formattedDistance(distanceBetween(userLocation, location));
 
   const date = unixToDate(startDate);
-  const totalPlayers = teams * playersPerTeam;
+  const currentPlayers = teams.reduce(
+    (sum, team) => sum + team.players.length,
+    0
+  );
+  const totalPlayers = teams.length * playersPerTeam;
+
+  const activityHandler = () => {
+    navigation.navigate("ActivityDetail" as never, { gid } as never);
+  };
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: color || colors.primary }]}
-    >
+    <TouchableOpacity onPress={activityHandler} style={styles.container}>
       <View style={{ flex: 1 }}>
         <View style={styles.row}>
           <Text style={styles.title}>{name}</Text>
           <View style={styles.icons}>
+            <Divider width={5} />
             <Icon icon={access} color={colors.black} size={14} />
             {type !== "normal" && (
               <>
@@ -56,7 +74,7 @@ const PublicActivity = (props: Activity) => {
           ({currentPlayers}/{totalPlayers})
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -68,6 +86,7 @@ const styles = StyleSheet.create({
     height: 90,
     borderRadius: 12,
     padding: 10,
+    backgroundColor: colors.secondary,
   },
   row: {
     flexDirection: "row",

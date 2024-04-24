@@ -10,27 +10,53 @@ import {
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
-const MainButton = ({
-  onPress = () => {},
-  title = "",
-  active = true,
-  color = colors.primary,
-  textColor = colors.white,
-  loading = false,
-}) => {
+interface Props {
+  onPress: (T: any) => void;
+  title: string;
+  active?: boolean;
+  color?: string;
+  textColor?: string;
+  borderWidth?: number;
+  borderColor?: string;
+  loading?: boolean;
+  fontSize?: number;
+  height?: number;
+}
+
+const MainButton = ({ onPress, title, active, loading, ...props }: Props) => {
+  const { color, textColor, borderWidth, borderColor, fontSize, height } =
+    props;
   return (
     <TouchableOpacity
-      style={[styles.confirmButton, { backgroundColor: color }]}
+      style={[
+        styles.confirmButton,
+        { backgroundColor: color, borderWidth, borderColor, height },
+        !active && { opacity: 0.5 },
+      ]}
       onPress={active ? onPress : () => {}}
       activeOpacity={active ? 0.3 : 1}
+      {...props}
     >
       {loading ? (
         <ActivityIndicator size="small" color={textColor} />
       ) : (
-        <Text style={[styles.text, { color: textColor }]}>{title}</Text>
+        <Text style={[styles.text, { color: textColor, fontSize }]}>
+          {title}
+        </Text>
       )}
     </TouchableOpacity>
   );
+};
+
+MainButton.defaultProps = {
+  active: true,
+  color: colors.primary,
+  textColor: colors.white,
+  borderWidth: 1,
+  borderColor: colors.primary,
+  loading: false,
+  fontSize: 16,
+  height: 46,
 };
 
 export default MainButton;
@@ -38,17 +64,13 @@ export default MainButton;
 const styles = StyleSheet.create({
   confirmButton: {
     flex: 1,
-    height: 46,
     maxHeight: 46,
-    minHeight: 46,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    paddingHorizontal: 18,
   },
   text: {
-    fontFamily: family.bold,
-    fontSize: 18,
+    fontFamily: family.normal,
     textAlign: "center",
   },
 });

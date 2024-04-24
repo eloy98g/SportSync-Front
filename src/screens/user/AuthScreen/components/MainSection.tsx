@@ -12,12 +12,15 @@ import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 
 const MainSection = (props: any) => {
-  const { setSection } = props;
+  const { setSection, setOpen } = props;
   const loginHandler = () => {
     setSection("LogIn");
+    setOpen(true);
   };
+
   const signInHandler = () => {
     setSection("SignIn");
+    setOpen(true);
   };
 
   return (
@@ -27,7 +30,11 @@ const MainSection = (props: any) => {
       start={{ x: 0, y: 0 }}
       locations={[0, 1]}
     >
-      <MainButton title={"Inicia sesión"} onPress={loginHandler} />
+      <MainButton
+        title={"Inicia sesión"}
+        onPress={loginHandler}
+        fontSize={18}
+      />
       <Divider height={20} />
       <View style={styles.row}>
         <Text style={styles.text}>¿No tienes cuenta? </Text>

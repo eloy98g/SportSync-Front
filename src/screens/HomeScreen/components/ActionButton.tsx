@@ -6,7 +6,6 @@ import {
   Text,
   View,
   ImageSourcePropType,
-  useWindowDimensions,
 } from "react-native";
 
 // Components
@@ -14,56 +13,31 @@ import Divider from "../../../components/common/Divider";
 
 // Theme
 import colors from "../../../theme/colors";
-import { PHONE } from "../../../theme/breakPoints";
 import { family } from "../../../theme/fonts";
 
-type SIZE = "small" | "normal" | "large-x" | "large-y" | "xl";
-
 interface Props {
-  size: SIZE;
   title: string;
   subtitle?: string;
   image: ImageSourcePropType;
-  filter?: boolean;
-  marginBottom?: number;
+  onPress?: () => void;
+  width?: number;
+  height?: number;
 }
 
 const ActionButton = ({
-  size,
   title,
   subtitle,
   image,
-  filter = true,
-  marginBottom,
+  onPress,
+  width,
+  height,
 }: Props) => {
-  const width = useWindowDimensions().width;
-  const getSizeStyles = () => {
-    const gap = 20;
-
-    const itemWidth = width >= PHONE ? PHONE / 2 - gap : width / 2 - gap;
-
-    switch (size) {
-      case "small":
-        return { width: itemWidth, height: itemWidth / 2 };
-      case "normal":
-        return { width: itemWidth - gap, height: itemWidth - gap };
-      case "large-x":
-        return { width: itemWidth, height: itemWidth * 2 - gap };
-      case "large-y":
-        return { width: itemWidth * 2 + 10, height: itemWidth };
-      case "xl":
-        return { width: itemWidth * 2, height: itemWidth * 2 };
-      default:
-        return { width: itemWidth, height: itemWidth };
-    }
-  };
-
   return (
     <TouchableOpacity
-      style={[styles.container, getSizeStyles(), { marginBottom }]}
+      style={[styles.container, { height, width }]}
+      onPress={onPress}
     >
       <ImageBackground style={styles.background} source={image}>
-        {filter && <View style={styles.opacity} />}
         <View style={styles.content}>
           <Text style={styles.title}>{title}</Text>
           {subtitle && (
@@ -84,6 +58,7 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 12,
     overflow: "hidden",
+    flex: 1,
   },
   background: {
     width: "100%",
