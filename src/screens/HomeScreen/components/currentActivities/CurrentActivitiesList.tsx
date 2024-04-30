@@ -27,18 +27,23 @@ const CurrentActivitiesList = () => {
     navigation.navigate("ActivityDetail" as never, { gid } as never);
   };
 
+  if (activities.length === 0) return <View />;
+
   return (
-    <View style={[styles.container, { maxWidth: scrollWidth }]}>
-      <Text style={styles.title}>Tus próximas actividades</Text>
-      <Divider height={12} />
-      {activities.map((activity) => (
-        <CurrentActivity
-          key={activity.gid}
-          data={activity}
-          onPress={() => activityHandler(activity.gid)}
-        />
-      ))}
-    </View>
+    <>
+      <View style={[styles.container, { maxWidth: scrollWidth }]}>
+        <Text style={styles.title}>Tus próximas actividades</Text>
+        <Divider height={12} />
+        {activities.map((activity) => (
+          <CurrentActivity
+            key={activity.gid}
+            data={activity}
+            onPress={() => activityHandler(activity.gid)}
+          />
+        ))}
+      </View>
+      <Divider height={20} />
+    </>
   );
 };
 

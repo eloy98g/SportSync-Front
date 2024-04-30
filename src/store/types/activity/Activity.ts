@@ -3,6 +3,7 @@ import Player from "./Player";
 import Result from "./Result";
 import Team from "./Team";
 import Sport from "../Sport";
+import Score from "./Score";
 
 export type ActivityType = "normal" | "competitive";
 export type ActivityAccess = "open" | "closed";
@@ -21,7 +22,7 @@ export default interface Activity {
   creationDate: number;
   startDate: number;
   duration: number;
-  admin: Player;
+  admin: string;
   access: ActivityAccess;
   visibility: ActivityVisibility;
   type: ActivityType;
@@ -30,9 +31,8 @@ export default interface Activity {
   description: string;
   sport: Sport;
   teams: Team[];
-  userTeam?: string;
   playersPerTeam: number;
   status: ActivityStatus;
   chat: number;
-  result?: Result;
+  result?: Score[];
 }

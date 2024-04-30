@@ -1,9 +1,8 @@
-import Slot from "./Slot";
-
 type Score = {
-  slot: number;
-  winner: string;
-  scores: Slot[];
+  gid: string;
+  team: string;
+  points: number;
+  position: number;
 };
 
-export default Score
+export default Score;

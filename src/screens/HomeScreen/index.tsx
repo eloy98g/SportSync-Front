@@ -6,7 +6,6 @@ import PublicActivitiesList from "./components/publicActivities/PublicActivities
 import CurrentActivitiesList from "./components/currentActivities/CurrentActivitiesList";
 import QuickActions from "./components/sections/QuickActions";
 import SocialActions from "./components/sections/SocialActions";
-import OtherActions from "./components/sections/OtherActions";
 import Screen from "../../components/common/Screen";
 import Divider from "../../components/common/Divider";
 import Version from "../../components/Version";
@@ -22,15 +21,11 @@ const HomeScreen = () => {
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
           <Header />
           <PublicActivitiesList />
-          <Divider height={20} />
           <CurrentActivitiesList />
-          <Divider height={20} />
           <QuickActions />
           <Divider height={20} />
           <SocialActions />
           <Divider height={20} />
-          {/* <OtherActions />
-          <Divider height={50} /> */}
           <Version />
           <Divider height={80} />
         </ScrollView>
@@ -42,6 +37,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   content: {
     flex: 1,
+    width: "100%",
     alignItems: "center",
   },
   scroll: {
