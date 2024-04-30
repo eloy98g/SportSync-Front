@@ -24,7 +24,6 @@ import distanceBetween from "../../../../utils/distances/distanceBetween";
 const PublicActivity = (props: Activity) => {
   const {
     sport,
-    visibility,
     type,
     startDate,
     teams,

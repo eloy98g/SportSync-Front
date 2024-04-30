@@ -17,7 +17,7 @@ import Activity from "../../../../../store/types/activity/Activity";
 interface Props {
   data: Activity;
   playerView?: boolean;
-  userGid?: number;
+  userGid?: string;
 }
 
 const Actions = ({ data, playerView, userGid }: Props) => {

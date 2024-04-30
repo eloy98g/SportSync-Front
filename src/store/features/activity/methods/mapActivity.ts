@@ -22,7 +22,6 @@ const mapActivity = (data: any): Activity => {
     result: data.result,
   };
 
-  console.log('newActivity',newActivity)
   return newActivity;
 };
 

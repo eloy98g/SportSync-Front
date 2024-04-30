@@ -17,7 +17,7 @@ import Activity from "../../../../../store/types/activity/Activity";
 
 interface Props {
   data: Activity;
-  userGid: number;
+  userGid: string;
 }
 
 const JoinButton = ({ data, userGid }: Props) => {

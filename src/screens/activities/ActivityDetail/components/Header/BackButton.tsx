@@ -9,6 +9,7 @@ import colors from "../../../../../theme/colors";
 const BackButton = () => {
   const navigation = useNavigation();
   const backHandler = () => {
+    console.log('backHandler')
     navigation.goBack();
   };
   
