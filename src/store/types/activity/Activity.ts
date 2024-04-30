@@ -22,7 +22,7 @@ export default interface Activity {
   creationDate: number;
   startDate: number;
   duration: number;
-  admin: string;
+  admin: Player;
   access: ActivityAccess;
   visibility: ActivityVisibility;
   type: ActivityType;
@@ -34,5 +34,5 @@ export default interface Activity {
   playersPerTeam: number;
   status: ActivityStatus;
   chat: number;
-  result?: Score[];
+  result: Score[];
 }

@@ -7,24 +7,24 @@ import CurrentActivity from "./CurrentActivity";
 
 // Hooks
 import { useAppSelector } from "../../../../hooks";
+import useNavigate from "../../../../hooks/useNavigate";
 
 // Theme
 import colors from "../../../../theme/colors";
 import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
-import { useNavigation } from "@react-navigation/native";
 
 const CurrentActivitiesList = () => {
   const width = useWindowDimensions().width;
   const scrollWidth = width >= PHONE ? PHONE : width;
-  const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
 
   const activities = useAppSelector(
     (state) => state.activity.currentActivities
   );
 
   const activityHandler = (gid: number) => {
-    navigation.navigate("ActivityDetail" as never, { gid } as never);
+    navigateTo("ActivityDetail", { gid });
   };
 
   if (activities.length === 0) return <View />;

@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 // Reducers
 import fetchCurrentActivities from "../../../store/features/activity/methods/fetchCurrentActivities";
 import fetchPublicActivities from "../../../store/features/activity/methods/fetchPublicActivities";
+import fetchFriends from "../../../store/features/friends/methods/fetchFriends";
 import fetchChats from "../../../store/features/chat/methods/fetchChats";
 import { setLocation } from "../../../store/features/user/userSlice";
 
@@ -23,7 +24,6 @@ import { family } from "../../../theme/fonts";
 // Utils
 import getLocationPermissions from "../../../utils/location/getLocationPermissions";
 import getLocation from "../../../utils/location/getLocation";
-import fetchFriends from "../../../store/features/friends/methods/fetchFriends";
 
 const SplashScreen = () => {
   const stateUser = useAppSelector((state) => state.user.user);
@@ -31,30 +31,24 @@ const SplashScreen = () => {
   const navigation = useNavigation();
 
   const getData = async () => {
-    dispatch(fetchCurrentActivities());
-    dispatch(fetchPublicActivities());
+    await dispatch(fetchPublicActivities());
+
+    if (!stateUser.gid) return;
+
+    dispatch(fetchCurrentActivities(stateUser.gid));
     dispatch(fetchChats());
     dispatch(fetchFriends(stateUser.gid));
   };
 
   const splashHandler = async () => {
     try {
-      console.log("1");
       await getData();
-      console.log("2");
       const locationPermission = await getLocationPermissions();
-      console.log("3");
       if (locationPermission) {
-        console.log("4");
         const location = await getLocation();
-        console.log("6");
         dispatch(setLocation(location));
-        console.log("7");
       }
-      console.log("5");
-      setTimeout(() => {
-        navigation.navigate("Home" as never);
-      }, 1000);
+      navigation.navigate("Home" as never);
     } catch (error: any) {
       console.log("error", error.message);
     }

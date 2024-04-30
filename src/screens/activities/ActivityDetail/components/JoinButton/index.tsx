@@ -33,7 +33,7 @@ const JoinButton = ({ data, userGid }: Props) => {
   const color = isPlayer(userGid, data.teams) ? colors.red : colors.primary;
   const title = isPlayer(userGid, data.teams)
     ? "Abandonar actividad"
-    : "Unirse a un equipo";
+    : "Unirse a la actividad";
 
   if (data.status === "pending" && !isActivityFull(data)) {
     return (

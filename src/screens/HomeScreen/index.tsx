@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 // Components
 import PublicActivitiesList from "./components/publicActivities/PublicActivitiesList";
@@ -11,10 +12,41 @@ import Divider from "../../components/common/Divider";
 import Version from "../../components/Version";
 import Header from "../../components/Header";
 
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks";
+
+// Store
+import fetchPublicActivities from "../../store/features/activity/methods/fetchPublicActivities";
+import fetchCurrentActivities from "../../store/features/activity/methods/fetchCurrentActivities";
+import fetchChats from "../../store/features/chat/methods/fetchChats";
+
 // Theme
 import { PHONE } from "../../theme/breakPoints";
 
 const HomeScreen = () => {
+  const [firstRender, setFirstRender] = useState(true);
+  const stateUser = useAppSelector((state) => state.user.user);
+  const dispatch = useAppDispatch();
+
+  const getData = async () => {
+    await dispatch(fetchPublicActivities());
+
+    if (!stateUser.gid) return;
+
+    dispatch(fetchChats());
+    dispatch(fetchCurrentActivities(stateUser.gid));
+  };
+  useFocusEffect(
+    useCallback(() => {
+      console.log('firstRender', firstRender)
+      if (!firstRender) {
+        console.log('firstRender 1')
+        getData();
+      }
+      setFirstRender(false);
+    }, [])
+  );
+
   return (
     <Screen>
       <View style={styles.content}>

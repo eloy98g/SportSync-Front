@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { MapPin } from "lucide-react-native";
 
@@ -11,19 +11,29 @@ import { family } from "../../../../../theme/fonts";
 
 // Types
 import LocationT from "../../../../../store/types/location/Location";
+import getAddress from "../../../../../utils/location/getAddress";
 
 interface Props {
   location: LocationT;
 }
 
 const Location = ({ location }: Props) => {
-  const { address } = location;
+  const [title, setTitle] = useState("");
+
+  const getTitle = async () => {
+    const address = await getAddress(location);
+    setTitle(address || "Selecciona ubicación");
+  };
+
+  useEffect(() => {
+    getTitle();
+  }, [location]);
 
   return (
     <TouchableOpacity style={styles.container}>
-      <MapPin color={colors.grey} size={18} />
+      <Text style={styles.text}>{title}</Text>
       <Divider width={8} />
-      <Text style={styles.text}>{address}</Text>
+      <MapPin color={colors.grey} size={18} />
     </TouchableOpacity>
   );
 };
@@ -33,11 +43,14 @@ export default Location;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    justifyContent:"center",
+    alignItems: "center",
+    flex: 0.6,
   },
   text: {
     fontFamily: family.normal,
     fontSize: 14,
     color: colors.black,
-    textAlign: "center",
+    textAlign: "right",
   },
 });

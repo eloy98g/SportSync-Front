@@ -42,12 +42,10 @@ const ActivityDetail = ({ route }: any) => {
 
   useEffect(() => {
     if (activityData) {
-      setIsAdmin(userGid === activityData.admin);
+      setIsAdmin(userGid === activityData.admin.gid);
       setPlayerView(isPlayer(userGid, activityData?.teams));
     }
   }, [userGid, activityData]);
-
-  console.log('RENDER')
   
   const getData = async () => {
     setStatus("loading");

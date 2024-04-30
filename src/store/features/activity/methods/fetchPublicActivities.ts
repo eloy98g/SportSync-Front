@@ -6,7 +6,7 @@ import Api from "../../../../services/api";
 const fetchPublicActivities = createAsyncThunk(
   "activity/fetchPublicActivities",
   async () => {
-    const response = await Api.activity.getAll(undefined);
+    const response = await Api.activity.getAll("?visibility=public");
     const { status, data, message } = response;
     if (status === "success") {
       return data.map((activity: any) => mapActivity(activity) as Activity);

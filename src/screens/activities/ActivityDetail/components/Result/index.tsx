@@ -12,20 +12,29 @@ import Score from "../../../../../components/activities/Score";
 import { family } from "../../../../../theme/fonts";
 import colors from "../../../../../theme/colors";
 
-const index = ({ teams, result }: any) => {
+// Types
+import Team from "../../../../../store/types/activity/Team";
+import ScoreT from "../../../../../store/types/activity/Score";
+
+interface Props {
+  teams: Team[];
+  result: ScoreT[];
+}
+
+const Result = ({ teams, result }: Props) => {
   return (
     <Card title="Resultado">
       <View style={styles.content}>
         <TeamNames teams={teams} />
         <Divider width={12} />
         <Teams teams={teams} />
-        <Score result={result} />
+        <Score teams={teams} result={result} />
       </View>
     </Card>
   );
 };
 
-export default index;
+export default Result;
 
 const styles = StyleSheet.create({
   content: {

@@ -5,16 +5,15 @@ import Api from "../../../../services/api";
 
 const fetchCurrentActivities = createAsyncThunk(
   "activity/fetchCurrentActivities",
-  async () => {
-    // console.log("fetchCurrentActivities");
-    // const response = await Api.activity.getAll(undefined);
-    // const { status, data, message } = response;
-    // if (status === "success") {
-    //   return data.map((activity: any) => mapActivity(activity) as Activity);
-    // } else {
-    //   throw new Error(message);
-    // }
-    return []
+  async (userGid: string) => {
+    const params = "?status[]=pending&status[]=closed&status[]=ongoing&userGid="+userGid;
+    const response = await Api.activity.getAll(params);
+    const { status, data, message } = response;
+    if (status === "success") {
+      return data.map((activity: any) => mapActivity(activity) as Activity);
+    } else {
+      throw new Error(message);
+    }
   }
 );
 

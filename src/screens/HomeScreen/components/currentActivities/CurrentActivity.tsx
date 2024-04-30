@@ -32,7 +32,7 @@ const CurrentActivity = ({ onPress, data, showButton }: Props) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image style={styles.image} source={{ uri: sport.icon }} />
+      <Image style={styles.image} source={{ uri: sport.icons.black }} />
       <Divider width={8} />
       {type === "competitive" && (
         <>

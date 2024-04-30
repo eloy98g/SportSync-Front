@@ -7,44 +7,66 @@ import { family } from "../../theme/fonts";
 
 // Types
 import Score from "../../store/types/activity/Score";
-import Slot from "../../store/types/activity/Slot";
+import Team from "../../store/types/activity/Team";
 
 interface Props {
-  data: Score;
+  scores: Score[];
+  teams: Team[];
 }
 
-const PartialScore = ({ data }: Props) => {
-  const { scores, winner } = data;
+const PartialScore = ({ scores, teams }: Props) => {
   return (
     <View style={styles.container}>
-      {scores?.map((slot: Slot) => (
-        <Text
-          key={slot.team}
-          style={{
-            ...styles.baseScore,
-            ...(winner !== null && winner !== slot.team && styles.loserScore),
-          }}
-        >
-          {slot.points}
-        </Text>
-      ))}
+      {teams.map((team) => {
+        const teamScores = scores.filter((score) => score.team === team.name);
+        return (
+          <View style={styles.teamRow} key={team.name}>
+            {teamScores.map((score) => {
+              const winner =
+                scores.filter(
+                  (item) =>
+                    item.position === score.position &&
+                    item.points < score.points
+                ).length > 0;
+              return (
+                <View style={styles.slotWrapper} key={score.gid}>
+                  <Text
+                    style={[
+                      styles.baseScore,
+                      winner ? styles.winnerScore : styles.loserScore,
+                    ]}
+                  >
+                    {score.points}
+                  </Text>
+                </View>
+              );
+            })}
+          </View>
+        );
+      })}
     </View>
   );
-};
-
-PartialScore.defaultProps = {
-  data: {
-    scores: [],
-    winner: null,
-  },
 };
 
 export default PartialScore;
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "column",
     height: "100%",
+    flex: 1,
     justifyContent: "space-around",
+  },
+  teamRow: {
+    width: "100%",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  slotWrapper: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   baseScore: {
     fontFamily: family.light,
@@ -53,7 +75,12 @@ const styles = StyleSheet.create({
   },
   loserScore: {
     fontFamily: family.light,
-    fontSize: 18,
+    fontSize: 24,
     color: colors.grey,
+  },
+  winnerScore: {
+    fontFamily: family.normal,
+    fontSize: 24,
+    color: colors.secondary,
   },
 });
