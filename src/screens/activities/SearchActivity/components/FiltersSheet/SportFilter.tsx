@@ -12,6 +12,7 @@ import SearchContext from "../../context/SearchContext";
 const SportFilter = () => {
   const { sports, filters, setFilters } = useContext(SearchContext);
 
+  console.log('{ sports, filters, setFilters } ',{ sports, filters, setFilters } )
   const sportHandler = (gid: number) => {
     const sportSelected = filters.sports.includes(gid);
     setFilters((prevState) => ({

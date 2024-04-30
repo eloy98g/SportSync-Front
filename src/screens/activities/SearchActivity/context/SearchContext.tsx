@@ -7,7 +7,7 @@ import React, {
 } from "react";
 
 // Hooks
-import { useAppSelector } from "../../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import useStatus, { STATUS } from "../../../../hooks/useStatus";
 
 // Initial State
@@ -27,6 +27,8 @@ import sortActivities from "../methods/sortActivities";
 
 // Utils
 import isPointInsideRadius from "../../../../utils/distances/isPointInsideRadius";
+import Api from "../../../../services/api";
+import fetchPublicActivities from "../../../../store/features/activity/methods/fetchPublicActivities";
 
 interface ContextProps {
   setFilters: Dispatch<SetStateAction<SearchFilters>>;
@@ -48,6 +50,9 @@ const SearchProvider = ({ children }: Props) => {
     (state) => state.activity.publicActivities
   );
   const userLocation = useAppSelector((state) => state.user.user.location);
+  const dispatch = useAppDispatch();
+
+  // TODO api call for user's favoriteSports
   const favoriteSports = useAppSelector(
     (state) => state.user.user.favoriteSports
   );
@@ -57,21 +62,31 @@ const SearchProvider = ({ children }: Props) => {
   const [filteredActivities, setFilteredActivities] =
     useState<Activity[]>(publicActivities);
 
-  useEffect(() => {
+  const getData = async () => {
     setStatus("loading");
     try {
-      // TODO: api call for fetching Sports
-      // setSports(//)
-      setTimeout(() => {
-        setSports(CREATE_ACTIVITY_SPORTS);
-        setFilters((prevState) => ({ ...prevState, sports: favoriteSports }));
-        setStatus("success");
-      }, 1000);
+      const response = await Api.sport.getAll();
+      if (response.status === "success") setSports(response.data);
+      setStatus("success");
     } catch (error) {
       setStatus("error");
     }
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
+  const getPublicActivities = async () => {
+    setStatus("loading");
+    await dispatch(fetchPublicActivities());
+    setStatus("success");
+  };
+
+  useEffect(() => {
+    getPublicActivities();
+  }, [filters]);
+  
   useEffect(() => {
     const auxArray = publicActivities.filter(
       (activity) =>
@@ -86,10 +101,9 @@ const SearchProvider = ({ children }: Props) => {
           ? isPointInsideRadius(userLocation, activity.location)
           : true)
     );
-
     const finalArray = sortActivities(auxArray, filters.sortBy, userLocation);
     setFilteredActivities(finalArray);
-  }, [filters]);
+  }, [publicActivities]);
 
   return (
     <SearchContext.Provider

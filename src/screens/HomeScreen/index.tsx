@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -24,7 +24,6 @@ import fetchChats from "../../store/features/chat/methods/fetchChats";
 import { PHONE } from "../../theme/breakPoints";
 
 const HomeScreen = () => {
-  const [firstRender, setFirstRender] = useState(true);
   const stateUser = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
 
@@ -36,14 +35,10 @@ const HomeScreen = () => {
     dispatch(fetchChats());
     dispatch(fetchCurrentActivities(stateUser.gid));
   };
+
   useFocusEffect(
     useCallback(() => {
-      console.log('firstRender', firstRender)
-      if (!firstRender) {
-        console.log('firstRender 1')
-        getData();
-      }
-      setFirstRender(false);
+      getData();
     }, [])
   );
 
