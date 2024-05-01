@@ -39,7 +39,6 @@ const ConfirmButton = ({ activity }: Props) => {
         description: activity.description,
       };
       const response = await Api.activity.update(body, activity.gid);
-      console.log("response", JSON.stringify(response));
       if (response.status === "success") {
         setStatus("success");
         navigation.goBack();

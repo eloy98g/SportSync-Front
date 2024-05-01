@@ -113,7 +113,7 @@ const ActivityAdminScreen = ({ route }: Props) => {
             <ConfirmButton activity={activity} />
             <Divider height={12} />
             <LineDivider height={36} color={colors.lightenGrey} />
-            <DeleteSection />
+            <DeleteSection activity={activity} />
             <Divider height={50} />
           </ScrollView>
         )}

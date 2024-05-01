@@ -8,6 +8,7 @@ import Label from "../../../../components/common/Label";
 
 // Types
 import Activity from "../../../../store/types/activity/Activity";
+import TextInput from "../../../../components/common/inputs/TextInput";
 
 interface Props {
   data: Activity;
@@ -15,7 +16,7 @@ interface Props {
 }
 
 const Description = ({ data, setActivity }: Props) => {
-  const { description } = data;
+  const { description, name } = data;
 
   const descriptionHandler = (e: any) => {
     setActivity((prevState) => ({
@@ -24,8 +25,23 @@ const Description = ({ data, setActivity }: Props) => {
     }));
   };
 
+  const nameHandler = (e: any) => {
+    setActivity((prevState) => ({
+      ...prevState,
+      name: e,
+    }));
+  };
+
   return (
     <>
+      <Label text="Nombre" />
+      <Divider height={8} />
+      <TextInput
+        placeholder="Nombre de la actividad"
+        value={name}
+        onChange={nameHandler}
+      />
+      <Divider height={16} />
       <Label text="Descripción" />
       <Divider height={8} />
       <TextArea

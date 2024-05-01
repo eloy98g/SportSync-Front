@@ -1,4 +1,5 @@
 import create from "./calls/create";
+import remove from "./calls/remove";
 import getAdministrated from "./calls/getAdministrated";
 import getAll from "./calls/getAll";
 import getById from "./calls/getById";
@@ -21,5 +22,9 @@ export class Activity {
 
   static async update(activity: any, activityGid: string) {
     return update(activity, activityGid);
+  }
+
+  static async remove(activityGid: string) {
+    return remove(activityGid);
   }
 }
