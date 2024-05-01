@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { ChevronRight } from "lucide-react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Divider from "../../../../../../components/common/Divider";
@@ -11,22 +10,34 @@ import Stat from "./Stat";
 import { SportContainerContext } from "../context/SportContainerContext";
 import TouchableText from "../../../../../../components/common/buttons/TouchableText";
 
+// Hooks
+import { useAppSelector } from "../../../../../../hooks";
+import useNavigate from "../../../../../../hooks/useNavigate";
+
 // Theme
 import { family } from "../../../../../../theme/fonts";
 import colors from "../../../../../../theme/colors";
 
 // Utils
 import unixToDate from "../../../../../../utils/date/unixToDate";
+import getWinner from "../../../../../../utils/score/getWinner";
+import getUserTeam from "../../../../../../utils/activity/getUserTeam";
 
 const SportStats = () => {
   const { selectedSport, activities } = useContext(SportContainerContext);
-  const navigation = useNavigation();
+  const userGid = useAppSelector((state) => state.user.user.gid);
+  const { navigateTo } = useNavigate();
   const currentActivities = activities.filter(
     (act) => act.sport.gid === selectedSport
   );
   const participations = currentActivities.length.toString();
   const victories = currentActivities
-    .filter((item) => item.result.result === "victory")
+    .filter((item) => {
+      const winner = getWinner(item.result);
+      const userTeam = getUserTeam(userGid, item.teams);
+
+      return winner === userTeam;
+    })
     .length.toString();
 
   const lastTime = currentActivities.reduce((maxDate, obj) => {
@@ -34,10 +45,7 @@ const SportStats = () => {
   }, 0);
 
   const moreStatsHandler = () => {
-    navigation.navigate(
-      "SportStats" as never,
-      { selectedSport, currentActivities } as never
-    );
+    navigateTo("SportStats", { selectedSport, currentActivities });
   };
 
   return (

@@ -1,6 +1,5 @@
 import React from "react";
 import { Minus } from "lucide-react-native";
-import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 // Components
@@ -9,6 +8,10 @@ import Action from "../../../../../../components/activities/Action";
 import Divider from "../../../../../../components/common/Divider";
 import Team from "../../../../../../components/activities/Team";
 import Tag from "../../../../../../components/activities/Tag";
+
+// Hooks
+import { useAppSelector } from "../../../../../../hooks";
+import useNavigate from "../../../../../../hooks/useNavigate";
 
 // Theme
 import colors from "../../../../../../theme/colors";
@@ -21,31 +24,34 @@ import TeamT from "../../../../../../store/types/activity/Team";
 // Utils
 import RESULT_COLORS from "../../../../../../utils/activity/resultColors";
 import unixToDate from "../../../../../../utils/date/unixToDate";
+import getWinner from "../../../../../../utils/score/getWinner";
+import getUserTeam from "../../../../../../utils/activity/getUserTeam";
+import getSimpleScore from "../../../methods/getSimpleScore";
 
 interface Props {
   data: ActivityT;
 }
 
 const Activity = ({ data }: Props) => {
-  const navigation = useNavigation();
+  const { result, teams, startDate, gid } = data;
+  const userGid = useAppSelector((state) => state.user.user.gid);
+  const { navigateTo } = useNavigate();
 
-  const { result, teams, startDate, gid, userTeam: userT } = data;
-  const borderColor = RESULT_COLORS[result.result];
+  const winner = getWinner(data.result);
+  const userTeam = getUserTeam(userGid, teams);
 
-  const userTeam = teams.find((team: TeamT) => team.name === userT);
-  const otherTeam = teams.find((team: TeamT) => team.name !== userT);
+  const resultString =
+    winner === null ? "tie" : winner === userTeam ? "victory" : "defeat";
+  const borderColor = RESULT_COLORS[resultString];
 
-  const userScore = result.finalScores[0].scores.find(
-    (team: Slot) => team.team === userTeam?.name
-  );
-  const otherScore = result.finalScores[0].scores.find(
-    (team: Slot) => team.team !== userTeam?.name
-  );
+  const userTeamData = teams.find((team: TeamT) => team.name === userTeam);
 
-  const winner = result.finalScores[0].winner;
+  const otherTeam = teams.find((team: TeamT) => team.name !== userTeam);
+
+  const { userScore, otherScore } = getSimpleScore(result, userTeam);
 
   const moreInfoHandler = () => {
-    navigation.navigate("ActivityDetail" as never, { gid } as never);
+    navigateTo("ActivityDetail", { gid });
   };
 
   return (
@@ -56,22 +62,22 @@ const Activity = ({ data }: Props) => {
       <View style={styles.content}>
         <View style={styles.teamWrapper}>
           <Team
-            image={userTeam?.players[0].image}
-            size={userTeam?.players.length}
+            image={userTeamData?.players[0].image}
+            size={userTeamData?.players.length}
           />
         </View>
         <View style={styles.scoreWrapper}>
           <FinalScoreText
-            points={userScore?.points}
-            team={userScore?.team}
+            points={userScore}
+            team={userTeam}
             winner={winner}
           />
           <Divider width={20} />
           <Minus color={colors.grey} />
           <Divider width={20} />
           <FinalScoreText
-            points={otherScore?.points}
-            team={otherScore?.team}
+            points={otherScore}
+            team={otherTeam?.name}
             winner={winner}
           />
         </View>

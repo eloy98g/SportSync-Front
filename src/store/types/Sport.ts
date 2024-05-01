@@ -1,13 +1,6 @@
 export default interface Sport {
   gid: number;
   name: string;
-  icon: string;
-  color: string | null;
+  icons: { black: string; white: string };
+  color: string;
 }
-
-export const EMPTY_SPORT: Sport = {
-  gid: 0,
-  name: "",
-  icon: "",
-  color: null,
-};

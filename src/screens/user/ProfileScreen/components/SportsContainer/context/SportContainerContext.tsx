@@ -8,15 +8,15 @@ import useStatus, { STATUS } from "../../../../../../hooks/useStatus";
 import mapActivity from "../../../../../../store/features/activity/methods/mapActivity";
 import getSports from "../methods/getSports";
 
-// Placeholders
-import ACTIVITIES_PAST from "../../../../../../api/placeholders/ACTIVITIES_PAST";
+// Services
+import Api from "../../../../../../services/api";
 
 // Types
 import Sport from "../../../../../../store/types/Sport";
 import Activity from "../../../../../../store/types/activity/Activity";
 
 interface Props {
-  userGid: number;
+  userGid: string;
   children?: React.ReactNode;
 }
 
@@ -38,7 +38,6 @@ const INITIAL_STATE = {
   setSelectedSport: () => {},
 };
 
-
 const SportContainerContext = createContext<ISportContext>(INITIAL_STATE);
 
 const SportContainerProvider = ({ userGid, children }: Props) => {
@@ -48,26 +47,34 @@ const SportContainerProvider = ({ userGid, children }: Props) => {
   const [error, setError] = useState<string>("");
   const { status, setStatus } = useStatus();
 
-  useEffect(() => {
+  const getData = async () => {
     try {
-      // Todo: get past activities by user gid
-      const activityArray = ACTIVITIES_PAST.map((activity) =>
-        mapActivity(activity)
+      const response = await Api.activity.getAll(
+        "?userGid=" + userGid + "&status[]=finished"
       );
-      setActivities(activityArray);
-      const auxSports = getSports(activityArray);
-      setSports(auxSports);
-
-      if (auxSports.length > 0) {
+      if (response.status === "error") {
+        setStatus("error");
+        setError(response.message);
+      } else if (response.data === 0) {
+        setStatus("empty");
+      } else {
+        const activityArray: Activity[] = response.data.map((activity: any) =>
+          mapActivity(activity)
+        );
+        setActivities(activityArray);
+        const auxSports = getSports(activityArray);
+        setSports(auxSports);
         setSelectedSport(auxSports[0].gid);
         setStatus("success");
-      } else {
-        setStatus("empty");
       }
-    } catch (error) {
+    } catch (error: any) {
       setStatus("error");
       setError(error.message);
     }
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   return (

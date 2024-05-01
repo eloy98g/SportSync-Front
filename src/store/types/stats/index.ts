@@ -3,7 +3,7 @@ type Stats = {
   ties: number;
   loses: number;
   total: number;
-  percentage: string | number;
+  percentage: number;
   victoryStreak: number;
   lastActivityDate: number | boolean;
 };

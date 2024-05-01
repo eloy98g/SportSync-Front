@@ -25,26 +25,31 @@ const PublicActivitiesList = () => {
 
   const activities = useAppSelector((state) => state.activity.publicActivities);
 
+  if (activities.length === 0) return <View />;
+
   return (
-    <View style={[styles.container, { maxWidth: scrollWidth }]}>
-      <View style={{ paddingLeft: 12 }}>
-        <Text style={styles.title}>Te puede interesar...</Text>
+    <>
+      <View style={[styles.container, { maxWidth: scrollWidth }]}>
+        <View style={{ paddingLeft: 12 }}>
+          <Text style={styles.title}>Te puede interesar...</Text>
+        </View>
+        <Divider height={12} />
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.scroll}
+        >
+          <Divider width={12} />
+          {activities.map((activity) => (
+            <React.Fragment key={activity.gid}>
+              <PublicActivity {...activity} />
+              <Divider width={16} />
+            </React.Fragment>
+          ))}
+        </ScrollView>
       </View>
-      <Divider height={12} />
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.scroll}
-      >
-        <Divider width={12} />
-        {activities.map((activity) => (
-          <React.Fragment key={activity.gid}>
-            <PublicActivity {...activity} />
-            <Divider width={16} />
-          </React.Fragment>
-        ))}
-      </ScrollView>
-    </View>
+      <Divider height={20} />
+    </>
   );
 };
 

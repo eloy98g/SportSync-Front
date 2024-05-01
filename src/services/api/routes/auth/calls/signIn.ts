@@ -8,6 +8,5 @@ interface Props {
 export default async function signIn({ email, password }: Props) {
   const finalUrl = url + "/auth/signin";
   const response = await post(finalUrl, { email, password });
-  console.log('response',response)
   return response;
 }

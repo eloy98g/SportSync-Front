@@ -61,7 +61,7 @@ const TouchableInfoContainer = ({ data }: Props) => {
       <InfoSheet open={sheet === "Access"} setOpen={setSheet}>
         <AccessInfo />
       </InfoSheet>
-      <InfoSheet open={sheet === "Ranked"} setOpen={setSheet}>
+      <InfoSheet open={sheet === "Type"} setOpen={setSheet}>
         <RankedInfo />
       </InfoSheet>
     </View>

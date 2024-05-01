@@ -19,7 +19,6 @@ const mapActivity = (data: any): Activity => {
     status: data.status,
     chat: data.chat,
     price: data.price,
-    userTeam: data.userTeam,
     result: data.result,
   };
 

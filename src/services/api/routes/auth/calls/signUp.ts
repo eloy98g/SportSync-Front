@@ -11,6 +11,5 @@ export default async function signUp({ email, password }: Props) {
   // console.log("signup url:", url)
   const finalUrl = url + "/auth/signup";
   const response = await post(finalUrl, { email, password });
-  console.log('response',response)
   return response;
 }

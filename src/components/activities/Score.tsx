@@ -3,26 +3,20 @@ import { StyleSheet, View } from "react-native";
 
 // Components
 import PartialScore from "./PartialScore";
-import FinalScore from "./FinalScore";
 
 // Types
-import Result from "../../store/types/activity/Result";
 import ScoreT from "../../store/types/activity/Score";
+import Team from "../../store/types/activity/Team";
 
 interface Props {
-  result: Result;
+  result: ScoreT[];
+  teams: Team[];
 }
 
-const Score = ({ result }: Props) => {
-  const { partialScores, finalScores } = result;
+const Score = ({ result, teams }: Props) => {
   return (
     <View style={styles.scoreWrapper}>
-      {partialScores.map((score: ScoreT) => (
-        <PartialScore key={score.slot} data={score} />
-      ))}
-      {finalScores.map((score: ScoreT) => (
-        <FinalScore key={score.slot} data={score} />
-      ))}
+      <PartialScore teams={teams} scores={result} />
     </View>
   );
 };

@@ -1,36 +1,58 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 // Components
 import PublicActivitiesList from "./components/publicActivities/PublicActivitiesList";
 import CurrentActivitiesList from "./components/currentActivities/CurrentActivitiesList";
 import QuickActions from "./components/sections/QuickActions";
 import SocialActions from "./components/sections/SocialActions";
-import OtherActions from "./components/sections/OtherActions";
 import Screen from "../../components/common/Screen";
 import Divider from "../../components/common/Divider";
 import Version from "../../components/Version";
 import Header from "../../components/Header";
 
+// Hooks
+import { useAppDispatch, useAppSelector } from "../../hooks";
+
+// Store
+import fetchPublicActivities from "../../store/features/activity/methods/fetchPublicActivities";
+import fetchCurrentActivities from "../../store/features/activity/methods/fetchCurrentActivities";
+import fetchChats from "../../store/features/chat/methods/fetchChats";
+
 // Theme
 import { PHONE } from "../../theme/breakPoints";
 
 const HomeScreen = () => {
+  const stateUser = useAppSelector((state) => state.user.user);
+  const dispatch = useAppDispatch();
+
+  const getData = async () => {
+    await dispatch(fetchPublicActivities());
+
+    if (!stateUser.gid) return;
+
+    dispatch(fetchChats());
+    dispatch(fetchCurrentActivities(stateUser.gid));
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [])
+  );
+
   return (
     <Screen>
       <View style={styles.content}>
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
           <Header />
           <PublicActivitiesList />
-          <Divider height={20} />
           <CurrentActivitiesList />
-          <Divider height={20} />
           <QuickActions />
           <Divider height={20} />
           <SocialActions />
           <Divider height={20} />
-          {/* <OtherActions />
-          <Divider height={50} /> */}
           <Version />
           <Divider height={80} />
         </ScrollView>
@@ -42,6 +64,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   content: {
     flex: 1,
+    width: "100%",
     alignItems: "center",
   },
   scroll: {

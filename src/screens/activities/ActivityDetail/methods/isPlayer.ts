@@ -1,6 +1,6 @@
 import Team from "../../../../store/types/activity/Team";
 
-const isPlayer = (userGid: number, teams: Team[]) => {
+const isPlayer = (userGid: string, teams: Team[]) => {
   let aux = false;
 
   for (const team of teams) {

@@ -1,12 +1,12 @@
 type Player = {
-  gid: number;
+  gid: string;
   name: string;
   image: string;
   verified?: boolean;
 };
 
 const EMPTY_PLAYER: Player = {
-  gid: 0,
+  gid: "",
   name: "",
   image: "",
 };
