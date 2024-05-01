@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { StyleSheet, View, ActivityIndicator, Text } from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
 
@@ -12,12 +12,13 @@ import JoinButton from "./components/JoinButton";
 import Header from "./components/Header";
 import Teams from "./components/Teams";
 import Result from "./components/Result";
+import Loading from "../../../components/Status/Loading";
+import Error from "../../../components/Status/Error";
 
 // Hooks
 import { useAppSelector } from "../../../hooks";
 
 // Theme
-import colors from "../../../theme/colors";
 import { PHONE } from "../../../theme/breakPoints";
 
 // Methods
@@ -30,10 +31,12 @@ import Activity from "../../../store/types/activity/Activity";
 import mapActivity from "../../../store/features/activity/methods/mapActivity";
 import AdminButton from "./components/AdminButton";
 import Api from "../../../services/api";
+import { useFocusEffect } from "@react-navigation/native";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
   const gid = route.params?.gid;
+
   const [activityData, setActivityData] = useState<Activity>();
   const [error, setError] = useState("");
   const [status, setStatus] = useState("idle");
@@ -46,7 +49,7 @@ const ActivityDetail = ({ route }: any) => {
       setPlayerView(isPlayer(userGid, activityData?.teams));
     }
   }, [userGid, activityData]);
-  
+
   const getData = async () => {
     setStatus("loading");
     if (gid) {
@@ -63,26 +66,18 @@ const ActivityDetail = ({ route }: any) => {
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [])
+  );
 
-  // Todo: generate Loading Component and remove duplicates
   if (status === "loading" || status === "idle") {
-    return (
-      <Screen>
-        <ActivityIndicator size="small" color={colors.primary} />
-      </Screen>
-    );
+    return <Loading />;
   }
 
-  // Todo: generate Error Component and remove duplicates
   if (status === "error") {
-    return (
-      <Screen>
-        <Text>{error}</Text>
-      </Screen>
-    );
+    return <Error error={error} />;
   }
 
   if (status === "success" && activityData) {

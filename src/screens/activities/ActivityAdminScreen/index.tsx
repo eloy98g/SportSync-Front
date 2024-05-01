@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 
 // Components
-import MainButton from "../../../components/common/buttons/MainButton";
 import LineDivider from "../../../components/common/LineDivider";
 import BackHeader from "../../../components/BackHeader";
 import Divider from "../../../components/common/Divider";
@@ -11,25 +16,33 @@ import Description from "./components/Description";
 import Visibility from "./components/Visibility";
 import ChangeTeams from "./components/ChangeTeams";
 import DeleteSection from "./components/DeleteSection";
+import Access from "./components/Access";
+import Requests from "./components/Requests";
+import ConfirmButton from "./components/ConfirmButton";
 
 // Hooks
 import useStatus from "../../../hooks/useStatus";
+
+// Services
+import Api from "../../../services/api";
+
+// Store
+import mapActivity from "../../../store/features/activity/methods/mapActivity";
 
 // Theme
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
+// Placeholders
+import USERS_REQUESTS from "../../../api/placeholders/USERS_REQUESTS";
+
 // Types
 import Activity from "../../../store/types/activity/Activity";
-import ACTIVITY_DETAIL_PAST from "../../../api/placeholders/ACTIVITY_DETAIL_PAST";
-import USERS_REQUESTS from "../../../api/placeholders/USERS_REQUESTS";
-import Access from "./components/Access";
-import Requests from "./components/Requests";
 import Player from "../../../store/types/activity/Player";
 
 interface Props {
   route: {
-    params: { activityGid: number };
+    params: { activityGid: string };
   };
 }
 
@@ -38,25 +51,34 @@ const ActivityAdminScreen = ({ route }: Props) => {
 
   const [activity, setActivity] = useState<Activity>({} as Activity);
   const [requests, setRequests] = useState<Player[]>([]);
+  const [error, setError] = useState("");
   const { status, setStatus } = useStatus();
-  const { status: editStatus, setStatus: setEditStatus } = useStatus();
 
-  const finishHandler = async () => {
-    // TODO: Api call for editing an activity
-    setEditStatus("loading");
-    setTimeout(() => {
-      setEditStatus("success");
-    }, 300);
+  const getData = async () => {
+    try {
+      setStatus("loading");
+      if (activityGid) {
+        setRequests(USERS_REQUESTS);
+        const response = await Api.activity.getById(activityGid);
+        if (response.status === "success") {
+          setActivity(mapActivity(response.data));
+          setStatus("success");
+        } else {
+          setStatus("error");
+          setError(response.message);
+        }
+      } else {
+        setError("No se ha encontrado la actividad");
+        setStatus("error");
+      }
+    } catch (error: any) {
+      setStatus("error");
+      setError(error.message);
+    }
   };
 
   useEffect(() => {
-    setStatus("loading");
-    try {
-      // TODO: Api call for getting activity data by activityGid
-      setActivity(ACTIVITY_DETAIL_PAST);
-      setRequests(USERS_REQUESTS);
-      setStatus("success");
-    } catch (error) {}
+    getData();
   }, []);
 
   return (
@@ -65,12 +87,12 @@ const ActivityAdminScreen = ({ route }: Props) => {
       <Divider height={80} />
       <View style={styles.content}>
         {status === "loading" || status === "idle" ? (
-          <View></View>
+          <View style={styles.errorContainer}>
+            <ActivityIndicator size="small" color={colors.primary} />
+          </View>
         ) : status === "error" ? (
           <View style={styles.errorContainer}>
-            <Text style={styles.error}>
-              {"Error al obtener los datos de la actividad"}
-            </Text>
+            <Text style={styles.error}>{error}</Text>
           </View>
         ) : (
           <ScrollView
@@ -88,13 +110,7 @@ const ActivityAdminScreen = ({ route }: Props) => {
             <Divider height={16} />
             <Description data={activity} setActivity={setActivity} />
             <Divider height={16} />
-            <View style={styles.buttonWrapper}>
-              <MainButton
-                title="Guardar cambios"
-                onPress={finishHandler}
-                loading={editStatus === "loading"}
-              />
-            </View>
+            <ConfirmButton activity={activity} />
             <Divider height={12} />
             <LineDivider height={36} color={colors.lightenGrey} />
             <DeleteSection />
