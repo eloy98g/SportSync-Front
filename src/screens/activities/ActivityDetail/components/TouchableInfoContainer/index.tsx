@@ -29,7 +29,7 @@ const TouchableInfoContainer = ({ data }: Props) => {
   const visibilityText =
     visibility === "public" ? "Actividad pública" : "Actividad privada";
 
-  const accessText = visibility === "public" ? "Abierta" : "Cerrada";
+  const accessText = access === "open" ? "Abierta" : "Cerrada";
 
   const typeText =
     type === "normal"

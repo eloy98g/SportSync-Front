@@ -1,26 +1,40 @@
 import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import StatusBar from "./components/StatusBar";
 import Actions from "./components/Actions";
 import Loading from "./components/Loading";
 import ConfirmModal from "./components/ConfirmModal";
+import ErrorModal from "./components/ErrorModal";
 
 // Context
 import CreateContext from "./context/CreateContext";
+
+// Hooks
+import useNavigate from "../../../hooks/useNavigate";
+import { useAppSelector } from "../../../hooks";
+
+// Services
+import Api from "../../../services/api";
 
 // Sections
 import Sections, { lastSection, SectionName } from "./sections";
 
 // Theme
 import colors from "../../../theme/colors";
-import { useNavigation } from "@react-navigation/native";
 
 const Create = () => {
   const [modal, setModal] = useState("");
-  const { status, section, setSection } = useContext(CreateContext);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [finishError, setFinishError] = useState<string>("");
+  const { navigateTo } = useNavigate();
   const navigation = useNavigation();
+
+  const { status, section, setSection, draft } = useContext(CreateContext);
+  const userGid = useAppSelector((state) => state.user.user.gid);
+
   const currentSection =
     Sections.find((element) => element.name === section) ?? Sections[0];
 
@@ -43,9 +57,33 @@ const Create = () => {
     }
   };
 
-  const finishHandler = () => {
-    // TODO: API call for publishing an activity
-    navigation.goBack();
+  const finishHandler = async () => {
+    setLoading(true);
+    try {
+      const activity = {
+        userGid,
+        ...draft,
+        lat: draft.location.latitude,
+        lng: draft.location.longitude,
+        address: draft.location.address,
+        dateStart: draft.day + draft.hour,
+      };
+      const response = await Api.activity.create(activity);
+      console.log('response', JSON.stringify(response));  
+      if (response.status === "success") {
+        navigateTo("ActivityDetail", {
+          gid: response.data.gid,
+        });
+      } else {
+        setFinishError(response.message);
+        setModal("Error");
+      }
+    } catch (error: any) {
+      setFinishError(error.message);
+      setModal("Error");
+    }finally{
+      setLoading(false);
+    }
   };
 
   const rightAction = () => {
@@ -82,6 +120,12 @@ const Create = () => {
         visible={modal === "Confirm"}
         setVisible={setModal}
         onFinish={finishHandler}
+        loading={loading}
+      />
+      <ErrorModal
+        visible={modal === "Error"}
+        setVisible={setModal}
+        error={finishError}
       />
     </View>
   );

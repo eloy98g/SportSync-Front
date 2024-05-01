@@ -17,7 +17,7 @@ export type ActivityStatus =
   | "finished";
 
 export default interface Activity {
-  gid: number;
+  gid: string;
   location: Location;
   creationDate: number;
   startDate: number;

@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -6,29 +5,54 @@ import { StyleSheet, View } from "react-native";
 import MainButton from "../../../../components/common/buttons/MainButton";
 import Divider from "../../../../components/common/Divider";
 import Label from "../../../../components/common/Label";
-
-// Hooks
-import useStatus from "../../../../hooks/useStatus";
-import colors from "../../../../theme/colors";
+import ErrorModal from "../../CreateActivity/components/ErrorModal";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
 
-const DeleteSection = () => {
+// Hooks
+import useNavigate from "../../../../hooks/useNavigate";
+import useStatus from "../../../../hooks/useStatus";
+
+// Services
+import Api from "../../../../services/api";
+
+// Theme
+import colors from "../../../../theme/colors";
+
+// Types
+import Activity from "../../../../store/types/activity/Activity";
+
+interface Props {
+  activity: Activity;
+}
+
+const DeleteSection = ({ activity }: Props) => {
   const { status, setStatus } = useStatus();
   const [modal, setModal] = useState("");
+  const [error, setError] = useState("");
 
-  const navigation = useNavigation()
+  const { navigateTo } = useNavigate();
 
   const deleteHandler = () => {
     setModal("Delete");
   };
+
   const deleteAction = async () => {
-    // TODO: api call for deleting an activity
-    setStatus("loading");
-    setTimeout(() => {
-      setStatus("success");
-      setModal("")
-      navigation.goBack()
-    }, 500);
+    try {
+      setStatus("loading");
+      const response = await Api.activity.remove(activity.gid);
+      if (response.status === "success") {
+        setStatus("success");
+        navigateTo("Home");
+      } else {
+        setModal("Error");
+        setStatus("error");
+        setError(response.message);
+      }
+    } catch (error: any) {
+      setModal("Error");
+      setStatus("error");
+      setError(error.message);
+    }
   };
 
   return (
@@ -49,6 +73,11 @@ const DeleteSection = () => {
         onFinish={deleteAction}
         setVisible={setModal}
         status={status}
+      />
+      <ErrorModal
+        visible={modal === "Error"}
+        setVisible={setModal}
+        error={error}
       />
     </>
   );

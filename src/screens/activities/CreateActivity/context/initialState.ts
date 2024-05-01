@@ -5,12 +5,13 @@ import Draft from "../../../../store/types/draft/Draft";
 import { SectionName } from "../sections";
 
 const INITIAL_DRAFT: Draft = {
-  sport: 1,
+  sport: "1",
   teams: 2,
   playersPerTeam: 2,
   visibility: "public",
   access: "open",
   type: "normal",
+  name: "",
   price: 0,
   location: {
     address: "",

@@ -13,40 +13,27 @@ import { family } from "../../../../theme/fonts";
 interface Props {
   visible: boolean;
   setVisible: (T: any) => void;
-  onFinish: () => void;
-  loading: boolean;
+  error: boolean;
 }
 
-const ConfirmModal = ({ visible, setVisible, onFinish, loading }: Props) => {
+const ConfirmDeleteModal = ({ visible, error, setVisible }: Props) => {
   const acceptHandler = () => {
-    onFinish();
-  };
-  const cancelHandler = () => {
     setVisible(false);
   };
 
   return (
     <Modal visible={visible} setVisible={setVisible}>
       <View style={styles.container}>
-        <Text style={styles.title}>Confirmar Actividad</Text>
+        <Text style={styles.title}>Eliminar Actividad</Text>
         <Divider height={16} />
-        <Text style={styles.subtitle}>
-          {`Estás a punto de publicar una actividad.\n¿Confirmar creación?`}
-        </Text>
+        <Text style={styles.subtitle}>{error}</Text>
         <Divider height={16} />
         <View style={styles.row}>
           <MainButton
-            title="Editar"
-            onPress={cancelHandler}
-            borderColor={colors.primary}
-            color={colors.white}
-            textColor={colors.primary}
-          />
-          <Divider width={20} />
-          <MainButton
             title="Aceptar"
             onPress={acceptHandler}
-            loading={loading}
+            borderColor={colors.red}
+            color={colors.red}
           />
         </View>
       </View>
@@ -54,7 +41,7 @@ const ConfirmModal = ({ visible, setVisible, onFinish, loading }: Props) => {
   );
 };
 
-export default ConfirmModal;
+export default ConfirmDeleteModal;
 
 const styles = StyleSheet.create({
   container: {

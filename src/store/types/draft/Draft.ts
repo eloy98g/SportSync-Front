@@ -6,7 +6,8 @@ import {
 import Location from "../location/Location";
 
 type Draft = {
-  sport: number;
+  sport: string;
+  name: string;
   teams: number;
   playersPerTeam: number;
   access: ActivityAccess;

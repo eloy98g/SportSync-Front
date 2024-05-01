@@ -6,9 +6,6 @@ import React, {
   SetStateAction,
 } from "react";
 
-// Api placeholder
-import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY_SPORTS";
-
 // Hooks
 import useStatus, { STATUS } from "../../../../hooks/useStatus";
 
@@ -21,6 +18,7 @@ import { SectionName } from "../sections";
 // Types
 import Draft from "../../../../store/types/draft/Draft";
 import Sport from "../../../../store/types/sport/Sport";
+import Api from "../../../../services/api";
 
 interface ContextProps {
   setDraft: Dispatch<SetStateAction<Draft>>;
@@ -43,14 +41,19 @@ const CreateProvider = ({ children }: Props) => {
   const [sports, setSports] = useState<Sport[]>([]);
   const { status, setStatus } = useStatus();
 
-  useEffect(() => {
-    // Todo: Api call for sports
-    // TODO: error handling
+  const getData = async () => {
     setStatus("loading");
-    setTimeout(() => {
-      setSports(CREATE_ACTIVITY_SPORTS);
+    try {
+      const response = await Api.sport.getAll();
+      if (response.status === "success") setSports(response.data);
       setStatus("success");
-    }, 1000);
+    } catch (error) {
+      setStatus("error");
+    }
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   return (
