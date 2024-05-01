@@ -21,31 +21,36 @@ import TeamT from "../../../../../../store/types/activity/Team";
 // Utils
 import RESULT_COLORS from "../../../../../../utils/activity/resultColors";
 import unixToDate from "../../../../../../utils/date/unixToDate";
+import getWinner from "../../../../../../utils/score/getWinner";
+import getUserTeam from "../../../../../../utils/activity/getUserTeam";
+import { useAppSelector } from "../../../../../../hooks";
+import useNavigate from "../../../../../../hooks/useNavigate";
 
 interface Props {
   data: ActivityT;
 }
 
 const Activity = ({ data }: Props) => {
-  const navigation = useNavigation();
+  const { result, teams, startDate, gid } = data;
+  const userGid = useAppSelector((state) => state.user.user.gid);
+  const { navigateTo } = useNavigate();
 
-  const { result, teams, startDate, gid, userTeam: userT } = data;
-  const borderColor = RESULT_COLORS[result.result];
+  const winner = getWinner(data.result);
+  const userTeam = getUserTeam(userGid, teams);
+  
+  const resultString =
+    winner === null ? "tie" : winner === userTeam ? "victory" : "defeat";
+  const borderColor = RESULT_COLORS[resultString];
 
-  const userTeam = teams.find((team: TeamT) => team.name === userT);
-  const otherTeam = teams.find((team: TeamT) => team.name !== userT);
+  const userTeamData = teams.find((team: TeamT) => team.name === userTeam);
 
-  const userScore = result.finalScores[0].scores.find(
-    (team: Slot) => team.team === userTeam?.name
-  );
-  const otherScore = result.finalScores[0].scores.find(
-    (team: Slot) => team.team !== userTeam?.name
-  );
+  const otherTeam = teams.find((team: TeamT) => team.name !== userTeam);
 
-  const winner = result.finalScores[0].winner;
+  const userScore = result.find((team: Slot) => team.team === userTeam);
+  const otherScore = result.find((team: Slot) => team.team !== userTeam);
 
   const moreInfoHandler = () => {
-    navigation.navigate("ActivityDetail" as never, { gid } as never);
+    navigateTo("ActivityDetail", { gid });
   };
 
   return (
@@ -56,8 +61,8 @@ const Activity = ({ data }: Props) => {
       <View style={styles.content}>
         <View style={styles.teamWrapper}>
           <Team
-            image={userTeam?.players[0].image}
-            size={userTeam?.players.length}
+            image={userTeamData?.players[0].image}
+            size={userTeamData?.players.length}
           />
         </View>
         <View style={styles.scoreWrapper}>

@@ -18,17 +18,18 @@ import SearchFilters from "../types/SearchFilters";
 import Activity from "../../../../store/types/activity/Activity";
 import Sport from "../../../../store/types/sport/Sport";
 
-// Placeholder
-import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY_SPORTS";
-
 // Methods
 import insideRangePrice from "../methods/insideRangePrice";
 import sortActivities from "../methods/sortActivities";
 
+// Services
+import Api from "../../../../services/api";
+
+// Store
+import fetchPublicActivities from "../../../../store/features/activity/methods/fetchPublicActivities";
+
 // Utils
 import isPointInsideRadius from "../../../../utils/distances/isPointInsideRadius";
-import Api from "../../../../services/api";
-import fetchPublicActivities from "../../../../store/features/activity/methods/fetchPublicActivities";
 
 interface ContextProps {
   setFilters: Dispatch<SetStateAction<SearchFilters>>;
@@ -45,7 +46,7 @@ interface Props {
 }
 
 const SearchProvider = ({ children }: Props) => {
-  const { status, setStatus } = useStatus();
+  const { status, setStatus, } = useStatus();
   const publicActivities = useAppSelector(
     (state) => state.activity.publicActivities
   );
@@ -58,7 +59,7 @@ const SearchProvider = ({ children }: Props) => {
   );
 
   const [filters, setFilters] = useState<SearchFilters>(INITIAL_FILTERS);
-  const [sports, setSports] = useState<Sport[]>(CREATE_ACTIVITY_SPORTS);
+  const [sports, setSports] = useState<Sport[]>([]);
   const [filteredActivities, setFilteredActivities] =
     useState<Activity[]>(publicActivities);
 

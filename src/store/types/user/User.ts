@@ -2,7 +2,7 @@ import Location, { EMPTY_LOCATION } from "../location/Location";
 
 type User = {
   gid: string;
-  name?: string;
+  name: string;
   email: string;
   phone: number | null;
   image: string | null;

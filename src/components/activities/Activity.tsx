@@ -15,11 +15,14 @@ import RESULT_COLORS from "../../utils/activity/resultColors";
 
 // Types
 import Team from "../../store/types/activity/Team";
-import Result from "../../store/types/activity/Result";
+import ScoreT from "../../store/types/activity/Score";
+import getWinner from "../../utils/score/getWinner";
+import { useAppSelector } from "../../hooks";
+import getUserTeam from "../../utils/activity/getUserTeam";
 
 interface Props {
   data: {
-    result: Result;
+    result: ScoreT[];
     teams: Team[];
     type: ActivityType;
     startDate: number;
@@ -29,13 +32,21 @@ interface Props {
 
 const Activity = ({ data }: Props) => {
   const { result, teams, startDate, type, gid } = data;
-  const borderColor = RESULT_COLORS[result.result];
+  const userGid = useAppSelector((state) => state.user.user.gid);
+
+  const winner = getWinner(result);
+  const userTeam = getUserTeam(userGid, teams);
+
+  const resultString =
+    winner === null ? "tie" : winner === userTeam ? "victory" : "defeat";
+
+  const borderColor = RESULT_COLORS[resultString];
 
   return (
     <View style={[styles.container, { borderLeftColor: borderColor }]}>
       <View style={styles.content}>
         <Teams teams={teams} />
-        <Score result={result} />
+        <Score teams={teams} result={result} />
         <Actions startDate={startDate} type={type} gid={gid} />
       </View>
     </View>

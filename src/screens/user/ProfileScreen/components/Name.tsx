@@ -7,7 +7,7 @@ import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
 interface Props {
-  name: string | null;
+  name: string;
   verified: boolean;
 }
 const Name = ({ name, verified }: Props) => (

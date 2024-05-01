@@ -8,6 +8,7 @@ import Description from "./components/Description";
 import Divider from "../../../components/common/Divider";
 import Information from "./components/Information";
 import SportsContainer from "./components/SportsContainer";
+import MainActions from "./components/MainActions";
 import Name from "./components/Name";
 
 // Context
@@ -21,13 +22,10 @@ import { PHONE } from "../../../theme/breakPoints";
 import { family } from "../../../theme/fonts";
 
 // Types
-import User, { EMPTY_USER } from "../../../store/types/user/User";
+import User from "../../../store/types/user/User";
 import colors from "../../../theme/colors";
 
 // Placeholders
-import USER_1 from "../../../api/placeholders/USER_1";
-import USER_2 from "../../../api/placeholders/USER_2";
-import MainActions from "./components/MainActions";
 
 const ProfileScreen = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -61,7 +59,6 @@ const ProfileScreen = ({ route }: any) => {
 
   // Todo: error handling
 
-  console.log('userData',userData)
   return (
     <Screen>
       <ProfileHeader data={userData} isExternal={isExternal} />

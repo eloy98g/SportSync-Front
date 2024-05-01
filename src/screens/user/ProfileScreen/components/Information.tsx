@@ -19,8 +19,6 @@ const Information = ({ data }: Props) => {
     published,
   } = data;
 
-  console.log("creationDate", creationDate);
-
   return (
     <View style={styles.container}>
       {phoneVerified && <VerifiedLine text={"Correo electrónico confirmado"} />}

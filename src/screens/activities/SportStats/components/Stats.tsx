@@ -9,6 +9,7 @@ import StatResume from "./StatResume";
 // Methods
 import getStats from "../methods/getStats";
 import Activity from "../../../../store/types/activity/Activity";
+import { useAppSelector } from "../../../../hooks";
 
 // Todo remove anys
 interface Props {
@@ -16,7 +17,8 @@ interface Props {
 }
 
 const Stats = ({ activities }: Props) => {
-  const statData = getStats(activities);
+  const userGid = useAppSelector((state) => state.user.user.gid);
+  const statData = getStats(activities, userGid);
 
   return (
     <View style={styles.container}>

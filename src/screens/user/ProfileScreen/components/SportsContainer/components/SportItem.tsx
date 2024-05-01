@@ -18,7 +18,7 @@ interface Props {
 }
 
 const SportItem = ({ sport, onPress, selected }: Props) => {
-  const { icon, name, gid } = sport;
+  const { icons, name, gid } = sport;
   return (
     <TouchableOpacity style={styles.container} onPress={() => onPress(gid)}>
       <View
@@ -27,7 +27,7 @@ const SportItem = ({ sport, onPress, selected }: Props) => {
           selected && { backgroundColor: colors.primary },
         ]}
       >
-        <Image style={styles.image} source={{ uri: icon }} />
+        <Image style={styles.image} source={{ uri: icons.white }} />
       </View>
       <Divider height={4} />
       <Text style={styles.title}>{name}</Text>
