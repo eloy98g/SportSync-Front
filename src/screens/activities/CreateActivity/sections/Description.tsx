@@ -9,6 +9,7 @@ import Title from "../components/Title";
 
 // Context
 import CreateContext from "../context/CreateContext";
+import TextInput from "../../../../components/common/inputs/TextInput";
 
 const Description = () => {
   const { draft, setDraft } = useContext(CreateContext);
@@ -20,8 +21,23 @@ const Description = () => {
     }));
   };
 
+  const nameHandler = (e: any) => {
+    setDraft((prevState) => ({
+      ...prevState,
+      name: e,
+    }));
+  };
+
   return (
     <SectionContainer>
+      <Title title="Nombre" />
+      <Divider height={12} />
+      <TextInput
+        placeholder="Nombre de la actividad"
+        value={draft.name}
+        onChange={nameHandler}
+      />
+      <Divider height={36} />
       <Title title="Descripción" />
       <Divider height={12} />
       <TextArea

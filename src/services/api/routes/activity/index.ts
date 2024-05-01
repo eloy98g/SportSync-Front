@@ -1,3 +1,4 @@
+import create from "./calls/create";
 import getAdministrated from "./calls/getAdministrated";
 import getAll from "./calls/getAll";
 import getById from "./calls/getById";
@@ -11,5 +12,9 @@ export class Activity {
   }
   static async getAdministrated(userGid: string) {
     return getAdministrated(userGid);
+  }
+
+  static async create(activity: any) {
+    return create(activity);
   }
 }

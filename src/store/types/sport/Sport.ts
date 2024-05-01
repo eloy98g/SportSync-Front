@@ -1,5 +1,5 @@
 type Sport = {
-  gid: number;
+  gid: string;
   image: string;
   name: string;
 };

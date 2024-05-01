@@ -13,48 +13,29 @@ import { family } from "../../../../theme/fonts";
 interface Props {
   visible: boolean;
   setVisible: (T: any) => void;
-  onFinish: () => void;
-  loading: boolean;
+  error: string;
 }
 
-const ConfirmModal = ({ visible, setVisible, onFinish, loading }: Props) => {
+const ErrorModal = ({ visible, setVisible, error }: Props) => {
   const acceptHandler = () => {
-    onFinish();
-  };
-  const cancelHandler = () => {
     setVisible(false);
   };
-
   return (
     <Modal visible={visible} setVisible={setVisible}>
       <View style={styles.container}>
-        <Text style={styles.title}>Confirmar Actividad</Text>
+        <Text style={styles.title}>Error</Text>
         <Divider height={16} />
-        <Text style={styles.subtitle}>
-          {`Estás a punto de publicar una actividad.\n¿Confirmar creación?`}
-        </Text>
+        <Text style={styles.subtitle}>{error}</Text>
         <Divider height={16} />
         <View style={styles.row}>
-          <MainButton
-            title="Editar"
-            onPress={cancelHandler}
-            borderColor={colors.primary}
-            color={colors.white}
-            textColor={colors.primary}
-          />
-          <Divider width={20} />
-          <MainButton
-            title="Aceptar"
-            onPress={acceptHandler}
-            loading={loading}
-          />
+          <MainButton title="Aceptar" onPress={acceptHandler} />
         </View>
       </View>
     </Modal>
   );
 };
 
-export default ConfirmModal;
+export default ErrorModal;
 
 const styles = StyleSheet.create({
   container: {

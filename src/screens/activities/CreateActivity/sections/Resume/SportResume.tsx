@@ -13,11 +13,13 @@ const SportResume = () => {
 
   const sportData = sports.find((sport) => sport.gid === draft.sport);
   const teamsText =
-    `${playersPerTeam} vs `.repeat(teams - 1) + `${playersPerTeam}`;
-    
+    teams > 1
+      ? `${playersPerTeam} vs `.repeat(teams - 1) + `${playersPerTeam}`
+      : `${playersPerTeam} participantes`;
+
   return (
     <Card title="Deporte">
-      <ResumeText text={`${sportData?.name} ${teamsText}`} />
+      <ResumeText text={`${sportData?.name} (${teamsText})`} />
     </Card>
   );
 };
