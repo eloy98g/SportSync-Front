@@ -23,7 +23,7 @@ const CurrentActivitiesList = () => {
     (state) => state.activity.currentActivities
   );
 
-  const activityHandler = (gid: number) => {
+  const activityHandler = (gid: string) => {
     navigateTo("ActivityDetail", { gid });
   };
 

@@ -35,6 +35,7 @@ const Requests = ({ data, requests }: Props) => {
 
   return (
     <>
+      <Divider height={16} />
       <Label text="Peticiones" />
       <Divider height={8} />
       <TouchableInfo
