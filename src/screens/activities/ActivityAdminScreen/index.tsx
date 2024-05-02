@@ -58,14 +58,18 @@ const ActivityAdminScreen = ({ route }: Props) => {
     try {
       setStatus("loading");
       if (activityGid) {
-        setRequests(USERS_REQUESTS);
         const response = await Api.activity.getById(activityGid);
-        if (response.status === "success") {
+        const requestResponse = await Api.application.getAll(activityGid);
+        if (
+          response.status === "success" &&
+          requestResponse.status === "success"
+        ) {
+          setRequests(requestResponse.data)
           setActivity(mapActivity(response.data));
           setStatus("success");
         } else {
           setStatus("error");
-          setError(response.message);
+          setError(response.message || requestResponse.message);
         }
       } else {
         setError("No se ha encontrado la actividad");

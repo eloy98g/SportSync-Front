@@ -9,7 +9,7 @@ export class Application {
   static async create(input: string) {
     return create(input);
   }
-  static async resolve(activityGid: string, body: any) {
-    return resolve(activityGid, body);
+  static async resolve(gid: string, body: any) {
+    return resolve(gid, body);
   }
 }
