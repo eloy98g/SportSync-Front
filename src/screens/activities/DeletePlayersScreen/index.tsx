@@ -14,6 +14,8 @@ import Activity from "../../../store/types/activity/Activity";
 import Player from "../../../store/types/activity/Player";
 import TeamT from "../../../store/types/activity/Team";
 import colors from "../../../theme/colors";
+import useStatus from "../../../hooks/useStatus";
+import Api from "../../../services/api";
 
 interface RouteProps {
   route: {
@@ -30,6 +32,7 @@ export interface SelectedPlayer extends Player {
 
 const DeletePlayersScreen = ({ route }: RouteProps) => {
   const { activity, setActivity } = route.params;
+  const { status, setStatus } = useStatus();
   const { teams } = activity;
   const [screenTeams, setScreenTeams] = useState(teams);
   const [playerList, setPlayerList] = useState<SelectedPlayer[]>([]);
@@ -40,6 +43,15 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
   const firstTeam = numTeams > 0 ? teams[0] : null;
   const secondTeam = numTeams > 1 ? teams[1] : null;
 
+  // const apiCall = async (newTeams: TeamT[]) => {
+  //   try {
+  //     setStatus("loading");
+  //     const object = { teams: newTeams };
+  //     const response = Api.activity.updateTeams(object, activity.gid);
+  //     if(response)
+  //   } catch (error) {}
+  // };
+ 
   const swapHandler = () => {
     const firstTeam = screenTeams[0].name;
 
@@ -55,10 +67,10 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
       (player) => !playersToSecondTeam.some((p) => p.gid === player.gid)
     );
 
-    let newSecondTeam = null;
+    let newSecondTeam: Player[] = [];
     if (secondTeam) {
       newSecondTeam = screenTeams[1].players.filter(
-        (player) => !playersToFirstTeam.some((p) => p.gid === player.gid)
+        (player) => !playersToFirstTeam?.some((p) => p.gid === player.gid)
       );
     }
 
@@ -76,11 +88,11 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
 
     const newTeams = [updatedFirstTeam, updatedSecondTeam] as TeamT[];
 
-    setPlayerList([]);
-    setScreenTeams(newTeams);
-    setActivity((prevState) => {
-      return { ...prevState, teams: [...newTeams] };
-    });
+    // setPlayerList([]);
+    // setScreenTeams(newTeams);
+    // setActivity((prevState) => {
+    //   return { ...prevState, teams: [...newTeams] };
+    // });
   };
 
   return (

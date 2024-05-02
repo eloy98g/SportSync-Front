@@ -13,6 +13,7 @@ import Activity from "../../../../store/types/activity/Activity";
 
 // Theme
 import colors from "../../../../theme/colors";
+import useNavigate from "../../../../hooks/useNavigate";
 
 interface Props {
   data: Activity;
@@ -21,24 +22,19 @@ interface Props {
 
 const ChangeTeams = ({ data, setActivity }: Props) => {
   const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
+
+  const navigationParams = {
+    activity: data,
+    setActivity,
+  };
+
   const teamsHandler = () => {
-    navigation.navigate(
-      "ModifyTeamScreen" as never,
-      {
-        activity: data,
-        setActivity,
-      } as never
-    );
+    navigateTo("ModifyTeamScreen", navigationParams);
   };
 
   const playersHandler = () => {
-    navigation.navigate(
-      "DeletePlayersScreen" as never,
-      {
-        activity: data,
-        setActivity,
-      } as never
-    );
+    navigateTo("DeletePlayersScreen", navigationParams);
   };
   return (
     <>
@@ -54,7 +50,7 @@ const ChangeTeams = ({ data, setActivity }: Props) => {
           <Divider height={12} />
         </>
       )}
-      
+
       <TouchableInfo
         icon={<UserX size={24} color={colors.black} />}
         title={"Eliminar jugadores"}

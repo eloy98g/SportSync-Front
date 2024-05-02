@@ -18,6 +18,7 @@ const DeleteButton = ({ onPress }: Props) => {
   const finishHandler = () => {
     setModal("Delete");
   };
+  
   return (
     <View style={styles.container}>
       <MainButton

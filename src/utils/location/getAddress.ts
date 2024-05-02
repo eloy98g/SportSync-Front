@@ -18,8 +18,8 @@ const getAddress = async (location: Location) => {
       : "";
 
     return finalAddress;
-  } catch (error) {
-    console.log("[getAddress error]", error.message);
+  } catch (error: any) {
+    console.log("[error]", error.message);
     return "";
   }
 };

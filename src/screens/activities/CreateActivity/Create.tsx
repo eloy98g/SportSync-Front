@@ -3,11 +3,11 @@ import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
+import ErrorModal from "../../../components/modals/ErrorModal";
 import StatusBar from "./components/StatusBar";
 import Actions from "./components/Actions";
 import Loading from "./components/Loading";
 import ConfirmModal from "./components/ConfirmModal";
-import ErrorModal from "./components/ErrorModal";
 
 // Context
 import CreateContext from "./context/CreateContext";
@@ -69,7 +69,6 @@ const Create = () => {
         dateStart: draft.day + draft.hour,
       };
       const response = await Api.activity.create(activity);
-      console.log('response', JSON.stringify(response));  
       if (response.status === "success") {
         navigateTo("ActivityDetail", {
           gid: response.data.gid,
