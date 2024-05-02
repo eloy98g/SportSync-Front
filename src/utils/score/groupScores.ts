@@ -10,7 +10,6 @@ const groupScores = (result: Score[]) => {
     return acc;
   }, {});
 
-  console.log('groupedByPosition',groupedByPosition)
   return groupedByPosition as Score[];
 };
 

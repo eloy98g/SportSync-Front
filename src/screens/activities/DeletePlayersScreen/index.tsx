@@ -14,6 +14,9 @@ import Activity from "../../../store/types/activity/Activity";
 import Player from "../../../store/types/activity/Player";
 import TeamT from "../../../store/types/activity/Team";
 import colors from "../../../theme/colors";
+import useStatus from "../../../hooks/useStatus";
+import Api from "../../../services/api";
+import ErrorModal from "../../../components/modals/ErrorModal";
 
 interface RouteProps {
   route: {
@@ -30,6 +33,9 @@ export interface SelectedPlayer extends Player {
 
 const DeletePlayersScreen = ({ route }: RouteProps) => {
   const { activity, setActivity } = route.params;
+  const { status, setStatus } = useStatus();
+  const [modal, setModal] = useState("");
+  const [error, setError] = useState("");
   const { teams } = activity;
   const [screenTeams, setScreenTeams] = useState(teams);
   const [playerList, setPlayerList] = useState<SelectedPlayer[]>([]);
@@ -40,7 +46,40 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
   const firstTeam = numTeams > 0 ? teams[0] : null;
   const secondTeam = numTeams > 1 ? teams[1] : null;
 
-  const swapHandler = () => {
+  const removePlayers = async (players: SelectedPlayer[]) => {
+    try {
+      setStatus("loading");
+      const newPlayers = players
+        .map((player) => player.gid)
+        .filter((p) => p !== activity.admin.gid);
+
+      if (newPlayers.length > 0) {
+        const object = { players: newPlayers };
+        const response = await Api.activity.removePlayers(object, activity.gid);
+        if (response.status === "success") {
+          setStatus("success");
+          return true;
+        } else {
+          setStatus("error");
+          setError(response.message);
+          setModal("Error");
+          return false;
+        }
+      } else {
+        setStatus("error");
+        setError("No se puede eliminar al administrador de la actividad.");
+        setModal("Error");
+        return false;
+      }
+    } catch (error: any) {
+      setStatus("error");
+      setError(error.message);
+      setModal("Error");
+      return false;
+    }
+  };
+
+  const swapHandler = async () => {
     const firstTeam = screenTeams[0].name;
 
     const secondTeam = numTeams === 2 ? screenTeams[1]?.name : null;
@@ -55,10 +94,10 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
       (player) => !playersToSecondTeam.some((p) => p.gid === player.gid)
     );
 
-    let newSecondTeam = null;
+    let newSecondTeam: Player[] = [];
     if (secondTeam) {
       newSecondTeam = screenTeams[1].players.filter(
-        (player) => !playersToFirstTeam.some((p) => p.gid === player.gid)
+        (player) => !playersToFirstTeam?.some((p) => p.gid === player.gid)
       );
     }
 
@@ -76,11 +115,15 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
 
     const newTeams = [updatedFirstTeam, updatedSecondTeam] as TeamT[];
 
-    setPlayerList([]);
-    setScreenTeams(newTeams);
-    setActivity((prevState) => {
-      return { ...prevState, teams: [...newTeams] };
-    });
+    const result = await removePlayers(playerList);
+
+    if (result) {
+      setPlayerList([]);
+      setScreenTeams(newTeams);
+      setActivity((prevState) => {
+        return { ...prevState, teams: [...newTeams] };
+      });
+    }
   };
 
   return (
@@ -106,7 +149,14 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
           />
         )}
       </View>
-      {showButton && <DeleteButton onPress={swapHandler} />}
+      {showButton && (
+        <DeleteButton onPress={swapHandler} loading={status === "loading"} />
+      )}
+      <ErrorModal
+        visible={modal === "Error"}
+        setVisible={setModal}
+        error={error}
+      />
     </Screen>
   );
 };

@@ -13,6 +13,9 @@ import Team from "./components/Team";
 import Activity from "../../../store/types/activity/Activity";
 import Player from "../../../store/types/activity/Player";
 import TeamT from "../../../store/types/activity/Team";
+import useStatus from "../../../hooks/useStatus";
+import Api from "../../../services/api";
+import ErrorModal from "../../../components/modals/ErrorModal";
 
 interface RouteProps {
   route: {
@@ -29,13 +32,47 @@ export interface SelectedPlayer extends Player {
 
 const ModifyTeamScreen = ({ route }: RouteProps) => {
   const { activity, setActivity } = route.params;
+  const { status, setStatus } = useStatus();
+  const [modal, setModal] = useState("");
+  const [error, setError] = useState("");
+
   const { teams } = activity;
-  const [screenTeams, setScreenTeams] = useState(teams)
+  const [screenTeams, setScreenTeams] = useState(teams);
   const [playerList, setPlayerList] = useState<SelectedPlayer[]>([]);
 
   const showButton = playerList.length > 0;
 
-  const swapHandler = () => {
+  const postNewTeams = async (newTeams: TeamT[]) => {
+    try {
+      setStatus("loading");
+      const teams = newTeams.map((team) => {
+        const gidsJugadores = team.players.map((player) => player.gid);
+        return {
+          gid: team.gid,
+          name: team.name,
+          players: gidsJugadores,
+        };
+      });
+      const object = { teams: teams };
+      const response = await Api.activity.updateTeams(object, activity.gid);
+      if (response.status === "success") {
+        setStatus("success");
+        return true;
+      } else {
+        setStatus("error");
+        setError(response.message);
+        setModal("Error");
+        return false;
+      }
+    } catch (error: any) {
+      setStatus("error");
+      setError(error.message);
+      setModal("Error");
+      return false;
+    }
+  };
+
+  const swapHandler = async () => {
     const firstTeam = screenTeams[0].name;
     const secondTeam = screenTeams[1].name;
 
@@ -59,11 +96,15 @@ const ModifyTeamScreen = ({ route }: RouteProps) => {
     };
 
     const newTeams = [updatedFirstTeam, updatedSecondTeam] as TeamT[];
-    setPlayerList([])
-    setScreenTeams(newTeams)
-    setActivity((prevState) => {
-      return { ...prevState, teams: [...newTeams] };
-    });
+    const result = await postNewTeams(newTeams);
+
+    if (result) {
+      setPlayerList([]);
+      setScreenTeams(newTeams);
+      setActivity((prevState) => {
+        return { ...prevState, teams: [...newTeams] };
+      });
+    }
   };
 
   return (
@@ -83,7 +124,12 @@ const ModifyTeamScreen = ({ route }: RouteProps) => {
           setPlayerList={setPlayerList}
         />
       </View>
-      {showButton && <SwapButton onPress={swapHandler} />}
+      {showButton && <SwapButton onPress={swapHandler} status={status} />}
+      <ErrorModal
+        visible={modal === "Error"}
+        setVisible={setModal}
+        error={error}
+      />
     </Screen>
   );
 };

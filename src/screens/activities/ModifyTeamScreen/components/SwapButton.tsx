@@ -4,11 +4,16 @@ import MainButton from "../../../../components/common/buttons/MainButton";
 
 interface Props {
   onPress: () => void;
+  status: string;
 }
-const SwapButton = ({ onPress }: Props) => {
+const SwapButton = ({ onPress, status }: Props) => {
   return (
     <View style={styles.container}>
-      <MainButton title="Cambiar de equipo" onPress={onPress} />
+      <MainButton
+        title="Cambiar de equipo"
+        onPress={onPress}
+        loading={status === "loading"}
+      />
     </View>
   );
 };

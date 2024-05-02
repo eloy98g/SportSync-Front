@@ -1,12 +1,16 @@
 import Response from "../types/Response";
 
-export default async function removeCall(url: string): Promise<Response> {
+export default async function removeCall(
+  url: string,
+  body?: any
+): Promise<Response> {
   try {
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
       },
       method: "DELETE",
+      body: body && JSON.stringify(body),
     });
     const resData = await response.json();
     const { status, data, message } = resData;

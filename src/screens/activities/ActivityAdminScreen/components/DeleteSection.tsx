@@ -3,9 +3,9 @@ import { StyleSheet, View } from "react-native";
 
 // Components
 import MainButton from "../../../../components/common/buttons/MainButton";
+import ErrorModal from "../../../../components/modals/ErrorModal";
 import Divider from "../../../../components/common/Divider";
 import Label from "../../../../components/common/Label";
-import ErrorModal from "../../CreateActivity/components/ErrorModal";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
 
 // Hooks
