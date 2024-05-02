@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import TouchableInfo from "../../ActivityDetail/components/TouchableInfoContainer/TouchableInfo";
@@ -13,6 +12,7 @@ import Player from "../../../../store/types/activity/Player";
 
 // Theme
 import colors from "../../../../theme/colors";
+import useNavigate from "../../../../hooks/useNavigate";
 
 interface Props {
   data: Activity;
@@ -20,7 +20,7 @@ interface Props {
 }
 
 const Requests = ({ data, requests }: Props) => {
-  const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
   const requestsText =
     "(" +
     requests.length +
@@ -28,16 +28,14 @@ const Requests = ({ data, requests }: Props) => {
     (requests.length > 1 ? "Peticiones" : "Petición");
 
   const requestsHandler = () => {
-    navigation.navigate(
-      "RequestListScreen" as never,
-      {
-        activityGid: data.gid,
-      } as never
-    );
+    navigateTo("RequestListScreen", { activityGid: data.gid });
   };
+
+  if (requests.length === 0) return <></>;
 
   return (
     <>
+      <Divider height={16} />
       <Label text="Peticiones" />
       <Divider height={8} />
       <TouchableInfo

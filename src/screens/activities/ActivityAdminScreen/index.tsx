@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   StyleSheet,
   View,
@@ -39,6 +39,7 @@ import USERS_REQUESTS from "../../../api/placeholders/USERS_REQUESTS";
 // Types
 import Activity from "../../../store/types/activity/Activity";
 import Player from "../../../store/types/activity/Player";
+import { useFocusEffect } from "@react-navigation/native";
 
 interface Props {
   route: {
@@ -58,14 +59,18 @@ const ActivityAdminScreen = ({ route }: Props) => {
     try {
       setStatus("loading");
       if (activityGid) {
-        setRequests(USERS_REQUESTS);
         const response = await Api.activity.getById(activityGid);
-        if (response.status === "success") {
+        const requestResponse = await Api.application.getAll(activityGid);
+        if (
+          response.status === "success" &&
+          requestResponse.status === "success"
+        ) {
+          setRequests(requestResponse.data)
           setActivity(mapActivity(response.data));
           setStatus("success");
         } else {
           setStatus("error");
-          setError(response.message);
+          setError(response.message || requestResponse.message);
         }
       } else {
         setError("No se ha encontrado la actividad");
@@ -77,9 +82,11 @@ const ActivityAdminScreen = ({ route }: Props) => {
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [])
+  );
 
   return (
     <Screen>
@@ -99,7 +106,6 @@ const ActivityAdminScreen = ({ route }: Props) => {
             showsVerticalScrollIndicator={false}
             style={styles.scroll}
           >
-            <Divider height={16} />
             <Requests data={activity} requests={requests} />
             <Divider height={16} />
             <Visibility data={activity} setActivity={setActivity} />

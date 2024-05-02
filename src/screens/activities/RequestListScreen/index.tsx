@@ -1,60 +1,60 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  ActivityIndicator,
-} from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 
 // Components
 import Screen from "../../../components/common/Screen";
-import Search from "../../../components/common/inputs/Search";
 import BackHeader from "../../../components/BackHeader";
 import Divider from "../../../components/common/Divider";
-import PlayerCard from "../../../components/social/PlayerCard";
+import Loading from "../CodeScanScreen/states/Loading";
+import Error from "../../../components/Status/Error";
+import RequestCard from "./components/RequestCard";
 
 // Hooks
-import { useAppSelector } from "../../../hooks";
 import useStatus from "../../../hooks/useStatus";
 
+// Services
+import Api from "../../../services/api";
+
 // Types
-import Player from "../../../store/types/activity/Player";
-
-// Theme
-import { family } from "../../../theme/fonts";
-import colors from "../../../theme/colors";
-
-// Store
-import USER_SEARCH from "../../../api/placeholders/USER_SEARCH";
-import RequestCard from "./components/RequestCard";
+import Application from "../../../store/types/application/Application";
 
 interface Props {
   route: {
     params: {
-      activityGid: number;
+      activityGid: string;
     };
   };
 }
 const RequestListScreen = ({ route }: Props) => {
   const { activityGid } = route.params;
   const { status, setStatus } = useStatus();
-  const [users, setUsers] = useState<Player[]>([]);
+  const [requests, setRequests] = useState<Application[]>([]);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    setStatus("loading");
-    setError("");
+  const getData = async () => {
     try {
-      // TODO: api call for fetching users join requests for an activity
-      setTimeout(() => {
-        setUsers(USER_SEARCH);
-        setStatus("success");
-      }, 500);
-    } catch (error) {
+      setStatus("loading");
+      if (activityGid) {
+        const response = await Api.application.getAll(activityGid);
+        if (response.status === "success") {
+          setRequests(response.data);
+          setStatus("success");
+        } else {
+          setStatus("error");
+          setError(response.message);
+        }
+      } else {
+        setError("No se ha encontrado la actividad");
+        setStatus("error");
+      }
+    } catch (error: any) {
       setStatus("error");
       setError(error.message);
     }
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   return (
@@ -62,19 +62,19 @@ const RequestListScreen = ({ route }: Props) => {
       <BackHeader title="Peticiones" />
       <View style={styles.container}>
         {status === "loading" ? (
-          <View style={styles.loadingWrapper}>
-            <ActivityIndicator />
-          </View>
+          <Loading />
         ) : status === "error" ? (
-          <View style={styles.loadingWrapper}>
-            <Text style={styles.error}>{error}</Text>
-          </View>
+          <Error error={error} />
         ) : (
           <ScrollView style={styles.scroll}>
             <Divider height={12} />
-            {users.map((user: Player) => (
+            {requests.map(({ user, gid }) => (
               <React.Fragment key={user.gid}>
-                <RequestCard data={user} />
+                <RequestCard
+                  user={user}
+                  request={gid}
+                  setRequests={setRequests}
+                />
                 <Divider height={12} />
               </React.Fragment>
             ))}
@@ -95,18 +95,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingHorizontal: 12,
   },
-  loadingWrapper: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   scroll: {
     width: "100%",
     height: 1,
-  },
-  error: {
-    fontFamily: family.normal,
-    color: colors.red,
-    fontSize: 12,
   },
 });
