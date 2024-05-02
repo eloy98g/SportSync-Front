@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View, ActivityIndicator, ScrollView } from "react-native";
+import React, { useCallback, useState } from "react";
+import { StyleSheet, View, ScrollView } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 // Components
 import Screen from "../../../components/common/Screen";
@@ -10,12 +11,17 @@ import Information from "./components/Information";
 import SportsContainer from "./components/SportsContainer";
 import MainActions from "./components/MainActions";
 import Name from "./components/Name";
+import Loading from "../../../components/Status/Loading";
+import Error from "../../../components/Status/Error";
 
 // Context
 import { SportContainerProvider } from "./components/SportsContainer/context/SportContainerContext";
 
 // Hooks
 import { useAppSelector } from "../../../hooks";
+
+// Services
+import Api from "../../../services/api";
 
 // Theme
 import { PHONE } from "../../../theme/breakPoints";
@@ -25,62 +31,76 @@ import { family } from "../../../theme/fonts";
 import User from "../../../store/types/user/User";
 import colors from "../../../theme/colors";
 
-// Placeholders
+
 
 const ProfileScreen = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
-  const user = useAppSelector((state) => state.user.user);
-  const [userData, setUserData] = useState<User>(user);
+  const [userData, setUserData] = useState<User>();
   const [status, setStatus] = useState("idle");
+  const [error, setError] = useState("");
   const gid = route.params?.gid;
 
   const isExternal = userGid !== gid;
-  const verified = userData.phoneVerified && userData.emailVerified;
+  const verified =
+    (userData?.phoneVerified && userData?.emailVerified) || false;
 
-  useEffect(() => {
-    setStatus("loading");
-    // TODO: Lógica para traerse los datos de un usuario
-    if (isExternal) {
-      // setUserData(USER_2);
-    } else {
-      // setUserData(USER_1);
+  const getData = async () => {
+    try {
+      if (!gid) {
+        setStatus("error");
+        setError("No user id provided");
+      } else {
+        setStatus("loading");
+        const response = await Api.user.getById(gid);
+        if (response.status === "success") {
+          setUserData(response.data);
+          setStatus("success");
+        } else {
+          setStatus("error");
+          setError(response.message);
+        }
+      }
+    } catch (error: any) {
+      setStatus("error");
+      setError(error.message);
     }
-    setStatus("success");
-  }, []);
+  };
+  useFocusEffect(
+    useCallback(() => {
+      getData();
+    }, [gid])
+  );
 
-  // Todo: generate Loading Component and remove duplicates
-  if (status === "loading" || status === "idle") {
+  if (status === "success" && userData) {
     return (
       <Screen>
-        <ActivityIndicator size="small" color={colors.primary} />
+        <ProfileHeader data={userData} isExternal={isExternal} />
+        <View style={styles.content}>
+          <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
+            <Divider height={220} />
+            <Name name={userData.name} verified={verified} />
+            <Divider height={10} />
+            <Description description={userData.description} />
+            <Divider height={28} />
+            {!isExternal && <MainActions />}
+            <Divider height={28} />
+            <Information data={userData} />
+            <Divider height={28} />
+            <SportContainerProvider userGid={userData.gid}>
+              <SportsContainer />
+            </SportContainerProvider>
+            <Divider height={80} />
+          </ScrollView>
+        </View>
       </Screen>
     );
   }
 
-  // Todo: error handling
+  if (status === "loading" || status === "idle") {
+    return <Loading />;
+  }
 
-  return (
-    <Screen>
-      <ProfileHeader data={userData} isExternal={isExternal} />
-      <View style={styles.content}>
-        <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
-          <Divider height={220} />
-          <Name name={userData.name} verified={verified} />
-          <Divider height={10} />
-          <Description description={userData.description} />
-          <Divider height={28} />
-          {!isExternal && <MainActions />}
-          <Divider height={28} />
-          <Information data={userData} />
-          <Divider height={28} />
-          <SportContainerProvider userGid={userData.gid}>
-            <SportsContainer />
-          </SportContainerProvider>
-          <Divider height={80} />
-        </ScrollView>
-      </View>
-    </Screen>
-  );
+  return <Error error={error} />;
 };
 
 export default ProfileScreen;

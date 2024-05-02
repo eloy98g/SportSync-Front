@@ -22,7 +22,7 @@ interface Props {
 
 interface ISportContext {
   activities: Activity[];
-  selectedSport: number | null;
+  selectedSport: string | null;
   sports: Sport[];
   status: STATUS;
   error: string;

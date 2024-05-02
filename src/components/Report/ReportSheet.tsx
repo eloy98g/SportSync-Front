@@ -17,7 +17,7 @@ import { family } from "../../theme/fonts";
 interface Props {
   open: boolean;
   setOpen: (T: boolean) => void;
-  userGid: number;
+  userGid: string;
 }
 
 const ReportSheet = ({ open, setOpen, userGid }: Props) => {

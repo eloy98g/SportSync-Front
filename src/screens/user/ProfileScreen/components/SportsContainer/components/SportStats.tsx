@@ -56,14 +56,16 @@ const SportStats = () => {
         <Stat title={victories} subtitle="Victorias" />
         <Stat title={unixToDate(lastTime)} subtitle="Últ. vez" size={18} />
       </View>
-      <View style={styles.row}>
-        <TouchableText
-          textStyle={styles.text}
-          text={"Ver más"}
-          onPress={moreStatsHandler}
-        />
-        <ChevronRight color={colors.grey} size={12} />
-      </View>
+      {currentActivities.length > 0 && (
+        <View style={styles.row}>
+          <TouchableText
+            textStyle={styles.text}
+            text={"Ver más"}
+            onPress={moreStatsHandler}
+          />
+          <ChevronRight color={colors.grey} size={12} />
+        </View>
+      )}
     </>
   );
 };

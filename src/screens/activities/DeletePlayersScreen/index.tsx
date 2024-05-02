@@ -53,16 +53,21 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
         .map((player) => player.gid)
         .filter((p) => p !== activity.admin.gid);
 
-      console.log("newPlayers", newPlayers);
-      const object = { players: newPlayers };
-      const response = await Api.activity.removePlayers(object, activity.gid);
-      console.log("response", response);
-      if (response.status === "success") {
-        setStatus("success");
-        return true;
+      if (newPlayers.length > 0) {
+        const object = { players: newPlayers };
+        const response = await Api.activity.removePlayers(object, activity.gid);
+        if (response.status === "success") {
+          setStatus("success");
+          return true;
+        } else {
+          setStatus("error");
+          setError(response.message);
+          setModal("Error");
+          return false;
+        }
       } else {
         setStatus("error");
-        setError(response.message);
+        setError("No se puede eliminar al administrador de la actividad.");
         setModal("Error");
         return false;
       }
@@ -147,7 +152,7 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
       {showButton && (
         <DeleteButton onPress={swapHandler} loading={status === "loading"} />
       )}
-       <ErrorModal
+      <ErrorModal
         visible={modal === "Error"}
         setVisible={setModal}
         error={error}

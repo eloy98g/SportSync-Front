@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import MainButton from "../../../../../components/common/buttons/MainButton";
@@ -9,6 +8,7 @@ import Divider from "../../../../../components/common/Divider";
 import Sheet from "../../../../../components/common/Sheet";
 
 // Hooks
+import useNavigate from "../../../../../hooks/useNavigate";
 import { useAppSelector } from "../../../../../hooks";
 
 // Theme
@@ -28,7 +28,7 @@ interface Props {
 
 const ActionSheet = ({ user, open, data, setOpen }: Props) => {
   const [openReport, setOpenReport] = useState(false);
-  const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
   const userGid = useAppSelector((state) => state.user.user.gid);
   const { image, name, gid } = user;
 
@@ -36,7 +36,7 @@ const ActionSheet = ({ user, open, data, setOpen }: Props) => {
 
   const profileHandler = () => {
     setOpen(false);
-    navigation.navigate("Profile" as never, { gid: gid } as never);
+    navigateTo("Profile", { gid: gid });
   };
 
   const reportHandler = () => {
@@ -45,15 +45,12 @@ const ActionSheet = ({ user, open, data, setOpen }: Props) => {
   };
   const reviewHandler = () => {
     setOpen(false);
-    navigation.navigate(
-      "Review" as never,
-      { userGid, selectedUser: user, data } as never
-    );
+    navigateTo("Review", { userGid, selectedUser: user, data });
   };
 
   const chatHandler = () => {
     setOpen(false);
-    navigation.navigate("Chat" as never, { chatId: gid } as never);
+    navigateTo("Chat", { chatId: gid });
   };
 
   return (
