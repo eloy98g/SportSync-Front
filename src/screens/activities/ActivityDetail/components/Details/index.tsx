@@ -19,7 +19,7 @@ const Details = ({ data }: Props) => {
   const { playersPerTeam, price, type } = data;
 
   const playersText = playersPerTeam + " vs " + playersPerTeam;
-  const priceText = getFormattedPrice(price) + " c/u";
+  const priceText = price > 0 ? getFormattedPrice(price) + " c/u": "Gratis";
   const typeText = type === "normal" ? "Normal" : "Competitivo";
   const sizeText = type === "normal" ? 24 : 20;
 

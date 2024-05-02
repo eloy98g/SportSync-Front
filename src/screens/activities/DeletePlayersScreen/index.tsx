@@ -16,6 +16,7 @@ import TeamT from "../../../store/types/activity/Team";
 import colors from "../../../theme/colors";
 import useStatus from "../../../hooks/useStatus";
 import Api from "../../../services/api";
+import ErrorModal from "../../../components/modals/ErrorModal";
 
 interface RouteProps {
   route: {
@@ -33,6 +34,8 @@ export interface SelectedPlayer extends Player {
 const DeletePlayersScreen = ({ route }: RouteProps) => {
   const { activity, setActivity } = route.params;
   const { status, setStatus } = useStatus();
+  const [modal, setModal] = useState("");
+  const [error, setError] = useState("");
   const { teams } = activity;
   const [screenTeams, setScreenTeams] = useState(teams);
   const [playerList, setPlayerList] = useState<SelectedPlayer[]>([]);
@@ -43,16 +46,35 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
   const firstTeam = numTeams > 0 ? teams[0] : null;
   const secondTeam = numTeams > 1 ? teams[1] : null;
 
-  // const apiCall = async (newTeams: TeamT[]) => {
-  //   try {
-  //     setStatus("loading");
-  //     const object = { teams: newTeams };
-  //     const response = Api.activity.updateTeams(object, activity.gid);
-  //     if(response)
-  //   } catch (error) {}
-  // };
- 
-  const swapHandler = () => {
+  const removePlayers = async (players: SelectedPlayer[]) => {
+    try {
+      setStatus("loading");
+      const newPlayers = players
+        .map((player) => player.gid)
+        .filter((p) => p !== activity.admin.gid);
+
+      console.log("newPlayers", newPlayers);
+      const object = { players: newPlayers };
+      const response = await Api.activity.removePlayers(object, activity.gid);
+      console.log("response", response);
+      if (response.status === "success") {
+        setStatus("success");
+        return true;
+      } else {
+        setStatus("error");
+        setError(response.message);
+        setModal("Error");
+        return false;
+      }
+    } catch (error: any) {
+      setStatus("error");
+      setError(error.message);
+      setModal("Error");
+      return false;
+    }
+  };
+
+  const swapHandler = async () => {
     const firstTeam = screenTeams[0].name;
 
     const secondTeam = numTeams === 2 ? screenTeams[1]?.name : null;
@@ -88,11 +110,15 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
 
     const newTeams = [updatedFirstTeam, updatedSecondTeam] as TeamT[];
 
-    // setPlayerList([]);
-    // setScreenTeams(newTeams);
-    // setActivity((prevState) => {
-    //   return { ...prevState, teams: [...newTeams] };
-    // });
+    const result = await removePlayers(playerList);
+
+    if (result) {
+      setPlayerList([]);
+      setScreenTeams(newTeams);
+      setActivity((prevState) => {
+        return { ...prevState, teams: [...newTeams] };
+      });
+    }
   };
 
   return (
@@ -118,7 +144,14 @@ const DeletePlayersScreen = ({ route }: RouteProps) => {
           />
         )}
       </View>
-      {showButton && <DeleteButton onPress={swapHandler} />}
+      {showButton && (
+        <DeleteButton onPress={swapHandler} loading={status === "loading"} />
+      )}
+       <ErrorModal
+        visible={modal === "Error"}
+        setVisible={setModal}
+        error={error}
+      />
     </Screen>
   );
 };

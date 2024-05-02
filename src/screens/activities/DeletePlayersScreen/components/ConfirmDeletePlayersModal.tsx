@@ -17,12 +17,14 @@ interface Props {
   visible: boolean;
   setVisible: (T: any) => void;
   onFinish: () => void;
+  loading: boolean;
 }
 
 const ConfirmDeletePlayersModal = ({
   visible,
   setVisible,
   onFinish,
+  loading
 }: Props) => {
   const acceptHandler = () => {
     onFinish();
@@ -54,6 +56,7 @@ const ConfirmDeletePlayersModal = ({
             onPress={acceptHandler}
             borderColor={colors.red}
             color={colors.red}
+            loading={loading}
           />
         </View>
       </View>

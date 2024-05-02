@@ -10,9 +10,10 @@ import colors from "../../../../theme/colors";
 
 interface Props {
   onPress: () => void;
+  loading: boolean;
 }
 
-const DeleteButton = ({ onPress }: Props) => {
+const DeleteButton = ({ onPress, loading }: Props) => {
   const [modal, setModal] = useState("");
 
   const finishHandler = () => {
@@ -31,6 +32,7 @@ const DeleteButton = ({ onPress }: Props) => {
         visible={modal === "Delete"}
         setVisible={setModal}
         onFinish={onPress}
+        loading={loading}
       />
     </View>
   );

@@ -73,5 +73,8 @@ const styles = StyleSheet.create({
     fontFamily: family.normal,
     fontSize: 12,
     color: colors.grey,
+    overflow: "hidden",
+    textAlign: "center",
+    height: 12,
   },
 });

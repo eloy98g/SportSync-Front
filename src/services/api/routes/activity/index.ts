@@ -5,6 +5,7 @@ import getAll from "./calls/getAll";
 import getById from "./calls/getById";
 import update from "./calls/update";
 import updateTeams from "./calls/updateTeams";
+import removePlayers from "./calls/removePlayers";
 
 export class Activity {
   static async getAll(input: string) {
@@ -30,6 +31,10 @@ export class Activity {
   }
 
   static async updateTeams(input: any, activityGid: string) {
-    return updateTeams(input,activityGid);
+    return updateTeams(input, activityGid);
+  }
+
+  static async removePlayers(input: any, activityGid: string) {
+    return removePlayers(input, activityGid);
   }
 }
