@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View } from "react-native";
 import MainButton from "../../../../components/common/buttons/MainButton";
 import Divider from "../../../../components/common/Divider";
 
@@ -7,27 +7,36 @@ import Divider from "../../../../components/common/Divider";
 import Activity from "../../../../store/types/activity/Activity";
 import Teams from "../../ActivityDetail/components/Teams";
 import ScoreInput from "../components/ScoreInput";
+import Error from "../../../../components/Status/Error";
+import getSlotValuesArray from "../methods/getSlotValuesArray";
+import Score from "../../../../store/types/activity/Score";
+import initialiceScore from "../methods/initialiceScore";
 
 interface Props {
-  activity: Activity | undefined;
+  activity: Activity;
 }
+
 const ActivityScore = ({ activity }: Props) => {
+  const [slotValues, setSlotsValues] = useState<Score[]>(
+    initialiceScore(activity)
+  );
+
   const scoreHandler = () => {};
+
+  const addScoreSlot = () => {};
+
   if (!activity) {
-    return (
-      <View>
-        <Text style={styles.error}>Error al cargar la actividad</Text>
-      </View>
-    );
+    return <Error error="Error al cargar la actividad" />;
   }
+
   return (
     <View>
       <Teams activity={activity} />
       <Divider height={48} />
       <ScoreInput
         teams={activity.teams}
-        sportGid={activity.sport.gid}
-        activityGid={activity.gid}
+        slotValues={slotValues}
+        setSlotsValues={setSlotsValues}
       />
       <Divider height={48} />
       <View style={styles.buttonWrapper}>

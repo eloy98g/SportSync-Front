@@ -19,8 +19,10 @@ const CurrentActivitiesList = () => {
   const scrollWidth = width >= PHONE ? PHONE : width;
   const { navigateTo } = useNavigate();
 
-  const activities = useAppSelector(
-    (state) => state.activity.currentActivities
+  const activities = useAppSelector((state) =>
+    state.activity.currentActivities.filter(
+      (activity) => activity.status !== "waitingScore"
+    )
   );
 
   const activityHandler = (gid: string) => {

@@ -1,7 +1,7 @@
 type Score = {
   gid: string;
   team: string;
-  points: number;
+  points: number | null;
   position: number;
 };
 

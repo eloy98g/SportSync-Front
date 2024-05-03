@@ -1,72 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, ActivityIndicator, View } from "react-native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 
 // Components
 import TeamNames from "../../../../components/activities/TeamNames";
 import Divider from "../../../../components/common/Divider";
 import Card from "../../../../components/common/Card";
 import ScoreSlotsInputs from "./ScoreSlotsInputs";
-
-// Hooks
-import useStatus from "../../../../hooks/useStatus";
-
-// Methods
-import getSlotValuesArray from "../methods/getSlotValuesArray";
+import AddSlot from "./AddSlot";
 
 // Types
 import TeamT from "../../../../store/types/activity/Team";
 
 // Theme
-import colors from "../../../../theme/colors";
-
-export interface SlotInput {
-  slot: number;
-  value: number | null;
-}
-
-export interface Score {
-  name: string;
-  slots: SlotInput[];
-}
+import Score from "../../../../store/types/activity/Score";
 
 interface Props {
   teams: TeamT[];
-  sportGid: number;
-  activityGid: number;
+  slotValues: Score[];
+  setSlotsValues: React.Dispatch<React.SetStateAction<Score[]>>;
 }
 
-const ScoreInput = ({ teams, sportGid, activityGid }: Props) => {
-  const [slotValues, setSlotsValues] = useState<Score[]>([]);
-
-  const { status, setStatus } = useStatus();
-
-  useEffect(() => {
-    try {
-      // TODO: Api call for fetching score type by sport type
-      const response = 3;
-      setSlotsValues(getSlotValuesArray(teams, response));
-      setStatus("success");
-    } catch (error) {
-      setStatus("error");
-    }
-  }, []);
-
+const ScoreInput = ({ teams, slotValues, setSlotsValues }: Props) => {
   return (
     <Card>
-      {status === "loading" ? (
-        <View style={styles.loading}>
-          <ActivityIndicator size="small" color={colors.primary} />
-        </View>
-      ) : (
-        <View style={styles.content}>
-          <TeamNames teams={teams} />
-          <Divider width={12} />
-          <ScoreSlotsInputs
-            slotValues={slotValues}
-            setSlotsValues={setSlotsValues}
-          />
-        </View>
-      )}
+      <View style={styles.content}>
+        <TeamNames teams={teams} />
+        <Divider width={12} />
+        <ScoreSlotsInputs
+          teams={teams}
+          slotValues={slotValues}
+          setSlotsValues={setSlotsValues}
+        />
+        <AddSlot teams={teams} slotValues={slotValues} setSlotsValues={setSlotsValues} />
+      </View>
     </Card>
   );
 };
@@ -77,11 +43,5 @@ const styles = StyleSheet.create({
   content: {
     flexDirection: "row",
     height: 180,
-  },
-  loading: {
-    width: "100%",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
