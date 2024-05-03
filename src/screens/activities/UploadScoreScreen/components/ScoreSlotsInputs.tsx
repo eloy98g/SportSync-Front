@@ -15,7 +15,14 @@ interface Props {
 }
 
 const ScoreSlotsInputs = ({ teams, slotValues, setSlotsValues }: Props) => {
-  const slotHandler = (e: string, team: string, slot: string) => {};
+  const slotHandler = (e: string, team: string, slotGid: string) => {
+    setSlotsValues((prev) => {
+      const array = [...prev];
+      const index = array.findIndex((slot) => slot.gid === slotGid);
+      array[index].points = parseInt(e) || null;
+      return array;
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -30,7 +37,7 @@ const ScoreSlotsInputs = ({ teams, slotValues, setSlotsValues }: Props) => {
                 keyboardType="numeric"
                 value={slot.points?.toString()}
                 cursorColor={colors.grey}
-                onChangeText={(e) => slotHandler(e, team.name, slot.gid)}
+                onChangeText={(e) => slotHandler(e, team.gid, slot.gid)}
               />
             ))}
         </View>
