@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 
 // Components
@@ -14,6 +14,11 @@ import colors from "../../../../../theme/colors";
 
 // Types
 import Activity from "../../../../../store/types/activity/Activity";
+import useStatus from "../../../../../hooks/useStatus";
+import Api from "../../../../../services/api";
+import ErrorModal from "../../../../../components/modals/ErrorModal";
+import MessageModal from "../../../../../components/modals/MessageModal";
+import { useNavigation } from "@react-navigation/native";
 
 interface Props {
   data: Activity;
@@ -21,12 +26,64 @@ interface Props {
 }
 
 const JoinButton = ({ data, userGid }: Props) => {
-  const buttonHandler = () => {
-    if (isPlayer(userGid, data.teams)) {
-      // TODO: api call for left the activity
+  const { status, setStatus } = useStatus();
+  const [modal, setModal] = useState("");
+  const [message, setMessage] = useState("");
+  const navigation = useNavigation();
+
+  const applyHandler = async () => {
+    const application = {
+      activityGid: data.gid,
+      userGid: userGid,
+    };
+    const response = await Api.application.create(application);
+
+    if (response.status === "success") {
+      if (response.data === "automatic") {
+        setMessage(
+          "Solicitud enviada correctamente.\nEl administrador responserá en breve."
+        );
+      } else {
+        setMessage("Solicitud enviada correctamente");
+      }
+      setStatus("success");
+      setModal("Message");
     } else {
-      // TODO: api call for joining
-      // Should launch a modal with the response (if its automatic or needs approval)
+      setStatus("error");
+      setModal("Error");
+      setMessage(response.message);
+    }
+  };
+
+  const leaveHandler = async () => {
+    const body = {
+      players: [userGid],
+    };
+    const response = await Api.activity.removePlayers(body, data.gid);
+
+    if (response.status === "success") {
+      setMessage("Has abandonado la actividad");
+      setStatus("success");
+      setModal("Left");
+    } else {
+      setStatus("error");
+      setModal("Error");
+      setMessage(response.message);
+    }
+  };
+
+  const buttonHandler = async () => {
+    try {
+      setStatus("loading");
+      if (isPlayer(userGid, data.teams)) {
+        leaveHandler();
+      } else {
+        applyHandler();
+      }
+    } catch (error: any) {
+      setStatus("error");
+      setModal("Error");
+      setMessage(error.message);
     }
   };
 
@@ -44,9 +101,30 @@ const JoinButton = ({ data, userGid }: Props) => {
           borderColor={color}
           height={40}
           title={title}
+          loading={status === "loading"}
           onPress={buttonHandler}
         />
         <Divider height={18} />
+        <ErrorModal
+          setVisible={setModal}
+          visible={modal === "Error"}
+          error={message}
+        />
+        <MessageModal
+          setVisible={setModal}
+          visible={modal === "Message"}
+          message={message}
+          onFinish={() => setModal("")}
+        />
+        <MessageModal
+          setVisible={setModal}
+          visible={modal === "Left"}
+          message={message}
+          onFinish={() => {
+            setModal("");
+            navigation.goBack();
+          }}
+        />
       </>
     );
   }
