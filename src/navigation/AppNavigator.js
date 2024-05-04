@@ -25,15 +25,16 @@ import UploadScoreScreen from "../screens/activities/UploadScoreScreen";
 import ActivityAdminScreen from "../screens/activities/ActivityAdminScreen";
 import DeletePlayersScreen from "../screens/activities/DeletePlayersScreen";
 import RequestListScreen from "../screens/activities/RequestListScreen";
+import ModifyTeamScreen from "../screens/activities/ModifyTeamScreen";
+import FollowersScreen from "../screens/social/FollowersScreen";
+import FollowingScreen from "../screens/social/FollowingScreen";
+import RequestActivitiesList from "../screens/activities/RequestActivitiesList";
 
 // Components
 import Footer from "../components/Footer";
 
 // Hooks
 import { useAppSelector } from "../hooks";
-import ModifyTeamScreen from "../screens/activities/ModifyTeamScreen";
-import FollowersScreen from "../screens/social/FollowersScreen";
-import FollowingScreen from "../screens/social/FollowingScreen";
 
 const Stack = createStackNavigator();
 
@@ -97,6 +98,10 @@ const AppNavigator = () => {
           component={ActivityCodeScreen}
         />
         <Stack.Screen name="UploadScoreScreen" component={UploadScoreScreen} />
+        <Stack.Screen
+          name="RequestActivitiesList"
+          component={RequestActivitiesList}
+        />
       </Stack.Navigator>
       {loggedIn && <Footer />}
     </NavigationContainer>

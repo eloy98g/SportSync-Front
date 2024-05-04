@@ -7,13 +7,19 @@ import Title from "./components/Title";
 
 // Theme
 import { PHONE } from "../../theme/breakPoints";
+import Divider from "../common/Divider";
+import RequestsIcon from "./components/RequestsIcon";
 
 const Header = () => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <Title />
-        <ChatIcon />
+        <View style={styles.icons}>
+          <RequestsIcon />
+          <Divider width={20} />
+          <ChatIcon />
+        </View>
       </View>
     </View>
   );
@@ -25,6 +31,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
   },
+  icons: { flexDirection: "row" },
   content: {
     width: "100%",
     height: 80,
