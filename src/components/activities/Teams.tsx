@@ -6,6 +6,7 @@ import Team from "./Team";
 
 // Types
 import TeamT from "../../store/types/activity/Team";
+import PROFILE_IMAGE from "../../constants/PROFILE_IMAGE";
 
 interface Props {
   teams: TeamT[];
@@ -17,7 +18,7 @@ const Teams = ({ teams }: Props) => {
       {teams.map((team: TeamT) => (
         <Team
           key={team.name}
-          image={team.players[0]?.image}
+          image={team.players[0]?.image || PROFILE_IMAGE}
           size={team.players.length}
         />
       ))}
