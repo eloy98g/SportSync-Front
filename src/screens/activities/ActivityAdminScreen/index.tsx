@@ -6,6 +6,7 @@ import {
   Text,
   ActivityIndicator,
 } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 // Components
 import LineDivider from "../../../components/common/LineDivider";
@@ -27,19 +28,15 @@ import useStatus from "../../../hooks/useStatus";
 import Api from "../../../services/api";
 
 // Store
-import mapActivity from "../../../store/features/activity/methods/mapActivity";
 
 // Theme
 import colors from "../../../theme/colors";
 import { family } from "../../../theme/fonts";
 
-// Placeholders
-import USERS_REQUESTS from "../../../api/placeholders/USERS_REQUESTS";
-
 // Types
 import Activity from "../../../store/types/activity/Activity";
+import mapActivity from "../../../store/types/activity/utils/mapActivity";
 import Player from "../../../store/types/activity/Player";
-import { useFocusEffect } from "@react-navigation/native";
 
 interface Props {
   route: {

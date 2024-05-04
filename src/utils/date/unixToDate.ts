@@ -1,5 +1,5 @@
 const unixToDate = (unix: number): string => {
-  if (unix !== null) {
+  if (unix) {
     const dateObject = new Date(unix);
 
     const formattedDate = new Intl.DateTimeFormat("es-ES", {

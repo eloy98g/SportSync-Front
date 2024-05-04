@@ -15,10 +15,11 @@ import DistanceT from "../../../../store/types/location/Distance";
 
 interface Props {
   onPress: (T: any) => void;
+  onFinish: (T: any) => void;
   selected: number;
 }
 
-const DistanceSelector = ({ onPress, selected }: Props) => {
+const DistanceSelector = ({ onPress, selected, onFinish }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Distancia</Text>
@@ -33,8 +34,8 @@ const DistanceSelector = ({ onPress, selected }: Props) => {
           <React.Fragment key={item.gid}>
             <Distance
               {...item}
-              selected={selected === item.gid}
-              onPress={() => onPress(item)}
+              selected={selected === item.value}
+              onPress={() => onPress(item.value)}
             />
             <Divider width={12} />
           </React.Fragment>
@@ -42,7 +43,7 @@ const DistanceSelector = ({ onPress, selected }: Props) => {
       </ScrollView>
       <Divider height={24} />
       <View style={styles.wrapper}>
-        <MainButton title="Aceptar" fontSize={18} onPress={onPress} />
+        <MainButton title="Aceptar" fontSize={18} onPress={onFinish} />
       </View>
     </View>
   );

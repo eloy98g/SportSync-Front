@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 
 // Components
@@ -16,7 +16,30 @@ interface Props {
 }
 
 const UserPreferences = ({ editedUser, setEditedUser }: Props) => {
-  const locationHandler = () => {};
+  const locationHandler = (input: any) => {
+    const { coordinates, radius } = input;
+    if (coordinates) {
+      setEditedUser((prev) => ({
+        ...prev,
+        location: {
+          ...prev.location,
+          latitude: coordinates.latitude,
+          longitude: coordinates.longitude,
+          latitudeDelta: 0.1,
+          longitudeDelta: 0.1,
+        },
+      }));
+    }
+    if (radius) {
+      setEditedUser((prev) => ({
+        ...prev,
+        location: {
+          ...prev.location,
+          radius: radius,
+        },
+      }));
+    }
+  };
 
   return (
     <View>

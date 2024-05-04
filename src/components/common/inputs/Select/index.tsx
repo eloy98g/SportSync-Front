@@ -15,7 +15,7 @@ import List from "./List";
 import { family } from "../../../../theme/fonts";
 import colors from "../../../../theme/colors";
 
-type ValueType = string | number;
+type ValueType = any;
 
 type SelectData = {
   value: ValueType;

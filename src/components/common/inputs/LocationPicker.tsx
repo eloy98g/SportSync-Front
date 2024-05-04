@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { MapPin } from "lucide-react-native";
 
 // Hooks
 import { useAppSelector } from "../../../hooks";
+import useNavigate from "../../../hooks/useNavigate";
 
 // Theme
 import colors from "../../../theme/colors";
@@ -23,8 +23,10 @@ interface Props {
 
 const LocationPicker = ({ location, setValue, option }: Props) => {
   const userLocation = useAppSelector((state) => state.user.user).location;
-  const [title, setTitle] = useState(userLocation?.address || "Selecciona ubicación");
-  const navigation = useNavigation();
+  const [title, setTitle] = useState(
+    userLocation?.address || "Selecciona ubicación"
+  );
+  const { navigateTo } = useNavigate();
 
   const getTitle = async () => {
     const address = await getAddress(location);
@@ -40,18 +42,18 @@ const LocationPicker = ({ location, setValue, option }: Props) => {
     longitude: userLocation.longitude,
     latitudeDelta: 0.1,
     longitudeDelta: 0.1,
+    radius: 500
   };
 
   const mapHandler = () => {
-    navigation.navigate(
-      "MapScreen" as never,
-      { mapHandler: setValue, option, mapLocation } as never
-    );
+    navigateTo("MapScreen", { mapHandler: setValue, option, mapLocation });
   };
 
   return (
     <TouchableOpacity onPress={mapHandler} style={styles.titleWrapper}>
-      <Text style={styles.title}>{title}</Text>
+      <Text numberOfLines={1} style={styles.title}>
+        {title}
+      </Text>
       <MapPin color={colors.black} size={18} />
     </TouchableOpacity>
   );

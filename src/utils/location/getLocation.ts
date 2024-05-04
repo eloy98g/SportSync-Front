@@ -7,8 +7,8 @@ import getAddress from "./getAddress";
 
 const getLocation = async () => {
   const location: Location = {
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.4165,
+    longitude: -3.70256,
     latitudeDelta: 0.1,
     longitudeDelta: 0.1,
   };
