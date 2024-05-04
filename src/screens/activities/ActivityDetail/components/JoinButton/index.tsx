@@ -30,6 +30,21 @@ const JoinButton = ({ data, userGid }: Props) => {
   const [modal, setModal] = useState("");
   const [message, setMessage] = useState("");
   const navigation = useNavigation();
+  const [alreadyApplied, setAlreadyApplied] = useState(false);
+
+  const alreadyJoined = isPlayer(userGid, data.teams);
+  const getData = async () => {
+    if (!alreadyJoined) {
+      const input = "userGid=" + userGid + "&status=pending";
+      const response = await Api.application.getAll(data.gid, input);
+      if (response.status === "success" && response.data.length > 0) {
+        setAlreadyApplied(true);
+      }
+    }
+  };
+  useEffect(() => {
+    getData();
+  });
 
   const applyHandler = async () => {
     const application = {
@@ -75,7 +90,7 @@ const JoinButton = ({ data, userGid }: Props) => {
   const buttonHandler = async () => {
     try {
       setStatus("loading");
-      if (isPlayer(userGid, data.teams)) {
+      if (alreadyJoined) {
         leaveHandler();
       } else {
         applyHandler();
@@ -87,11 +102,18 @@ const JoinButton = ({ data, userGid }: Props) => {
     }
   };
 
-  const color = isPlayer(userGid, data.teams) ? colors.red : colors.primary;
-  const title = isPlayer(userGid, data.teams)
+  const color = alreadyApplied
+    ? colors.grey
+    : alreadyJoined
+    ? colors.red
+    : colors.primary;
+  const title = alreadyApplied
+    ? "Actividad solicitada"
+    : alreadyJoined
     ? "Abandonar actividad"
     : "Unirse a la actividad";
 
+  const buttonActive = (!alreadyApplied && !alreadyJoined) || alreadyJoined;
   if (data.status === "pending" && !isActivityFull(data)) {
     return (
       <>
@@ -103,6 +125,7 @@ const JoinButton = ({ data, userGid }: Props) => {
           title={title}
           loading={status === "loading"}
           onPress={buttonHandler}
+          active={buttonActive}
         />
         <Divider height={18} />
         <ErrorModal

@@ -1,8 +1,8 @@
 import { url } from "../../../../../../config";
 import get from "../../../methods/get";
 
-export default async function getAll(activityGid: string) {
-  const finalUrl = url + "/application/" + activityGid;
+export default async function getAll(activityGid: string, input: any) {
+  const finalUrl = url + "/application/" + activityGid + ("?" + input || "");
   const response = await get(finalUrl);
   return response;
 }
