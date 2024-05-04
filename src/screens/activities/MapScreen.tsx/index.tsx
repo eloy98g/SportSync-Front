@@ -22,13 +22,16 @@ import MAP_EVENT_TYPE from "../../../store/types/location/MapEventType";
 
 const MapScreen = ({ route }: any) => {
   const { mapHandler, option, mapLocation } = route.params;
-  const [markerPosition, setMarkerPosition] = useState<LatLng>({...mapLocation});
-  const [radius, setRadius] = useState({ value: 500, gid: 1 });
+  const [markerPosition, setMarkerPosition] = useState<LatLng>({
+    ...mapLocation,
+  });
+  const [radius, setRadius] = useState(mapLocation.radius);
   const [showButton, setShowButton] = useState(false);
 
   const navigation = useNavigation();
 
   const handleMapPress = (event: MAP_EVENT_TYPE) => {
+    console.log("handleMapPress");
     const { coordinate } = event.nativeEvent;
     setMarkerPosition(coordinate);
     if (option === "radius") {
@@ -39,14 +42,16 @@ const MapScreen = ({ route }: any) => {
     }
   };
 
-  const radiusHandler = ({ value, gid }: any) => {
-    setRadius({ value, gid });
+  const radiusHandler = (value: number) => {
+    console.log("radiusHandler", value);
+    setRadius(value);
   };
 
   const backHandler = () => {
     navigation.goBack();
+    mapHandler({ radius });
   };
-  
+
   return (
     <Screen>
       <BackHeader title={"Selecciona tu zona"} />
@@ -69,7 +74,7 @@ const MapScreen = ({ route }: any) => {
               {option === "radius" && (
                 <Circle
                   center={markerPosition}
-                  radius={radius.value}
+                  radius={radius}
                   fillColor={rgbaPrimary(0.2)}
                   strokeColor={rgbaPrimary(0.9)}
                   strokeWidth={2}
@@ -79,7 +84,11 @@ const MapScreen = ({ route }: any) => {
           )}
         </MapView>
         {option === "radius" && (
-          <DistanceSelector onPress={radiusHandler} selected={radius.gid} />
+          <DistanceSelector
+            onPress={radiusHandler}
+            selected={radius}
+            onFinish={backHandler}
+          />
         )}
         {showButton && (
           <View style={styles.wrapper}>
@@ -112,5 +121,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 12,
     backgroundColor: "transparent",
+    zIndex: 10,
   },
 });

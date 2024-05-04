@@ -14,7 +14,7 @@ const data: User = {
     longitudeDelta: -122.4194,
     radius: 500,
   },
-  birthDate: 1013510655,
+  birthdate: 1013510655,
   phoneVerified: true,
   emailVerified: true,
   creationDate: 1707734655,

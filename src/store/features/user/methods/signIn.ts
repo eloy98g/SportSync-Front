@@ -5,7 +5,7 @@ import Api from "../../../../services/api";
 
 // Types
 import User from "../../../types/user/User";
-import mapUser from "./mapUser";
+import mapUser from "../../../types/user/utils/mapUser";
 
 const signIn = createAsyncThunk("user/signIn", async (input: any) => {
   const response = await Api.auth.signIn(input);

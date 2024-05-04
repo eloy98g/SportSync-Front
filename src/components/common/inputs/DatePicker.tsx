@@ -17,9 +17,10 @@ interface Props {
   value: number;
   placeholder?: string;
   mode?: MODE;
+  minDate?: Date;
 }
 
-const DatePicker = ({ value, mode, setValue, placeholder }: Props) => {
+const DatePicker = ({ minDate, value, mode, setValue, placeholder }: Props) => {
   const [visible, setVisible] = useState(false);
   const title =
     mode === "time"
@@ -51,7 +52,7 @@ const DatePicker = ({ value, mode, setValue, placeholder }: Props) => {
         {icon}
       </TouchableOpacity>
       <DateTimePickerModal
-        minimumDate={new Date()}
+        minimumDate={minDate}
         isVisible={visible}
         mode={mode}
         onConfirm={handleConfirm}
@@ -64,6 +65,7 @@ const DatePicker = ({ value, mode, setValue, placeholder }: Props) => {
 DatePicker.defaultProps = {
   placeholder: "Selecciona una fecha",
   mode: "date",
+  minDate: new Date(),
 };
 
 export default DatePicker;

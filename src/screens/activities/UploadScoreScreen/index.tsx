@@ -22,12 +22,14 @@ const UploadScoreScreen = () => {
 
   const navigation = useNavigation();
 
+  const userGid = useAppSelector((state) => state.user.user?.gid);
   const currentActivities = useAppSelector(
     (state) => state.activity.currentActivities
   );
 
   const waitingForScoreActivities = currentActivities.filter(
-    (activity) => activity.status === "waitingScore"
+    (activity) =>
+      activity.status === "waitingScore" && activity.admin.gid === userGid
   );
 
   const redirectToScore = waitingForScoreActivities.length === 1;
@@ -40,10 +42,7 @@ const UploadScoreScreen = () => {
   }, []);
 
   const backHandler = () => {
-    if (
-      section === "selector" ||
-      (section === "score" && waitingForScoreActivities.length !== 1)
-    ) {
+    if (section === "score" && waitingForScoreActivities.length > 1) {
       setSection("selector");
     } else {
       navigation.goBack();
@@ -61,7 +60,9 @@ const UploadScoreScreen = () => {
             setSection={setSection}
           />
         )}
-        {section === "score" && <ActivityScore activity={selectedActivity} />}
+        {section === "score" && selectedActivity && (
+          <ActivityScore activity={selectedActivity} />
+        )}
       </View>
     </Screen>
   );

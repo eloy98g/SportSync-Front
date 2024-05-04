@@ -12,7 +12,7 @@ export default {
     longitudeDelta: -122.4194,
     radius: 500,
   },
-  birthDate: 1013510655,
+  birthdate: 1013510655,
   phoneVerified: false,
   emailVerified: false,
   creationDate: 1707734655,

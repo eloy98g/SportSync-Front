@@ -5,7 +5,7 @@ import { createContext } from "react";
 import useStatus, { STATUS } from "../../../../../../hooks/useStatus";
 
 // Methods
-import mapActivity from "../../../../../../store/features/activity/methods/mapActivity";
+import mapActivity from "../../../../../../store/types/activity/utils/mapActivity";
 import getSports from "../methods/getSports";
 
 // Services

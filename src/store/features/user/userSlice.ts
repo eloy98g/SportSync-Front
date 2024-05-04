@@ -30,6 +30,9 @@ const userSlice = createSlice({
     setLocation: (state, action: PayloadAction<Location>) => {
       state.user.location = action.payload;
     },
+    setUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+    },
     toggleFavoriteSport: (state, action: PayloadAction<number>) => {
       const currentFavorites = state.user.favoriteSports;
       const sport = action.payload;
@@ -64,6 +67,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { logOut, setLocation, toggleFavoriteSport } = userSlice.actions;
+export const { logOut, setLocation, toggleFavoriteSport, setUser } = userSlice.actions;
 
 export default userSlice.reducer;

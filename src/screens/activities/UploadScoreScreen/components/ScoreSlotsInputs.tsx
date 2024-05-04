@@ -3,47 +3,43 @@ import { StyleSheet, TextInput, View } from "react-native";
 
 // Theme
 import colors from "../../../../theme/colors";
-import { Score, SlotInput } from "./ScoreInput";
+import Score from "../../../../store/types/activity/Score";
+import Team from "../../../../store/types/activity/Team";
+import ActionButton from "../../../../components/common/buttons/ActionButton";
+import { Plus, PlusCircle } from "lucide-react-native";
 
 interface Props {
+  teams: Team[];
   slotValues: Score[];
   setSlotsValues: React.Dispatch<React.SetStateAction<Score[]>>;
 }
 
-const ScoreSlotsInputs = ({ slotValues, setSlotsValues }: Props) => {
-  const slotHandler = (e: string, team: string, slot: number) => {
-    setSlotsValues((prevState) => {
-      const updatedSlots: Score[] = prevState.map((teamSlot) => {
-        if (teamSlot.name === team) {
-          const updatedTeamSlots: SlotInput[] = teamSlot.slots.map((s) => {
-            if (s.slot === slot) {
-              return { slot: s.slot, value:  parseInt(e) || null};
-            }
-            return s;
-          });
-          return { ...teamSlot, slots: updatedTeamSlots };
-        }
-        return teamSlot;
-      });
-      return updatedSlots;
+const ScoreSlotsInputs = ({ teams, slotValues, setSlotsValues }: Props) => {
+  const slotHandler = (e: string, team: string, slotGid: string) => {
+    setSlotsValues((prev) => {
+      const array = [...prev];
+      const index = array.findIndex((slot) => slot.gid === slotGid);
+      array[index].points = parseInt(e) || null;
+      return array;
     });
   };
 
   return (
     <View style={styles.container}>
-      {slotValues.map((team) => (
+      {teams.map((team) => (
         <View style={styles.row} key={team.name}>
-          {team.slots.map((slot) => (
-            <TextInput
-              key={slot.slot + team.name}
-              style={styles.scoreInput}
-              keyboardType="numeric"
-              
-              value={slot.value?.toString()}
-              cursorColor={colors.grey}
-              onChangeText={(e) => slotHandler(e, team.name, slot.slot)}
-            />
-          ))}
+          {slotValues
+            .filter((slot) => slot.team === team.gid)
+            .map((slot) => (
+              <TextInput
+                key={slot.gid + team.name}
+                style={styles.scoreInput}
+                keyboardType="numeric"
+                value={slot.points?.toString()}
+                cursorColor={colors.grey}
+                onChangeText={(e) => slotHandler(e, team.gid, slot.gid)}
+              />
+            ))}
         </View>
       ))}
     </View>
@@ -57,6 +53,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     flex: 1,
     width: "100%",
+  },
+  scroll: {
+    width: "100%",
+    flex: 1,
+    borderWidth: 1,
   },
   row: {
     height: "100%",

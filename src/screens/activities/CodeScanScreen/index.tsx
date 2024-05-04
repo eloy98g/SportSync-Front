@@ -24,7 +24,7 @@ import useStatus from "../../../hooks/useStatus";
 
 // Types
 import Activity from "../../../store/types/activity/Activity";
-import mapActivity from "../../../store/features/activity/methods/mapActivity";
+import mapActivity from "../../../store/types/activity/utils/mapActivity";
 
 type VALUE = string | null;
 

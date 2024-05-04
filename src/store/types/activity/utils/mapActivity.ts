@@ -1,9 +1,10 @@
 import Activity from "../../../types/activity/Activity";
+import mapLocation from "../../../types/location/utils/mapLocation";
 
 const mapActivity = (data: any): Activity => {
   const newActivity: Activity = {
     gid: data.gid,
-    location: data.location,
+    location: mapLocation(data.location),
     creationDate: data.creationDate,
     startDate: data.startDate,
     duration: data.duration,

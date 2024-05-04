@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { StyleSheet, View, ActivityIndicator, Text } from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
+import { useFocusEffect } from "@react-navigation/native";
 
 // Components
 import TouchableInfoContainer from "./components/TouchableInfoContainer";
@@ -17,21 +18,21 @@ import Error from "../../../components/Status/Error";
 
 // Hooks
 import { useAppSelector } from "../../../hooks";
-
-// Theme
-import { PHONE } from "../../../theme/breakPoints";
-
 // Methods
 import isPlayer from "./methods/isPlayer";
 
-// Types
-import Activity from "../../../store/types/activity/Activity";
+// Services
+import Api from "../../../services/api";
 
 // Store
-import mapActivity from "../../../store/features/activity/methods/mapActivity";
 import AdminButton from "./components/AdminButton";
-import Api from "../../../services/api";
-import { useFocusEffect } from "@react-navigation/native";
+
+// Types
+import Activity from "../../../store/types/activity/Activity";
+import mapActivity from "../../../store/types/activity/utils/mapActivity";
+
+// Theme
+import { PHONE } from "../../../theme/breakPoints";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);

@@ -1,7 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { MapPinned } from "lucide-react-native";
+
+// Hooks
+import useNavigate from "../../hooks/useNavigate";
 
 // Theme
 import colors from "../../theme/colors";
@@ -15,18 +17,15 @@ interface Props {
 }
 
 const MapView = ({ location }: Props) => {
-  const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
   const title = "Ver mapa";
 
   const mapHandler = () => {
-    navigation.navigate(
-      "MapScreen" as never,
-      {
-        mapHandler: () => {},
-        option: "view",
-        mapLocation: location,
-      } as never
-    );
+    navigateTo("MapScreen", {
+      mapHandler: () => {},
+      option: "view",
+      mapLocation: location,
+    });
   };
 
   return (

@@ -4,12 +4,12 @@ type User = {
   gid: string;
   name: string;
   email: string;
-  phone: number | null;
-  image: string | null;
-  description: string | null;
+  phone: number;
+  image: string;
+  description: string;
   location: Location;
-  birthDate: number | null;
-  creationDate: number | null;
+  birthdate: number;
+  creationDate: number;
   phoneVerified: boolean;
   emailVerified: boolean;
   published: number; // TODO: this must be calculated runtime
@@ -23,14 +23,14 @@ export const EMPTY_USER: User = {
   email: "",
   name: "",
   gid: "",
-  phone: null,
-  image: null,
-  description: null,
+  phone: 0,
+  image: "",
+  description: "",
   location: EMPTY_LOCATION,
-  birthDate: null,
+  birthdate: 0,
   phoneVerified: false,
   emailVerified: false,
-  creationDate: null,
+  creationDate: 0,
   published: 0,
   participated: 0,
   lastParticipation: 0,

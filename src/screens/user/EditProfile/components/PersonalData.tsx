@@ -21,12 +21,33 @@ interface Props {
 }
 
 const PersonalData = ({ editedUser, setEditedUser }: Props) => {
-  const changeName = () => {};
-  const changeDescription = () => {};
-  const changeGender = () => {};
-  const changeEmail = () => {};
-  const changePhone = () => {};
-  const changeBirthday = () => {};
+  const changeName = (e: string) => {
+    setEditedUser((prev) => ({ ...prev, name: e }));
+  };
+  const changeDescription = (e: string) => {
+    setEditedUser((prev) => ({ ...prev, description: e }));
+  };
+  const changeGender = (input: string) => {
+    setEditedUser((prev) => ({ ...prev, gender: input }));
+  };
+  const changeEmail = (e: string) => {
+    setEditedUser((prev) => ({ ...prev, email: e }));
+  };
+  const changePhone = (e: any) => {
+    setEditedUser((prev) => ({ ...prev, phone: e }));
+  };
+  const changeBirthday = (input: any) => {
+    const unixTime = Date.parse(input);
+    setEditedUser((prev) => ({ ...prev, birthdate: unixTime }));
+  };
+
+  const genderText =
+    editedUser.gender === "male"
+      ? "Hombre"
+      : editedUser.gender === "female"
+      ? "Mujer"
+      : "N/A";
+
   return (
     <View style={styles.container}>
       <Label text="Nombre y apellidos" />
@@ -36,21 +57,29 @@ const PersonalData = ({ editedUser, setEditedUser }: Props) => {
       <TextInput value={editedUser.email} onChange={changeEmail} />
       <Divider height={12} />
       <Label text="Teléfono" />
-      <TextInput value={editedUser.phone?.toString()} onChange={changePhone} />
+      <TextInput value={editedUser.phone.toString()} onChange={changePhone} />
       <Divider height={12} />
       <Label text="Género" />
       <Select
         data={GENDERS}
-        value={editedUser.gender}
+        value={genderText}
         setValue={changeGender}
         placeholder={"Selecciona Género"}
       />
       <Divider height={12} />
       <Label text="Fecha de Nacimiento" />
-      <DatePicker value={editedUser.birthDate} setValue={changeBirthday} />
+      <DatePicker
+        minDate={new Date(1940, 0, 1)}
+        value={editedUser.birthdate}
+        setValue={changeBirthday}
+      />
       <Divider height={12} />
       <Label text="Descripción" />
-      <TextArea value={editedUser.description} onChange={changeDescription} />
+      <TextArea
+        value={editedUser.description}
+        onChange={changeDescription}
+        height={200}
+      />
     </View>
   );
 };

@@ -21,7 +21,7 @@ const CurrentActivitiesList = () => {
 
   const activities = useAppSelector(
     (state) => state.activity.currentActivities
-  );
+  ).filter((activity) => activity.status !== "waitingScore");
 
   const activityHandler = (gid: string) => {
     navigateTo("ActivityDetail", { gid });
