@@ -2,13 +2,13 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
+import RequestsIcon from "./components/RequestsIcon";
 import ChatIcon from "./components/ChatIcon";
 import Title from "./components/Title";
+import Divider from "../common/Divider";
 
 // Theme
 import { PHONE } from "../../theme/breakPoints";
-import Divider from "../common/Divider";
-import RequestsIcon from "./components/RequestsIcon";
 
 const Header = () => {
   return (
@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
   },
-  icons: { flexDirection: "row" },
+  icons: {
+    flexDirection: "row",
+  },
   content: {
     width: "100%",
     height: 80,
