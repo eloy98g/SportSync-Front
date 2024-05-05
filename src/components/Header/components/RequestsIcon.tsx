@@ -31,7 +31,8 @@ const RequestsIcon = () => {
         (activity) => activity.admin.gid === userGid
       );
       const scorePromises = adminActivities.map(async (activity: Activity) => {
-        const response = await Api.application.getAll(activity.gid);
+        const input = "status=pending"
+        const response = await Api.application.getAll(activity.gid, input);
         if (response.status === "success") {
           return { activity: activity, requests: response.data };
         } else {
