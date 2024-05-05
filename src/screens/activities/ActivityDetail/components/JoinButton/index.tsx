@@ -55,11 +55,12 @@ const JoinButton = ({ data, userGid }: Props) => {
 
     if (response.status === "success") {
       if (response.data === "automatic") {
+        setMessage("Solicitud enviada correctamente");
+        setAlreadyApplied(true)
+      } else {
         setMessage(
           "Solicitud enviada correctamente.\nEl administrador responserá en breve."
         );
-      } else {
-        setMessage("Solicitud enviada correctamente");
       }
       setStatus("success");
       setModal("Message");
