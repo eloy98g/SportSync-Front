@@ -1,36 +1,31 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-// Theme
-import colors from "../../theme/colors";
+//Hooks
+import { useAppSelector } from "../../hooks";
+
+// Components
 import Actions from "./Actions";
 import Score from "./Score";
 import Teams from "./Teams";
 
 // Types
-import { ActivityType } from "../../store/types/activity/Activity";
+import ActivityT from "../../store/types/activity/Activity";
+
+// Theme
+import colors from "../../theme/colors";
 
 // Utils
 import RESULT_COLORS from "../../utils/activity/resultColors";
-
-// Types
-import Team from "../../store/types/activity/Team";
-import ScoreT from "../../store/types/activity/Score";
 import getWinner from "../../utils/score/getWinner";
-import { useAppSelector } from "../../hooks";
 import getUserTeam from "../../utils/activity/getUserTeam";
 
 interface Props {
-  data: {
-    result: ScoreT[];
-    teams: Team[];
-    type: ActivityType;
-    startDate: number;
-    gid: number;
-  };
+  data: ActivityT;
 }
 
 const Activity = ({ data }: Props) => {
+  console.log("Activity", JSON.stringify(data));
   const { result, teams, startDate, type, gid } = data;
   const userGid = useAppSelector((state) => state.user.user.gid);
 

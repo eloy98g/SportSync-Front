@@ -11,16 +11,17 @@ import { ActivityType } from "../../store/types/activity/Activity";
 
 // Utils
 import unixToDate from "../../utils/date/unixToDate";
+import useNavigate from "../../hooks/useNavigate";
 
 interface Props {
   type: ActivityType;
   startDate: number;
-  gid: number;
+  gid: string;
 }
 const Actions = ({ type, startDate, gid }: Props) => {
-  const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
   const moreInfoHandler = () => {
-    navigation.navigate("ActivityDetail" as never, { gid } as never);
+    navigateTo("ActivityDetail", { gid });
   };
 
   const typeText = type === "competitive" ? "Competitiva" : "Normal";

@@ -25,7 +25,7 @@ const chatSlice = createSlice({
   initialState,
   reducers: {
     updateLastChatView: (state) => {
-      const unixTimestamp = Math.floor(Date.now() / 1000);
+      const unixTimestamp = Math.floor(Date.now());
       state.lastChatView = unixTimestamp;
     },
   },

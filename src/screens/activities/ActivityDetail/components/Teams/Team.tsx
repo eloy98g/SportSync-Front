@@ -16,8 +16,12 @@ import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
 
 // Types
-import Activity, { ActivityStatus } from "../../../../../store/types/activity/Activity";
+import Activity, {
+  ActivityStatus,
+} from "../../../../../store/types/activity/Activity";
 import TeamT from "../../../../../store/types/activity/Team";
+import { useAppSelector } from "../../../../../hooks";
+import isPlayer from "../../methods/isPlayer";
 
 interface Props {
   data: TeamT;
@@ -29,17 +33,26 @@ interface Props {
 
 const Team = ({ data, side, status, teamSize, activityData }: Props) => {
   const { name, players } = data;
+  const userGid = useAppSelector((state) => state.user.user.gid);
 
   const wrapperStyle: StyleProp<ViewStyle> = [
     styles.titleWrapper,
     { alignItems: side === "left" ? "flex-start" : "flex-end" },
   ];
 
+  const fillArray =
+    userGid !== activityData.admin.gid &&
+    !isPlayer(userGid, activityData?.teams) &&
+    status === "pending" &&
+    players.length < teamSize;
+
   let newData = players;
-  if (status === "pending" && players.length < teamSize) {
+
+  if (fillArray) {
     const elementosFaltantes = teamSize - players.length;
     for (let i = 0; i < elementosFaltantes; i++) {
-      newData.push({ gid: 0, name: "", image: "" });
+      const gid = Math.random().toString();
+      newData.push({ gid, name: "", image: "", placeholder: true });
     }
   }
 
@@ -54,7 +67,7 @@ const Team = ({ data, side, status, teamSize, activityData }: Props) => {
         numColumns={2}
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
-          <Player data={item} activityData={activityData} />
+          <Player key={data.gid} data={item} activityData={activityData} />
         )}
       />
     </View>

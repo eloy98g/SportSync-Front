@@ -8,6 +8,8 @@ import StatusBar from "./components/StatusBar";
 import Actions from "./components/Actions";
 import Loading from "./components/Loading";
 import ConfirmModal from "./components/ConfirmModal";
+import Error from "../../../components/Status/Error";
+import BackScreen from "./components/BackScreen";
 
 // Context
 import CreateContext from "./context/CreateContext";
@@ -29,10 +31,12 @@ const Create = () => {
   const [modal, setModal] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
   const [finishError, setFinishError] = useState<string>("");
+  const [finishSuccess, setFinishSuccess] = useState<boolean>(false);
   const { navigateTo } = useNavigate();
   const navigation = useNavigation();
 
-  const { status, section, setSection, draft } = useContext(CreateContext);
+  const { status, error, section, setSection, draft } =
+    useContext(CreateContext);
   const userGid = useAppSelector((state) => state.user.user.gid);
 
   const currentSection =
@@ -57,6 +61,21 @@ const Create = () => {
     }
   };
 
+  const createDateStart = () => {
+    const dateHour = new Date(draft.hour);
+    const hours = dateHour.getHours();
+    const minutes = dateHour.getMinutes();
+
+    const dateDay = new Date(draft.day);
+    const day = dateDay.getDate();
+    const month = dateDay.getMonth();
+    const year = dateDay.getFullYear();
+
+    const newDate = new Date(year, month, day, hours, minutes);
+
+    const newUnixTime = newDate.getTime();
+    return newUnixTime;
+  };
   const finishHandler = async () => {
     setLoading(true);
     try {
@@ -66,13 +85,14 @@ const Create = () => {
         lat: draft.location.latitude,
         lng: draft.location.longitude,
         address: draft.location.address,
-        dateStart: draft.day + draft.hour,
+        dateStart: createDateStart(),
       };
       const response = await Api.activity.create(activity);
       if (response.status === "success") {
         navigateTo("ActivityDetail", {
           gid: response.data.gid,
         });
+        setFinishSuccess(true);
       } else {
         setFinishError(response.message);
         setModal("Error");
@@ -80,7 +100,7 @@ const Create = () => {
     } catch (error: any) {
       setFinishError(error.message);
       setModal("Error");
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -102,7 +122,11 @@ const Create = () => {
   }
 
   if (status === "error") {
-    // TODO: render error
+    return <Error error={error} />;
+  }
+
+  if (finishSuccess) {
+    return <BackScreen />;
   }
 
   return (

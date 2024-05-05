@@ -15,17 +15,24 @@ interface Props {
 }
 
 const StaticInfo = ({ data }: Props) => {
-  const { description, admin, location } = data;
+  const { description, admin, location, name } = data;
 
+  const descriptionText =
+    description?.length > 0 ? description : "Sin descripción";
   return (
     <View style={styles.container}>
       <Card title="Información" border={false}>
-        <Description description={description} />
+        {name?.length > 0 ? <Description description={name} /> : <></>}
+        {description?.length > 0 ? (
+          <Description description={description} />
+        ) : (
+          <></>
+        )}
       </Card>
       <Card title="Administrador" border={false}>
         <View style={styles.row}>
           <View style={styles.admin}>
-            <Player data={admin} activityData={data}/>
+            <Player data={admin} activityData={data} />
           </View>
           <Location location={location} />
         </View>

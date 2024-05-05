@@ -2,6 +2,7 @@ import Activity from "../../../../store/types/activity/Activity";
 import Team from "../../../../store/types/activity/Team";
 
 const isActivityFull = (data: Activity) => {
+  console.log("isActivityFull", JSON.stringify(data));
   const { teams, playersPerTeam } = data;
 
   const finalNumPlayers = teams.length * playersPerTeam;
@@ -9,8 +10,7 @@ const isActivityFull = (data: Activity) => {
 
   teams.forEach((team: Team) => {
     currentPlayers += team.players.filter(
-      (player) =>
-        player.gid !== 0 && player.gid !== null && player.gid !== undefined
+      (player) => !player?.placeholder
     ).length;
   });
 

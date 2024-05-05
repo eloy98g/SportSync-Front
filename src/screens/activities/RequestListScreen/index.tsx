@@ -35,7 +35,8 @@ const RequestListScreen = ({ route }: Props) => {
     try {
       setStatus("loading");
       if (activityGid) {
-        const response = await Api.application.getAll(activityGid);
+        const input = "status=pending";
+        const response = await Api.application.getAll(activityGid, input);
         if (response.status === "success") {
           setRequests(response.data);
           setStatus("success");
@@ -59,7 +60,7 @@ const RequestListScreen = ({ route }: Props) => {
 
   return (
     <Screen>
-      <BackHeader title="Peticiones" />
+      <BackHeader title="Solicitudes" />
       <View style={styles.container}>
         {status === "loading" ? (
           <Loading />

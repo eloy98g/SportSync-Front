@@ -25,7 +25,7 @@ const Requests = ({ data, requests }: Props) => {
     "(" +
     requests.length +
     ") " +
-    (requests.length > 1 ? "Peticiones" : "Petición");
+    (requests.length > 1 ? "Solicitudes" : "Solicitud");
 
   const requestsHandler = () => {
     navigateTo("RequestListScreen", { activityGid: data.gid });
@@ -36,7 +36,7 @@ const Requests = ({ data, requests }: Props) => {
   return (
     <>
       <Divider height={16} />
-      <Label text="Peticiones" />
+      <Label text="Solicitudes" />
       <Divider height={8} />
       <TouchableInfo
         icon={<Icon icon={"requests"} size={24} color={colors.black} />}
