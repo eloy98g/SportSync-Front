@@ -23,12 +23,14 @@ const Schedule = () => {
   const { location, duration, day, hour } = draft;
 
   const hourHandler = (e: any) => {
-    const newHour = Date.parse(e) / 1000;
+    console.log('e',e)
+    const newHour = Date.parse(e);
+    console.log('newHour',newHour)
     setDraft((prevState) => ({ ...prevState, hour: newHour }));
   };
 
   const dayHandler = (e: any) => {
-    const newDay = Date.parse(e) / 1000;
+    const newDay = Date.parse(e);
     setDraft((prevState) => ({ ...prevState, day: newDay }));
   };
 
@@ -54,7 +56,7 @@ const Schedule = () => {
     }));
   };
 
-  const durationText = duration > 0 ? duration.toString() : duration;
+  const durationText = duration > 0 ? duration.toString() : duration
 
   return (
     <SectionContainer>
@@ -82,7 +84,7 @@ const Schedule = () => {
         <Divider height={12} />
         <Label text="Hora inicio" />
         <DatePicker
-          value={hour * 1000}
+          value={hour}
           setValue={hourHandler}
           placeholder="Elige hora de inicio"
           mode="time"
