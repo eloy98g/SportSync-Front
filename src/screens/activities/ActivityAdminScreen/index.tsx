@@ -56,8 +56,9 @@ const ActivityAdminScreen = ({ route }: Props) => {
     try {
       setStatus("loading");
       if (activityGid) {
+        const input = "status=pending";
         const response = await Api.activity.getById(activityGid);
-        const requestResponse = await Api.application.getAll(activityGid);
+        const requestResponse = await Api.application.getAll(activityGid, input);
         if (
           response.status === "success" &&
           requestResponse.status === "success"
