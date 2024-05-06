@@ -2,7 +2,7 @@
   "hostType": "tunnel",
   "lanType": "ip",
   "dev": true,
-  "minify": false,
+  "minify": true,
   "urlRandomness": "ab-yxy",
   "https": false,
   "devClient": true,

@@ -14,20 +14,39 @@ const getLocation = async () => {
   };
 
   try {
-    // TODO: Fix this
-    // let { status } = await requestForegroundPermissionsAsync();
-    // if (status !== "granted") {
-    //   return location;
-    // }
-    // const { coords } = await getCurrentPositionAsync();
+    console.log("1");
+    let { status } = await requestForegroundPermissionsAsync();
+    console.log("2", status);
+    if (status !== "granted") {
+      return location;
+    }
+    console.log("3");
+    const locationPromise = new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        clearTimeout(timeout);
+        reject(new Error("Timeout exceeded while fetching location."));
+      }, 2000);
+      getCurrentPositionAsync()
+        .then((position) => {
+          clearTimeout(timeout);
+          resolve(position);
+        })
+        .catch((error) => {
+          clearTimeout(timeout);
+          reject(error);
+        });
+    });
 
-    // const { latitude, longitude } = coords;
+    const position = await Promise.race([locationPromise]);
+    console.log("4");
+    const { coords } = position;
+    const { latitude, longitude } = coords;
 
-    // location.latitude = latitude;
-    // location.longitude = longitude;
+    location.latitude = latitude;
+    location.longitude = longitude;
 
-    // const address = await getAddress(location);
-    // location.address = address;
+    const address = await getAddress(location);
+    location.address = address;
 
     return location;
   } catch (e: any) {
