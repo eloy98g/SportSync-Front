@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Divider from "../../../../components/common/Divider";
@@ -8,6 +7,7 @@ import Icon from "../../../../components/common/Icon";
 
 // Hooks
 import { useAppSelector } from "../../../../hooks";
+import useNavigate from "../../../../hooks/useNavigate";
 
 // Types
 import Activity from "../../../../store/types/activity/Activity";
@@ -35,9 +35,9 @@ const PublicActivity = (props: Activity) => {
     location,
   } = props;
   const { name } = sport;
-  const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
 
-  const userLocation = useAppSelector((state) => state.user.user.location);
+  const userLocation = useAppSelector((state) => state.user.location);
   const distance =
     "a " + formattedDistance(distanceBetween(userLocation, location));
 
@@ -49,7 +49,7 @@ const PublicActivity = (props: Activity) => {
   const totalPlayers = teams.length * playersPerTeam;
 
   const activityHandler = () => {
-    navigation.navigate("ActivityDetail" as never, { gid } as never);
+    navigateTo("ActivityDetail", { gid });
   };
 
   return (
