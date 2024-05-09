@@ -33,7 +33,7 @@ const PublicActivity = (props: Activity) => {
     access,
   } = props;
   const { name } = sport;
-  const {navigateTo} = useNavigate();
+  const { navigateTo } = useNavigate();
   const userLocation = useAppSelector((state) => state.user.location);
   const distance =
     "a " + formattedDistance(distanceBetween(userLocation, location));

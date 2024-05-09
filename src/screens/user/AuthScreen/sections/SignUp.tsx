@@ -76,8 +76,9 @@ const SignUp = ({ setSection, setOpen, navigation }: any) => {
         loading={loading}
         active={buttonActive}
       />
-      <Divider height={22} />
+       <Divider height={12} />
       {error !== "" && <Text style={styles.error}>{error}</Text>}
+      <Divider height={12} />
       <View style={styles.row}>
         <Text style={styles.text}>¿Ya tienes cuenta? </Text>
         <TouchableText
@@ -95,7 +96,7 @@ export default SignUp;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 350,
+    height: 370,
     maxWidth: PHONE,
   },
   title: {

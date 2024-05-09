@@ -11,6 +11,7 @@ const signUp = createAsyncThunk("user/signUp", async (input: any) => {
   const response = await Api.auth.signUp(input);
   const { status, data, message } = response;
   if (status === "success") {
+    console.log('data', data )
     return mapUser(data) as User;
   } else {
     throw new Error(message);

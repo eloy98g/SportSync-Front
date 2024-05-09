@@ -28,7 +28,12 @@
         "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.POST_NOTIFICATIONS"
-      ]
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "@MAP_API_KEY"
+        }
+      }
     },
     "web": {
       "favicon": "./src/assets/metadata/logo.png"

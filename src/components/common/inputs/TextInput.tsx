@@ -32,6 +32,7 @@ const TextInput = ({
       placeholder={placeholder}
       placeholderTextColor={colors.grey}
       secureTextEntry={secure}
+      autoCapitalize="none"
     />
   );
 };

@@ -13,6 +13,7 @@ import LogIn from "./sections/LogIn";
 import SignUp from "./sections/SignUp";
 
 type SECTION = "LogIn" | "ForgotPassword" | "SignIn";
+
 const AuthScreen = ({ navigation }: any) => {
   const [section, setSection] = useState<SECTION>("LogIn");
   const [open, setOpen] = useState(false);
