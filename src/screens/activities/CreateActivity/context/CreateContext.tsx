@@ -27,6 +27,7 @@ interface ContextProps {
   section: SectionName;
   sports: Sport[];
   status: STATUS;
+  error: string;
 }
 
 const CreateContext = createContext<ContextProps>(INITIAL_DATA);
@@ -40,6 +41,7 @@ const CreateProvider = ({ children }: Props) => {
   const [draft, setDraft] = useState<Draft>(INITIAL_DRAFT);
   const [sports, setSports] = useState<Sport[]>([]);
   const { status, setStatus } = useStatus();
+  const [error, setError] = useState<string>("");
 
   const getData = async () => {
     setStatus("loading");
@@ -47,8 +49,9 @@ const CreateProvider = ({ children }: Props) => {
       const response = await Api.sport.getAll();
       if (response.status === "success") setSports(response.data);
       setStatus("success");
-    } catch (error) {
+    } catch (error: any) {
       setStatus("error");
+      setError(error.message);
     }
   };
 
@@ -65,6 +68,7 @@ const CreateProvider = ({ children }: Props) => {
         section,
         status,
         sports,
+        error,
       }}
     >
       {children}

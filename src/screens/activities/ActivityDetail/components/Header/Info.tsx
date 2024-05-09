@@ -16,12 +16,15 @@ interface Props {
 }
 
 const Info = ({ data }: Props) => {
-  const { sport, startDate, duration } = data;
+  const { sport, startDate, duration, name } = data;
 
+  const title = name?.length > 0 ? name : sport.name;
   const date = getDateWithDuration(startDate, duration);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{sport.name}</Text>
+      <Text numberOfLines={1} style={styles.title}>
+        {title}
+      </Text>
       <Text style={styles.subtitle}>{date}</Text>
     </View>
   );

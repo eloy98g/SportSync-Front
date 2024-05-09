@@ -10,7 +10,8 @@ import { family } from "../../../theme/fonts";
 
 const Title = () => {
   const name = useAppSelector((state) => state.user.user.name);
-  return <Text style={styles.title}>Hola {name}!</Text>;
+  const text = "Hola " + (name?.length > 0 ? name : "Usuario") + "!"
+  return <Text style={styles.title}>{text}</Text>;
 };
 
 export default Title;

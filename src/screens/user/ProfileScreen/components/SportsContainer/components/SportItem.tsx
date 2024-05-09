@@ -27,7 +27,11 @@ const SportItem = ({ sport, onPress, selected }: Props) => {
           selected && { backgroundColor: colors.primary },
         ]}
       >
-        <Image style={styles.image} source={{ uri: icons.white }} />
+        <Image
+          style={styles.image}
+          source={{ uri: icons.white || "" }}
+          tintColor={!selected ? colors.primary : colors.white}
+        />
       </View>
       <Divider height={4} />
       <Text style={styles.title}>{name}</Text>

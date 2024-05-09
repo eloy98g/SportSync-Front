@@ -27,6 +27,7 @@ import unixToDate from "../../../../../../utils/date/unixToDate";
 import getWinner from "../../../../../../utils/score/getWinner";
 import getUserTeam from "../../../../../../utils/activity/getUserTeam";
 import getSimpleScore from "../../../methods/getSimpleScore";
+import PROFILE_IMAGE from "../../../../../../constants/PROFILE_IMAGE";
 
 interface Props {
   data: ActivityT;
@@ -62,7 +63,7 @@ const Activity = ({ data }: Props) => {
       <View style={styles.content}>
         <View style={styles.teamWrapper}>
           <Team
-            image={userTeamData?.players[0].image}
+            image={userTeamData?.players[0].image || PROFILE_IMAGE}
             size={userTeamData?.players.length}
           />
         </View>
@@ -84,7 +85,7 @@ const Activity = ({ data }: Props) => {
         {otherTeam && (
           <View style={styles.teamWrapper}>
             <Team
-              image={otherTeam?.players[0].image}
+              image={otherTeam?.players[0]?.image || PROFILE_IMAGE}
               size={otherTeam?.players.length}
             />
           </View>

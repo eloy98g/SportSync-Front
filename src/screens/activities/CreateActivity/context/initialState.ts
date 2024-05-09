@@ -22,7 +22,7 @@ const INITIAL_DRAFT: Draft = {
   },
   duration: 60,
   day: Date.now(),
-  hour: Date.now() / 1000,
+  hour: Date.now(),
   description: "",
 };
 
@@ -33,6 +33,7 @@ const INITIAL_DATA = {
   section: "sport" as SectionName,
   status: "idle" as STATUS,
   sports: [],
+  error: "",
 };
 
 export { INITIAL_DRAFT };

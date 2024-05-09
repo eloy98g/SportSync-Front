@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     flex: 1,
+    minHeight: 60,
     alignItems: "center",
     justifyContent: "space-between",
   },

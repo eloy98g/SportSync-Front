@@ -15,8 +15,8 @@ import { family } from "../../../../theme/fonts";
 interface Props {
   image: string;
   name: string;
-  gid: number;
-  onPress: (T: number) => void;
+  gid: string;
+  onPress: (T: string) => void;
   selected?: boolean;
   favorite?: boolean;
 }

@@ -16,10 +16,14 @@ interface Props {
 }
 
 const Details = ({ data }: Props) => {
-  const { playersPerTeam, price, type } = data;
+  const { playersPerTeam, price, type, teams } = data;
 
-  const playersText = playersPerTeam + " vs " + playersPerTeam;
-  const priceText = price > 0 ? getFormattedPrice(price) + " c/u": "Gratis";
+  const playersText =
+    teams.length > 1
+      ? `${playersPerTeam} vs `.repeat(teams.length - 1) + `${playersPerTeam}`
+      : `${playersPerTeam}`;
+      
+  const priceText = price > 0 ? getFormattedPrice(price) + " c/u" : "Gratis";
   const typeText = type === "normal" ? "Normal" : "Competitivo";
   const sizeText = type === "normal" ? 24 : 20;
 

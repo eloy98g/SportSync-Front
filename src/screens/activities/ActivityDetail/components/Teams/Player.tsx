@@ -14,8 +14,11 @@ import { family } from "../../../../../theme/fonts";
 import PlayerT from "../../../../../store/types/activity/Player";
 import Activity from "../../../../../store/types/activity/Activity";
 
+interface ExtendedPlayerT extends PlayerT {
+  placeholder?: boolean;
+}
 interface Props {
-  data: PlayerT;
+  data: ExtendedPlayerT;
   activityData: Activity;
 }
 
@@ -29,7 +32,7 @@ const Player = ({ data, activityData }: Props) => {
     setOpenSheet(true);
   };
 
-  if (!gid) {
+  if (data?.placeholder) {
     return (
       <TouchableOpacity style={styles.container} onPress={applyForTeamHandler}>
         <CircleFadingPlus color={colors.lightenGrey} size={55} />

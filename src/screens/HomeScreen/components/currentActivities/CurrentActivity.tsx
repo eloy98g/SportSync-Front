@@ -27,6 +27,8 @@ interface Props {
 const CurrentActivity = ({ onPress, data, showButton }: Props) => {
   const { sport, name, type, startDate } = data;
 
+  const nameText = name?.length > 0 ? name : sport.name;
+  
   const date = unixToDate(startDate);
   const hour = getHour(startDate);
 
@@ -41,7 +43,7 @@ const CurrentActivity = ({ onPress, data, showButton }: Props) => {
         </>
       )}
       <View style={{ flex: 1 }}>
-        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.name}>{nameText}</Text>
       </View>
       <Divider width={8} />
       <Text style={styles.typeText}>

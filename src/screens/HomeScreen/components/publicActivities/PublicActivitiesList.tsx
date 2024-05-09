@@ -18,12 +18,19 @@ import { useAppSelector } from "../../../../hooks";
 import colors from "../../../../theme/colors";
 import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
+import isPlayer from "../../../activities/ActivityDetail/methods/isPlayer";
 
 const PublicActivitiesList = () => {
   const width = useWindowDimensions().width;
+  const userGid = useAppSelector((state) => state.user.user.gid);
   const scrollWidth = width >= PHONE ? PHONE : width;
 
-  const activities = useAppSelector((state) => state.activity.publicActivities);
+  const activities = useAppSelector(
+    (state) => state.activity.publicActivities
+  ).filter(
+    (activity) =>
+      activity.admin.gid !== userGid && !isPlayer(userGid, activity?.teams)
+  );
 
   if (activities.length === 0) return <View />;
 
