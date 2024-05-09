@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 // Components
+import LocationText from "./components/LocationText";
 import RequestsIcon from "./components/RequestsIcon";
 import ChatIcon from "./components/ChatIcon";
 import Title from "./components/Title";
@@ -21,6 +22,8 @@ const Header = () => {
           <ChatIcon />
         </View>
       </View>
+      <Divider height={8} />
+      <LocationText />
     </View>
   );
 };
@@ -36,11 +39,9 @@ const styles = StyleSheet.create({
   },
   content: {
     width: "100%",
-    height: 80,
     paddingTop: 40,
     flexDirection: "row",
     justifyContent: "space-between",
-
     maxWidth: PHONE,
     paddingHorizontal: 12,
   },

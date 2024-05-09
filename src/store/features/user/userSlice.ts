@@ -5,17 +5,19 @@ import signUp from "./methods/signUp";
 import toggleSport from "./methods/toggleSport";
 // Types
 import User, { EMPTY_USER } from "../../types/user/User";
-import Location from "../../types/location/Location";
+import Location, { EMPTY_LOCATION } from "../../types/location/Location";
 import signIn from "./methods/signIn";
 
 type UserState = {
   loading: boolean;
   error: string;
+  location: Location;
   user: User;
 };
 
 const initialState: UserState = {
   user: EMPTY_USER,
+  location: EMPTY_LOCATION,
   loading: false,
   error: "",
 };
@@ -28,7 +30,7 @@ const userSlice = createSlice({
       state.user = EMPTY_USER;
     },
     setLocation: (state, action: PayloadAction<Location>) => {
-      state.user.location = action.payload;
+      state.location = action.payload;
     },
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;

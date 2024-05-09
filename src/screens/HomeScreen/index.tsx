@@ -47,6 +47,7 @@ const HomeScreen = () => {
       <View style={styles.content}>
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
           <Header />
+          <Divider height={8} />
           <PublicActivitiesList />
           <CurrentActivitiesList />
           <QuickActions />

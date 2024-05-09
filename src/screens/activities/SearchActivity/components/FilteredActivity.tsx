@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Divider from "../../../../components/common/Divider";
@@ -36,10 +35,9 @@ const PublicActivity = (props: Activity) => {
     location,
   } = props;
   const { name } = sport;
-  const navigation = useNavigation();
   const { navigateTo } = useNavigate();
 
-  const userLocation = useAppSelector((state) => state.user.user.location);
+  const userLocation = useAppSelector((state) => state.user.location);
   const distance =
     "a " + formattedDistance(distanceBetween(userLocation, location));
 

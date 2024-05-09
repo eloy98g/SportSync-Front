@@ -44,6 +44,7 @@ const SplashScreen = () => {
     try {
       await getData();
       const locationPermission = await getLocationPermissions();
+      console.log("locationPermission", locationPermission);
       if (locationPermission) {
         const location = await getLocation();
         dispatch(setLocation(location));
