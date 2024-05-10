@@ -67,6 +67,10 @@ const ActivityDetail = ({ route }: any) => {
     }
   };
 
+  useEffect(() => {
+    getData();
+  }, [gid]);
+
   useFocusEffect(
     useCallback(() => {
       getData();

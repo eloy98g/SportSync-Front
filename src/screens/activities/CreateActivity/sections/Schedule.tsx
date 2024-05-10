@@ -23,9 +23,7 @@ const Schedule = () => {
   const { location, duration, day, hour } = draft;
 
   const hourHandler = (e: any) => {
-    console.log('e',e)
     const newHour = Date.parse(e);
-    console.log('newHour',newHour)
     setDraft((prevState) => ({ ...prevState, hour: newHour }));
   };
 

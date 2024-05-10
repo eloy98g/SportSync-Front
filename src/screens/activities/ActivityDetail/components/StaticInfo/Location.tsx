@@ -5,6 +5,9 @@ import { MapPin } from "lucide-react-native";
 // Components
 import Divider from "../../../../../components/common/Divider";
 
+// Hooks
+import useNavigate from "../../../../../hooks/useNavigate";
+
 // Theme
 import colors from "../../../../../theme/colors";
 import { family } from "../../../../../theme/fonts";
@@ -19,6 +22,7 @@ interface Props {
 
 const Location = ({ location }: Props) => {
   const [title, setTitle] = useState("");
+  const { navigateTo } = useNavigate();
 
   const getTitle = async () => {
     const address = await getAddress(location);
@@ -29,8 +33,16 @@ const Location = ({ location }: Props) => {
     getTitle();
   }, [location]);
 
+  const locationHandler = () => {
+    navigateTo("MapScreen", {
+      mapHandler: () => {},
+      option: "view",
+      mapLocation: location,
+    });
+  }
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={locationHandler}>
       <Text style={styles.text}>{title}</Text>
       <Divider width={8} />
       <MapPin color={colors.grey} size={18} />

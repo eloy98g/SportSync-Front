@@ -1,11 +1,13 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import MainButton from "../../../../../components/common/buttons/MainButton";
 import Divider from "../../../../../components/common/Divider";
 import Card from "../../../../../components/common/Card";
+
+// Hooks
+import useNavigate from "../../../../../hooks/useNavigate";
 
 // Theme
 import colors from "../../../../../theme/colors";
@@ -21,17 +23,17 @@ interface Props {
 }
 
 const Actions = ({ data, playerView, userGid }: Props) => {
-  const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
 
   const chatHandler = () => {
-    navigation.navigate("Chat" as never, { chatId: data.gid } as never);
+    navigateTo("Chat", { chatId: data.gid });
   };
   const shareHandler = async () => {
     await shareActivity(data);
   };
 
   const reviewHandler = () => {
-    navigation.navigate("ReviewScreen" as never, { userGid, data } as never);
+    navigateTo("ReviewScreen", { userGid, data });
   };
 
   return (
