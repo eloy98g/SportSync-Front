@@ -18,6 +18,7 @@ import { family } from "../../../../../theme/fonts";
 // Types
 import Player from "../../../../../store/types/activity/Player";
 import Activity from "../../../../../store/types/activity/Activity";
+import PROFILE_IMAGE from "../../../../../constants/PROFILE_IMAGE";
 
 interface Props {
   user: Player;
@@ -57,7 +58,7 @@ const ActionSheet = ({ user, open, data, setOpen }: Props) => {
     <Sheet open={open} openHandler={setOpen} modal>
       <Divider width={12} />
       <View style={styles.row}>
-        <Image style={styles.image} source={{ uri: image }} />
+        <Image style={styles.image} source={{ uri: image || PROFILE_IMAGE }} />
         <Divider width={20} />
         <Text style={styles.name}>{name}</Text>
       </View>

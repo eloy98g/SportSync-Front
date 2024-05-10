@@ -13,10 +13,12 @@ import { family } from "../../../../../theme/fonts";
 // Types
 import PlayerT from "../../../../../store/types/activity/Player";
 import Activity from "../../../../../store/types/activity/Activity";
+import PROFILE_IMAGE from "../../../../../constants/PROFILE_IMAGE";
 
 interface ExtendedPlayerT extends PlayerT {
   placeholder?: boolean;
 }
+
 interface Props {
   data: ExtendedPlayerT;
   activityData: Activity;
@@ -43,7 +45,7 @@ const Player = ({ data, activityData }: Props) => {
   return (
     <>
       <TouchableOpacity style={styles.container} onPress={playerHandler}>
-        <Image style={styles.image} source={{ uri: image }} />
+        <Image style={styles.image} source={{ uri: image || PROFILE_IMAGE }} />
         <Divider height={4} />
         <Text style={styles.name}>{name}</Text>
       </TouchableOpacity>

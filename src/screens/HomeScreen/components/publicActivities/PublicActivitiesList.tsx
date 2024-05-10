@@ -11,6 +11,10 @@ import {
 import Divider from "../../../../components/common/Divider";
 import PublicActivity from "./PublicActivity";
 
+// Methods
+import isPlayer from "../../../activities/ActivityDetail/methods/isPlayer";
+import isActivityFull from "../../../activities/ActivityDetail/methods/isActivityFull";
+
 // Hooks
 import { useAppSelector } from "../../../../hooks";
 
@@ -18,7 +22,7 @@ import { useAppSelector } from "../../../../hooks";
 import colors from "../../../../theme/colors";
 import { PHONE } from "../../../../theme/breakPoints";
 import { family } from "../../../../theme/fonts";
-import isPlayer from "../../../activities/ActivityDetail/methods/isPlayer";
+
 
 const PublicActivitiesList = () => {
   const width = useWindowDimensions().width;
@@ -29,7 +33,7 @@ const PublicActivitiesList = () => {
     (state) => state.activity.publicActivities
   ).filter(
     (activity) =>
-      activity.admin.gid !== userGid && !isPlayer(userGid, activity?.teams)
+      activity.admin.gid !== userGid && !isPlayer(userGid, activity?.teams) && !isActivityFull(activity)
   );
 
   if (activities.length === 0) return <View />;

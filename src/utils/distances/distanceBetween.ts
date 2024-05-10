@@ -1,6 +1,8 @@
 import Location from "../../store/types/location/Location";
 
 const distanceBetween = (loc1: Location, loc2: Location) => {
+  if (!loc1 || !loc2) return 0;
+  
   const earthRadius = 6371000;
   const lat1 = (loc1.latitude * Math.PI) / 180;
   const lat2 = (loc2.latitude * Math.PI) / 180;
