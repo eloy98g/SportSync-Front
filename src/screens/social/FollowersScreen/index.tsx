@@ -25,36 +25,49 @@ import Player from "../../../store/types/activity/Player";
 import { family } from "../../../theme/fonts";
 import colors from "../../../theme/colors";
 
-// Store
-import USER_SEARCH from "../../../api/placeholders/USER_SEARCH";
+// Services
+import Api from "../../../services/api";
 
 const FollowersScreen = () => {
   const { status, setStatus } = useStatus();
   const [users, setUsers] = useState<Player[]>([]);
+  const [filteredUsers, setFilteredUsers] = useState<Player[]>([]);
   const [error, setError] = useState("");
   const userGid = useAppSelector((state) => state.user.user.gid);
 
-  useEffect(() => {
-    setStatus("loading");
+  const getData = async () => {
     setError("");
     try {
-      // TODO: api call for fetching users following this user
-      setTimeout(() => {
-        setUsers(USER_SEARCH);
-        setStatus("success");
-      }, 500);
-    } catch (error) {
-      setStatus("error");
+      setStatus("loading");
+      const params = `following=${userGid}`;
+      const response = await Api.user.getAll(params);
+      if (response.status === "success") {
+        setUsers(response.data);
+        if (response.data.length === 0) {
+          setStatus("empty");
+        } else {
+          setStatus("success");
+        }
+      } else {
+        setStatus("error");
+        setError(response.message);
+      }
+    } catch (error: any) {
       setError(error.message);
+      setStatus("error");
     }
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   const searchHandler = async (search: string) => {
     if (search.length === 0) {
-      setUsers(USER_SEARCH);
+      setFilteredUsers(users);
     } else {
-      setUsers(
-        USER_SEARCH.filter((user) =>
+      setFilteredUsers(
+        users.filter((user) =>
           user.name.toLocaleLowerCase().includes(search.toLowerCase())
         )
       );
@@ -81,7 +94,7 @@ const FollowersScreen = () => {
             />
             <ScrollView style={styles.scroll}>
               <Divider height={12} />
-              {users.map((user: Player) => (
+              {filteredUsers.map((user: Player) => (
                 <React.Fragment key={user.gid}>
                   <PlayerCard data={user} />
                   <Divider height={12} />

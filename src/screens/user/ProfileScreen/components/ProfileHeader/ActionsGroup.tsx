@@ -17,8 +17,7 @@ import colors from "../../../../../theme/colors";
 // Reducers
 import { logOut } from "../../../../../store/features/user/userSlice";
 import { family } from "../../../../../theme/fonts";
-import { followPlayer } from "../../../../../store/features/friends/friendsSlice";
-import Activity from "../../../../../store/types/activity/Activity";
+import { followPlayer } from "../../../../../store/features/following/followingSlice";
 import Player from "../../../../../store/types/activity/Player";
 import User from "../../../../../store/types/user/User";
 
@@ -33,8 +32,8 @@ const ActionsGroup = ({ isExternal, data }: Props) => {
 
   const navigation = useNavigation();
 
-  const friends = useAppSelector((state) => state.friends.friends);
-  const following = friends.some((player) => player.gid === gid);
+  const following = useAppSelector((state) => state.following.following);
+  const isFollowing = following.some((player) => player.gid === gid);
   
   const dispatch = useAppDispatch();
 
@@ -64,7 +63,7 @@ const ActionsGroup = ({ isExternal, data }: Props) => {
             padding
             textStyle={styles.text}
             distance={0}
-            text={following ? "Dejar de seguir" : "Seguir"}
+            text={isFollowing ? "Dejar de seguir" : "Seguir"}
           />
           <Divider width={10} />
           <IconButton

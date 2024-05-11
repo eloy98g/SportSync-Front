@@ -7,21 +7,23 @@ import Search from "../../../components/common/inputs/Search";
 import BackHeader from "../../../components/BackHeader";
 import Divider from "../../../components/common/Divider";
 import PlayerCard from "../../../components/social/PlayerCard";
+import Loading from "../../../components/Status/Loading";
+import Error from "../../../components/Status/Error";
 
-// Placeholder
-import USER_SEARCH from "../../../api/placeholders/USER_SEARCH";
+// Hooks
+import useStatus from "../../../hooks/useStatus";
+
+// Services
+import Api from "../../../services/api";
 
 // Types
 import Player from "../../../store/types/activity/Player";
-import useStatus from "../../../hooks/useStatus";
-import Api from "../../../services/api";
-import Loading from "../../../components/Status/Loading";
-import Error from "../../../components/Status/Error";
+
+// Theme
 import colors from "../../../theme/colors";
 
 const FindUserScreen = () => {
   const [users, setUsers] = useState<Player[]>([]);
-  const [lastSearch, setLastSearch] = useState<number>(0);
   const { status, setStatus } = useStatus();
   const [error, setError] = useState("");
 
@@ -39,8 +41,8 @@ const FindUserScreen = () => {
             setStatus("success");
           }
         } else {
-          setStatus("error");
           setError(response.message);
+          setStatus("error");
         }
       } catch (error: any) {
         setError(error.message);

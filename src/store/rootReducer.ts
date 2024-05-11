@@ -4,13 +4,13 @@ import { combineReducers } from "redux";
 import userReducer from "./features/user/userSlice";
 import activityReducer from "./features/activity/activitySlice";
 import chatReducer from "./features/chat/chatSlice";
-import friendsSlice from "./features/friends/friendsSlice";
+import followingSlice from "./features/following/followingSlice";
 
 const rootReducer = combineReducers({
   user: userReducer,
   activity: activityReducer,
   chat: chatReducer,
-  friends: friendsSlice,
+  following: followingSlice,
 });
 
 export default rootReducer;

@@ -20,7 +20,7 @@ import Player from "../../store/types/activity/Player";
 import {
   followPlayer,
   unfollowPlayer,
-} from "../../store/features/friends/friendsSlice";
+} from "../../store/features/following/followingSlice";
 import PROFILE_IMAGE from "../../constants/PROFILE_IMAGE";
 
 interface Props {
@@ -29,7 +29,7 @@ interface Props {
 
 const PlayerCard = ({ data }: Props) => {
   const { image, name, verified, gid } = data;
-  const friendList = useAppSelector((state) => state.friends.friends);
+  const friendList = useAppSelector((state) => state.following.following);
   const followed = friendList.some((user: Player) => user.gid === gid);
   const dispatch = useAppDispatch();
   const { navigateTo } = useNavigate();
