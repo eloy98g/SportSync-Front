@@ -1,10 +1,4 @@
-// Placeholder
-import CREATE_ACTIVITY_SPORTS from "../../../../api/placeholders/CREATE_ACTIVITY_SPORTS";
-
-// Filters
 import sortingValues from "../filters/sortingValues";
-
-// Types
 import { STATUS } from "../../../../hooks/useStatus";
 import SearchFilters from "../types/SearchFilters";
 
@@ -20,7 +14,7 @@ const INITIAL_STATE = {
   filters: INITIAL_FILTERS,
   setFilters: () => {},
   filteredActivities: [],
-  sports: CREATE_ACTIVITY_SPORTS,
+  sports: [],
   status: "idle" as STATUS,
 };
 

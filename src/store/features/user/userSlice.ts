@@ -35,7 +35,7 @@ const userSlice = createSlice({
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
     },
-    toggleFavoriteSport: (state, action: PayloadAction<number>) => {
+    toggleFavoriteSport: (state, action: PayloadAction<string>) => {
       const currentFavorites = state.user.favoriteSports;
       const sport = action.payload;
       state.user.favoriteSports = toggleSport(currentFavorites, sport);
