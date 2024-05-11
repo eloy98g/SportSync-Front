@@ -7,6 +7,7 @@ import BackHeader from "../../../components/BackHeader";
 import Error from "../../../components/Status/Error";
 import Divider from "../../../components/common/Divider";
 import RequestList from "./components/RequestList";
+import colors from "../../../theme/colors";
 
 interface Props {
   route: {
@@ -20,12 +21,12 @@ const RequestActivitiesList = ({ route }: Props) => {
   const numRequests = requests.filter(
     (req: any) => req.requests.length > 0
   ).length;
-  
+
   return (
     <Screen>
       <BackHeader title="Solicitudes de participación" />
       {numRequests === 0 ? (
-        <Error error="No hay solicitudes" />
+        <Error color={colors.black} error="No hay solicitudes" />
       ) : (
         <View style={styles.container}>
           <Divider height={80} />

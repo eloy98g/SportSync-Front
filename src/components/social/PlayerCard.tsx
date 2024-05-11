@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import IconButton from "../common/buttons/IconButton";
@@ -8,6 +7,7 @@ import Divider from "../common/Divider";
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import useNavigate from "../../hooks/useNavigate";
 
 // Theme
 import colors from "../../theme/colors";
@@ -21,6 +21,7 @@ import {
   followPlayer,
   unfollowPlayer,
 } from "../../store/features/friends/friendsSlice";
+import PROFILE_IMAGE from "../../constants/PROFILE_IMAGE";
 
 interface Props {
   data: Player;
@@ -31,7 +32,7 @@ const PlayerCard = ({ data }: Props) => {
   const friendList = useAppSelector((state) => state.friends.friends);
   const followed = friendList.some((user: Player) => user.gid === gid);
   const dispatch = useAppDispatch();
-  const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
 
   const followHandler = () => {
     if (followed) {
@@ -42,13 +43,13 @@ const PlayerCard = ({ data }: Props) => {
   };
 
   const profileHandler = () => {
-    navigation.navigate("Profile" as never, { gid: gid } as never);
+    navigateTo("Profile", { gid: gid });
   };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.row} onPress={profileHandler}>
-        <Image style={styles.image} source={{ uri: image }} />
+        <Image style={styles.image} source={{ uri: image || PROFILE_IMAGE }} />
         <Divider width={12} />
         <Text style={styles.name}>{name}</Text>
         <Divider width={12} />

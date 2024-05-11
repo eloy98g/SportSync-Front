@@ -7,14 +7,19 @@ import colors from "../../theme/colors";
 
 interface Props {
   error: string;
+  color?: string;
 }
-const Error = ({ error }: Props) => (
+const Error = ({ error, color }: Props) => (
   <View style={styles.container}>
-    <Text style={styles.error}>{error}</Text>
+    <Text style={[styles.error, { color }]}>{error}</Text>
   </View>
 );
 
 export default Error;
+
+Error.defaultProps = {
+  color: colors.red,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +30,5 @@ const styles = StyleSheet.create({
   error: {
     fontFamily: family.normal,
     fontSize: 14,
-    color: colors.red,
   },
 });

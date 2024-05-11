@@ -25,7 +25,6 @@ interface Props {
 }
 
 const Activity = ({ data }: Props) => {
-  console.log("Activity", JSON.stringify(data));
   const { result, teams, startDate, type, gid } = data;
   const userGid = useAppSelector((state) => state.user.user.gid);
 
