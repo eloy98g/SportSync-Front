@@ -1,4 +1,4 @@
-const toggleSport = (array: number[], gid: number): number[] => {
+const toggleSport = (array: string[], gid: string): string[] => {
   // TODO: Api call for toggle sport
   let newArray = [];
   if (array.includes(gid)) {

@@ -49,9 +49,9 @@ export default LocationText;
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: family.normal,
+    fontFamily: family.semibold,
     fontSize: 14,
-    color: colors.grey,
+    color: colors.secondary,
   },
   container: {
     width: "100%",

@@ -1,58 +1,58 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Methods
-import fetchFriends from "./methods/fetchFriends";
+import fetchFollowing from "./methods/fetchFollowing";
 
 // Types
 import Player from "../../types/activity/Player";
 
-type FriendsState = {
+type FollowingState = {
   loading: boolean;
   error: string;
-  friends: Player[];
+  following: Player[];
 };
 
-const initialState: FriendsState = {
-  friends: [],
+const initialState: FollowingState = {
+  following: [],
   loading: false,
   error: "",
 };
 
-const friendsSlice = createSlice({
+const followingSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    unfollowPlayer: (state, action: PayloadAction<number>) => {
+    unfollowPlayer: (state, action: PayloadAction<string>) => {
       // TODO: API call for following a player
-      const newArray = state.friends.filter(
+      const newArray = state.following.filter(
         (player) => player.gid !== action.payload
       );
-      state.friends = newArray;
+      state.following = newArray;
     },
     followPlayer: (state, action: PayloadAction<Player>) => {
       // TODO: API call for unfollowing a player
-      const newArray = [...state.friends, action.payload];
-      state.friends = newArray;
+      const newArray = [...state.following, action.payload];
+      state.following = newArray;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchFriends.pending, (state) => {
+    builder.addCase(fetchFollowing.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(
-      fetchFriends.fulfilled,
+      fetchFollowing.fulfilled,
       (state, action: PayloadAction<Player[]>) => {
-        state.friends = action.payload;
+        state.following = action.payload;
         state.loading = false;
       }
     );
-    builder.addCase(fetchFriends.rejected, (state, action) => {
+    builder.addCase(fetchFollowing.rejected, (state, action) => {
       state.error = action.error.message || "Error desconocido";
       state.loading = false;
     });
   },
 });
 
-export const { unfollowPlayer, followPlayer } = friendsSlice.actions;
+export const { unfollowPlayer, followPlayer } = followingSlice.actions;
 
-export default friendsSlice.reducer;
+export default followingSlice.reducer;

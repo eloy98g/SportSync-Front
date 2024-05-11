@@ -15,8 +15,7 @@ import Divider from "../../../components/common/Divider";
 import PlayerCard from "../../../components/social/PlayerCard";
 
 // Hooks
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import useStatus from "../../../hooks/useStatus";
+import { useAppSelector } from "../../../hooks";
 
 // Types
 import Player from "../../../store/types/activity/Player";
@@ -25,39 +24,16 @@ import Player from "../../../store/types/activity/Player";
 import { family } from "../../../theme/fonts";
 import colors from "../../../theme/colors";
 
-// Store
-import fetchFriends from "../../../store/features/friends/methods/fetchFriends";
-
 const FollowingScreen = () => {
-  const { status, setStatus } = useStatus();
   const [users, setUsers] = useState<Player[]>([]);
-  const [error, setError] = useState("");
-  const userGid = useAppSelector((state) => state.user.user.gid);
-  const friendList = useAppSelector((state) => state.friends.friends);
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    setStatus("loading");
-    setError("");
-    try {
-      setTimeout(() => {
-        dispatch(fetchFriends(userGid));
-        setUsers(friendList);
-        setStatus("success");
-      }, 500);
-    } catch (error) {
-      setStatus("error");
-      setError(error.message);
-    }
-  }, []);
+  const friendList = useAppSelector((state) => state.following);
 
   const searchHandler = async (search: string) => {
     if (search.length === 0) {
-      setUsers(friendList);
+      setUsers(friendList.following);
     } else {
       setUsers(
-        friendList.filter((user) =>
+        friendList.following.filter((user) =>
           user.name.toLocaleLowerCase().includes(search.toLowerCase())
         )
       );
@@ -68,13 +44,13 @@ const FollowingScreen = () => {
     <Screen>
       <BackHeader title="Siguiendo" />
       <View style={styles.container}>
-        {status === "loading" ? (
+        {friendList.loading ? (
           <View style={styles.loadingWrapper}>
             <ActivityIndicator />
           </View>
-        ) : status === "error" ? (
+        ) : friendList.error ? (
           <View style={styles.loadingWrapper}>
-            <Text style={styles.error}>{error}</Text>
+            <Text style={styles.error}>{friendList.error}</Text>
           </View>
         ) : (
           <>

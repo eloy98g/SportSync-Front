@@ -29,7 +29,7 @@ import { family } from "../../../theme/fonts";
 import colors from "../../../theme/colors";
 
 // Placeholder
-import CREATE_ACTIVITY_SPORTS from "../../../api/placeholders/CREATE_ACTIVITY_SPORTS";
+import Api from "../../../services/api";
 
 const FavoriteSportsScreen = () => {
   const [filter, setFilter] = useState("");
@@ -44,19 +44,24 @@ const FavoriteSportsScreen = () => {
   const dispatch = useAppDispatch();
   const loading = status === "idle" || status === "loading";
 
-  useEffect(() => {
+  const getData = async () => {
     try {
-      // Todo: Api call for sports
-      // TODO: error handling
-      setStatus("loading");
-      setTimeout(() => {
-        setSports(CREATE_ACTIVITY_SPORTS);
+      const response = await Api.sport.getAll();
+
+      if (response.status === "success") {
+        setSports(response.data);
         setStatus("success");
-      }, 1000);
-    } catch (error) {
+      } else {
+        setStatus("error");
+        setError(response.message);
+      }
+    } catch (error: any) {
       setStatus("error");
       setError(error.message);
     }
+  };
+  useEffect(() => {
+    getData();
   }, []);
 
   const filteredSports = sports.filter((sport) =>
@@ -67,7 +72,7 @@ const FavoriteSportsScreen = () => {
       .includes(filter.toLowerCase())
   );
 
-  const sportHandler = (gid: number) => {
+  const sportHandler = (gid: string) => {
     dispatch(toggleFavoriteSport(gid));
   };
 

@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 // Reducers
 import fetchCurrentActivities from "../../../store/features/activity/methods/fetchCurrentActivities";
 import fetchPublicActivities from "../../../store/features/activity/methods/fetchPublicActivities";
-import fetchFriends from "../../../store/features/friends/methods/fetchFriends";
+import fetchFollowing from "../../../store/features/following/methods/fetchFollowing";
 import fetchChats from "../../../store/features/chat/methods/fetchChats";
 import { setLocation } from "../../../store/features/user/userSlice";
 
@@ -24,11 +24,12 @@ import { family } from "../../../theme/fonts";
 // Utils
 import getLocationPermissions from "../../../utils/location/getLocationPermissions";
 import getLocation from "../../../utils/location/getLocation";
+import useNavigate from "../../../hooks/useNavigate";
 
 const SplashScreen = () => {
   const stateUser = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
-  const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
 
   const getData = async () => {
     await dispatch(fetchPublicActivities());
@@ -37,19 +38,18 @@ const SplashScreen = () => {
 
     dispatch(fetchCurrentActivities(stateUser.gid));
     dispatch(fetchChats());
-    dispatch(fetchFriends(stateUser.gid));
+    dispatch(fetchFollowing({ userGid: stateUser.gid }));
   };
 
   const splashHandler = async () => {
     try {
       await getData();
       const locationPermission = await getLocationPermissions();
-      console.log("locationPermission", locationPermission);
       if (locationPermission) {
         const location = await getLocation();
         dispatch(setLocation(location));
       }
-      navigation.navigate("Home" as never);
+      navigateTo("Home");
     } catch (error: any) {
       console.log("error", error.message);
     }
@@ -64,10 +64,7 @@ const SplashScreen = () => {
       const { path, queryParams } = Linking.parse(url);
 
       if (path === "sportup" && queryParams?.gid) {
-        navigation.navigate(
-          "ActivityDetail" as never,
-          { gid: queryParams.gid } as never
-        );
+        navigateTo("Profile", { gid: queryParams.gid });
       }
     };
 
