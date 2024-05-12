@@ -48,7 +48,7 @@ const ActionsGroup = ({ isExternal, data }: Props) => {
     <View style={styles.group}>
       {isExternal ? (
         <>
-          <FollowButton player={data} />
+          <FollowButton player={data} color={colors.white} />
           <Divider width={10} />
           <IconButton
             onPress={reportHandler}

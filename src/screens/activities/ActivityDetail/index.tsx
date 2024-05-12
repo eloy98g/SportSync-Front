@@ -71,12 +71,6 @@ const ActivityDetail = ({ route }: any) => {
     getData();
   }, [gid]);
 
-  useFocusEffect(
-    useCallback(() => {
-      getData();
-    }, [])
-  );
-
   if (status === "loading" || status === "idle") {
     return <Loading />;
   }
@@ -93,7 +87,9 @@ const ActivityDetail = ({ route }: any) => {
           <ScrollView style={styles.info} showsVerticalScrollIndicator={false}>
             <Divider height={200} />
             {!isAdmin && <JoinButton data={activityData} userGid={userGid} />}
-            {isAdmin && <AdminButton data={activityData} />}
+            {isAdmin && activityData.status !== "finished" && (
+              <AdminButton data={activityData} />
+            )}
             <TouchableInfoContainer data={activityData} />
             <Divider height={18} />
             <Teams activity={activityData} />

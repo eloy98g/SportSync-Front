@@ -15,6 +15,8 @@ import Activity from "../../../store/types/activity/Activity";
 import ActivitySelector from "./sections/ActivitySelector";
 import ActivityScore from "./sections/ActivityScore";
 import { useNavigation } from "@react-navigation/native";
+import Error from "../../../components/Status/Error";
+import colors from "../../../theme/colors";
 
 const UploadScoreScreen = () => {
   const [section, setSection] = useState("selector");
@@ -49,6 +51,17 @@ const UploadScoreScreen = () => {
     }
   };
 
+  if (waitingForScoreActivities.length === 0) {
+    return (
+      <Screen>
+        <BackHeader title="Subir resultado" onBack={backHandler} />
+        <Error
+          color={colors.black}
+          error="¡Todas tus actividades están al día!"
+        />
+      </Screen>
+    );
+  }
   return (
     <Screen>
       <BackHeader title="Subir resultado" onBack={backHandler} />

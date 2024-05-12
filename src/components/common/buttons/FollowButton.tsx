@@ -27,9 +27,10 @@ import { family } from "../../../theme/fonts";
 
 interface Props {
   player: Player;
+  color?: string;
 }
 
-const FollowButton = ({ player }: Props) => {
+const FollowButton = ({ player, color = colors.primary }: Props) => {
   const { gid: playerGid } = player;
 
   const [error, setError] = useState("");
@@ -74,10 +75,8 @@ const FollowButton = ({ player }: Props) => {
   const socialHandler = async () => {
     setStatus("loading");
     if (followed) {
-      console.log("1");
       await unfollowHandler();
     } else {
-      console.log("2");
       await followHandler();
     }
     setStatus("idle");
@@ -89,11 +88,11 @@ const FollowButton = ({ player }: Props) => {
         onPress={socialHandler}
         borderStyle={{
           radius: 40,
-          color: colors.primary,
+          color,
         }}
         loading={status === "loading"}
         padding
-        textStyle={styles.buttonText}
+        textStyle={[styles.buttonText, { color }]}
         distance={0}
         text={followed ? "Dejar de seguir" : "Seguir"}
       />
@@ -111,7 +110,6 @@ export default FollowButton;
 const styles = StyleSheet.create({
   buttonText: {
     fontFamily: family.bold,
-    color: colors.primary,
     fontSize: 12,
   },
 });
