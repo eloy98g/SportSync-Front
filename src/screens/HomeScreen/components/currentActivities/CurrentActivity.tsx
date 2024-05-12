@@ -1,9 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import { ArrowRight } from "lucide-react-native";
 
 // Components
-import IconButton from "../../../../components/common/buttons/IconButton";
 import Divider from "../../../../components/common/Divider";
 import Icon from "../../../../components/common/Icon";
 
@@ -53,13 +51,6 @@ const CurrentActivity = ({ onPress, data, showButton }: Props) => {
       <Text style={styles.typeText}>
         {hour}     {date}
       </Text>
-      <Divider width={8} />
-      {/* {showButton && (
-        <IconButton
-          icon={<ArrowRight color={colors.grey} size={20} />}
-          onPress={onPress}
-        />
-      )} */}
     </TouchableOpacity>
   );
 };
