@@ -28,7 +28,7 @@ const CurrentActivity = ({ onPress, data, showButton }: Props) => {
   const { sport, name, type, startDate } = data;
 
   const nameText = name?.length > 0 ? name : sport.name;
-  
+
   const date = unixToDate(startDate);
   const hour = getHour(startDate);
 
@@ -36,26 +36,30 @@ const CurrentActivity = ({ onPress, data, showButton }: Props) => {
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image style={styles.image} source={{ uri: sport.icons.black }} />
       <Divider width={8} />
-      {type === "competitive" && (
-        <>
-          <Icon icon={type} color={colors.black} size={16} />
-          <Divider width={8} />
-        </>
-      )}
+      <View style={{ width: 30 }}>
+        {type === "competitive" && (
+          <>
+            <Icon icon={type} color={colors.black} size={16} />
+            <Divider width={8} />
+          </>
+        )}
+      </View>
       <View style={{ flex: 1 }}>
-        <Text style={styles.name}>{nameText}</Text>
+        <Text numberOfLines={1} style={styles.name}>
+          {nameText}
+        </Text>
       </View>
       <Divider width={8} />
       <Text style={styles.typeText}>
-        {hour} {date}
+        {hour}     {date}
       </Text>
       <Divider width={8} />
-      {showButton && (
+      {/* {showButton && (
         <IconButton
           icon={<ArrowRight color={colors.grey} size={20} />}
           onPress={onPress}
         />
-      )}
+      )} */}
     </TouchableOpacity>
   );
 };
