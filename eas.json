@@ -10,7 +10,7 @@
     "apk": {
       "android": {
         "buildType": "apk",
-        "image": "stable"
+        "image": "latest"
       }
     },
     "test": {
@@ -20,7 +20,7 @@
     },
     "production": {
       "ios": {
-        "image": "stable"
+        "image": "latest"
       }
     }
   },
