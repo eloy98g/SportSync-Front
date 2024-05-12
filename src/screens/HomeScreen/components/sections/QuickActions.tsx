@@ -14,6 +14,7 @@ const QuickActions = () => {
   const paddingHorizontal = 24;
   const dividerWidth = 20;
   const itemWidth = (width - paddingHorizontal - dividerWidth) / 2;
+  const itemHeight = itemWidth / 2;
 
   const uploadScoreHandler = () => {
     navigation.navigate("UploadScoreScreen" as never);
@@ -28,17 +29,17 @@ const QuickActions = () => {
       <View style={styles.container}>
         <ActionButton
           width={itemWidth}
-          height={itemWidth}
+          height={itemHeight}
           title="Subir resultado"
-          image={require("../../../../assets/images/actionButtons/score.jpg")}
+          image={require("../../../../assets/images/actionButtons/tutorial.png")}
           onPress={uploadScoreHandler}
         />
         <Divider width={dividerWidth} />
         <ActionButton
           width={itemWidth}
-          height={itemWidth}
+          height={itemHeight}
           title="Registrar participación"
-          image={require("../../../../assets/images/actionButtons/code.png")}
+          image={require("../../../../assets/images/actionButtons/score.jpg")}
           onPress={participationHandler}
         />
       </View>

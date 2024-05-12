@@ -1,9 +1,11 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import MainButton from "../../../../components/common/buttons/MainButton";
 import Divider from "../../../../components/common/Divider";
+
+// Hooks
+import useNavigate from "../../../../hooks/useNavigate";
 
 // Theme
 import colors from "../../../../theme/colors";
@@ -16,12 +18,9 @@ interface Props {
 }
 
 const AdminButton = ({ data }: Props) => {
-  const navigation = useNavigation();
+  const { navigateTo } = useNavigate();
   const buttonHandler = () => {
-    navigation.navigate(
-      "ActivityAdminScreen" as never,
-      { activityGid: data.gid } as never
-    );
+    navigateTo("ActivityAdminScreen", { activityGid: data.gid });
   };
 
   return (
