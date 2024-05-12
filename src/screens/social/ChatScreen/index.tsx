@@ -15,10 +15,13 @@ import { PHONE } from "../../../theme/breakPoints";
 const ChatScreen = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
   const chatId = route.params?.chatId;
+  const chatName = route.params?.chatName;
+
+  const title = chatName || "Chat";
 
   return (
     <Screen>
-      <BackHeader title="Chat" />
+      <BackHeader title={title} />
       <View style={styles.content}>
         <Chat userGid={userGid} chatId={chatId} />
       </View>

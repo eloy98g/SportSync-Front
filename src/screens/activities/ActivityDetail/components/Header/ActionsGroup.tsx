@@ -15,6 +15,7 @@ import colors from "../../../../../theme/colors";
 
 // Types
 import Activity from "../../../../../store/types/activity/Activity";
+import useNavigate from "../../../../../hooks/useNavigate";
 
 interface Props {
   isAdmin: boolean;
@@ -23,18 +24,15 @@ interface Props {
 }
 
 const ActionsGroup = ({ isAdmin, data, playerView }: Props) => {
-  const { chat, gid } = data;
-  const navigation = useNavigation();
+  const { chat, gid, name } = data;
+  const { navigateTo } = useNavigate();
 
   const chatHandler = () => {
-    navigation.navigate("Chat" as never, { chatId: chat } as never);
+    navigateTo("Chat", { chatId: chat, chatName: name });
   };
 
   const adminHandler = () => {
-    navigation.navigate(
-      "ActivityAdminScreen" as never,
-      { activityGid: gid } as never
-    );
+    navigateTo("ActivityAdminScreen", { activityGid: gid });
   };
 
   const shareHandler = async () => {

@@ -24,7 +24,7 @@ interface Props {
 }
 
 const CodeSuccess = ({ data }: Props) => {
-  const { gid, admin, description, duration, startDate } = data;
+  const { gid, admin, description, duration, startDate, name } = data;
 
   const hour = getHour(startDate);
 
@@ -40,7 +40,7 @@ const CodeSuccess = ({ data }: Props) => {
           hour={hour}
           description={description}
         />
-        <Actions activityGid={gid} />
+        <Actions activityGid={gid} activityName={name} />
       </Card>
       <JoinAnimation />
     </View>

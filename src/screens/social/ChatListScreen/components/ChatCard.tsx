@@ -17,6 +17,7 @@ import { family } from "../../../../theme/fonts";
 // Utils
 import getTextByDate from "../../../../utils/date/getTextByDate";
 import PROFILE_IMAGE from "../../../../constants/PROFILE_IMAGE";
+import LetterImage from "../../../../components/social/LetterImage";
 
 interface Props {
   data: ChatType;
@@ -28,12 +29,16 @@ const ChatCard = ({ data }: Props) => {
   const date = getTextByDate(lastMessage?.createdAt || 0);
 
   const chatHandler = () => {
-    navigateTo("Chat", { chatId: gid });
+    navigateTo("Chat", { chatId: gid, chatName: name });
   };
 
   return (
     <TouchableOpacity style={styles.container} onPress={chatHandler}>
-      <Image style={styles.image} source={{ uri: image || PROFILE_IMAGE }} />
+      {image ? (
+        <Image style={styles.image} source={{ uri: image || PROFILE_IMAGE }} />
+      ) : (
+        <LetterImage name={name} />
+      )}
       <View style={styles.content}>
         <View style={styles.titleWrapper}>
           <Text style={styles.title}>{name}</Text>
