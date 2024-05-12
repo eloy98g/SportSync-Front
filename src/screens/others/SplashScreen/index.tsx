@@ -15,6 +15,7 @@ import fetchCurrentActivities from "../../../store/features/activity/methods/fet
 import fetchPublicActivities from "../../../store/features/activity/methods/fetchPublicActivities";
 import fetchFollowing from "../../../store/features/following/methods/fetchFollowing";
 import fetchChats from "../../../store/features/chat/methods/fetchChats";
+import fetchFavSports from "../../../store/features/favSport/methods/fetchFavSports";
 import { setLocation } from "../../../store/features/user/userSlice";
 
 // Theme
@@ -39,6 +40,7 @@ const SplashScreen = () => {
     dispatch(fetchCurrentActivities(stateUser.gid));
     dispatch(fetchChats());
     dispatch(fetchFollowing({ userGid: stateUser.gid }));
+    dispatch(fetchFavSports({ userGid: stateUser.gid }));
   };
 
   const splashHandler = async () => {

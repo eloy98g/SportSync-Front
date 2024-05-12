@@ -1,5 +1,6 @@
 import getAll from "./calls/getAll";
 import getById from "./calls/getById";
+import getFavSports from "./calls/getFavSports";
 import update from "./calls/update";
 
 export class User {
@@ -12,4 +13,9 @@ export class User {
   static async getAll(params:string) {
     return getAll(params);
   }
+  static async getFavSports(gid:string) {
+    return getFavSports(gid);
+  }
 }
+
+

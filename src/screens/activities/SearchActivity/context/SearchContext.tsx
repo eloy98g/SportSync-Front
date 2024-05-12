@@ -46,17 +46,14 @@ interface Props {
 }
 
 const SearchProvider = ({ children }: Props) => {
-  const { status, setStatus, } = useStatus();
+  const { status, setStatus } = useStatus();
   const publicActivities = useAppSelector(
     (state) => state.activity.publicActivities
   );
   const userLocation = useAppSelector((state) => state.user.user.location);
   const dispatch = useAppDispatch();
 
-  // TODO api call for user's favoriteSports
-  const favoriteSports = useAppSelector(
-    (state) => state.user.user.favoriteSports
-  );
+  const favoriteSports = useAppSelector((state) => state.favSport.favSports);
 
   const [filters, setFilters] = useState<SearchFilters>(INITIAL_FILTERS);
   const [sports, setSports] = useState<Sport[]>([]);
@@ -67,8 +64,16 @@ const SearchProvider = ({ children }: Props) => {
     setStatus("loading");
     try {
       const response = await Api.sport.getAll();
-      if (response.status === "success") setSports(response.data);
-      setStatus("success");
+      if (response.status === "success") {
+        setFilters((prev) => ({
+          ...prev,
+          sports: favoriteSports,
+        }));
+        setSports(response.data);
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
     } catch (error) {
       setStatus("error");
     }
@@ -87,7 +92,7 @@ const SearchProvider = ({ children }: Props) => {
   useEffect(() => {
     getPublicActivities();
   }, [filters]);
-  
+
   useEffect(() => {
     const auxArray = publicActivities.filter(
       (activity) =>
