@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Components
 import MainButton from "../../../../../components/common/buttons/MainButton";
 import Divider from "../../../../../components/common/Divider";
+import ErrorModal from "../../../../../components/modals/ErrorModal";
+import MessageModal from "../../../../../components/modals/MessageModal";
+
+// Hooks
+import useStatus from "../../../../../hooks/useStatus";
 
 // Methods
 import isActivityFull from "../../methods/isActivityFull";
 import isPlayer from "../../methods/isPlayer";
+
+// Services
+import Api from "../../../../../services/api";
 
 // Theme
 import colors from "../../../../../theme/colors";
 
 // Types
 import Activity from "../../../../../store/types/activity/Activity";
-import useStatus from "../../../../../hooks/useStatus";
-import Api from "../../../../../services/api";
-import ErrorModal from "../../../../../components/modals/ErrorModal";
-import MessageModal from "../../../../../components/modals/MessageModal";
-import { useNavigation } from "@react-navigation/native";
 
 interface Props {
   data: Activity;

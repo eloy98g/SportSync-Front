@@ -25,6 +25,7 @@ import Loading from "../../../../../components/Status/Loading";
 import ErrorModal from "../../../../../components/modals/ErrorModal";
 import MessageModal from "../../../../../components/modals/MessageModal";
 import Api from "../../../../../services/api";
+import { useAppSelector } from "../../../../../hooks";
 
 interface ExtendedPlayerT extends PlayerT {
   placeholder?: boolean;
@@ -42,14 +43,16 @@ const Player = ({ data, activityData }: Props) => {
   const [message, setMessage] = useState("");
   const { image, name, gid } = data;
 
+  const userGid = useAppSelector((state) => state.user.user.gid);
+
   const applyHandler = async () => {
+    setStatus("loading");
     const application = {
       activityGid: activityData.gid,
-      userGid: gid,
+      userGid: userGid,
     };
     const response = await Api.application.create(application);
 
-    console.log('response',response)
     if (response.status === "success") {
       if (response.data === "automatic") {
         setMessage("Solicitud enviada correctamente");
