@@ -14,13 +14,13 @@ import { PHONE } from "../../../theme/breakPoints";
 
 const ChatScreen = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
-  // const chatId = route.params?.chatId;
+  const chatId = route.params?.chatId;
 
   return (
     <Screen>
       <BackHeader title="Chat" />
       <View style={styles.content}>
-        <Chat userGid={userGid} chatId={1} />
+        <Chat userGid={userGid} chatId={chatId} />
       </View>
     </Screen>
   );

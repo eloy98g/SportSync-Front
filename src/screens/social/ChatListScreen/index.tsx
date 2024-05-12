@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 // Components
 import Divider from "../../../components/common/Divider";
@@ -8,14 +9,23 @@ import Screen from "../../../components/common/Screen";
 import ChatCard from "./components/ChatCard";
 
 // Hooks
-import { useAppSelector } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+
+// Store
+import { updateLastChatView } from "../../../store/features/chat/chatSlice";
 
 // Types
-import Chat from "../../../store/types/Chat";
 import { PHONE } from "../../../theme/breakPoints";
 
 const ChatListScreen = () => {
   const chats = useAppSelector((state) => state.chat.chat);
+
+  const dispatch = useAppDispatch();
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(updateLastChatView());
+    }, [])
+  );
 
   return (
     <Screen>
@@ -23,10 +33,10 @@ const ChatListScreen = () => {
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Divider height={10} />
-          {chats.map((chat: Chat, index: number) => (
+          {chats.map((chat, index) => (
             <>
               {index !== 0 && <Divider key={index} height={10} />}
-              <ChatCard key={chat.gid} {...chat} />
+              <ChatCard key={chat.gid} data={chat} />
             </>
           ))}
           <Divider height={80} />

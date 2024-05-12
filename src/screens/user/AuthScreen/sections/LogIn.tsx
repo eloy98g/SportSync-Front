@@ -14,6 +14,10 @@ import colors from "../../../../theme/colors";
 
 // Store
 import signIn from "../../../../store/features/user/methods/signIn";
+import fetchCurrentActivities from "../../../../store/features/activity/methods/fetchCurrentActivities";
+import fetchFollowing from "../../../../store/features/following/methods/fetchFollowing";
+import fetchFavSports from "../../../../store/features/favSport/methods/fetchFavSports";
+import fetchChats from "../../../../store/features/chat/methods/fetchChats";
 
 // Hooks
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
@@ -29,8 +33,18 @@ const Login = ({ setSection, navigation, setOpen }: any) => {
     dispatch(signIn({ email: email, password }));
   };
 
+  const getData = async () => {
+    dispatch(fetchCurrentActivities(user.gid));
+    dispatch(fetchChats({ userGid: user.gid }));
+    dispatch(fetchFollowing({ userGid: user.gid }));
+    dispatch(fetchFavSports({ userGid: user.gid }));
+  };
+
   useEffect(() => {
     if (user.gid) {
+      setTimeout(() => {
+        getData();
+      }, 1000);
       setOpen(false);
       navigation.navigate("Home" as never);
     }
@@ -52,7 +66,12 @@ const Login = ({ setSection, navigation, setOpen }: any) => {
         secure
       />
       <Divider height={22} />
-      <MainButton title={"Aceptar"} onPress={loginHandler} fontSize={18}  loading={loading}/>
+      <MainButton
+        title={"Aceptar"}
+        onPress={loginHandler}
+        fontSize={18}
+        loading={loading}
+      />
       <Divider height={12} />
       {error !== "" && <Text style={styles.error}>{error}</Text>}
       <Divider height={12} />

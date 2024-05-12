@@ -1,12 +1,14 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 // Components
 import Divider from "../../../../components/common/Divider";
 
+// Hooks
+import useNavigate from "../../../../hooks/useNavigate";
+
 // Types
-import Chat from "../../../../store/types/Chat";
+import ChatType from "../../../../store/types/chat/Chat";
 
 // Theme
 import colors from "../../../../theme/colors";
@@ -14,26 +16,31 @@ import { family } from "../../../../theme/fonts";
 
 // Utils
 import getTextByDate from "../../../../utils/date/getTextByDate";
+import PROFILE_IMAGE from "../../../../constants/PROFILE_IMAGE";
 
-const ChatCard = (props: Chat) => {
-  const { image, name, lastMessage, gid } = props;
-  const navigation = useNavigation();
-  const date = getTextByDate(lastMessage?.date || 0);
+interface Props {
+  data: ChatType;
+}
+
+const ChatCard = ({ data }: Props) => {
+  const { image, name, lastMessage, gid } = data;
+  const { navigateTo } = useNavigate();
+  const date = getTextByDate(lastMessage?.createdAt || 0);
 
   const chatHandler = () => {
-    navigation.navigate("Chat" as never, { chatId: gid } as never);
+    navigateTo("Chat", { chatId: gid });
   };
-  
+
   return (
     <TouchableOpacity style={styles.container} onPress={chatHandler}>
-      <Image style={styles.image} source={{ uri: image }} />
+      <Image style={styles.image} source={{ uri: image || PROFILE_IMAGE }} />
       <View style={styles.content}>
         <View style={styles.titleWrapper}>
           <Text style={styles.title}>{name}</Text>
           <Text style={styles.time}>{date}</Text>
         </View>
         <Divider height={8} />
-        <Text style={styles.message}>{lastMessage?.content}</Text>
+        <Text style={styles.message}>{lastMessage?.text}</Text>
       </View>
     </TouchableOpacity>
   );

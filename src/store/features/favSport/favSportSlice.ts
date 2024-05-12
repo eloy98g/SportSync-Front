@@ -3,9 +3,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // Methods
 import fetchFavSports from "./methods/fetchFavSports";
 
-// Types
-import Player from "../../types/activity/Player";
-
 type FavSportSlice = {
   loading: boolean;
   error: string;
