@@ -19,10 +19,9 @@ import getHour from "../../../../utils/date/getHour";
 interface Props {
   data: Activity;
   onPress: (T: any) => void;
-  showButton: boolean;
 }
 
-const CurrentActivity = ({ onPress, data, showButton }: Props) => {
+const CurrentActivity = ({ onPress, data }: Props) => {
   const { sport, name, type, startDate } = data;
 
   const nameText = name?.length > 0 ? name : sport.name;
