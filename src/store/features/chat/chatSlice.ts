@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import fetchChats from "./methods/fetchChats";
 
 // Types
-import Chat from "../../types/Chat";
+import Chat from "../../types/chat/Chat";
 
 type ChatState = {
   loading: boolean;
@@ -47,4 +47,5 @@ const chatSlice = createSlice({
   },
 });
 
+export const { updateLastChatView } = chatSlice.actions;
 export default chatSlice.reducer;

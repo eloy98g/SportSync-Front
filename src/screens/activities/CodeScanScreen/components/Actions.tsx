@@ -1,24 +1,22 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Divider from "../../../../components/common/Divider";
 import TouchableInfo from "../../ActivityDetail/components/TouchableInfoContainer/TouchableInfo";
+import useNavigate from "../../../../hooks/useNavigate";
 
 interface Props {
-  activityGid: number;
+  activityGid: string;
+  activityName: string;
 }
 
-const Actions = ({ activityGid }: Props) => {
-  const navigation = useNavigation();
+const Actions = ({ activityGid, activityName }: Props) => {
+  const { navigateTo } = useNavigate();
   const chatHandler = () =>
-    navigation.navigate("Chat" as never, { chatId: activityGid } as never);
+    navigateTo("Chat", { chatId: activityGid, chatName: activityName });
 
   const detailHandler = () =>
-    navigation.navigate(
-      "ActivityDetail" as never,
-      { gid: activityGid } as never
-    );
+    navigateTo("ActivityDetail", { gid: activityGid });
 
   return (
     <>

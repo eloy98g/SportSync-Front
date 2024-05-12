@@ -51,7 +51,7 @@ const ActionSheet = ({ user, open, data, setOpen }: Props) => {
 
   const chatHandler = () => {
     setOpen(false);
-    navigateTo("Chat", { chatId: gid });
+    navigateTo("Chat", { chatId: gid, chatName: name});
   };
 
   return (

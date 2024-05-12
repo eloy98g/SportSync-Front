@@ -26,7 +26,7 @@ const Actions = ({ data, playerView, userGid }: Props) => {
   const { navigateTo } = useNavigate();
 
   const chatHandler = () => {
-    navigateTo("Chat", { chatId: data.gid });
+    navigateTo("Chat", { chatId: data.chat, chatName: data?.name });
   };
   const shareHandler = async () => {
     await shareActivity(data);

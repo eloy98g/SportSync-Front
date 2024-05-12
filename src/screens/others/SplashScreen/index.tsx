@@ -38,7 +38,7 @@ const SplashScreen = () => {
     if (!stateUser.gid) return;
 
     dispatch(fetchCurrentActivities(stateUser.gid));
-    dispatch(fetchChats());
+    dispatch(fetchChats({ userGid: stateUser.gid }));
     dispatch(fetchFollowing({ userGid: stateUser.gid }));
     dispatch(fetchFavSports({ userGid: stateUser.gid }));
   };

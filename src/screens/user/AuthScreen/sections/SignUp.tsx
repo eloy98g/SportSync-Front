@@ -17,6 +17,10 @@ import colors from "../../../../theme/colors";
 
 // Store
 import signUp from "../../../../store/features/user/methods/signUp";
+import fetchCurrentActivities from "../../../../store/features/activity/methods/fetchCurrentActivities";
+import fetchFollowing from "../../../../store/features/following/methods/fetchFollowing";
+import fetchFavSports from "../../../../store/features/favSport/methods/fetchFavSports";
+import fetchChats from "../../../../store/features/chat/methods/fetchChats";
 
 // Utils
 import { validPassword } from "../../../../utils/auth/validPassword";
@@ -40,8 +44,18 @@ const SignUp = ({ setSection, setOpen, navigation }: any) => {
     dispatch(signUp({ email: email, password }));
   };
 
+  const getData = async () => {
+    dispatch(fetchCurrentActivities(user.gid));
+    dispatch(fetchChats({userGid: user.gid}));
+    dispatch(fetchFollowing({ userGid: user.gid }));
+    dispatch(fetchFavSports({ userGid: user.gid }));
+  };
+  
   useEffect(() => {
     if (user.gid) {
+      setTimeout(() => {
+        getData();
+      }, 1000);
       setOpen(false);
       navigation.navigate("Home" as never);
     }

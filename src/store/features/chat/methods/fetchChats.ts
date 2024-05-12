@@ -1,24 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import get from "../../../../api/get";
-import CHATS from "../../../../api/placeholders/CHATS";
-import ApiResponse from "../../../../api/types/ApiResponse";
-import Chat from "../../../types/Chat";
-import User from "../../../types/user/User";
-import mapChat from "./mapChat";
+import Api from "../../../../services/api";
+import Chat from "../../../types/chat/Chat";
 
-const fethChats = createAsyncThunk("chat/fetchChats", async () => {
-  // REMOVE COMMENT
-
-  // const response = await get("");
-  // const { status, data, error } = response;
-  // if (status === "success") {
-  //   const result: Chat[] = CHATS.map((chat) => mapChat(chat));
-  //   return result
-  // } else {
-  //   throw new Error(error);
-  // }
-  const result: Chat[] = CHATS.map((chat) => mapChat(chat));
-  return result;
-});
+const fethChats = createAsyncThunk(
+  "chat/fetchChats",
+  async ({ userGid }: any) => {
+    const response = await Api.chat.getChats(userGid);
+    if (response.status === "success") {
+      return response.data.sort(
+        (a: Chat, b: Chat) =>
+          a.lastMessage?.createdAt || 0 - b.lastMessage?.createdAt || 0
+      );
+    }
+    return [];
+  }
+);
 
 export default fethChats;
