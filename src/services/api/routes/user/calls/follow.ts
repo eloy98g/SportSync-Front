@@ -1,10 +1,10 @@
 import { url } from "../../../../../../config";
 import post from "../../../methods/post";
 
-export default async function unfavorite(sportGid: string, userGid: string) {
-  const finalUrl = url + "/sport/" + sportGid + "/unfavorite";
+export default async function follow(userGid: string, otherUserGid: string) {
+  const finalUrl = url + "/user/" + userGid + "/follow";
   const body = {
-    gid: userGid,
+    gid: otherUserGid,
   };
   const response = await post(finalUrl, body);
   return response;
