@@ -12,6 +12,7 @@ import Error from "../../../components/Status/Error";
 
 // Hooks
 import useStatus from "../../../hooks/useStatus";
+import { useAppSelector } from "../../../hooks";
 
 // Services
 import Api from "../../../services/api";
@@ -27,6 +28,8 @@ const FindUserScreen = () => {
   const { status, setStatus } = useStatus();
   const [error, setError] = useState("");
 
+  const userGid = useAppSelector((state) => state.user.user.gid);
+
   const searchHandler = async (search: string) => {
     if (status !== "loading") {
       try {
@@ -34,7 +37,10 @@ const FindUserScreen = () => {
         const params = `name=${search}`;
         const response = await Api.user.getAll(params);
         if (response.status === "success") {
-          setUsers(response.data);
+          const userList = response.data.filter(
+            (user: Player) => user.gid !== userGid
+          );
+          setUsers(userList);
           if (response.data.length === 0) {
             setStatus("empty");
           } else {

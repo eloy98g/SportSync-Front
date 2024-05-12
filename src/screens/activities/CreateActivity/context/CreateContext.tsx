@@ -19,6 +19,7 @@ import { SectionName } from "../sections";
 import Draft from "../../../../store/types/draft/Draft";
 import Sport from "../../../../store/types/sport/Sport";
 import Api from "../../../../services/api";
+import { useAppSelector } from "../../../../hooks";
 
 interface ContextProps {
   setDraft: Dispatch<SetStateAction<Draft>>;
@@ -43,12 +44,31 @@ const CreateProvider = ({ children }: Props) => {
   const { status, setStatus } = useStatus();
   const [error, setError] = useState<string>("");
 
+  const favSports = useAppSelector((state) => state.favSport.favSports);
   const getData = async () => {
     setStatus("loading");
     try {
       const response = await Api.sport.getAll();
-      if (response.status === "success") setSports(response.data);
-      setStatus("success");
+      if (response.status === "success") {
+        setSports(response.data);
+
+        if (favSports.length > 0) {
+          const favSport = favSports[0];
+          setDraft((prev) => ({
+            ...prev,
+            sport: favSport,
+          }));
+        } else {
+          setDraft((prev) => ({
+            ...prev,
+            sport: response.data[0].gid,
+          }));
+        }
+        setStatus("success");
+      } else {
+        setStatus("error");
+        setError(response.message);
+      }
     } catch (error: any) {
       setStatus("error");
       setError(error.message);

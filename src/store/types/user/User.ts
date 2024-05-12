@@ -16,7 +16,6 @@ type User = {
   participated: number; // TODO: this must be calculated runtime
   lastParticipation: number; // TODO: this must be calculated runtime
   gender: string;
-  favoriteSports: string[];
 };
 
 export const EMPTY_USER: User = {
@@ -35,7 +34,6 @@ export const EMPTY_USER: User = {
   participated: 0,
   lastParticipation: 0,
   gender: "N/A",
-  favoriteSports: [],
 };
 
 export default User;

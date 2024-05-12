@@ -16,6 +16,10 @@ import PlayerCard from "../../../components/social/PlayerCard";
 
 // Hooks
 import { useAppSelector } from "../../../hooks";
+import useStatus from "../../../hooks/useStatus";
+
+// Services
+import Api from "../../../services/api";
 
 // Types
 import Player from "../../../store/types/activity/Player";
@@ -26,14 +30,44 @@ import colors from "../../../theme/colors";
 
 const FollowingScreen = () => {
   const [users, setUsers] = useState<Player[]>([]);
-  const friendList = useAppSelector((state) => state.following);
+  const [filteredUsers, setFilteredUsers] = useState<Player[]>([]);
+  const [error, setError] = useState("");
+  const { status, setStatus } = useStatus();
+  const userGid = useAppSelector((state) => state.user.user.gid);
+
+  const getData = async () => {
+    setError("");
+    try {
+      setStatus("loading");
+      const params = `followedBy=${userGid}`;
+      const response = await Api.user.getAll(params);
+      if (response.status === "success") {
+        setUsers(response.data);
+        if (response.data.length === 0) {
+          setStatus("empty");
+        } else {
+          setStatus("success");
+        }
+      } else {
+        setStatus("error");
+        setError(response.message);
+      }
+    } catch (error: any) {
+      setError(error.message);
+      setStatus("error");
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const searchHandler = async (search: string) => {
     if (search.length === 0) {
-      setUsers(friendList.following);
+      setFilteredUsers(users);
     } else {
-      setUsers(
-        friendList.following.filter((user) =>
+      setFilteredUsers(
+        users.filter((user) =>
           user.name.toLocaleLowerCase().includes(search.toLowerCase())
         )
       );
@@ -44,13 +78,13 @@ const FollowingScreen = () => {
     <Screen>
       <BackHeader title="Siguiendo" />
       <View style={styles.container}>
-        {friendList.loading ? (
+        {status === "loading" ? (
           <View style={styles.loadingWrapper}>
             <ActivityIndicator />
           </View>
-        ) : friendList.error ? (
+        ) : status === "error" ? (
           <View style={styles.loadingWrapper}>
-            <Text style={styles.error}>{friendList.error}</Text>
+            <Text style={styles.error}>{error}</Text>
           </View>
         ) : (
           <>
@@ -60,7 +94,7 @@ const FollowingScreen = () => {
             />
             <ScrollView style={styles.scroll}>
               <Divider height={12} />
-              {users.map((user: Player) => (
+              {filteredUsers.map((user: Player) => (
                 <React.Fragment key={user.gid}>
                   <PlayerCard data={user} />
                   <Divider height={12} />

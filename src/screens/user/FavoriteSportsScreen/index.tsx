@@ -18,8 +18,14 @@ import BackHeader from "../../../components/BackHeader";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import useStatus from "../../../hooks/useStatus";
 
+// Services
+import Api from "../../../services/api";
+
 // Store
-import { toggleFavoriteSport } from "../../../store/features/user/userSlice";
+import {
+  favSport,
+  unfavSport,
+} from "../../../store/features/favSport/favSportSlice";
 
 // Types
 import Sport from "../../../store/types/sport/Sport";
@@ -27,25 +33,26 @@ import Sport from "../../../store/types/sport/Sport";
 // Theme
 import { family } from "../../../theme/fonts";
 import colors from "../../../theme/colors";
-
-// Placeholder
-import Api from "../../../services/api";
+import ErrorModal from "../../../components/modals/ErrorModal";
+import fetchFavSports from "../../../store/features/favSport/methods/fetchFavSports";
 
 const FavoriteSportsScreen = () => {
   const [filter, setFilter] = useState("");
   const [sports, setSports] = useState<Sport[]>([]);
   const [error, setError] = useState("");
+  const [modal, setModal] = useState("");
+  const [cardLoading, setCardLoading] = useState("");
   const { status, setStatus } = useStatus();
 
-  const favoriteSports = useAppSelector(
-    (state) => state.user.user.favoriteSports
-  );
+  const favoriteSports = useAppSelector((state) => state.favSport.favSports);
+  const userGid = useAppSelector((state) => state.user.user.gid);
 
   const dispatch = useAppDispatch();
   const loading = status === "idle" || status === "loading";
 
   const getData = async () => {
     try {
+      await dispatch(fetchFavSports({ userGid: userGid }));
       const response = await Api.sport.getAll();
 
       if (response.status === "success") {
@@ -60,6 +67,7 @@ const FavoriteSportsScreen = () => {
       setError(error.message);
     }
   };
+
   useEffect(() => {
     getData();
   }, []);
@@ -72,8 +80,44 @@ const FavoriteSportsScreen = () => {
       .includes(filter.toLowerCase())
   );
 
-  const sportHandler = (gid: string) => {
-    dispatch(toggleFavoriteSport(gid));
+  const favHandler = async (sportGid: string) => {
+    try {
+      const response = await Api.sport.favorite(sportGid, userGid);
+      if (response.status === "success") {
+        dispatch(favSport(sportGid));
+      } else {
+        setError(response.message);
+        setModal("Error");
+      }
+    } catch (error: any) {
+      setError(error.message);
+      setModal("Error");
+    }
+  };
+
+  const unfavHandler = async (sportGid: string) => {
+    try {
+      const response = await Api.sport.unfavorite(sportGid, userGid);
+      if (response.status === "success") {
+        dispatch(unfavSport(sportGid));
+      } else {
+        setError(response.message);
+        setModal("Error");
+      }
+    } catch (error: any) {
+      setError(error.message);
+      setModal("Error");
+    }
+  };
+
+  const sportHandler = async (gid: string) => {
+    setCardLoading(gid);
+    if (favoriteSports?.includes(gid)) {
+      await unfavHandler(gid);
+    } else {
+      await favHandler(gid);
+    }
+    setCardLoading("");
   };
 
   return (
@@ -106,6 +150,7 @@ const FavoriteSportsScreen = () => {
                       {...sport}
                       onPress={() => sportHandler(sport.gid)}
                       favorite={isFavorite}
+                      loading={cardLoading === sport.gid}
                     />
                     <Divider height={12} />
                   </React.Fragment>
@@ -115,6 +160,11 @@ const FavoriteSportsScreen = () => {
           </>
         )}
       </View>
+      <ErrorModal
+        setVisible={setModal}
+        visible={modal === "Error"}
+        error={error}
+      />
     </Screen>
   );
 };

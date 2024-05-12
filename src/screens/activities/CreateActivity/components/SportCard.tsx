@@ -8,6 +8,9 @@ import {
   ImageBackground,
 } from "react-native";
 
+// Components
+import Loading from "../../../../components/Status/Loading";
+
 // Theme
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
@@ -19,6 +22,7 @@ interface Props {
   onPress: (T: string) => void;
   selected?: boolean;
   favorite?: boolean;
+  loading?: boolean;
 }
 
 const SportCard = ({
@@ -28,25 +32,29 @@ const SportCard = ({
   onPress,
   selected,
   favorite,
+  loading = false,
 }: Props) => {
   const clickHandler = () => {
     onPress(gid);
   };
+
+  console.log('loading',loading)
   return (
     <TouchableOpacity onPress={clickHandler}>
-      <ImageBackground
-        style={styles.container}
-        source={{ uri: image }}
-      >
+      <ImageBackground style={styles.container} source={{ uri: image }}>
         <View style={styles.content}>
           <Text style={styles.title}>{name}</Text>
         </View>
         {favorite && (
           <View style={styles.favWrapper}>
-            {<Star fill={colors.primary} color={colors.primary} size={24} />}
+            {loading ? (
+              <Loading />
+            ) : (
+              <Star fill={colors.primary} color={colors.primary} size={24} />
+            )}
           </View>
         )}
-         {selected && (
+        {selected && (
           <View style={styles.favWrapper}>
             {<Circle fill={colors.primary} color={colors.primary} size={24} />}
           </View>

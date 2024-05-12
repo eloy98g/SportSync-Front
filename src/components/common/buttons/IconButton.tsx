@@ -1,12 +1,14 @@
 import React from "react";
 import { StyleProp } from "@tamagui/core";
-import { Text, TouchableOpacity, StyleSheet, TextStyle } from "react-native";
+import { Text, TouchableOpacity, StyleSheet, TextStyle, ActivityIndicator } from "react-native";
 
 // Components
 import Divider from "../Divider";
+import Loading from "../../Status/Loading";
+import colors from "../../../theme/colors";
 
 interface Props {
-  onPress: (T:any) => void;
+  onPress: (T: any) => void;
   text?: string;
   icon?: React.ReactNode;
   textStyle?: StyleProp<TextStyle>;
@@ -16,12 +18,14 @@ interface Props {
     radius: number;
   };
   padding?: boolean;
+  loading?: boolean;
 }
 
 const IconButton = ({
   textStyle,
   icon,
   text,
+  loading = false,
   onPress,
   distance = 20,
   borderStyle,
@@ -38,11 +42,17 @@ const IconButton = ({
   ];
   return (
     <TouchableOpacity onPress={onPress} style={containerStyle}>
-      {icon}
-      {text && (
+      {loading ? (
+        <ActivityIndicator size={14} color={colors.primary} />
+      ) : (
         <>
-          <Divider width={distance} />
-          <Text style={textStyle}>{text}</Text>
+          {icon}
+          {text && (
+            <>
+              <Divider width={distance} />
+              <Text style={textStyle}>{text}</Text>
+            </>
+          )}
         </>
       )}
     </TouchableOpacity>
