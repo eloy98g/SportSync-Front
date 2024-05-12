@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
 
 // Components
@@ -25,12 +25,6 @@ const Sport = () => {
   const sportHandler = (gid: string) => {
     setDraft((prevState) => ({ ...prevState, sport: gid }));
   };
-
-  useEffect(() => {
-    if (sports.length > 0) {
-      setDraft((prevState) => ({ ...prevState, sport: sports[0].gid }));
-    }
-  }, []);
 
   return (
     <SectionContainer>
