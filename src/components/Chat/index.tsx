@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { GiftedChat, IMessage, User } from "react-native-gifted-chat";
 import { View } from "react-native";
+import io from "socket.io-client";
 
 // Components
 import Loading from "../Status/Loading";
@@ -18,6 +19,8 @@ import Api from "../../services/api";
 
 // Theme
 import colors from "../../theme/colors";
+import { url } from "../../../config";
+import { useSocket } from "../../services/socket/useSocket";
 
 interface Props {
   userGid: string;
@@ -28,7 +31,32 @@ const Chat = ({ userGid, chatId }: Props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const { status, setStatus } = useStatus();
   const [error, setError] = useState("");
+  const [socket, setSocket] = useState(io(url));
   const { navigateTo } = useNavigate();
+
+  useEffect(() => {
+    const newSocket = io('http://192.168.0.29:1234', {
+      extraHeaders: {
+        'Authorization': `Bearer ${userGid}`,
+        'chat': `${chatId}`
+      }
+    });
+    setSocket(newSocket)
+
+    console.log('trying to connect...')
+    newSocket.on('connect', () => {
+      console.log('connected to server');
+    });
+
+    newSocket.on('message', (msg) => {
+      setMessages((prevMessages) => GiftedChat.append(prevMessages, msg));
+    });
+
+    return () => {
+      console.log('disconnecting...')
+      newSocket.disconnect();
+    };
+  }, []);
 
   const getData = async () => {
     try {
@@ -52,6 +80,8 @@ const Chat = ({ userGid, chatId }: Props) => {
   }, []);
 
   const onSend = useCallback((newMessages = []) => {
+    console.log('emmiting message...', newMessages[0])
+    socket.emit("message:create", "hola"); 
     setMessages((prevMessages) => GiftedChat.append(prevMessages, newMessages));
   }, []);
 

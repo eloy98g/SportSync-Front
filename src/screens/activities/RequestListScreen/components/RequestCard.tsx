@@ -19,6 +19,7 @@ import Api from "../../../../services/api";
 import useStatus from "../../../../hooks/useStatus";
 import Application from "../../../../store/types/application/Application";
 import ErrorModal from "../../../../components/modals/ErrorModal";
+import PROFILE_IMAGE from "../../../../constants/PROFILE_IMAGE";
 
 interface Props {
   user: Player;
@@ -65,9 +66,9 @@ const RequestCard = ({ user, request, setRequests }: Props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.row} onPress={profileHandler}>
-        <Image style={styles.image} source={{ uri: image }} />
+        <Image style={styles.image} source={{ uri: image || PROFILE_IMAGE }} />
         <Divider width={12} />
-        <Text style={styles.name}>{name}</Text>
+          <Text numberOfLines={1} style={styles.name}>{name}</Text>
         <Divider width={12} />
         {verified && (
           <Image
@@ -75,6 +76,7 @@ const RequestCard = ({ user, request, setRequests }: Props) => {
             source={require("../../../../assets/images/verified.png")}
           />
         )}
+         <Divider width={12} />
       </TouchableOpacity>
       <View style={styles.actions}>
         <MainButton
@@ -120,6 +122,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
+    flex:1
+  ,paddingRight: 20
   },
   image: {
     width: 50,
@@ -139,7 +143,6 @@ const styles = StyleSheet.create({
     color: colors.black,
   },
   actions: {
-    flex: 1,
     alignItems: "center",
     flexDirection: "row",
     maxWidth: 150,
