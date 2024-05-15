@@ -39,7 +39,8 @@ const ProfileScreen = ({ route }: any) => {
   const gid = route.params?.gid;
 
   const isExternal = userGid !== gid;
-  const verified = userData?.phoneVerified && userData?.emailVerified;
+  const verified =
+    (userData?.phoneVerified && userData?.emailVerified) || false;
 
   const getData = async () => {
     try {

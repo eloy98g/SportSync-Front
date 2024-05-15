@@ -33,6 +33,8 @@ import mapActivity from "../../../store/types/activity/utils/mapActivity";
 
 // Theme
 import { PHONE } from "../../../theme/breakPoints";
+import showConfirmationQR from "./methods/showConfirmationQR";
+import ConfirmationQRButton from "./components/Actions/ConfirmationQR/ConfirmationQRButton";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -44,6 +46,12 @@ const ActivityDetail = ({ route }: any) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [playerView, setPlayerView] = useState(false);
 
+  // const showConfirmation = showConfirmationQR(
+  //   activityData?.startDate,
+  //   activityData?.duration
+  // ) && isAdmin;
+
+  const showConfirmation = true;
   useEffect(() => {
     if (activityData) {
       setIsAdmin(userGid === activityData.admin.gid);
@@ -89,6 +97,9 @@ const ActivityDetail = ({ route }: any) => {
             {!isAdmin && <JoinButton data={activityData} userGid={userGid} />}
             {isAdmin && activityData.status !== "finished" && (
               <AdminButton data={activityData} />
+            )}
+            {showConfirmation && activityData.status !== "finished" && (
+              <ConfirmationQRButton data={activityData} />
             )}
             <TouchableInfoContainer data={activityData} />
             <Divider height={18} />
