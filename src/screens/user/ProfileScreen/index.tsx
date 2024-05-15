@@ -31,8 +31,6 @@ import { family } from "../../../theme/fonts";
 import User from "../../../store/types/user/User";
 import colors from "../../../theme/colors";
 
-
-
 const ProfileScreen = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
   const [userData, setUserData] = useState<User>();
@@ -41,8 +39,7 @@ const ProfileScreen = ({ route }: any) => {
   const gid = route.params?.gid;
 
   const isExternal = userGid !== gid;
-  const verified =
-    (userData?.phoneVerified && userData?.emailVerified) || false;
+  const verified = userData?.phoneVerified && userData?.emailVerified;
 
   const getData = async () => {
     try {
