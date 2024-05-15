@@ -15,6 +15,7 @@ import mapMessages from "./methods/mapMessages";
 
 // Services
 import Api from "../../services/api";
+import useChatSocket from "../../services/socket/useChatSocket";
 
 // Theme
 import colors from "../../theme/colors";
@@ -28,7 +29,24 @@ const Chat = ({ userGid, chatId }: Props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const { status, setStatus } = useStatus();
   const [error, setError] = useState("");
+  const { status: screenStatus, setStatus: setScreenStatus } = useStatus();
+  const { socket, socketStatus, socketError } = useChatSocket(userGid, chatId);
   const { navigateTo } = useNavigate();
+
+  useEffect(() => {
+    if (socketStatus === "error") {
+      setStatus("error");
+      setError(socketError);
+    }
+
+    if (socketStatus === "loading" || status === "loading") {
+      setScreenStatus("loading");
+    }
+
+    if (socketStatus === "success" && status === "success") {
+      setScreenStatus("success");
+    }
+  }, [socketStatus, status]);
 
   const getData = async () => {
     try {
@@ -48,21 +66,32 @@ const Chat = ({ userGid, chatId }: Props) => {
   };
 
   useEffect(() => {
+    setStatus("loading");
     getData();
   }, []);
 
-  const onSend = useCallback((newMessages = []) => {
-    setMessages((prevMessages) => GiftedChat.append(prevMessages, newMessages));
-  }, []);
+  const onSend = useCallback(
+    (newMessages = []) => {
+      if (socket) {
+        socket.emit("message", newMessages[0]);
+        setMessages((prevMessages) =>
+          GiftedChat.append(prevMessages, newMessages)
+        );
+      } else {
+        console.log("error al intentar emitir mensaje");
+      }
+    },
+    [socket]
+  );
 
   const profileHandler = (data: User) => {
     const { _id } = data;
     navigateTo("Profile", { gid: _id });
   };
 
-  if (status === "loading" || status === "idle") return <Loading />;
+  if (screenStatus === "loading" || screenStatus === "idle") return <Loading />;
 
-  if (status === "error") return <Error error={error} />;
+  if (screenStatus === "error") return <Error error={error} />;
 
   return (
     <GiftedChat
