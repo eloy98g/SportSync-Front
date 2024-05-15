@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { GiftedChat, IMessage, User } from "react-native-gifted-chat";
 import { View } from "react-native";
-import io from "socket.io-client";
 
 // Components
 import Loading from "../Status/Loading";
@@ -16,11 +15,10 @@ import mapMessages from "./methods/mapMessages";
 
 // Services
 import Api from "../../services/api";
+import useChatSocket from "../../services/socket/useChatSocket";
 
 // Theme
 import colors from "../../theme/colors";
-import { url } from "../../../config";
-import { useSocket } from "../../services/socket/useSocket";
 
 interface Props {
   userGid: string;
@@ -31,32 +29,24 @@ const Chat = ({ userGid, chatId }: Props) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const { status, setStatus } = useStatus();
   const [error, setError] = useState("");
-  const [socket, setSocket] = useState(io(url));
+  const { status: screenStatus, setStatus: setScreenStatus } = useStatus();
+  const { socket, socketStatus, socketError } = useChatSocket(userGid, chatId);
   const { navigateTo } = useNavigate();
 
   useEffect(() => {
-    const newSocket = io('http://192.168.0.29:1234', {
-      extraHeaders: {
-        'Authorization': `Bearer ${userGid}`,
-        'chat': `${chatId}`
-      }
-    });
-    setSocket(newSocket)
+    if (socketStatus === "error") {
+      setStatus("error");
+      setError(socketError);
+    }
 
-    console.log('trying to connect...')
-    newSocket.on('connect', () => {
-      console.log('connected to server');
-    });
+    if (socketStatus === "loading" || status === "loading") {
+      setScreenStatus("loading");
+    }
 
-    newSocket.on('message', (msg) => {
-      setMessages((prevMessages) => GiftedChat.append(prevMessages, msg));
-    });
-
-    return () => {
-      console.log('disconnecting...')
-      newSocket.disconnect();
-    };
-  }, []);
+    if (socketStatus === "success" && status === "success") {
+      setScreenStatus("success");
+    }
+  }, [socketStatus, status]);
 
   const getData = async () => {
     try {
@@ -76,23 +66,32 @@ const Chat = ({ userGid, chatId }: Props) => {
   };
 
   useEffect(() => {
+    setStatus("loading");
     getData();
   }, []);
 
-  const onSend = useCallback((newMessages = []) => {
-    console.log('emmiting message...', newMessages[0])
-    socket.emit("message:create", "hola"); 
-    setMessages((prevMessages) => GiftedChat.append(prevMessages, newMessages));
-  }, []);
+  const onSend = useCallback(
+    (newMessages = []) => {
+      if (socket) {
+        socket.emit("message:create", newMessages[0]);
+        setMessages((prevMessages) =>
+          GiftedChat.append(prevMessages, newMessages)
+        );
+      } else {
+        console.log("error al intentar emitir mensaje");
+      }
+    },
+    [socket]
+  );
 
   const profileHandler = (data: User) => {
     const { _id } = data;
     navigateTo("Profile", { gid: _id });
   };
 
-  if (status === "loading" || status === "idle") return <Loading />;
+  if (screenStatus === "loading" || screenStatus === "idle") return <Loading />;
 
-  if (status === "error") return <Error error={error} />;
+  if (screenStatus === "error") return <Error error={error} />;
 
   return (
     <GiftedChat
