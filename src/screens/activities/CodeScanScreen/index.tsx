@@ -25,34 +25,47 @@ import useStatus from "../../../hooks/useStatus";
 // Types
 import Activity from "../../../store/types/activity/Activity";
 import mapActivity from "../../../store/types/activity/utils/mapActivity";
+import Api from "../../../services/api";
 
 type VALUE = string | null;
 
 const CodeScanScreen = () => {
   const [value, setValue] = useState<VALUE>(null);
   const { status, setStatus } = useStatus();
-  const [activity, setActivity] = useState<Activity>(
-    mapActivity(JOIN_CONFIRMATION)
-  );
+  const [error, setError] = useState<string>("");
+  const [activity, setActivity] = useState<Activity | null>();
+  
   const userGid = useAppSelector((state) => state.user.user.gid);
 
   const codeHandler = (val: VALUE) => {
     setValue(val);
   };
 
+  const confirmHandler = async () => {
+    try {
+      setStatus("loading");
+      const response = await Api.confirmation.create({
+        userGid,
+        activityGid: value,
+      });
+
+      if (response.status === "success") {
+        const activityData = mapActivity(response.data);
+        setActivity(activityData);
+        setStatus("success");
+      } else {
+        setError(response.message);
+        setStatus("error");
+      }
+    } catch (error: any) {
+      setError(error.message);
+      setStatus("error");
+    }
+  };
+
   useEffect(() => {
     if (value) {
-      setStatus("loading");
-      // TODO: Api call for getting data of user trying to play an activity
-
-      setTimeout(() => {
-        setValue(null);
-        if (value === "uno") {
-          setStatus("success");
-        } else {
-          setStatus("error");
-        }
-      }, 2000);
+      confirmHandler();
     }
   }, [value]);
 
@@ -67,8 +80,10 @@ const CodeScanScreen = () => {
           </View>
         )}
         {status === "loading" && <Loading />}
-        {status === "success" && <CodeSuccess data={activity} />}
-        {status === "error" && <CodeError setStatus={setStatus} />}
+        {status === "success" && activity && <CodeSuccess data={activity} />}
+        {status === "error" && (
+          <CodeError setStatus={setStatus} error={error} />
+        )}
       </View>
     </Screen>
   );

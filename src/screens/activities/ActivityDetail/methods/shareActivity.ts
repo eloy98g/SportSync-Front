@@ -7,13 +7,13 @@ import getDateWithDuration from "../../../../utils/date/getDateWithDuration";
 import Activity from "../../../../store/types/activity/Activity";
 
 // Todo: create Share component
-const shareActivity = async (data : Activity) => {
-  const { startDate, duration, name, description } = data;
+const shareActivity = async (data: Activity) => {
+  const { startDate, duration, name, description, code } = data;
   const date = getDateWithDuration(startDate, duration);
   try {
     const result = await Share.share({
       title: name,
-      message: `*${name}*\n\n\n📅 ${date}\n\n💬 ${description}\n\n🔗 https://eloygomez.dev/`,
+      message: `*${name}*\n\n\n📅 ${date}\n\n💬 ${description}\n\n 📋 CÓDIGO: #${code.toUpperCase()}\n\n🔗 https://eloygomez.dev/`,
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {

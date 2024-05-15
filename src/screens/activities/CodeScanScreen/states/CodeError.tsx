@@ -5,25 +5,26 @@ import { StyleSheet, Text, View } from "react-native";
 import MainButton from "../../../../components/common/buttons/MainButton";
 import Divider from "../../../../components/common/Divider";
 
+// Hooks
+import { STATUS } from "../../../../hooks/useStatus";
+
 // Theme
 import colors from "../../../../theme/colors";
 import { family } from "../../../../theme/fonts";
 
-// Types
-import Activity from "../../../../store/types/activity/Activity";
-
 interface Props {
-  setStatus: any;
+  setStatus: React.Dispatch<React.SetStateAction<STATUS>>;
+  error: string;
 }
 
-const CodeError = ({ setStatus }: Props) => {
+const CodeError = ({ setStatus, error }: Props) => {
   const handleBack = () => {
     setStatus("idle");
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>La actividad o el código no es correcto</Text>
+      <Text style={styles.title}>{error}</Text>
       <Divider height={40} />
       <View style={styles.buttonContainer}>
         <MainButton

@@ -35,4 +35,5 @@ export default interface Activity {
   status: ActivityStatus;
   chat: number;
   result: Score[];
+  code: string;
 }
