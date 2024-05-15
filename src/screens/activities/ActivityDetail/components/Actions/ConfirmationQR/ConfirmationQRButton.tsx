@@ -22,13 +22,14 @@ const ConfirmationQRButton = ({ data }: Props) => {
         color={colors.white}
         textColor={colors.primary}
         height={40}
-        title={"Mostrar QR de confirmación de asistencia"}
+        title={"QR de confirmación de asistencia"}
         onPress={buttonHandler}
       />
       <Divider height={18} />
       <ConfirmationQRBottomSheet
         visible={sheetVisible === "visible"}
         setVisible={setSheetVisible}
+        code={data.gid}
       />
     </View>
   );
