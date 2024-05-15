@@ -41,7 +41,7 @@ const Player = ({ data, activityData }: Props) => {
   const { status, setStatus } = useStatus();
   const [modal, setModal] = useState("");
   const [message, setMessage] = useState("");
-  const { image, name, gid } = data;
+  const { image, name } = data;
 
   const userGid = useAppSelector((state) => state.user.user.gid);
 
@@ -135,6 +135,6 @@ const styles = StyleSheet.create({
     color: colors.grey,
     overflow: "hidden",
     textAlign: "center",
-    height: 12,
+    height: 14,
   },
 });

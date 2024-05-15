@@ -6,6 +6,7 @@ type Stats = {
   percentage: number;
   victoryStreak: number;
   lastActivityDate: number | boolean;
+  bestStreak: number;
 };
 
 export default Stats
