@@ -21,6 +21,7 @@ const mapActivity = (data: any): Activity => {
     chat: data.chat,
     price: data.price,
     result: data.result,
+    code: data.code,
   };
 
   return newActivity;

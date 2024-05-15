@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { StyleSheet, View, ActivityIndicator, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
-import { useFocusEffect } from "@react-navigation/native";
 
 // Components
+import ConfirmationQRButton from "./components/Actions/ConfirmationQR/ConfirmationQRButton";
 import TouchableInfoContainer from "./components/TouchableInfoContainer";
 import Divider from "../../../components/common/Divider";
 import Screen from "../../../components/common/Screen";
@@ -18,8 +18,10 @@ import Error from "../../../components/Status/Error";
 
 // Hooks
 import { useAppSelector } from "../../../hooks";
+
 // Methods
 import isPlayer from "./methods/isPlayer";
+import showConfirmationQR from "./methods/showConfirmationQR";
 
 // Services
 import Api from "../../../services/api";
@@ -33,8 +35,6 @@ import mapActivity from "../../../store/types/activity/utils/mapActivity";
 
 // Theme
 import { PHONE } from "../../../theme/breakPoints";
-import showConfirmationQR from "./methods/showConfirmationQR";
-import ConfirmationQRButton from "./components/Actions/ConfirmationQR/ConfirmationQRButton";
 
 const ActivityDetail = ({ route }: any) => {
   const userGid = useAppSelector((state) => state.user.user.gid);
@@ -46,12 +46,11 @@ const ActivityDetail = ({ route }: any) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [playerView, setPlayerView] = useState(false);
 
-  // const showConfirmation = showConfirmationQR(
-  //   activityData?.startDate,
-  //   activityData?.duration
-  // ) && isAdmin;
+  const showConfirmation = showConfirmationQR(
+    activityData?.startDate,
+    activityData?.duration
+  ) && isAdmin;
 
-  const showConfirmation = true;
   useEffect(() => {
     if (activityData) {
       setIsAdmin(userGid === activityData.admin.gid);
@@ -114,7 +113,7 @@ const ActivityDetail = ({ route }: any) => {
               </>
             )}
             <Divider height={6} />
-            <StaticInfo data={activityData} />
+            <StaticInfo data={activityData} playerView={playerView}/>
             <Actions
               data={activityData}
               playerView={playerView}
