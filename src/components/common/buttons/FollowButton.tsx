@@ -91,6 +91,7 @@ const FollowButton = ({ player, color = colors.primary }: Props) => {
           color,
         }}
         loading={status === "loading"}
+        loadingColor={color}
         padding
         textStyle={[styles.buttonText, { color }]}
         distance={0}

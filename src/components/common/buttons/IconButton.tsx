@@ -19,6 +19,7 @@ interface Props {
   };
   padding?: boolean;
   loading?: boolean;
+  loadingColor?:string
 }
 
 const IconButton = ({
@@ -26,6 +27,7 @@ const IconButton = ({
   icon,
   text,
   loading = false,
+  loadingColor = colors.primary,
   onPress,
   distance = 20,
   borderStyle,
@@ -43,7 +45,7 @@ const IconButton = ({
   return (
     <TouchableOpacity onPress={onPress} style={containerStyle}>
       {loading ? (
-        <ActivityIndicator size={14} color={colors.primary} />
+        <ActivityIndicator size={14} color={loadingColor} />
       ) : (
         <>
           {icon}
