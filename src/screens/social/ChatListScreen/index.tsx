@@ -13,17 +13,20 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 
 // Store
 import { updateLastChatView } from "../../../store/features/chat/chatSlice";
-
+import fetchChats from "../../../store/features/chat/methods/fetchChats";
 // Types
 import { PHONE } from "../../../theme/breakPoints";
 
 const ChatListScreen = () => {
   const chats = useAppSelector((state) => state.chat.chat);
+  const userGid = useAppSelector((state) => state.user.user.gid);
 
   const dispatch = useAppDispatch();
+  
   useFocusEffect(
     useCallback(() => {
       dispatch(updateLastChatView());
+      dispatch(fetchChats({ userGid }));
     }, [])
   );
 
@@ -34,10 +37,10 @@ const ChatListScreen = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <Divider height={10} />
           {chats.map((chat, index) => (
-            <>
+            <React.Fragment key={chat.gid}>
               {index !== 0 && <Divider key={index} height={10} />}
-              <ChatCard key={chat.gid} data={chat} />
-            </>
+              <ChatCard data={chat} />
+            </React.Fragment>
           ))}
           <Divider height={80} />
         </ScrollView>

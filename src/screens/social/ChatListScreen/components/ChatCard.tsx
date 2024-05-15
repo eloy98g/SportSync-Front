@@ -1,8 +1,12 @@
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 // Components
 import Divider from "../../../../components/common/Divider";
+import LetterImage from "../../../../components/social/LetterImage";
+
+// Constants
+import PROFILE_IMAGE from "../../../../constants/PROFILE_IMAGE";
 
 // Hooks
 import useNavigate from "../../../../hooks/useNavigate";
@@ -16,8 +20,6 @@ import { family } from "../../../../theme/fonts";
 
 // Utils
 import getTextByDate from "../../../../utils/date/getTextByDate";
-import PROFILE_IMAGE from "../../../../constants/PROFILE_IMAGE";
-import LetterImage from "../../../../components/social/LetterImage";
 
 interface Props {
   data: ChatType;
@@ -51,7 +53,7 @@ const ChatCard = ({ data }: Props) => {
   );
 };
 
-export default ChatCard;
+export default memo(ChatCard);
 
 const styles = StyleSheet.create({
   container: {

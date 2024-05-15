@@ -1,10 +1,10 @@
 {
-  "hostType": "tunnel",
+  "hostType": "lan",
   "lanType": "ip",
   "dev": true,
-  "minify": true,
+  "minify": false,
   "urlRandomness": "ab-yxy",
   "https": false,
-  "devClient": true,
-  "scheme": "com.eloy98g.sportup"
+  "scheme": "com.eloy98g.sportup",
+  "devClient": false
 }

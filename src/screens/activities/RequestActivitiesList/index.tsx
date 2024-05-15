@@ -32,7 +32,7 @@ const RequestActivitiesList = ({ route }: Props) => {
           <Divider height={80} />
           <ScrollView style={styles.scroll}>
             {requests.map((req: any) => (
-              <RequestList requestList={req} />
+              <RequestList key={req.activity.name} requestList={req} />
             ))}
           </ScrollView>
         </View>

@@ -2,17 +2,17 @@ import { useState, useEffect } from "react";
 import io, { Socket } from "socket.io-client";
 import useStatus from "../../hooks/useStatus";
 
-const useChatSocket = (userGid: string, chatId: string) => {
+const useChatSocket = (userGid: string, chatGid: string) => {
   const [socket, setSocket] = useState<Socket | null>(null);
   const { status, setStatus } = useStatus();
   const [error, setError] = useState("");
 
   useEffect(() => {
     setStatus("loading");
-    const newSocket = io("http://192.168.0.29:1234", {
+    const newSocket = io(`http://192.168.0.29:1234`, {
       extraHeaders: {
         Authorization: `Bearer ${userGid}`,
-        chat: `${chatId}`,
+        chat: `${chatGid}`,
       },
     });
     setSocket(newSocket);
@@ -32,7 +32,7 @@ const useChatSocket = (userGid: string, chatId: string) => {
       console.log("disconnecting...");
       newSocket.disconnect();
     };
-  }, [userGid, chatId]);
+  }, [userGid, chatGid]);
 
   return { socket, socketStatus: status, socketError: error };
 };

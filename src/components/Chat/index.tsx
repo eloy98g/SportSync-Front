@@ -73,7 +73,7 @@ const Chat = ({ userGid, chatId }: Props) => {
   const onSend = useCallback(
     (newMessages = []) => {
       if (socket) {
-        socket.emit("message:create", newMessages[0]);
+        socket.emit("message", newMessages[0]);
         setMessages((prevMessages) =>
           GiftedChat.append(prevMessages, newMessages)
         );
