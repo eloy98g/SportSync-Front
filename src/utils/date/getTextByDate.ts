@@ -5,8 +5,6 @@ function getTextByDate(tiempoUnix: number) {
   const diferenciaDias = Math.floor(
     (ahora.getTime() - tiempoIngresado.getTime()) / (1000 * 60 * 60 * 24)
   );
-
-  console.log('diferenciaDias',diferenciaDias)
   
   if (diferenciaDias === 0) {
     // Si es el día actual

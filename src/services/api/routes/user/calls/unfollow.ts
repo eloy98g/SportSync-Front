@@ -6,8 +6,6 @@ export default async function unfollow(userGid: string, otherUserGid: string) {
   const body = {
     gid: otherUserGid,
   };
-  console.log('finalUrl',finalUrl)
-  console.log('body',body)
   const response = await post(finalUrl, body);
   return response;
 }

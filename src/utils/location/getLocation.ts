@@ -14,13 +14,13 @@ const getLocation = async () => {
   };
 
   try {
-    console.log("1");
+
     let { status } = await requestForegroundPermissionsAsync();
-    console.log("2", status);
+
     if (status !== "granted") {
       return location;
     }
-    console.log("3");
+
     const locationPromise = new Promise((resolve, reject) => {
       const timeout = setTimeout(() => {
         clearTimeout(timeout);
@@ -38,7 +38,7 @@ const getLocation = async () => {
     });
 
     const position = await Promise.race([locationPromise]);
-    console.log("4");
+
     const { coords } = position;
     const { latitude, longitude } = coords;
 
