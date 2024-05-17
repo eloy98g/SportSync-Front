@@ -4,9 +4,13 @@ import { ActivityIndicator, StyleSheet, View } from "react-native";
 // Theme
 import colors from "../../theme/colors";
 
-const Loading = () => (
+interface Props {
+  color?: string;
+  size?: number | "small" | "large" | undefined;
+}
+const Loading = ({ color = colors.primary, size = "small" }: Props) => (
   <View style={styles.container}>
-    <ActivityIndicator size={"small"} color={colors.primary} />
+    <ActivityIndicator size={size} color={color} />
   </View>
 );
 

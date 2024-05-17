@@ -7,10 +7,13 @@ import getAddress from "../../../utils/location/getAddress";
 import getLocationPermissions from "../../../utils/location/getLocationPermissions";
 import getLocation from "../../../utils/location/getLocation";
 import { setLocation } from "../../../store/features/user/userSlice";
+import useStatus from "../../../hooks/useStatus";
+import Loading from "../../Status/Loading";
 
 const LocationText = () => {
   const location = useAppSelector((state) => state.user.location);
   const [address, setAddress] = useState("");
+  const { status, setStatus } = useStatus();
 
   const dispatch = useAppDispatch();
   const addressHandler = async () => {
@@ -22,17 +25,25 @@ const LocationText = () => {
   }, [location]);
 
   const locationHandler = async () => {
+    setStatus("loading");
     const locationPermission = await getLocationPermissions();
     if (locationPermission) {
       const location = await getLocation();
       dispatch(setLocation(location));
     }
+    setStatus("success");
   };
 
   return (
     <View style={styles.container}>
-      {location ? (
-        <Text numberOfLines={1} style={styles.text}>Estás en {address}</Text>
+      {status === "loading" ? (
+        <Loading color={colors.secondary} size={12} />
+      ) : location ? (
+        <TouchableOpacity onPress={locationHandler}>
+          <Text numberOfLines={1} style={styles.text}>
+            Estás en {address}
+          </Text>
+        </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={locationHandler}>
           <Text style={styles.text}>
@@ -55,5 +66,6 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     paddingHorizontal: 12,
+    height: 20,
   },
 });
