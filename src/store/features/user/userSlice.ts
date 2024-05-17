@@ -39,10 +39,12 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(signUp.pending, (state) => {
       state.loading = true;
+      state.error = "";
     });
     builder.addCase(signUp.fulfilled, (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.loading = false;
+      state.error = "";
     });
     builder.addCase(signUp.rejected, (state, action) => {
       state.error = action.error.message || "Error desconocido";
@@ -51,10 +53,12 @@ const userSlice = createSlice({
     // Sign In
     builder.addCase(signIn.pending, (state) => {
       state.loading = true;
+      state.error = "";
     });
     builder.addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.loading = false;
+      state.error = "";
     });
     builder.addCase(signIn.rejected, (state, action) => {
       state.error = action.error.message || "Error desconocido";

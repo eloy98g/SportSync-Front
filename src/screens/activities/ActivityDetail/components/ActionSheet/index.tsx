@@ -72,14 +72,18 @@ const ActionSheet = ({ user, open, data, setOpen }: Props) => {
               onPress={reportHandler}
             />
             <Divider width={10} />
-            <MainButton
-              color={colors.white}
-              textColor={colors.primary}
-              title="Valorar"
-              height={40}
-              onPress={reviewHandler}
-            />
-            <Divider width={10} />
+            {data.status === "finished" && (
+              <>
+                <MainButton
+                  color={colors.white}
+                  textColor={colors.primary}
+                  title="Valorar"
+                  height={40}
+                  onPress={reviewHandler}
+                />
+                <Divider width={10} />
+              </>
+            )}
           </>
         )}
         <MainButton

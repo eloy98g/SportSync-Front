@@ -28,7 +28,7 @@ const Actions = ({ data, playerView, userGid }: Props) => {
   const chatHandler = () => {
     navigateTo("Chat", { chatId: data.chat, chatName: data?.name });
   };
-  
+
   const shareHandler = async () => {
     await shareActivity(data);
   };
@@ -59,7 +59,7 @@ const Actions = ({ data, playerView, userGid }: Props) => {
           height={40}
           onPress={shareHandler}
         />
-        {playerView && (
+        {playerView && data.status === "finished" && (
           <>
             <Divider width={10} />
             <MainButton
