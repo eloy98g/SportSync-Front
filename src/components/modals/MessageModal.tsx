@@ -15,19 +15,45 @@ interface Props {
   setVisible: (T: any) => void;
   message: string;
   onFinish: () => void;
+  onCancel?: () => void;
 }
 
-const MessageModal = ({ visible, setVisible, message, onFinish }: Props) => {
+const MessageModal = ({
+  visible,
+  setVisible,
+  message,
+  onFinish,
+  onCancel,
+}: Props) => {
   const acceptHandler = () => {
     setVisible(false);
     onFinish();
+  };
+
+  const cancelHandler = () => {
+    if (onCancel) {
+      setVisible(false);
+      onCancel();
+    }
   };
   return (
     <Modal visible={visible} setVisible={setVisible} dismissable={false}>
       <View style={styles.container}>
         <Text style={styles.title}>{message}</Text>
         <Divider height={16} />
+
         <View style={styles.row}>
+          {onCancel && (
+            <>
+              <MainButton
+                title="Cancelar"
+                onPress={cancelHandler}
+                color={colors.white}
+                textColor={colors.primary}
+              />
+              <Divider width={12} />
+            </>
+          )}
           <MainButton title="Aceptar" onPress={acceptHandler} />
         </View>
       </View>

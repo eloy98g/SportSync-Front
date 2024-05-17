@@ -8,6 +8,7 @@ import IconButton from "../../../../../components/common/buttons/IconButton";
 import ReportSheet from "../../../../../components/Report/ReportSheet";
 import Divider from "../../../../../components/common/Divider";
 import FollowButton from "../../../../../components/common/buttons/FollowButton";
+import MessageModal from "../../../../../components/modals/MessageModal";
 
 // Hooks
 import { useAppDispatch } from "../../../../../hooks";
@@ -22,6 +23,7 @@ import { family } from "../../../../../theme/fonts";
 // Store
 import User from "../../../../../store/types/user/User";
 
+
 interface Props {
   isExternal: boolean;
   data: User;
@@ -30,13 +32,17 @@ interface Props {
 const ActionsGroup = ({ isExternal, data }: Props) => {
   const { gid } = data;
   const [openReportSheet, setOpenReportSheet] = useState(false);
-
+  const [modal, setModal] = useState("");
   const navigation = useNavigation();
 
   const dispatch = useAppDispatch();
 
   const reportHandler = () => {
     setOpenReportSheet(true);
+  };
+
+  const onLogOut = () => {
+    setModal("LogOut");
   };
 
   const logoutHandler = () => {
@@ -57,7 +63,7 @@ const ActionsGroup = ({ isExternal, data }: Props) => {
         </>
       ) : (
         <IconButton
-          onPress={logoutHandler}
+          onPress={onLogOut}
           icon={<LogOut size={24} color={colors.white} />}
         />
       )}
@@ -65,6 +71,13 @@ const ActionsGroup = ({ isExternal, data }: Props) => {
         open={openReportSheet}
         setOpen={setOpenReportSheet}
         userGid={gid}
+      />
+      <MessageModal
+        visible={modal === "LogOut"}
+        setVisible={setModal}
+        message="Estás a punto de cerrar sesión. ¿Estás seguro?"
+        onFinish={logoutHandler}
+        onCancel={() => setModal("")}
       />
     </View>
   );
