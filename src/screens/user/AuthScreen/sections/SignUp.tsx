@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 // Components
+import PasswordInput from "../../../../components/common/inputs/PasswordInput";
 import TouchableText from "../../../../components/common/buttons/TouchableText";
 import MainButton from "../../../../components/common/buttons/MainButton";
 import TextInput from "../../../../components/common/inputs/TextInput";
@@ -31,26 +32,45 @@ const SignUp = ({ setSection, setOpen, navigation }: any) => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
-  const buttonActive =
-    validPassword(password) &&
-    validPassword(password2) &&
-    password === password2 &&
-    validEmail(email);
-
   const dispatch = useAppDispatch();
   const { loading, error, user } = useAppSelector((state) => state.user);
+  const [signUpError, setSignUpError] = useState("");
+
+  useEffect(() => {
+    setSignUpError("");
+  }, [email, password, password2]);
+
+
+  useEffect(() => {
+    setSignUpError(error);
+  }, [error]);
 
   const signInHandler = async () => {
+    if (password !== password2) {
+      setSignUpError("Las contraseñas deben ser iguales");
+      return;
+    }
+
+    if (!validPassword(password) || !validPassword(password2)) {
+      setSignUpError("La contraseña debe tener al menos 8 caracteres");
+      return;
+    }
+
+    if (!validEmail(email)) {
+      setSignUpError("No es un email válido");
+      return;
+    }
+
     dispatch(signUp({ email: email, password }));
   };
 
   const getData = async () => {
     dispatch(fetchCurrentActivities(user.gid));
-    dispatch(fetchChats({userGid: user.gid}));
+    dispatch(fetchChats({ userGid: user.gid }));
     dispatch(fetchFollowing({ userGid: user.gid }));
     dispatch(fetchFavSports({ userGid: user.gid }));
   };
-  
+
   useEffect(() => {
     if (user.gid) {
       setTimeout(() => {
@@ -67,16 +87,16 @@ const SignUp = ({ setSection, setOpen, navigation }: any) => {
     <View style={styles.container}>
       <Text style={styles.title}>Regístrate</Text>
       <Divider height={22} />
-      <TextInput value={email} onChange={setEmail} placeholder="Usuario" />
+      <TextInput value={email} onChange={setEmail} placeholder="Correo" />
       <Divider height={22} />
-      <TextInput
+      <PasswordInput
         value={password}
         onChange={setPassword}
         placeholder="Contraseña"
         secure
       />
       <Divider height={22} />
-      <TextInput
+      <PasswordInput
         value={password2}
         onChange={setPassword2}
         placeholder="Repite la contraseña"
@@ -88,10 +108,13 @@ const SignUp = ({ setSection, setOpen, navigation }: any) => {
         onPress={signInHandler}
         fontSize={18}
         loading={loading}
-        active={buttonActive}
       />
-       <Divider height={12} />
-      {error !== "" && <Text style={styles.error}>{error}</Text>}
+      <Divider height={12} />
+      {signUpError !== "" && (
+        <Text numberOfLines={1} style={styles.error}>
+          {signUpError}
+        </Text>
+      )}
       <Divider height={12} />
       <View style={styles.row}>
         <Text style={styles.text}>¿Ya tienes cuenta? </Text>
