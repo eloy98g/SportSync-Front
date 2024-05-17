@@ -7,7 +7,6 @@ const Setup = () => {
 
   useEffect(() => {
     const handleBackButton = () => {
-      console.log("Back button pressed")
       if (shouldPreventBackButton()) {
         return true;
       }

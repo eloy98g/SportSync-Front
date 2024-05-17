@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Image, View } from "react-native";
 import { launchImageLibrary } from "react-native-image-picker";
-import { useAppSelector } from "../../../../hooks";
 import { Pencil } from "lucide-react-native";
-import colors from "../../../../theme/colors";
+
+// Components
 import Divider from "../../../../components/common/Divider";
 import Label from "../../../../components/common/Label";
 import User from "../../../../store/types/user/User";
+
+// Hooks
+import { useAppSelector } from "../../../../hooks";
+
+// Theme
+import colors from "../../../../theme/colors";
 
 interface Props {
   editedUser: User;

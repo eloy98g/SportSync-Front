@@ -19,15 +19,18 @@ import useStatus from "../../../hooks/useStatus";
 // Services
 import Api from "../../../services/api";
 import { setUser } from "../../../store/features/user/userSlice";
+import colors from "../../../theme/colors";
 
 const EditProfile = () => {
   const user = useAppSelector((state) => state.user.user);
   const { status, setStatus } = useStatus();
   const [error, setError] = useState("");
+  const [showSuccessText, setShowSuccessText] = useState(false);
   const [editedUser, setEditedUser] = useState(user);
   const dispatch = useAppDispatch();
 
   const saveData = async () => {
+    setShowSuccessText(false);
     setError("");
     try {
       setStatus("loading");
@@ -36,6 +39,7 @@ const EditProfile = () => {
       if (response.status === "success") {
         setStatus("success");
         dispatch(setUser(response.data));
+        setShowSuccessText(true);
       } else {
         setStatus("error");
         setError(response.message);
@@ -71,7 +75,14 @@ const EditProfile = () => {
           loading={status === "loading"}
         />
         <View style={styles.error}>
-          <Error error={error} />
+          {!showSuccessText ? (
+            <Error error={error} />
+          ) : (
+            <Error
+              color={colors.secondary}
+              error={"¡Datos guardados con éxito!"}
+            />
+          )}
         </View>
         <Divider height={60} />
       </ScrollView>
