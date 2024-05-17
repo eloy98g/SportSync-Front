@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 
@@ -22,17 +22,39 @@ import fetchChats from "../../store/features/chat/methods/fetchChats";
 
 // Theme
 import { PHONE } from "../../theme/breakPoints";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import CompleteProfileModal from "./components/CompleteProfileModal";
 
 const HomeScreen = () => {
+  const [showCompleteProfile, setShowCompleteProfile] = useState(false);
   const stateUser = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const hasToShowCompleteProfile = async () => {
+      try {
+        const data = await AsyncStorage.getItem("profileDone");
+        await AsyncStorage.removeItem('profileDone');
+        if (data !== null) {
+          const { userGid = null, profileDone = null } = JSON.parse(data);
+          if (userGid === stateUser.gid && profileDone === false) {
+            setShowCompleteProfile(true);
+          }
+        }
+      } catch (error) {
+        console.error("Error loading isEnabled value:", error);
+      }
+    };
+
+    hasToShowCompleteProfile();
+  }, []);
 
   const getData = async () => {
     await dispatch(fetchPublicActivities());
 
     if (!stateUser.gid) return;
 
-    dispatch(fetchChats());
+    dispatch(fetchChats({ userGid: stateUser.gid }));
     dispatch(fetchCurrentActivities(stateUser.gid));
   };
 
@@ -58,6 +80,10 @@ const HomeScreen = () => {
           <Divider height={80} />
         </ScrollView>
       </View>
+      <CompleteProfileModal
+        visible={showCompleteProfile}
+        setVisible={setShowCompleteProfile}
+      />
     </Screen>
   );
 };
