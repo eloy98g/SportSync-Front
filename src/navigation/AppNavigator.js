@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { BackHandler } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  useNavigationState,
+} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Screens
@@ -35,6 +38,7 @@ import Footer from "../components/Footer";
 
 // Hooks
 import { useAppSelector } from "../hooks";
+import Setup from "./Setup";
 
 const Stack = createStackNavigator();
 
@@ -42,14 +46,9 @@ const AppNavigator = () => {
   const stateUser = useAppSelector((state) => state.user.user);
   const loggedIn = !!stateUser.gid;
 
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", function () {
-      return true;
-    });
-  }, []);
-
   return (
     <NavigationContainer>
+      <Setup />
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
