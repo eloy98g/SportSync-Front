@@ -19,6 +19,7 @@ import { family } from "../../../../../theme/fonts";
 import Player from "../../../../../store/types/activity/Player";
 import Activity from "../../../../../store/types/activity/Activity";
 import PROFILE_IMAGE from "../../../../../constants/PROFILE_IMAGE";
+import isPlayer from "../../methods/isPlayer";
 
 interface Props {
   user: Player;
@@ -32,6 +33,8 @@ const ActionSheet = ({ user, open, data, setOpen }: Props) => {
   const { navigateTo } = useNavigate();
   const userGid = useAppSelector((state) => state.user.user.gid);
   const { image, name, gid } = user;
+
+  const isInsideActivity = isPlayer(userGid, data.teams);
 
   const externalUser = userGid !== gid;
 
@@ -49,11 +52,6 @@ const ActionSheet = ({ user, open, data, setOpen }: Props) => {
     navigateTo("Review", { userGid, selectedUser: user, data });
   };
 
-  const chatHandler = () => {
-    setOpen(false);
-    navigateTo("Chat", { chatId: gid, chatName: name});
-  };
-
   return (
     <Sheet open={open} openHandler={setOpen} modal>
       <Divider width={12} />
@@ -63,7 +61,7 @@ const ActionSheet = ({ user, open, data, setOpen }: Props) => {
         <Text style={styles.name}>{name}</Text>
       </View>
       <View style={[styles.row, { justifyContent: "space-between" }]}>
-        {externalUser && (
+        {externalUser && isInsideActivity && (
           <>
             <MainButton
               color={colors.white}
@@ -80,14 +78,6 @@ const ActionSheet = ({ user, open, data, setOpen }: Props) => {
               title="Valorar"
               height={40}
               onPress={reviewHandler}
-            />
-            <Divider width={10} />
-            <MainButton
-              color={colors.white}
-              height={40}
-              textColor={colors.primary}
-              title="Chat"
-              onPress={chatHandler}
             />
             <Divider width={10} />
           </>

@@ -1,5 +1,3 @@
-import getStreakVictory from "./getStreakVictory";
-
 // Types
 import Activity from "../../../../store/types/activity/Activity";
 import Stats from "../../../../store/types/stats";
@@ -10,6 +8,8 @@ const getStats = (activities: Activity[], userGid: string): Stats => {
   let victories = 0;
   let ties = 0;
   let loses = 0;
+  let bestStreak = 0;
+  let victoryStreak = 0;
 
   activities.map((item: Activity) => {
     const winner = getWinner(item.result);
@@ -21,12 +21,28 @@ const getStats = (activities: Activity[], userGid: string): Stats => {
     switch (resultString) {
       case "victory":
         victories++;
+        victoryStreak++;
+        if (victoryStreak >= bestStreak) {
+          bestStreak = victoryStreak;
+        }
         break;
       case "defeat":
         loses++;
+        if (victoryStreak > 0) {
+          if (victoryStreak >= bestStreak) {
+            bestStreak = victoryStreak;
+          }
+        }
+        victoryStreak = 0;
         break;
       case "tie":
         ties++;
+        if (victoryStreak > 0) {
+          if (victoryStreak >= bestStreak) {
+            bestStreak = victoryStreak;
+          }
+        }
+        victoryStreak = 0;
         break;
     }
   });
@@ -36,8 +52,6 @@ const getStats = (activities: Activity[], userGid: string): Stats => {
   );
   const lastActivityDate =
     sortedArray[sortedArray.length - 1]?.startDate || false;
-
-  const victoryStreak = getStreakVictory(activities);
 
   const total = victories + loses + ties;
   const percentage =
@@ -52,6 +66,7 @@ const getStats = (activities: Activity[], userGid: string): Stats => {
     total,
     percentage,
     victoryStreak,
+    bestStreak,
     lastActivityDate,
   };
 };

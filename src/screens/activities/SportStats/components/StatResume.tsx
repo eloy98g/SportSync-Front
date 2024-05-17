@@ -19,7 +19,7 @@ interface Props {
 }
 
 const StatResume = ({ statData }: Props) => {
-  const { victories, ties, loses, victoryStreak, lastActivityDate } = statData;
+  const { victories, ties, loses, victoryStreak, lastActivityDate, bestStreak } = statData;
 
   const dateText = lastActivityDate
     ? `Última participación: ${unixToDate(lastActivityDate as number)}`
@@ -37,6 +37,7 @@ const StatResume = ({ statData }: Props) => {
       </View>
 
       <Text style={styles.text}>Mejor racha de victorias: {victoryStreak}</Text>
+      <Text style={styles.text}>Racha de victorias actual: {bestStreak}</Text>
       <Text style={styles.text}>{dateText}</Text>
     </View>
   );

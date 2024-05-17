@@ -18,8 +18,8 @@ const MainSection = (props: any) => {
     setOpen(true);
   };
 
-  const signInHandler = () => {
-    setSection("SignIn");
+  const signUpHandler = () => {
+    setSection("SignUp");
     setOpen(true);
   };
 
@@ -39,7 +39,7 @@ const MainSection = (props: any) => {
       <View style={styles.row}>
         <Text style={styles.text}>¿No tienes cuenta? </Text>
         <TouchableText
-          onPress={signInHandler}
+          onPress={signUpHandler}
           text="Regístrate"
           textStyle={[styles.text, { fontFamily: family.bold }]}
         />

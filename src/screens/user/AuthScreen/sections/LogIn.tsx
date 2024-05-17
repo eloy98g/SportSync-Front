@@ -6,6 +6,7 @@ import TouchableText from "../../../../components/common/buttons/TouchableText";
 import Divider from "../../../../components/common/Divider";
 import TextInput from "../../../../components/common/inputs/TextInput";
 import MainButton from "../../../../components/common/buttons/MainButton";
+import PasswordInput from "../../../../components/common/inputs/PasswordInput";
 
 // Theme
 import { PHONE } from "../../../../theme/breakPoints";
@@ -59,7 +60,7 @@ const Login = ({ setSection, navigation, setOpen }: any) => {
       <Divider height={30} />
       <TextInput value={email} onChange={setEmail} placeholder="Usuario" />
       <Divider height={22} />
-      <TextInput
+      <PasswordInput
         value={password}
         onChange={setPassword}
         placeholder="Contraseña"
@@ -73,7 +74,7 @@ const Login = ({ setSection, navigation, setOpen }: any) => {
         loading={loading}
       />
       <Divider height={12} />
-      {error !== "" && <Text style={styles.error}>{error}</Text>}
+      {error !== "" && <Text numberOfLines={1} style={styles.error}>{error}</Text>}
       <Divider height={12} />
       <TouchableText
         onPress={goToForgotPassword}

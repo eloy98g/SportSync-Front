@@ -34,7 +34,7 @@ const PersonalData = ({ editedUser, setEditedUser }: Props) => {
     setEditedUser((prev) => ({ ...prev, email: e }));
   };
   const changePhone = (e: any) => {
-    setEditedUser((prev) => ({ ...prev, phone: e }));
+    setEditedUser((prev) => ({ ...prev, phone: e ? parseInt(e) : 0 }));
   };
   const changeBirthday = (input: any) => {
     const unixTime = Date.parse(input);
@@ -57,7 +57,10 @@ const PersonalData = ({ editedUser, setEditedUser }: Props) => {
       <TextInput value={editedUser.email} onChange={changeEmail} />
       <Divider height={12} />
       <Label text="Teléfono" />
-      <TextInput value={editedUser.phone.toString()} onChange={changePhone} />
+      <TextInput
+        value={editedUser.phone ? editedUser.phone.toString() : ""}
+        onChange={changePhone}
+      />
       <Divider height={12} />
       <Label text="Género" />
       <Select
