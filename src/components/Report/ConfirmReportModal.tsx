@@ -5,14 +5,20 @@ import { StyleSheet, Text, View } from "react-native";
 import MainButton from "../common/buttons/MainButton";
 import Divider from "../common/Divider";
 import Modal from "../common/Modal";
+import MessageModal from "../modals/MessageModal";
+
+// Hooks
+import useStatus from "../../hooks/useStatus";
+
+// Services
+import Api from "../../services/api";
 
 // Theme
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
+
+// Types
 import { Report } from "./ReportSheet";
-import useStatus from "../../hooks/useStatus";
-import Api from "../../services/api";
-import MessageModal from "../modals/MessageModal";
 
 interface Props {
   visible: boolean;
@@ -29,7 +35,6 @@ const ConfirmReportModal = ({ visible, setVisible, report }: Props) => {
     setStatus("loading");
     try {
       const response = await Api.report.report(report);
-      console.log("response", response);
       const { message, status } = response;
       if (status === "success") {
         setMessage(

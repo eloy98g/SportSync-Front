@@ -6,18 +6,20 @@ import Divider from "../common/Divider";
 import Sheet from "../common/Sheet";
 import ConfirmReportModal from "./ConfirmReportModal";
 import Reason from "./Reason";
+import Loading from "../Status/Loading";
+import Error from "../Status/Error";
 
-// Constants
-import REPORT_REASONS from "../../constants/REPORT_REASONS";
+// Hooks
+import useStatus from "../../hooks/useStatus";
+import { useAppSelector } from "../../hooks";
+
+// Services
+import Api from "../../services/api";
 
 // Theme
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
-import useStatus from "../../hooks/useStatus";
-import Loading from "../Status/Loading";
-import Error from "../Status/Error";
-import Api from "../../services/api";
-import { useAppSelector } from "../../hooks";
+
 
 interface Props {
   open: boolean;
@@ -42,6 +44,7 @@ const ReportSheet = ({ open, setOpen, userGid }: Props) => {
   const [reportReasons, setReportReasons] = useState<ReportReason[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [report, setReport] = useState<Report | null>(null);
+  
   const currentUser = useAppSelector((state) => state.user.user.gid);
 
   const getData = async () => {
