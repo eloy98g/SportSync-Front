@@ -24,13 +24,19 @@ interface Props {
   visible: boolean;
   setVisible: (T: boolean) => void;
   report: Report | null;
+  onFinish: () => void;
 }
 
-const ConfirmReportModal = ({ visible, setVisible, report }: Props) => {
+const ConfirmReportModal = ({ visible, setVisible, report, onFinish }: Props) => {
   const [modal, setModal] = useState("");
   const [message, setMessage] = useState("");
   const { status, setStatus } = useStatus();
 
+
+  const finishHandler = () => {
+    setModal("")
+    onFinish()
+  }
   const acceptHandler = async () => {
     setStatus("loading");
     try {
@@ -88,7 +94,7 @@ const ConfirmReportModal = ({ visible, setVisible, report }: Props) => {
         visible={modal === "Message"}
         setVisible={setModal}
         message={message}
-        onFinish={() => setModal("")}
+        onFinish={finishHandler}
       />
     </Modal>
   );

@@ -20,7 +20,6 @@ import Api from "../../services/api";
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
 
-
 interface Props {
   open: boolean;
   setOpen: (T: boolean) => void;
@@ -44,8 +43,13 @@ const ReportSheet = ({ open, setOpen, userGid }: Props) => {
   const [reportReasons, setReportReasons] = useState<ReportReason[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [report, setReport] = useState<Report | null>(null);
-  
+
   const currentUser = useAppSelector((state) => state.user.user.gid);
+
+  const finishHandler = () => {
+    setOpen(false);
+    setModalVisible(false);
+  };
 
   const getData = async () => {
     setStatus("loading");
@@ -98,6 +102,7 @@ const ReportSheet = ({ open, setOpen, userGid }: Props) => {
           report={report}
           visible={modalVisible}
           setVisible={setModalVisible}
+          onFinish={finishHandler}
         />
       </View>
     </Sheet>
