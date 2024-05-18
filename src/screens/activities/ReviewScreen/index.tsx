@@ -21,7 +21,7 @@ import Player from "../../../store/types/activity/Player";
 import Team from "../../../store/types/activity/Team";
 
 interface ScreenParams {
-  userGid: number;
+  userGid: string;
   data: Activity;
   selectedUser: Player;
 }

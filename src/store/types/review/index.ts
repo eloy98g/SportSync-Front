@@ -1,6 +1,6 @@
 export default interface Review {
-  players: number[];
+  players: string[];
   rating: number;
   comment: string;
-  reviewer: number;
+  reviewer: string;
 }
