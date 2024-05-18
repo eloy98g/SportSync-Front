@@ -7,23 +7,24 @@ import Divider from "../common/Divider";
 // Theme
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
+import { ReportReason } from "./ReportSheet";
 
 interface Props {
-  title: string;
-  subtitle?: string;
+  data: ReportReason;
   onPress: () => void;
 }
 
-const Reason = ({ title, subtitle, onPress }: Props) => {
+const Reason = ({ data, onPress }: Props) => {
+  const { detail } = data;
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Text style={styles.title}>{title}</Text>
-      {subtitle && (
+      <Text style={styles.title}>{detail}</Text>
+      {/* {subtitle && (
         <>
           <Divider height={4} />
           <Text style={styles.subtitle}>{subtitle}</Text>
         </>
-      )}
+      )} */}
     </TouchableOpacity>
   );
 };

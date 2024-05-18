@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 // Components
@@ -9,17 +9,44 @@ import Modal from "../common/Modal";
 // Theme
 import colors from "../../theme/colors";
 import { family } from "../../theme/fonts";
+import { Report } from "./ReportSheet";
+import useStatus from "../../hooks/useStatus";
+import Api from "../../services/api";
+import MessageModal from "../modals/MessageModal";
 
 interface Props {
   visible: boolean;
   setVisible: (T: boolean) => void;
-  onFinish: () => void;
+  report: Report | null;
 }
 
-const ConfirmReportModal = ({ visible, setVisible, onFinish }: Props) => {
-  const acceptHandler = () => {
-    onFinish();
+const ConfirmReportModal = ({ visible, setVisible, report }: Props) => {
+  const [modal, setModal] = useState("");
+  const [message, setMessage] = useState("");
+  const { status, setStatus } = useStatus();
+
+  const acceptHandler = async () => {
+    setStatus("loading");
+    try {
+      const response = await Api.report.report(report);
+      console.log("response", response);
+      const { message, status } = response;
+      if (status === "success") {
+        setMessage(
+          "Reporte creado con éxito. Estudiaremos el caso en los próximos días."
+        );
+        setStatus("success");
+      } else {
+        setMessage(message);
+        setStatus("error");
+      }
+    } catch (error: any) {
+      setMessage(error.message);
+      setStatus("error");
+    }
+    setModal("Message");
   };
+
   const cancelHandler = () => {
     setVisible(false);
   };
@@ -48,9 +75,16 @@ const ConfirmReportModal = ({ visible, setVisible, onFinish }: Props) => {
             borderColor={colors.red}
             color={colors.white}
             textColor={colors.red}
+            loading={status === "loading"}
           />
         </View>
       </View>
+      <MessageModal
+        visible={modal === "Message"}
+        setVisible={setModal}
+        message={message}
+        onFinish={() => setModal("")}
+      />
     </Modal>
   );
 };
