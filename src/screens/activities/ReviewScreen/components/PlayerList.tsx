@@ -14,6 +14,7 @@ import { family } from "../../../../theme/fonts";
 import PlayerT from "../../../../store/types/activity/Player";
 import Review from "../../../../store/types/review";
 import Team from "../../../../store/types/activity/Team";
+import { useAppSelector } from "../../../../hooks";
 
 interface Props {
   data: Team[];
@@ -22,14 +23,16 @@ interface Props {
 }
 
 const PlayerList = ({ data, review, setReview }: Props) => {
-  const playerHandler = (gid: number) => {
-    setReview((prevState: Review) => {
-      const isPlayerIncluded = prevState.players.includes(gid);
-      const newPlayers = isPlayerIncluded
-        ? prevState.players.filter((player: number) => player !== gid)
-        : [...prevState.players, gid];
+  const userGid = useAppSelector((state) => state.user.user.gid);
 
-      return { ...prevState, players: newPlayers };
+  const playerHandler = (gid: string) => {
+    setReview((prevState: Review) => {
+      const isPlayerIncluded = prevState.users.includes(gid);
+      const newPlayers = isPlayerIncluded
+        ? prevState.users.filter((player: string) => player !== gid)
+        : [...prevState.users, gid];
+
+      return { ...prevState, users: newPlayers };
     });
   };
 
@@ -55,17 +58,19 @@ const PlayerList = ({ data, review, setReview }: Props) => {
               style={styles.horizontalScroll}
               showsHorizontalScrollIndicator={false}
             >
-              {team.players.map((player: PlayerT) => (
-                <>
-                  <Player
-                    key={player.gid}
-                    data={player}
-                    onPress={() => playerHandler(player.gid)}
-                    selected={review.players.includes(player.gid)}
-                  />
-                  <Divider width={20} />
-                </>
-              ))}
+              {team.players
+                .filter((player) => player.gid !== userGid)
+                .map((player: PlayerT) => (
+                  <>
+                    <Player
+                      key={player.gid}
+                      data={player}
+                      onPress={() => playerHandler(player.gid)}
+                      selected={review.users.includes(player.gid)}
+                    />
+                    <Divider width={20} />
+                  </>
+                ))}
             </ScrollView>
             <Divider height={12} />
           </>
