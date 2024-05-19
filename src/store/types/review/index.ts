@@ -1,6 +1,7 @@
 export default interface Review {
-  players: string[];
-  rating: number;
+  users: string[];
+  rating: number | null;
   comment: string;
-  reviewer: string;
+  reviewedBy: string;
+  activityGid: string;
 }

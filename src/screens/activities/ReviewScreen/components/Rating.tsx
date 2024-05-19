@@ -13,7 +13,7 @@ import colors from "../../../../theme/colors";
 import Review from "../../../../store/types/review";
 
 interface Props {
-  rating: number;
+  rating: number | null;
   setReview: (T: any) => void;
 }
 const Rating = ({ rating, setReview }: Props) => {
@@ -29,7 +29,7 @@ const Rating = ({ rating, setReview }: Props) => {
           <Star
             size={64}
             color={colors.primary}
-            fill={rating >= i ? colors.primary : colors.white}
+            fill={rating && rating >= i ? colors.primary : colors.white}
           />
         </TouchableOpacity>
       );

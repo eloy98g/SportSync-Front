@@ -1,17 +1,11 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Platform,
-} from "react-native";
-import { ArrowLeft } from "lucide-react-native";
+import { StyleSheet, View, ScrollView, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 // Components
 import Divider from "../../../../components/common/Divider";
+import BackHeader from "../../../../components/BackHeader";
+import Screen from "../../../../components/common/Screen";
 
 // Theme
 import colors from "../../../../theme/colors";
@@ -29,20 +23,15 @@ const Wrapper = ({ children }: Props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Divider height={12} />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.row}>
-          <TouchableOpacity onPress={backHandler} style={styles.row}>
-            <ArrowLeft strokeWidth={3} size={24} color={colors.black} />
-          </TouchableOpacity>
-          <Divider width={12} />
-          <Text style={styles.title}>¡Deja una valoración!</Text>
-        </View>
-        {children}
-        <Divider height={80} />
-      </ScrollView>
-    </View>
+    <Screen>
+      <BackHeader title="¡Deja una valoración!" />
+      <View style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {children}
+          <Divider height={80} />
+        </ScrollView>
+      </View>
+    </Screen>
   );
 };
 
@@ -58,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flex: 1,
-    paddingTop: 32,
+    paddingTop: 80,
     paddingHorizontal: 24,
   },
   row: {

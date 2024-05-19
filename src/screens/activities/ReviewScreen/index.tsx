@@ -30,17 +30,20 @@ const ReviewScreen = ({ route }: any) => {
   const { userGid, data, selectedUser } = route.params as ScreenParams;
 
   const [review, setReview] = useState<Review>({
-    players: selectedUser?.gid ? [selectedUser.gid] : [],
-    rating: 0,
+    users: selectedUser?.gid ? [selectedUser.gid] : [],
+    rating: null,
     comment: "",
-    reviewer: userGid,
+    reviewedBy: userGid,
+    activityGid: data.gid,
   });
 
   useEffect(() => {
     const playerGids = data.teams.flatMap((team: Team) =>
-      team.players.map((player: Player) => player.gid)
+      team.players
+        .filter((player: Player) => player.gid !== userGid)
+        .map((player: Player) => player.gid)
     );
-    setReview((prevState: Review) => ({ ...prevState, players: playerGids }));
+    setReview((prevState: Review) => ({ ...prevState, users: playerGids }));
   }, []);
 
   return (
