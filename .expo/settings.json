@@ -5,6 +5,6 @@
   "minify": false,
   "urlRandomness": "lF8018M",
   "https": false,
-  "scheme": "com.eloy98g.sportup",
-  "devClient": false
+  "devClient": true,
+  "scheme": "com.eloy98g.sportup"
 }

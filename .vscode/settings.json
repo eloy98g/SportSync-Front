@@ -1,0 +1,20 @@
+{
+  "window.zoomLevel": -1,
+  "eslint.validate": ["typescript", "javascript"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "i18n-ally.localesPaths": ["src/i18n"],
+  "i18n-ally.keystyle": "nested",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass", "style"],
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "prettier.configPath": ".prettierrc.js",
+  "prettier.requireConfig": true,
+  "prettier.useEditorConfig": false,
+  "java.configuration.updateBuildConfiguration": "disabled"
+}
