@@ -1,27 +1,36 @@
-import React from "react";
-import { useContext } from "react";
-import { StyleSheet, View, ActivityIndicator } from "react-native";
+import React, { useContext } from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 // Components
-import SportsCarousel from "./components/SportsCarousel";
-import SportStats from "./components/SportStats";
+import SportsCarousel from './components/SportsCarousel';
+import SportStats from './components/SportStats';
 
 // Context
-import { SportContainerContext } from "./context/SportContainerContext";
+import { SportContainerContext } from './context/SportContainerContext';
 
 // Theme
-import colors from "../../../../../theme/colors";
-import Divider from "../../../../../components/common/Divider";
-import ActivitiesList from "./components/ActivitiesList";
+import Divider from '../../../../../components/common/Divider';
+import colors from '../../../../../theme/colors';
+import { family } from '../../../../../theme/fonts';
+import ActivitiesList from './components/ActivitiesList';
 
 const SportsContainer = () => {
-  const { status } = useContext(SportContainerContext);
+  const { status, sports } = useContext(SportContainerContext);
 
-  if (status === "idle" || status === "loading") {
+  if (status === 'idle' || status === 'loading') {
     return (
       <View style={styles.loading}>
         <ActivityIndicator size="small" color={colors.primary} />
       </View>
+    );
+  }
+
+  console.log('sports', sports);
+  if (!sports.length) {
+    return (
+      <Text style={styles.text}>
+        No ha participado en ninguna actividad todavía{' '}
+      </Text>
     );
   }
 
@@ -40,11 +49,16 @@ export default SportsContainer;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: '100%',
   },
   loading: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontFamily: family.light,
+    color: colors.black,
+    fontSize: 14,
   },
 });

@@ -1,16 +1,16 @@
-import React from "react";
-import { StyleSheet, Text } from "react-native";
+import React from 'react';
+import { StyleSheet, Text } from 'react-native';
 
 // Hooks
-import { useAppSelector } from "../../../hooks";
+import { useAppSelector } from '../../../hooks';
 
 // Theme
-import colors from "../../../theme/colors";
-import { family } from "../../../theme/fonts";
+import colors from '../../../theme/colors';
+import { family } from '../../../theme/fonts';
 
 const Title = () => {
-  const name = useAppSelector((state) => state.user.user.name);
-  const text = "Hola " + (name?.length > 0 ? name : "Usuario") + "!"
+  const name = useAppSelector(state => state.user.user.name);
+  const text = '¡Hola ' + (name?.length > 0 ? name : 'Usuario') + '!';
   return <Text style={styles.title}>{text}</Text>;
 };
 
