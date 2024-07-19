@@ -1,69 +1,69 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet,
-  ScrollView,
-  View,
   ActivityIndicator,
+  ScrollView,
+  StyleSheet,
   Text,
-} from "react-native";
+  View,
+} from 'react-native';
 
 // Components
-import SportCard from "../../activities/CreateActivity/components/SportCard";
-import Search from "../../../components/common/inputs/Search";
-import Divider from "../../../components/common/Divider";
-import Screen from "../../../components/common/Screen";
-import BackHeader from "../../../components/BackHeader";
+import BackHeader from '../../../components/BackHeader';
+import Divider from '../../../components/common/Divider';
+import Screen from '../../../components/common/Screen';
+import Search from '../../../components/common/inputs/Search';
+import SportCard from '../../activities/CreateActivity/components/SportCard';
 
 // Hooks
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import useStatus from "../../../hooks/useStatus";
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import useStatus from '../../../hooks/useStatus';
 
 // Services
-import Api from "../../../services/api";
+import Api from '../../../services/api';
 
 // Store
 import {
   favSport,
   unfavSport,
-} from "../../../store/features/favSport/favSportSlice";
+} from '../../../store/features/favSport/favSportSlice';
 
 // Types
-import Sport from "../../../store/types/sport/Sport";
+import Sport from '../../../store/types/sport/Sport';
 
 // Theme
-import { family } from "../../../theme/fonts";
-import colors from "../../../theme/colors";
-import ErrorModal from "../../../components/modals/ErrorModal";
-import fetchFavSports from "../../../store/features/favSport/methods/fetchFavSports";
+import ErrorModal from '../../../components/modals/ErrorModal';
+import fetchFavSports from '../../../store/features/favSport/methods/fetchFavSports';
+import colors from '../../../theme/colors';
+import { family } from '../../../theme/fonts';
 
 const FavoriteSportsScreen = () => {
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState('');
   const [sports, setSports] = useState<Sport[]>([]);
-  const [error, setError] = useState("");
-  const [modal, setModal] = useState("");
-  const [cardLoading, setCardLoading] = useState("");
+  const [error, setError] = useState('');
+  const [modal, setModal] = useState('');
+  const [cardLoading, setCardLoading] = useState('');
   const { status, setStatus } = useStatus();
 
-  const favoriteSports = useAppSelector((state) => state.favSport.favSports);
-  const userGid = useAppSelector((state) => state.user.user.gid);
+  const favoriteSports = useAppSelector(state => state.favSport.favSports);
+  const userGid = useAppSelector(state => state.user.user.gid);
 
   const dispatch = useAppDispatch();
-  const loading = status === "idle" || status === "loading";
+  const loading = status === 'idle' || status === 'loading';
 
   const getData = async () => {
     try {
       await dispatch(fetchFavSports({ userGid: userGid }));
       const response = await Api.sport.getAll();
 
-      if (response.status === "success") {
+      if (response.status === 'success') {
         setSports(response.data);
-        setStatus("success");
+        setStatus('success');
       } else {
-        setStatus("error");
+        setStatus('error');
         setError(response.message);
       }
     } catch (error: any) {
-      setStatus("error");
+      setStatus('error');
       setError(error.message);
     }
   };
@@ -72,41 +72,41 @@ const FavoriteSportsScreen = () => {
     getData();
   }, []);
 
-  const filteredSports = sports.filter((sport) =>
+  const filteredSports = sports.filter(sport =>
     sport.name
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
-      .includes(filter.toLowerCase())
+      .includes(filter.toLowerCase()),
   );
 
   const favHandler = async (sportGid: string) => {
     try {
       const response = await Api.sport.favorite(sportGid, userGid);
-      if (response.status === "success") {
+      if (response.status === 'success') {
         dispatch(favSport(sportGid));
       } else {
         setError(response.message);
-        setModal("Error");
+        setModal('Error');
       }
     } catch (error: any) {
       setError(error.message);
-      setModal("Error");
+      setModal('Error');
     }
   };
 
   const unfavHandler = async (sportGid: string) => {
     try {
       const response = await Api.sport.unfavorite(sportGid, userGid);
-      if (response.status === "success") {
+      if (response.status === 'success') {
         dispatch(unfavSport(sportGid));
       } else {
         setError(response.message);
-        setModal("Error");
+        setModal('Error');
       }
     } catch (error: any) {
       setError(error.message);
-      setModal("Error");
+      setModal('Error');
     }
   };
 
@@ -117,7 +117,7 @@ const FavoriteSportsScreen = () => {
     } else {
       await favHandler(gid);
     }
-    setCardLoading("");
+    setCardLoading('');
   };
 
   return (
@@ -128,7 +128,7 @@ const FavoriteSportsScreen = () => {
           <View style={styles.wrapper}>
             <ActivityIndicator />
           </View>
-        ) : status === "error" ? (
+        ) : status === 'error' ? (
           <View style={styles.wrapper}>
             <Text style={styles.error}>{error}</Text>
           </View>
@@ -142,14 +142,14 @@ const FavoriteSportsScreen = () => {
               showsVerticalScrollIndicator={false}
             >
               <Divider height={12} />
-              {filteredSports.map((sport) => {
+              {filteredSports.map(sport => {
                 const isFavorite = favoriteSports?.includes(sport.gid);
                 return (
                   <React.Fragment key={sport.gid}>
                     <SportCard
                       {...sport}
                       onPress={() => sportHandler(sport.gid)}
-                      favorite={isFavorite}
+                      selected={isFavorite}
                       loading={cardLoading === sport.gid}
                     />
                     <Divider height={12} />
@@ -162,7 +162,7 @@ const FavoriteSportsScreen = () => {
       </View>
       <ErrorModal
         setVisible={setModal}
-        visible={modal === "Error"}
+        visible={modal === 'Error'}
         error={error}
       />
     </Screen>
@@ -173,23 +173,23 @@ export default FavoriteSportsScreen;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     paddingHorizontal: 12,
     paddingTop: 80,
   },
   wrapper: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   search: {
-    width: "100%",
+    width: '100%',
     paddingTop: 20,
   },
   content: {
     // height: 1,
-    width: "100%",
+    width: '100%',
   },
   error: {
     fontFamily: family.normal,

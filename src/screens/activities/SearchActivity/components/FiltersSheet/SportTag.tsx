@@ -1,16 +1,15 @@
-import { Circle } from "lucide-react-native";
-import React from "react";
+import React from 'react';
 import {
+  ImageBackground,
   StyleSheet,
   Text,
-  View,
   TouchableOpacity,
-  ImageBackground,
-} from "react-native";
+  View,
+} from 'react-native';
 
 // Theme
-import colors from "../../../../../theme/colors";
-import { family } from "../../../../../theme/fonts";
+import colors from '../../../../../theme/colors';
+import { family } from '../../../../../theme/fonts';
 
 interface Props {
   image: string;
@@ -22,15 +21,14 @@ interface Props {
 const SportTag = ({ image, name, onPress, selected }: Props) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <ImageBackground style={styles.container} source={{ uri: image }}>
+      <ImageBackground
+        style={[styles.container, selected && styles.selected]}
+        source={{ uri: image }}
+      >
         <View style={styles.content}>
           <Text style={styles.title}>{name}</Text>
         </View>
-        {selected && (
-          <View style={styles.selectedWrapper}>
-            {<Circle fill={colors.primary} color={colors.primary} size={14} />}
-          </View>
-        )}
+
         <View style={styles.opacity} />
       </ImageBackground>
     </TouchableOpacity>
@@ -44,19 +42,17 @@ const styles = StyleSheet.create({
     height: 45,
     width: 90,
     borderRadius: 8,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   content: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     padding: 6,
     zIndex: 3,
   },
-  selectedWrapper: {
-    position: "absolute",
-    top: 6,
-    right: 6,
-    zIndex: 4,
+  selected: {
+    borderWidth: 2,
+    borderColor: colors.primary,
   },
   title: {
     fontFamily: family.normal,
@@ -64,12 +60,12 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   opacity: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     zIndex: 2,
-    backgroundColor: "rgba(0,0,0,1)",
+    backgroundColor: 'rgba(0,0,0,1)',
     opacity: 0.3,
   },
 });
