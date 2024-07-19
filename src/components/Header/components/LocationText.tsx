@@ -1,42 +1,48 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { family } from "../../../theme/fonts";
-import colors from "../../../theme/colors";
-import getAddress from "../../../utils/location/getAddress";
-import getLocationPermissions from "../../../utils/location/getLocationPermissions";
-import getLocation from "../../../utils/location/getLocation";
-import { setLocation } from "../../../store/features/user/userSlice";
-import useStatus from "../../../hooks/useStatus";
-import Loading from "../../Status/Loading";
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import useStatus from '../../../hooks/useStatus';
+import { setLocation } from '../../../store/features/user/userSlice';
+import colors from '../../../theme/colors';
+import { family } from '../../../theme/fonts';
+import getAddress from '../../../utils/location/getAddress';
+import getLocation from '../../../utils/location/getLocation';
+import getLocationPermissions from '../../../utils/location/getLocationPermissions';
+import Loading from '../../Status/Loading';
 
 const LocationText = () => {
-  const location = useAppSelector((state) => state.user.location);
-  const [address, setAddress] = useState("");
+  const location = useAppSelector(state => state.user.location);
+  const [address, setAddress] = useState('');
   const { status, setStatus } = useStatus();
 
   const dispatch = useAppDispatch();
+
   const addressHandler = async () => {
-    const newAddress = await getAddress(location);
-    setAddress(newAddress);
+    if (location) {
+      const newAddress = await getAddress(location);
+      setAddress(newAddress);
+    }
   };
+
   useEffect(() => {
     addressHandler();
   }, [location]);
 
   const locationHandler = async () => {
-    setStatus("loading");
+    setStatus('loading');
     const locationPermission = await getLocationPermissions();
     if (locationPermission) {
       const location = await getLocation();
-      dispatch(setLocation(location));
+      if (location) {
+        dispatch(setLocation(location));
+      }
     }
-    setStatus("success");
+    setStatus('success');
   };
 
   return (
     <View style={styles.container}>
-      {status === "loading" ? (
+      {status === 'loading' ? (
         <Loading color={colors.secondary} size={12} />
       ) : location ? (
         <TouchableOpacity onPress={locationHandler}>
@@ -47,7 +53,7 @@ const LocationText = () => {
       ) : (
         <TouchableOpacity onPress={locationHandler}>
           <Text style={styles.text}>
-            {"Presiona aquí para obtener ubicación"}
+            {'Presiona aquí para obtener ubicación'}
           </Text>
         </TouchableOpacity>
       )}
@@ -64,7 +70,7 @@ const styles = StyleSheet.create({
     color: colors.secondary,
   },
   container: {
-    width: "100%",
+    width: '100%',
     paddingHorizontal: 12,
     height: 20,
   },

@@ -1,21 +1,21 @@
-import React, { useContext, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import React, { useContext } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 // Components
-import LocationPicker from "../../../../components/common/inputs/LocationPicker";
-import DatePicker from "../../../../components/common/inputs/DatePicker";
-import TextArea from "../../../../components/common/inputs/TextArea";
-import SectionContainer from "../components/SectionContainer";
-import Divider from "../../../../components/common/Divider";
-import Label from "../../../../components/common/Label";
-import Title from "../components/Title";
+import Divider from '../../../../components/common/Divider';
+import Label from '../../../../components/common/Label';
+import DatePicker from '../../../../components/common/inputs/DatePicker';
+import LocationPicker from '../../../../components/common/inputs/LocationPicker';
+import TextArea from '../../../../components/common/inputs/TextArea';
+import SectionContainer from '../components/SectionContainer';
+import Title from '../components/Title';
 
 // Context
-import CreateContext from "../context/CreateContext";
+import CreateContext from '../context/CreateContext';
 
 // Types
-import Location from "../../../../store/types/location/Location";
-import TextInput from "../../../../components/common/inputs/TextInput";
+import TextInput from '../../../../components/common/inputs/TextInput';
+import Location from '../../../../store/types/location/Location';
 
 const Schedule = () => {
   const { draft, setDraft } = useContext(CreateContext);
@@ -24,37 +24,37 @@ const Schedule = () => {
 
   const hourHandler = (e: any) => {
     const newHour = Date.parse(e);
-    setDraft((prevState) => ({ ...prevState, hour: newHour }));
+    setDraft(prevState => ({ ...prevState, hour: newHour }));
   };
 
   const dayHandler = (e: any) => {
     const newDay = Date.parse(e);
-    setDraft((prevState) => ({ ...prevState, day: newDay }));
+    setDraft(prevState => ({ ...prevState, day: newDay }));
   };
 
   const locationHandler = (coords: Location) => {
-    setDraft((prevState) => ({
+    setDraft(prevState => ({
       ...prevState,
       location: { ...prevState.location, ...coords },
     }));
   };
 
   const addressHandler = (e: any) => {
-    setDraft((prevState) => ({
+    setDraft(prevState => ({
       ...prevState,
       location: { ...prevState.location, address: e },
     }));
   };
 
   const durationHandler = (e: any) => {
-    const newDuration = e.replace(/[,.]/g, "");
-    setDraft((prevState) => ({
+    const newDuration = e.replace(/[,.]/g, '');
+    setDraft(prevState => ({
       ...prevState,
       duration: parseInt(newDuration),
     }));
   };
 
-  const durationText = duration > 0 ? duration.toString() : duration
+  const durationText = duration > 0 ? duration.toString() : '0';
 
   return (
     <SectionContainer>
@@ -71,7 +71,7 @@ const Schedule = () => {
         <Label text="Indicaciones" />
         <TextArea
           placeholder="Añadir indicación extra"
-          value={location.address || ""}
+          value={location.address || ''}
           onChange={addressHandler}
         />
         <Divider height={24} />
@@ -88,11 +88,11 @@ const Schedule = () => {
           mode="time"
         />
         <Divider height={12} />
-        <Label text="Duración" />
+        <Label text="Duración (minutos)" />
         <View style={styles.durationContainer}>
           <TextInput
             value={durationText}
-            placeholder={"0"}
+            placeholder={'0'}
             onChange={durationHandler}
             numeric
           />
@@ -107,9 +107,9 @@ export default Schedule;
 const styles = StyleSheet.create({
   scroll: {
     height: 1,
-    width: "100%",
+    width: '100%',
   },
   durationContainer: {
-    width: "100%",
+    width: '100%',
   },
 });

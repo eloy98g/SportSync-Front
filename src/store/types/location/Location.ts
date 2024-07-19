@@ -8,9 +8,9 @@ type Location = {
 };
 
 const EMPTY_LOCATION = {
-  address: "",
-  latitude: 40.4165,
-  longitude: -3.70256,
+  address: '',
+  latitude: null,
+  longitude: null,
   latitudeDelta: 0.1,
   longitudeDelta: 0.1,
   radius: 5000,

@@ -1,19 +1,18 @@
-import { Circle, Star } from "lucide-react-native";
-import React from "react";
+import React from 'react';
 import {
+  ImageBackground,
   StyleSheet,
   Text,
-  View,
   TouchableOpacity,
-  ImageBackground,
-} from "react-native";
+  View,
+} from 'react-native';
 
 // Components
-import Loading from "../../../../components/Status/Loading";
+import Loading from '../../../../components/Status/Loading';
 
 // Theme
-import colors from "../../../../theme/colors";
-import { family } from "../../../../theme/fonts";
+import colors from '../../../../theme/colors';
+import { family } from '../../../../theme/fonts';
 
 interface Props {
   image: string;
@@ -38,25 +37,18 @@ const SportCard = ({
     onPress(gid);
   };
 
-  console.log('loading',loading)
   return (
     <TouchableOpacity onPress={clickHandler}>
-      <ImageBackground style={styles.container} source={{ uri: image }}>
+      <ImageBackground
+        style={[styles.container, selected && styles.selected]}
+        source={{ uri: image }}
+      >
         <View style={styles.content}>
           <Text style={styles.title}>{name}</Text>
         </View>
-        {favorite && (
+        {loading && (
           <View style={styles.favWrapper}>
-            {loading ? (
-              <Loading />
-            ) : (
-              <Star fill={colors.primary} color={colors.primary} size={24} />
-            )}
-          </View>
-        )}
-        {selected && (
-          <View style={styles.favWrapper}>
-            {<Circle fill={colors.primary} color={colors.primary} size={24} />}
+            <Loading />
           </View>
         )}
         <View style={styles.opacity} />
@@ -69,37 +61,37 @@ export default SportCard;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: '100%',
     height: 120,
-    resizeMode: "cover",
+    resizeMode: 'cover',
     borderRadius: 12,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   content: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     padding: 12,
     zIndex: 3,
   },
-  selected: { borderWidth: 2, borderColor: colors.primary },
+  selected: { borderWidth: 3, borderColor: colors.primary },
   title: {
     fontFamily: family.normal,
     fontSize: 18,
     color: colors.white,
   },
   favWrapper: {
-    position: "absolute",
+    position: 'absolute',
     top: 12,
     right: 12,
     zIndex: 4,
   },
   opacity: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     zIndex: 2,
-    backgroundColor: "rgba(0,0,0,1)",
+    backgroundColor: 'rgba(0,0,0,1)',
     opacity: 0.3,
   },
 });

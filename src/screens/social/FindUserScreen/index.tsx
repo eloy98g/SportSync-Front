@@ -1,58 +1,58 @@
-import React, { useState } from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 // Components
-import Screen from "../../../components/common/Screen";
-import Search from "../../../components/common/inputs/Search";
-import BackHeader from "../../../components/BackHeader";
-import Divider from "../../../components/common/Divider";
-import PlayerCard from "../../../components/social/PlayerCard";
-import Loading from "../../../components/Status/Loading";
-import Error from "../../../components/Status/Error";
+import BackHeader from '../../../components/BackHeader';
+import Error from '../../../components/Status/Error';
+import Loading from '../../../components/Status/Loading';
+import Divider from '../../../components/common/Divider';
+import Screen from '../../../components/common/Screen';
+import Search from '../../../components/common/inputs/Search';
+import PlayerCard from '../../../components/social/PlayerCard';
 
 // Hooks
-import useStatus from "../../../hooks/useStatus";
-import { useAppSelector } from "../../../hooks";
+import { useAppSelector } from '../../../hooks';
+import useStatus from '../../../hooks/useStatus';
 
 // Services
-import Api from "../../../services/api";
+import Api from '../../../services/api';
 
 // Types
-import Player from "../../../store/types/activity/Player";
+import Player from '../../../store/types/activity/Player';
 
 // Theme
-import colors from "../../../theme/colors";
+import colors from '../../../theme/colors';
 
 const FindUserScreen = () => {
   const [users, setUsers] = useState<Player[]>([]);
   const { status, setStatus } = useStatus();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
-  const userGid = useAppSelector((state) => state.user.user.gid);
+  const userGid = useAppSelector(state => state.user.user.gid);
 
   const searchHandler = async (search: string) => {
-    if (status !== "loading") {
+    if (status !== 'loading') {
       try {
-        setStatus("loading");
+        setStatus('loading');
         const params = `name=${search}`;
         const response = await Api.user.getAll(params);
-        if (response.status === "success") {
+        if (response.status === 'success') {
           const userList = response.data.filter(
-            (user: Player) => user.gid !== userGid
+            (user: Player) => user.gid !== userGid,
           );
           setUsers(userList);
           if (response.data.length === 0) {
-            setStatus("empty");
+            setStatus('empty');
           } else {
-            setStatus("success");
+            setStatus('success');
           }
         } else {
           setError(response.message);
-          setStatus("error");
+          setStatus('error');
         }
       } catch (error: any) {
         setError(error.message);
-        setStatus("error");
+        setStatus('error');
       }
     }
   };
@@ -65,18 +65,18 @@ const FindUserScreen = () => {
           onSearch={searchHandler}
           placeholder="Buscar por nombre de usuario"
         />
-        <ScrollView style={styles.scroll}>
+        <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
           <Divider height={12} />
-          {status === "loading" && (
+          {status === 'loading' && (
             <View style={{ flex: 1 }}>
               <Loading />
             </View>
           )}
-          {status === "error" && <Error error={error} />}
-          {status === "empty" && (
+          {status === 'error' && <Error error={error} />}
+          {status === 'empty' && (
             <Error color={colors.black} error="No se encontraron usuarios" />
           )}
-          {status === "success" &&
+          {status === 'success' &&
             users.map((user: Player) => (
               <React.Fragment key={user.gid}>
                 <PlayerCard data={user} />
@@ -94,13 +94,13 @@ export default FindUserScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
+    width: '100%',
     paddingTop: 92,
-    justifyContent: "flex-start",
+    justifyContent: 'flex-start',
     paddingHorizontal: 12,
   },
   scroll: {
-    width: "100%",
+    width: '100%',
     height: 1,
   },
 });

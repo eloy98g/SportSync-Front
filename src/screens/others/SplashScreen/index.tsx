@@ -1,34 +1,33 @@
-import React, { useEffect } from "react";
-import * as Linking from "expo-linking";
-import { StyleSheet, Text, ActivityIndicator, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import * as Linking from 'expo-linking';
+import React, { useEffect } from 'react';
+import { ActivityIndicator, Image, StyleSheet, Text } from 'react-native';
 
 // Components
-import Screen from "../../../components/common/Screen";
-import Divider from "../../../components/common/Divider";
+import Divider from '../../../components/common/Divider';
+import Screen from '../../../components/common/Screen';
 
 // Hooks
-import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 // Reducers
-import fetchCurrentActivities from "../../../store/features/activity/methods/fetchCurrentActivities";
-import fetchPublicActivities from "../../../store/features/activity/methods/fetchPublicActivities";
-import fetchFollowing from "../../../store/features/following/methods/fetchFollowing";
-import fetchChats from "../../../store/features/chat/methods/fetchChats";
-import fetchFavSports from "../../../store/features/favSport/methods/fetchFavSports";
-import { setLocation } from "../../../store/features/user/userSlice";
+import fetchCurrentActivities from '../../../store/features/activity/methods/fetchCurrentActivities';
+import fetchPublicActivities from '../../../store/features/activity/methods/fetchPublicActivities';
+import fetchChats from '../../../store/features/chat/methods/fetchChats';
+import fetchFavSports from '../../../store/features/favSport/methods/fetchFavSports';
+import fetchFollowing from '../../../store/features/following/methods/fetchFollowing';
+import { setLocation } from '../../../store/features/user/userSlice';
 
 // Theme
-import colors from "../../../theme/colors";
-import { family } from "../../../theme/fonts";
+import colors from '../../../theme/colors';
+import { family } from '../../../theme/fonts';
 
 // Utils
-import getLocationPermissions from "../../../utils/location/getLocationPermissions";
-import getLocation from "../../../utils/location/getLocation";
-import useNavigate from "../../../hooks/useNavigate";
+import useNavigate from '../../../hooks/useNavigate';
+import getLocation from '../../../utils/location/getLocation';
+import getLocationPermissions from '../../../utils/location/getLocationPermissions';
 
 const SplashScreen = () => {
-  const stateUser = useAppSelector((state) => state.user.user);
+  const stateUser = useAppSelector(state => state.user.user);
   const dispatch = useAppDispatch();
   const { navigateTo } = useNavigate();
 
@@ -49,11 +48,13 @@ const SplashScreen = () => {
       const locationPermission = await getLocationPermissions();
       if (locationPermission) {
         const location = await getLocation();
-        dispatch(setLocation(location));
+        if (location) {
+          dispatch(setLocation(location));
+        }
       }
-      navigateTo("Home");
+      navigateTo('Home');
     } catch (error: any) {
-      console.log("error", error.message);
+      console.log('error', error.message);
     }
   };
 
@@ -65,19 +66,19 @@ const SplashScreen = () => {
     const handleDeepLink = ({ url }: any) => {
       const { path, queryParams } = Linking.parse(url);
 
-      if (path === "sportup" && queryParams?.gid) {
-        navigateTo("Profile", { gid: queryParams.gid });
+      if (path === 'sportup' && queryParams?.gid) {
+        navigateTo('Profile', { gid: queryParams.gid });
       }
     };
 
-    Linking.addEventListener("url", handleDeepLink);
+    Linking.addEventListener('url', handleDeepLink);
   }, []);
 
   return (
     <Screen>
       <Image
         style={styles.logo}
-        source={require("../../../assets/metadata/logo_unicolor.png")}
+        source={require('../../../assets/metadata/logo_unicolor.png')}
       />
       <Divider height={6} />
       <ActivityIndicator size="small" color={colors.primary} />
@@ -92,8 +93,8 @@ export default SplashScreen;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     fontFamily: family.normal,

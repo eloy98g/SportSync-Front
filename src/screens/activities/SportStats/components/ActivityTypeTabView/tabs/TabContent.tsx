@@ -1,11 +1,11 @@
-import React from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import React from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
 
 // Components
-import ActivityT from "../../../../../../store/types/activity/Activity";
+import ActivityT from '../../../../../../store/types/activity/Activity';
 
 // Components
-import Activity from "./Activity";
+import Activity from './Activity';
 
 interface Props {
   data: ActivityT[];
@@ -13,7 +13,7 @@ interface Props {
 
 const TabContent = ({ data = [] }: Props) => {
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       {data.map((item: ActivityT) => (
         <Activity key={item.gid} data={item} />
       ))}
@@ -26,6 +26,6 @@ export default TabContent;
 const styles = StyleSheet.create({
   container: {
     height: 1,
-    width: "100%",
+    width: '100%',
   },
 });

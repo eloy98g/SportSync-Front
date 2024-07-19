@@ -1,37 +1,29 @@
 import {
   getCurrentPositionAsync,
   requestForegroundPermissionsAsync,
-} from "expo-location";
-import Location from "../../store/types/location/Location";
-import getAddress from "./getAddress";
+} from 'expo-location';
+import Location from '../../store/types/location/Location';
+import getAddress from './getAddress';
 
 const getLocation = async () => {
-  const location: Location = {
-    latitude: 40.4165,
-    longitude: -3.70256,
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1,
-  };
-
   try {
-
     let { status } = await requestForegroundPermissionsAsync();
 
-    if (status !== "granted") {
-      return location;
+    if (status !== 'granted') {
+      return null;
     }
 
     const locationPromise = new Promise((resolve, reject) => {
       const timeout = setTimeout(() => {
         clearTimeout(timeout);
-        reject(new Error("Timeout exceeded while fetching location."));
+        reject(new Error('Timeout exceeded while fetching location.'));
       }, 2000);
       getCurrentPositionAsync()
-        .then((position) => {
+        .then(position => {
           clearTimeout(timeout);
           resolve(position);
         })
-        .catch((error) => {
+        .catch(error => {
           clearTimeout(timeout);
           reject(error);
         });
@@ -42,16 +34,20 @@ const getLocation = async () => {
     const { coords } = position;
     const { latitude, longitude } = coords;
 
-    location.latitude = latitude;
-    location.longitude = longitude;
+    const location: Location = {
+      latitude,
+      longitude,
+      latitudeDelta: 0.1,
+      longitudeDelta: 0.1,
+    };
 
     const address = await getAddress(location);
     location.address = address;
 
     return location;
   } catch (e: any) {
-    console.log("[error] fetching location", e.message);
-    return location;
+    console.log('[error] fetching location', e.message);
+    return null;
   }
 };
 
