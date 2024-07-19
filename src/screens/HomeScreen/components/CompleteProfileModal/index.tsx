@@ -1,21 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-import Modal from "../../../../components/common/Modal";
-import Label from "../../../../components/common/Label";
-import { family } from "../../../../theme/fonts";
-import colors from "../../../../theme/colors";
-import TextInput from "../../../../components/common/inputs/TextInput";
-import Divider from "../../../../components/common/Divider";
-import TextArea from "../../../../components/common/inputs/TextArea";
-import Select from "../../../../components/common/inputs/Select";
-import GENDERS from "../../../../constants/GENDERS";
-import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import useStatus from "../../../../hooks/useStatus";
-import Api from "../../../../services/api";
-import { setUser } from "../../../../store/features/user/userSlice";
-import MainButton from "../../../../components/common/buttons/MainButton";
-import Error from "../../../../components/Status/Error";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Error from '../../../../components/Status/Error';
+import Divider from '../../../../components/common/Divider';
+import Label from '../../../../components/common/Label';
+import Modal from '../../../../components/common/Modal';
+import MainButton from '../../../../components/common/buttons/MainButton';
+import Select from '../../../../components/common/inputs/Select';
+import TextArea from '../../../../components/common/inputs/TextArea';
+import TextInput from '../../../../components/common/inputs/TextInput';
+import GENDERS from '../../../../constants/GENDERS';
+import { useAppDispatch, useAppSelector } from '../../../../hooks';
+import useStatus from '../../../../hooks/useStatus';
+import Api from '../../../../services/api';
+import { setUser } from '../../../../store/features/user/userSlice';
+import colors from '../../../../theme/colors';
+import { family } from '../../../../theme/fonts';
 
 interface Props {
   visible: boolean;
@@ -24,59 +24,59 @@ interface Props {
 
 const CompleteProfileModal = ({ visible, setVisible }: Props) => {
   const dispatch = useAppDispatch();
-  const userGid = useAppSelector((state) => state.user.user.gid);
+  const userGid = useAppSelector(state => state.user.user.gid);
 
   const { status, setStatus } = useStatus();
   const [error, setError] = useState<string | null>();
   const [editedUser, setEditedUser] = useState({
-    name: "",
-    description: "",
-    gender: "N/A",
+    name: '',
+    description: '',
+    gender: 'NS/NC',
   });
 
   const changeName = (e: string) => {
-    setEditedUser((prev) => ({ ...prev, name: e }));
+    setEditedUser(prev => ({ ...prev, name: e }));
   };
 
   const changeDescription = (e: string) => {
-    setEditedUser((prev) => ({ ...prev, description: e }));
+    setEditedUser(prev => ({ ...prev, description: e }));
   };
 
   const changeGender = (input: string) => {
-    setEditedUser((prev) => ({ ...prev, gender: input }));
+    setEditedUser(prev => ({ ...prev, gender: input }));
   };
 
   const genderText =
-    editedUser.gender === "male"
-      ? "Hombre"
-      : editedUser.gender === "female"
-      ? "Mujer"
-      : "N/A";
+    editedUser.gender === 'male'
+      ? 'Hombre'
+      : editedUser.gender === 'female'
+        ? 'Mujer'
+        : 'NS/NC';
 
   const saveData = async () => {
     setError(null);
     try {
-      if (editedUser.name === "") {
-        setError("El nombre es obligatorio");
+      if (editedUser.name === '') {
+        setError('El nombre es obligatorio');
         return;
       }
-      setStatus("loading");
-      console.log("editedUser", JSON.stringify(editedUser));
+      setStatus('loading');
+      console.log('editedUser', JSON.stringify(editedUser));
       const response = await Api.user.update(userGid, editedUser);
-      if (response.status === "success") {
-        setStatus("success");
+      if (response.status === 'success') {
+        setStatus('success');
         dispatch(setUser(response.data));
         await AsyncStorage.setItem(
-          "profileDone",
-          JSON.stringify({ userGid, profileDone: true })
+          'profileDone',
+          JSON.stringify({ userGid, profileDone: true }),
         );
         setVisible(false);
       } else {
-        setStatus("error");
+        setStatus('error');
         setError(response.message);
       }
     } catch (error: any) {
-      setStatus("error");
+      setStatus('error');
       setError(error.message);
     }
   };
@@ -106,7 +106,7 @@ const CompleteProfileModal = ({ visible, setVisible }: Props) => {
           data={GENDERS}
           value={genderText}
           setValue={changeGender}
-          placeholder={"Selecciona Género"}
+          placeholder={'Selecciona Género'}
         />
       </View>
       <Divider height={12} />
@@ -115,7 +115,7 @@ const CompleteProfileModal = ({ visible, setVisible }: Props) => {
           onPress={saveData}
           title="Guardar cambios"
           fontSize={18}
-          loading={status === "loading"}
+          loading={status === 'loading'}
         />
       </View>
       {error && (
@@ -137,15 +137,15 @@ const styles = StyleSheet.create({
   },
   description: {
     fontFamily: family.normal,
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 16,
     color: colors.black,
   },
   content: {
-    width: "100%",
+    width: '100%',
   },
   error: {
     height: 46,
-    width: "100%",
+    width: '100%',
   },
 });
