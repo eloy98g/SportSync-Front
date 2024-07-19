@@ -36,8 +36,9 @@ const PublicActivity = (props: Activity) => {
   const { name: sportName } = sport;
   const { navigateTo } = useNavigate();
   const userLocation = useAppSelector(state => state.user.location);
-  const distance =
-    'a ' + formattedDistance(distanceBetween(userLocation, location));
+  const distance = userLocation
+    ? 'a ' + formattedDistance(distanceBetween(userLocation, location))
+    : '';
 
   const date = unixToDate(startDate);
   const currentPlayers = teams.reduce(
@@ -54,7 +55,11 @@ const PublicActivity = (props: Activity) => {
     <TouchableOpacity onPress={activityHandler} style={styles.container}>
       <View style={{ flex: 1 }}>
         <View style={styles.row}>
-          <Text style={styles.title}>{sportName}</Text>
+          <View style={{ flex: 1 }}>
+            <Text numberOfLines={1} style={styles.title}>
+              {name}
+            </Text>
+          </View>
           <View style={styles.icons}>
             <Divider width={5} />
             <Icon icon={access} color={colors.black} size={18} />
@@ -66,7 +71,7 @@ const PublicActivity = (props: Activity) => {
             )}
           </View>
         </View>
-        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.title}>{sportName}</Text>
         <Text style={styles.subText}>{distance}</Text>
       </View>
       <View style={styles.row}>
@@ -88,7 +93,7 @@ export default PublicActivity;
 const styles = StyleSheet.create({
   container: {
     width: 200,
-    height: 100,
+    height: 115,
     borderRadius: 12,
     padding: 10,
     backgroundColor: colors.secondary,

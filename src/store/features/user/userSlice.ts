@@ -1,32 +1,32 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Methods
-import signUp from "./methods/signUp";
+import signUp from './methods/signUp';
 
 // Types
-import User, { EMPTY_USER } from "../../types/user/User";
-import Location, { EMPTY_LOCATION } from "../../types/location/Location";
-import signIn from "./methods/signIn";
+import Location from '../../types/location/Location';
+import User, { EMPTY_USER } from '../../types/user/User';
+import signIn from './methods/signIn';
 
 type UserState = {
   loading: boolean;
   error: string;
-  location: Location;
+  location: Location | null;
   user: User;
 };
 
 const initialState: UserState = {
   user: EMPTY_USER,
-  location: EMPTY_LOCATION,
+  location: null,
   loading: false,
-  error: "",
+  error: '',
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
-    logOut: (state) => {
+    logOut: state => {
       state.user = EMPTY_USER;
     },
     setLocation: (state, action: PayloadAction<Location>) => {
@@ -36,38 +36,37 @@ const userSlice = createSlice({
       state.user = action.payload;
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(signUp.pending, (state) => {
+  extraReducers: builder => {
+    builder.addCase(signUp.pending, state => {
       state.loading = true;
-      state.error = "";
+      state.error = '';
     });
     builder.addCase(signUp.fulfilled, (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.loading = false;
-      state.error = "";
+      state.error = '';
     });
     builder.addCase(signUp.rejected, (state, action) => {
-      state.error = action.error.message || "Error desconocido";
+      state.error = action.error.message || 'Error desconocido';
       state.loading = false;
     });
     // Sign In
-    builder.addCase(signIn.pending, (state) => {
+    builder.addCase(signIn.pending, state => {
       state.loading = true;
-      state.error = "";
+      state.error = '';
     });
     builder.addCase(signIn.fulfilled, (state, action: PayloadAction<User>) => {
       state.user = action.payload;
       state.loading = false;
-      state.error = "";
+      state.error = '';
     });
     builder.addCase(signIn.rejected, (state, action) => {
-      state.error = action.error.message || "Error desconocido";
+      state.error = action.error.message || 'Error desconocido';
       state.loading = false;
     });
   },
 });
 
-export const { logOut, setLocation, setUser } =
-  userSlice.actions;
+export const { logOut, setLocation, setUser } = userSlice.actions;
 
 export default userSlice.reducer;
