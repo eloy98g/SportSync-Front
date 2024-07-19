@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, ScrollView, View } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 // Components
-import Screen from "../../../components/common/Screen";
-import BackHeader from "../../../components/BackHeader";
-import Divider from "../../../components/common/Divider";
-import Loading from "../CodeScanScreen/states/Loading";
-import Error from "../../../components/Status/Error";
-import RequestCard from "./components/RequestCard";
+import BackHeader from '../../../components/BackHeader';
+import Error from '../../../components/Status/Error';
+import Divider from '../../../components/common/Divider';
+import Screen from '../../../components/common/Screen';
+import Loading from '../CodeScanScreen/states/Loading';
+import RequestCard from './components/RequestCard';
 
 // Hooks
-import useStatus from "../../../hooks/useStatus";
+import useStatus from '../../../hooks/useStatus';
 
 // Services
-import Api from "../../../services/api";
+import Api from '../../../services/api';
 
 // Types
-import Application from "../../../store/types/application/Application";
+import Application from '../../../store/types/application/Application';
 
 interface Props {
   route: {
@@ -29,27 +29,27 @@ const RequestListScreen = ({ route }: Props) => {
   const { activityGid } = route.params;
   const { status, setStatus } = useStatus();
   const [requests, setRequests] = useState<Application[]>([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const getData = async () => {
     try {
-      setStatus("loading");
+      setStatus('loading');
       if (activityGid) {
-        const input = "status=pending";
+        const input = 'status=pending';
         const response = await Api.application.getAll(activityGid, input);
-        if (response.status === "success") {
+        if (response.status === 'success') {
           setRequests(response.data);
-          setStatus("success");
+          setStatus('success');
         } else {
-          setStatus("error");
+          setStatus('error');
           setError(response.message);
         }
       } else {
-        setError("No se ha encontrado la actividad");
-        setStatus("error");
+        setError('No se ha encontrado la actividad');
+        setStatus('error');
       }
     } catch (error: any) {
-      setStatus("error");
+      setStatus('error');
       setError(error.message);
     }
   };
@@ -62,12 +62,15 @@ const RequestListScreen = ({ route }: Props) => {
     <Screen>
       <BackHeader title="Solicitudes" />
       <View style={styles.container}>
-        {status === "loading" ? (
+        {status === 'loading' ? (
           <Loading />
-        ) : status === "error" ? (
+        ) : status === 'error' ? (
           <Error error={error} />
         ) : (
-          <ScrollView style={styles.scroll}>
+          <ScrollView
+            style={styles.scroll}
+            showsVerticalScrollIndicator={false}
+          >
             <Divider height={12} />
             {requests.map(({ user, gid }) => (
               <React.Fragment key={user.gid}>
@@ -91,13 +94,13 @@ export default RequestListScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
+    width: '100%',
     paddingTop: 92,
-    justifyContent: "flex-start",
+    justifyContent: 'flex-start',
     paddingHorizontal: 12,
   },
   scroll: {
-    width: "100%",
+    width: '100%',
     height: 1,
   },
 });
