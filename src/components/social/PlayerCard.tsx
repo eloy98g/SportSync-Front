@@ -1,22 +1,22 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 // Components
-import Divider from "../common/Divider";
-import FollowButton from "../common/buttons/FollowButton";
+import Divider from '../common/Divider';
+import FollowButton from '../common/buttons/FollowButton';
 
 // Constants
-import PROFILE_IMAGE from "../../constants/PROFILE_IMAGE";
+import PROFILE_IMAGE from '../../constants/PROFILE_IMAGE';
 
 // Hooks
-import useNavigate from "../../hooks/useNavigate";
+import useNavigate from '../../hooks/useNavigate';
 
 // Theme
-import colors from "../../theme/colors";
-import { family } from "../../theme/fonts";
+import colors from '../../theme/colors';
+import { family } from '../../theme/fonts';
 
 // Types
-import Player from "../../store/types/activity/Player";
+import Player from '../../store/types/activity/Player';
 
 interface Props {
   data: Player;
@@ -28,7 +28,7 @@ const PlayerCard = ({ data }: Props) => {
   const { navigateTo } = useNavigate();
 
   const profileHandler = () => {
-    navigateTo("Profile", { gid: gid });
+    navigateTo('Profile', { gid: gid });
   };
 
   return (
@@ -41,7 +41,7 @@ const PlayerCard = ({ data }: Props) => {
         {verified && (
           <Image
             style={styles.verified}
-            source={require("../../assets/images/verified.png")}
+            source={require('../../assets/images/verified.png')}
           />
         )}
       </TouchableOpacity>
@@ -54,30 +54,32 @@ export default PlayerCard;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: 'row',
     flex: 1,
-    alignItems: "center",
-    justifyContent: "space-between",
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   row: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
   },
   image: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    overflow: "hidden",
-    resizeMode: "cover",
+    overflow: 'hidden',
+    resizeMode: 'cover',
   },
   verified: {
     width: 18,
     height: 18,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
   name: {
     fontFamily: family.normal,
     fontSize: 14,
     color: colors.black,
+    flex: 1,
   },
 });
