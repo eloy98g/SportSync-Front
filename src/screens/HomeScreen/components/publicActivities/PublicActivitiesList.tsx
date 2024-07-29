@@ -1,40 +1,48 @@
-import React from "react";
+import React from 'react';
 import {
+  ScrollView,
   StyleSheet,
   Text,
-  ScrollView,
   View,
   useWindowDimensions,
-} from "react-native";
+} from 'react-native';
 
 // Components
-import Divider from "../../../../components/common/Divider";
-import PublicActivity from "./PublicActivity";
+import Divider from '../../../../components/common/Divider';
+import PublicActivity from './PublicActivity';
 
 // Methods
-import isPlayer from "../../../activities/ActivityDetail/methods/isPlayer";
-import isActivityFull from "../../../activities/ActivityDetail/methods/isActivityFull";
+import isActivityFull from '../../../activities/ActivityDetail/methods/isActivityFull';
+import isPlayer from '../../../activities/ActivityDetail/methods/isPlayer';
 
 // Hooks
-import { useAppSelector } from "../../../../hooks";
+import { useAppSelector } from '../../../../hooks';
 
 // Theme
-import colors from "../../../../theme/colors";
-import { PHONE } from "../../../../theme/breakPoints";
-import { family } from "../../../../theme/fonts";
-
+import { PHONE } from '../../../../theme/breakPoints';
+import colors from '../../../../theme/colors';
+import { family } from '../../../../theme/fonts';
+import distanceBetween from '../../../../utils/distances/distanceBetween';
 
 const PublicActivitiesList = () => {
   const width = useWindowDimensions().width;
-  const userGid = useAppSelector((state) => state.user.user.gid);
+  const userGid = useAppSelector(state => state.user.user.gid);
   const scrollWidth = width >= PHONE ? PHONE : width;
 
-  const activities = useAppSelector(
-    (state) => state.activity.publicActivities
-  ).filter(
-    (activity) =>
-      activity.admin.gid !== userGid && !isPlayer(userGid, activity?.teams) && !isActivityFull(activity)
-  );
+  const userLocation = useAppSelector(state => state.user.user.location);
+  const activities = useAppSelector(state => state.activity.publicActivities)
+    .filter(
+      activity =>
+        activity.admin.gid !== userGid &&
+        !isPlayer(userGid, activity?.teams) &&
+        !isActivityFull(activity),
+    )
+    .sort((a, b) => {
+      return distanceBetween(userLocation, a.location) >=
+        distanceBetween(userLocation, b.location)
+        ? -1
+        : 1;
+    });
 
   if (activities.length === 0) return <View />;
 
@@ -51,7 +59,7 @@ const PublicActivitiesList = () => {
           contentContainerStyle={styles.scroll}
         >
           <Divider width={12} />
-          {activities.map((activity) => (
+          {activities.map(activity => (
             <React.Fragment key={activity.gid}>
               <PublicActivity {...activity} />
               <Divider width={16} />
@@ -68,7 +76,7 @@ export default PublicActivitiesList;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: '100%',
   },
   title: {
     fontFamily: family.light,
@@ -76,6 +84,6 @@ const styles = StyleSheet.create({
     color: colors.grey,
   },
   scroll: {
-    alignItems: "flex-start",
+    alignItems: 'flex-start',
   },
 });
