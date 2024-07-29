@@ -1,53 +1,53 @@
-import React, { useContext, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
+import React, { useContext, useEffect, useState } from 'react';
+import { BackHandler, StyleSheet, View } from 'react-native';
 
 // Components
-import ErrorModal from "../../../components/modals/ErrorModal";
-import StatusBar from "./components/StatusBar";
-import Actions from "./components/Actions";
-import Loading from "./components/Loading";
-import ConfirmModal from "./components/ConfirmModal";
-import Error from "../../../components/Status/Error";
-import BackScreen from "./components/BackScreen";
+import ErrorModal from '../../../components/modals/ErrorModal';
+import Error from '../../../components/Status/Error';
+import Actions from './components/Actions';
+import BackScreen from './components/BackScreen';
+import ConfirmModal from './components/ConfirmModal';
+import Loading from './components/Loading';
+import StatusBar from './components/StatusBar';
 
 // Context
-import CreateContext from "./context/CreateContext";
+import CreateContext from './context/CreateContext';
 
 // Hooks
-import useNavigate from "../../../hooks/useNavigate";
-import { useAppSelector } from "../../../hooks";
+import { useAppSelector } from '../../../hooks';
+import useNavigate from '../../../hooks/useNavigate';
 
 // Services
-import Api from "../../../services/api";
+import Api from '../../../services/api';
 
 // Sections
-import Sections, { lastSection, SectionName } from "./sections";
+import Sections, { lastSection, SectionName } from './sections';
 
 // Theme
-import colors from "../../../theme/colors";
+import colors from '../../../theme/colors';
 
 const Create = () => {
-  const [modal, setModal] = useState("");
+  const [modal, setModal] = useState('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [finishError, setFinishError] = useState<string>("");
+  const [finishError, setFinishError] = useState<string>('');
   const [finishSuccess, setFinishSuccess] = useState<boolean>(false);
   const { navigateTo } = useNavigate();
   const navigation = useNavigation();
 
   const { status, error, section, setSection, draft } =
     useContext(CreateContext);
-  const userGid = useAppSelector((state) => state.user.user.gid);
+  const userGid = useAppSelector(state => state.user.user.gid);
 
   const currentSection =
-    Sections.find((element) => element.name === section) ?? Sections[0];
+    Sections.find(element => element.name === section) ?? Sections[0];
 
   const { position, component } = currentSection;
   const value = ((position + 1) / Sections.length) * 100;
 
-  const leftTitle = currentSection.position === 0 ? "Cancelar" : "Atrás";
+  const leftTitle = currentSection.position === 0 ? 'Cancelar' : 'Atrás';
   const rightTitle =
-    currentSection.position === lastSection.position ? "Finalizar" : "Aceptar";
+    currentSection.position === lastSection.position ? 'Finalizar' : 'Aceptar';
 
   const leftAction = () => {
     if (currentSection.position === 0) {
@@ -55,11 +55,24 @@ const Create = () => {
     } else {
       const prevSection =
         Sections.find(
-          (element) => element.position === currentSection.position - 1
+          element => element.position === currentSection.position - 1,
         ) ?? Sections[0];
       setSection(prevSection.name as SectionName);
     }
   };
+
+  useEffect(() => {
+    const handleBackButton = () => {
+      leftAction();
+      return false;
+    };
+
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    };
+  }, [leftAction]);
 
   const createDateStart = () => {
     const dateHour = new Date(draft.hour);
@@ -88,18 +101,18 @@ const Create = () => {
         dateStart: createDateStart(),
       };
       const response = await Api.activity.create(activity);
-      if (response.status === "success") {
-        navigateTo("ActivityDetail", {
+      if (response.status === 'success') {
+        navigateTo('ActivityDetail', {
           gid: response.data.gid,
         });
         setFinishSuccess(true);
       } else {
         setFinishError(response.message);
-        setModal("Error");
+        setModal('Error');
       }
     } catch (error: any) {
       setFinishError(error.message);
-      setModal("Error");
+      setModal('Error');
     } finally {
       setLoading(false);
     }
@@ -107,21 +120,21 @@ const Create = () => {
 
   const rightAction = () => {
     if (currentSection.position === lastSection.position) {
-      setModal("Confirm");
+      setModal('Confirm');
     } else {
       const nextSection =
         Sections.find(
-          (element) => element.position === currentSection.position + 1
+          element => element.position === currentSection.position + 1,
         ) ?? Sections[0];
       setSection(nextSection.name as SectionName);
     }
   };
 
-  if (status === "loading" || status === "idle") {
+  if (status === 'loading' || status === 'idle') {
     return <Loading />;
   }
 
-  if (status === "error") {
+  if (status === 'error') {
     return <Error error={error} />;
   }
 
@@ -140,13 +153,13 @@ const Create = () => {
         rightTitle={rightTitle}
       />
       <ConfirmModal
-        visible={modal === "Confirm"}
+        visible={modal === 'Confirm'}
         setVisible={setModal}
         onFinish={finishHandler}
         loading={loading}
       />
       <ErrorModal
-        visible={modal === "Error"}
+        visible={modal === 'Error'}
         setVisible={setModal}
         error={finishError}
       />
@@ -158,8 +171,8 @@ export default Create;
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
-    width: "100%",
+    height: '100%',
+    width: '100%',
     paddingHorizontal: 16,
     paddingTop: 50,
     backgroundColor: colors.white,

@@ -1,6 +1,13 @@
-import { BackHandler, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
 import { useNavigationState } from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { BackHandler } from 'react-native';
+
+const PREVENT_SCREENS = [
+  'Splash',
+  'EditProfile',
+  'Home',
+  'DeletePlayersScreen',
+];
 
 const Setup = () => {
   const navigationState = useNavigationState(state => state);
@@ -13,27 +20,20 @@ const Setup = () => {
       return false;
     };
 
-    BackHandler.addEventListener("hardwareBackPress", handleBackButton);
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
 
     return () => {
-      BackHandler.removeEventListener("hardwareBackPress", handleBackButton);
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
     };
   }, [navigationState]);
 
   const shouldPreventBackButton = () => {
-    const preventScreens = ["Splash", "EditProfile", "Home", "DeletePlayersScreen"]; 
-
     const currentRouteName = navigationState.routes[navigationState.index].name;
 
-    console.log('currentRouteName',currentRouteName)
-    return preventScreens.includes(currentRouteName);
+    return PREVENT_SCREENS.includes(currentRouteName);
   };
 
-  return (
-    <></>
-  )
-}
+  return <></>;
+};
 
-export default Setup
-
-const styles = StyleSheet.create({})
+export default Setup;
